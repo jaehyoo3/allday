@@ -1,25 +1,45 @@
 package com.bluebee.modules.codegroup;
 
+import java.util.Date;
+
 public class CodeGroup {
-//code_group
-	private String ccgSeq;
-	private String codeName;
+	private Integer ccgseq;
 	private Integer userNY;
 	private Integer ccorder;
-	
-//------------------
-	
-	public String getCcgSeq() {
-		return ccgSeq;
-	}
-	public void setCcgSeq(String ccgSeq) {
-		this.ccgSeq = ccgSeq;
-	}
+	private Date regDate;
+	private Date modifyDate;
+	private Integer cnt;
+	private String codeName;
+
 	public String getCodeName() {
 		return codeName;
 	}
 	public void setCodeName(String codeName) {
 		this.codeName = codeName;
+	}
+	public Date getRegDate() {
+		return regDate;
+	}
+	public Integer getCnt() {
+		return cnt;
+	}
+	public void setCnt(Integer cnt) {
+		this.cnt = cnt;
+	}
+	public void setRegDate(Date regDate) {
+		this.regDate = regDate;
+	}
+	public Date getModifyDate() {
+		return modifyDate;
+	}
+	public void setModifyDate(Date modifyDate) {
+		this.modifyDate = modifyDate;
+	}
+	public Integer getCcgseq() {
+		return ccgseq;
+	}
+	public void setCcgseq(Integer ccgseq) {
+		this.ccgseq = ccgseq;
 	}
 	public Integer getUserNY() {
 		return userNY;
@@ -33,6 +53,4 @@ public class CodeGroup {
 	public void setCcorder(Integer ccorder) {
 		this.ccorder = ccorder;
 	}
-	
-	
 }

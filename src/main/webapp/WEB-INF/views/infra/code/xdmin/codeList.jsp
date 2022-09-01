@@ -1,8 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
 <html>
 	<head>
 		<title>WoW</title>
@@ -52,30 +53,36 @@
 					<option>20</option>
 					<option>30</option>
 				</select>
-				<table>
+				<table class="table table-striped table-hover">
 					<thead>
 						<tr>
 							<th><input type='checkbox'></th>
-							<th>#</th>
 							<th>코드그룹 코드</th>
 							<th>코드그룹 이름(한글)</th>
-							<th>코드그룹 이름(영문)</th>
-							<th>코드갯수</th>
+							<th>코드</th>
+							<th>대체코드</th>
+							<th>코드이름(한글)</th>
+							<th>사용</th>
+							<th>순서</th>
 							<th>등록일</th>
 							<th>수정일</th>
 						</tr>
 					</thead>	
 					<tbody>
+					<c:forEach items="${list}" var="list" varStatus="status">
 						<tr>
 							<td><input type='checkbox'></td>
-							<th></th>
-							<th></th>
-							<th></th>
-							<th></th>
-							<th></th>
-							<th></th>
-							<th></th>
+							<td><c:out value="${list.ccgseq }"/></td>
+							<td><c:out value="${list.codeName }"/></td>
+							<td><c:out value="${list.ccseq }"/></td>
+							<td></td>
+							<td><c:out value="${list.cname }"/></td>
+							<td><c:out value="${list.yn }"/></td>
+							<td></td>
+							<td></td>
+							<td></td>
 						</tr>
+					</c:forEach>
 					</tbody>				
 				</table>
 					<div class="wrapper">
@@ -99,9 +106,7 @@
 					<div class="p-1"><button type="button" class="btn btn-primary"><i class="fa-solid fa-plus"></i></button></div>
 				</div>
 			</div>
-			<div id='footer'>
-				<div class='copyright'>© 2022. Bluebee all rights reserved.</div>
-			</div>
+
 		</form>
 	<script src="https://kit.fontawesome.com/15c84217dd.js" crossorigin="anonymous"></script>
 	</body>

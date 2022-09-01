@@ -30,10 +30,9 @@
 			}
 			#content {
 				width: 70%;
-				margin: auto;
-				margin-bottom: 50px;
-				height: 700px;
+				margin:auto;
 			}
+
 			#footer {
 				background-color: black;
 				color: white;
@@ -47,9 +46,8 @@
 			}
 			@font-face {
 				font-family: 'ChosunGu';
-				src:
-					url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/ChosunGu.woff')
-					format('woff');
+				src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/ChosunGu.woff')
+				format('woff');
 				font-weight: normal;
 				font-style: normal;
 			}
@@ -97,4 +95,4 @@
 		    z-index: 3;
 		    outline: 0;
 		    box-shadow: none;
-		}
+		} 

@@ -10,10 +10,13 @@
 	
 	<select id="selectList" resultMap="resultMapObj">
 		SELECT
-			a.*
-		FROM codegroup a
-		WHERE 1=1
-			AND userNY = 1
-	</select>
+			a.ccgSeq
+			,a.codeName
+			,a.userNY
+			,a.regDate
+			,a.modifyDate
+            ,(SELECT count(bb.ccSeq) FROM code bb WHERE bb.codegroup_ccgSeq = a.ccgSeq) as cnt
+			FROM codegroup a
 
-</mapper>	
+	</select>
+</mapper>		
