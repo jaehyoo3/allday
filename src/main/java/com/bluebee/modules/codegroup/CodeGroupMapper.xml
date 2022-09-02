@@ -17,6 +17,8 @@
 			,a.modifyDate
             ,(SELECT count(bb.ccSeq) FROM code bb WHERE bb.codegroup_ccgSeq = a.ccgSeq) as cnt
 			FROM codegroup a
+			WHERE 1=1
+				AND a.codeName LIKE CONCAT('%', #{shValue}, '%')
 
 	</select>
 </mapper>		

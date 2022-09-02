@@ -1,4 +1,4 @@
-package com.bluebee.modules.code;
+package com.bluebee.modules.member;
 
 import java.util.List;
 
@@ -6,12 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CodeServiceImpl implements CodeService {
+public class MemberServiceImpl implements MemberService {
+	
 	@Autowired
-	CodeDao dao;
+	MemberDao dao;
 	
 	@Override
-	public List<Code> selectList() throws Exception {
+	public List<Member> selectList() throws Exception {
 		return dao.selectList();
 	}
+
 }

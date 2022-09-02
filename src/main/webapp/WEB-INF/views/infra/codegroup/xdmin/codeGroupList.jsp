@@ -13,7 +13,7 @@
 	</head>
 	
 	<body>
-		<form>
+		<form method="post" action="/codeGroup/codeGroupList">
 			<div id='haeder'></div>
 			<div class="navbar">
 				<a href="#" id="logo"> <img src="/resources/Images/logo2.png" height="60"onClick="location.href='./wowMain.html'">
@@ -38,11 +38,14 @@
 					</select>
 					<input type='text' placeholder="시작일">
 					<input type='text' placeholder="종료일"><br><br>
-					<select>
-						<option>검색구분</option>
-						<option>등록일</option>
+					<select id="shOption" name="shOption">
+						<option value="" <c:if test="${empty vo.shOption}">selected</c:if>>검색구분</option>
+						<option value="1" <c:if test="${vo.shOption eq 1}">selected</c:if>>코드그룹 코드</option>
+						<option value="2" <c:if test="${vo.shOption eq 2}">selected</c:if>>코드그룹 이름(한글)</option>
+						<option value="3" <c:if test="${vo.shOption eq 3}">selected</c:if>>코드그룹 이름(영어)</option>
 					</select>
-					<input type='text' placeholder="검색어">
+					<input type='text' id="shValue" name="shValue" value="<c:out value="${vo.shValue }"/>" placeholder="검색어">
+					<input type="submit">	
 					<button><i class="fa-solid fa-arrow-right-long"></i></button>
 					<button><i class="fa-solid fa-rotate-left"></i></button>
 				</div>
@@ -67,18 +70,27 @@
 						</tr>
 					</thead>	
 					<tbody>
-					<c:forEach items="${list}" var="list" varStatus="status">
-						<tr>
-							<td><input type='checkbox'></td>
-							<td><c:out value="${list.ccgseq }"/></td>
-							<td><c:out value="${list.ccorder }"/></td>
-							<td><c:out value="${list.codeName }"/></td>
-							<td><c:out value="${list.userNY }"/></td>
-							<td><c:out value="${list.cnt }"/></td>
-							<td><c:out value="${list.regDate }"/></td>
-							<td><c:out value="${list.modifyDate }"/></td>
-						</tr>
-					</c:forEach>
+						<c:choose>
+							<c:when test="${fn:length(list) eq 0}">
+								<tr>
+									<td colspan='8'>검색된 코드가 존재하지 않습니다.</td>
+								</tr>
+							</c:when>
+							<c:otherwise>
+								<c:forEach items="${list}" var="list" varStatus="status">
+									<tr>
+										<td><input type='checkbox'></td>
+										<td><c:out value="${list.ccgseq }"/></td>
+										<td><c:out value="${list.ccorder }"/></td>
+										<td><c:out value="${list.codeName }"/></td>
+										<td><c:out value="${list.userNY }"/></td>
+										<td><c:out value="${list.cnt }"/></td>
+										<td><fmt:formatDate value="${list.regDate }" pattern="yyyy-MM-dd"/></td>
+										<td><fmt:formatDate value="${list.modifyDate }" pattern="yyyy-MM-dd"/></td>
+									</tr>
+								</c:forEach>
+							</c:otherwise>
+						</c:choose>
 					</tbody>				
 				</table>
 					<div class="wrapper">
