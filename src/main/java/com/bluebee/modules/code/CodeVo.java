@@ -1,24 +1,24 @@
-package com.bluebee.modules.codegroup;
+package com.bluebee.modules.code;
 
-public class CodeGroupVo {
+public class CodeVo {
 	private String shValue;
 	private Integer shOption;
 	private Integer shDelNy;
 	private Integer shDate;
-	private String shstartDate;
-	private String shendDate;	
+	private String startDate;
+	private String endDate;	
 	
-	public String getShstartDate() {
-		return shstartDate;
+	public String getStartDate() {
+		return startDate;
 	}
-	public void setShstartDate(String shstartDate) {
-		this.shstartDate = shstartDate;
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
 	}
-	public String getShendDate() {
-		return shendDate;
+	public String getEndDate() {
+		return endDate;
 	}
-	public void setShendDate(String shendDate) {
-		this.shendDate = shendDate;
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
 	}
 	public Integer getShDate() {
 		return shDate;

@@ -13,12 +13,24 @@
 			a.ccgSeq
 			,a.codeName
 			,a.userNY
+			,a.ccorder
 			,a.regDate
 			,a.modifyDate
+			,a.delNy
+			,a.codeNameEng
             ,(SELECT count(bb.ccSeq) FROM code bb WHERE bb.codegroup_ccgSeq = a.ccgSeq) as cnt
 			FROM codegroup a
 			WHERE 1=1
-				AND a.codeName LIKE CONCAT('%', #{shValue}, '%')
-
+			<if test="shDelNy != null and !shDelNy.equals('')">AND delNy = #{shDelNy}</if>
+			<if test="shstartDate != null and !shstartDate.equals('') and shendDate != null and !shendDate.equals('')"> AND a.regDate between #{shstartDate} AND #{shendDate}</if>
+			
+			<choose>
+				<when test="shOption == 1">AND ccgSeq = #{shValue}</when>
+				<when test="shOption == 2">AND codeName LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shOption == 3">AND codeNameEng LIKE CONCAT('%',#{shValue},'%')</when>
+		
+				<otherwise></otherwise>
+				
+			</choose> 
 	</select>
 </mapper>		

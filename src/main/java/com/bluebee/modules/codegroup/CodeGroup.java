@@ -10,7 +10,21 @@ public class CodeGroup {
 	private Date modifyDate;
 	private Integer cnt;
 	private String codeName;
-
+	private Integer delNy;
+	private String codeNameEng;
+	
+	public String getCodeNameEng() {
+		return codeNameEng;
+	}
+	public void setCodeNameEng(String codeNameEng) {
+		this.codeNameEng = codeNameEng;
+	}
+	public Integer getDelNy() {
+		return delNy;
+	}
+	public void setDelNy(Integer delNy) {
+		this.delNy = delNy;
+	}
 	public String getCodeName() {
 		return codeName;
 	}

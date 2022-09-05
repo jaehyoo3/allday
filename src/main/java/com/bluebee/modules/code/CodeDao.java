@@ -16,6 +16,6 @@ public class CodeDao {
 	
 	private static String namespace = "com.bluebee.modules.code.CodeMapper";
 	
-	public List<Code> selectList(){ return sqlSession.selectList(namespace + ".selectList", ""); }
+	public List<Code> selectList(CodeVo vo){ return sqlSession.selectList(namespace + ".selectList", vo); }
 
 }

@@ -9,11 +9,12 @@
 		<title>WoW</title>
 		<link href="/resources/Images/css/bootstrap.min.css" rel="stylesheet"> 
     	<link href="/resources/Images/ccgstyleSheet.css" rel="stylesheet" />
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
     	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 	</head>
 	
 	<body>
-		<form method="post" action="/codeGroup/codeGroupList">
+		<form method="post" action="/codeGroup/codeGroupList" autocomplete="off">
 			<div id='haeder'></div>
 			<div class="navbar">
 				<a href="#" id="logo"> <img src="/resources/Images/logo2.png" height="60"onClick="location.href='./wowMain.html'">
@@ -28,26 +29,29 @@
 			<div id='content'>
 				<h2>코드그룹 관리</h2>
 				<div class='condition'>
-					<select>
-						<option>N</option>
-						<option>Y</option>
+					<select id='shDelNy' name='shDelNy'>
+						<option value="" <c:if test="${empty vo.shDelNy}">selected</c:if>>검색구분</option>
+						<option value='0' <c:if test="${vo.shDelNy eq 0}">selected</c:if>>N</option>
+						<option value='1' <c:if test="${vo.shDelNy eq 1}">selected</c:if>>Y</option>
 					</select>
+					
+					<br><br>
 					<select>
 						<option>수정일</option>
 						<option>등록일</option>
 					</select>
-					<input type='text' placeholder="시작일">
-					<input type='text' placeholder="종료일"><br><br>
+ 					<input type='text' id='startDate' name='shstartDate' <c:out value="${vo.shstartDate }"/> placeholder='시작일'>
+ 					<input type='text' id='endDate' name='shendDate' <c:out value="${vo.shendDate }"/> placeholder='종료일'>
+ 					
 					<select id="shOption" name="shOption">
-						<option value="" <c:if test="${empty vo.shOption}">selected</c:if>>검색구분</option>
+						<option value="" <c:if test="${empty vo.shOption }">selected</c:if>>검색구분</option>
 						<option value="1" <c:if test="${vo.shOption eq 1}">selected</c:if>>코드그룹 코드</option>
 						<option value="2" <c:if test="${vo.shOption eq 2}">selected</c:if>>코드그룹 이름(한글)</option>
 						<option value="3" <c:if test="${vo.shOption eq 3}">selected</c:if>>코드그룹 이름(영어)</option>
 					</select>
 					<input type='text' id="shValue" name="shValue" value="<c:out value="${vo.shValue }"/>" placeholder="검색어">
+					
 					<input type="submit">	
-					<button><i class="fa-solid fa-arrow-right-long"></i></button>
-					<button><i class="fa-solid fa-rotate-left"></i></button>
 				</div>
 				<br>
 				<span>total:</span>
@@ -63,17 +67,19 @@
 							<th>#</th>
 							<th>코드그룹 코드</th>
 							<th>코드그룹 이름</th>
+							<th>코드그룹 이름(영문)</th>
 							<th>사용확인</th>
 							<th>코드갯수</th>
 							<th>등록일</th>
 							<th>수정일</th>
+							<th>삭제여부</th>
 						</tr>
 					</thead>	
 					<tbody>
 						<c:choose>
 							<c:when test="${fn:length(list) eq 0}">
 								<tr>
-									<td colspan='8'>검색된 코드가 존재하지 않습니다.</td>
+									<td colspan='10'>검색된 코드가 존재하지 않습니다.</td>
 								</tr>
 							</c:when>
 							<c:otherwise>
@@ -83,10 +89,12 @@
 										<td><c:out value="${list.ccgseq }"/></td>
 										<td><c:out value="${list.ccorder }"/></td>
 										<td><c:out value="${list.codeName }"/></td>
+										<td><c:out value="${list.codeNameEng }"/></td>
 										<td><c:out value="${list.userNY }"/></td>
 										<td><c:out value="${list.cnt }"/></td>
 										<td><fmt:formatDate value="${list.regDate }" pattern="yyyy-MM-dd"/></td>
 										<td><fmt:formatDate value="${list.modifyDate }" pattern="yyyy-MM-dd"/></td>
+										<td><c:out value="${list.delNy }"/></td>
 									</tr>
 								</c:forEach>
 							</c:otherwise>
@@ -119,5 +127,47 @@
 			</div>
 		</form>
 	<script src="https://kit.fontawesome.com/15c84217dd.js" crossorigin="anonymous"></script>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+            $.datepicker.setDefaults($.datepicker.regional['ko']);
+            $( "#startDate" ).datepicker({
+                 changeMonth: true,
+                 changeYear: true,
+                 nextText: '다음 달',
+                 prevText: '이전 달',
+                 dayNames: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
+                 dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+                 monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                 monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                 dateFormat: "yy-mm-dd",
+                 /* maxDate: 0,                       // 선택할수있는 최소날짜, ( 0 : 오늘 이후 날짜 선택 불가) */
+                 onClose: function( selectedDate ) {
+                      //시작일(startDate) datepicker가 닫힐때
+                      //종료일(endDate)의 선택할수있는 최소 날짜(minDate)를 선택한 시작일로 지정
+                     $("#endDate").datepicker( "option", "minDate", selectedDate );
+                 }
+            });
+            $( "#endDate" ).datepicker({
+                 changeMonth: true,
+                 changeYear: true,
+                 nextText: '다음 달',
+                 prevText: '이전 달',
+                 dayNames: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
+                 dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+                 monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                 monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                 dateFormat: "yy-mm-dd",
+                 /* maxDate: 0,                       // 선택할수있는 최대날짜, ( 0 : 오늘 이후 날짜 선택 불가) */
+                 onClose: function( selectedDate ) {
+                     // 종료일(endDate) datepicker가 닫힐때
+                     // 시작일(startDate)의 선택할수있는 최대 날짜(maxDate)를 선택한 시작일로 지정
+                     $("#startDate").datepicker( "option", "maxDate", selectedDate );
+                 }
+            });
+    });
+</script>
 	</body>
 </html>

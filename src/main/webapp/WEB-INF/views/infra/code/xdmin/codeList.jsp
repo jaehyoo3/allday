@@ -13,7 +13,7 @@
 	</head>
 	
 	<body>
-		<form>
+		<form method="post" action="/code/codeList">
 			<div id='haeder'></div>
 			<div class="navbar">
 				<a href="#" id="logo"> <img src="/resources/Images/logo2.png" height="60"onClick="location.href='./wowMain.html'">
@@ -28,9 +28,10 @@
 			<div id='content'>
 				<h2>코드그룹 관리</h2>
 				<div class='condition'>
-					<select>
-						<option>N</option>
-						<option>Y</option>
+					<select id='shDelNy' name='shDelNy'>
+						<option value="" <c:if test="${empty vo.shDelNy}">selected</c:if>>검색구분</option>
+						<option value='0' <c:if test="${vo.shDelNy eq 0}">selected</c:if>>N</option>
+						<option value='1' <c:if test="${vo.shDelNy eq 1}">selected</c:if>>Y</option>
 					</select>
 					<select>
 						<option>수정일</option>
@@ -38,12 +39,14 @@
 					</select>
 					<input type='text' placeholder="시작일">
 					<input type='text' placeholder="종료일"><br><br>
-					<select>
-						<option>검색구분</option>
-						<option>등록일</option>
+					<select id="shOption" name="shOption">
+						<option value="" <c:if test="${empty vo.shOption }">selected</c:if>>검색구분</option>
+						<option value="1" <c:if test="${vo.shOption eq 1}">selected</c:if>>코드</option>
+						<option value="2" <c:if test="${vo.shOption eq 2}">selected</c:if>>코드그룹</option>
+						<option value="3" <c:if test="${vo.shOption eq 3}">selected</c:if>>코드이름</option>
 					</select>
-					<input type='text' placeholder="검색어">
-					<button><i class="fa-solid fa-arrow-right-long"></i></button>
+					<input type='text' id="shValue" name="shValue" value="<c:out value="${vo.shValue }"/>" placeholder="검색어">
+					<button type='submit'><i class="fa-solid fa-arrow-right-long"></i></button>
 					<button><i class="fa-solid fa-rotate-left"></i></button>
 				</div>
 				<br>
@@ -69,6 +72,13 @@
 						</tr>
 					</thead>	
 					<tbody>
+					<c:choose>
+						<c:when test="${fn:length(list) eq 0}">
+							<tr>
+								<td colspan='9'>검색된 코드가 존재하지 않습니다.</td>
+							</tr>
+						</c:when>
+						<c:otherwise>
 					<c:forEach items="${list}" var="list" varStatus="status">
 						<tr>
 							<td><input type='checkbox'></td>
@@ -82,7 +92,9 @@
 							<td></td>
 							<td></td>
 						</tr>
-					</c:forEach>
+						</c:forEach>
+						</c:otherwise>
+					</c:choose>
 					</tbody>				
 				</table>
 					<div class="wrapper">

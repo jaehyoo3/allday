@@ -12,6 +12,5 @@
 		SELECT
 			a.*
 		FROM member a
-
 	</select>
 </mapper>		

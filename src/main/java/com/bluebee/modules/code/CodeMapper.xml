@@ -17,6 +17,13 @@
 		    ,b.yn
 		    FROM codegroup a
 		    LEFT JOIN code b ON b.codegroup_ccgSeq = a.ccgSeq
-				
+			WHERE 1=1
+			<if test="shDelNy != null and !shDelNy.equals('')">AND yn = #{shDelNy}</if>
+			<choose>
+				<when test="shOption == 1">AND ccgSeq = #{shValue}</when>
+				<when test="shOption == 2">AND codeName LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shOption == 3">AND cname LIKE CONCAT('%',#{shValue},'%')</when>
+				<otherwise></otherwise>
+			</choose> 
 	</select>
 </mapper>	
