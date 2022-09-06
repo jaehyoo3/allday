@@ -33,4 +33,27 @@
 				
 			</choose> 
 	</select>
+	<insert id="insert">
+		insert into codegroup (
+				ccorder
+				,codeName
+				,userNY
+				,delNy
+				,codeNameEng
+				,regDate
+			)
+			values(
+				#{ccorder}
+				,#{codeName}
+				,#{userNY}
+				,#{delNy}
+				,#{codeNameEng}
+				,NOW()
+			)
+		<selectKey resultType="String" keyProperty="ccgseq" order="AFTER">
+			select last_insert_id()
+		</selectKey>
+			
+	
+	</insert>
 </mapper>		

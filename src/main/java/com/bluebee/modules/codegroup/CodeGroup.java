@@ -3,7 +3,7 @@ package com.bluebee.modules.codegroup;
 import java.util.Date;
 
 public class CodeGroup {
-	private Integer ccgseq;
+	private String ccgseq;
 	private Integer userNY;
 	private Integer ccorder;
 	private Date regDate;
@@ -49,10 +49,10 @@ public class CodeGroup {
 	public void setModifyDate(Date modifyDate) {
 		this.modifyDate = modifyDate;
 	}
-	public Integer getCcgseq() {
+	public String getCcgseq() {
 		return ccgseq;
 	}
-	public void setCcgseq(Integer ccgseq) {
+	public void setCcgseq(String ccgseq) {
 		this.ccgseq = ccgseq;
 	}
 	public Integer getUserNY() {

@@ -24,6 +24,38 @@
 				<when test="shOption == 2">AND codeName LIKE CONCAT('%',#{shValue},'%')</when>
 				<when test="shOption == 3">AND cname LIKE CONCAT('%',#{shValue},'%')</when>
 				<otherwise></otherwise>
-			</choose> 
+			</choose>
 	</select>
+	<select id="ccgviewr" resultMap="resultMapObj">
+	SELECT
+			a.ccgSeq
+		    ,a.codeName
+		    ,b.ccSeq
+		    ,b.cname
+		    ,b.yn
+		    FROM codegroup a
+		    LEFT JOIN code b ON b.codegroup_ccgSeq = a.ccgSeq
+		    GROUP BY codeName
+		
+	</select>
+	
+	<insert id="insert">
+		insert into code(
+		cname
+		,ccorder
+		,codegroup_ccgSeq
+		,yn
+		)
+		values(
+			#{cname}
+			,#{ccorder}
+			,#{codegroup_ccgSeq}
+			,#{yn}
+		)
+		<selectKey resultType="String" keyProperty="ccSeq" order="AFTER"> 
+			select last_insert_id()
+		</selectKey>
+	</insert>
+	
+	
 </mapper>	

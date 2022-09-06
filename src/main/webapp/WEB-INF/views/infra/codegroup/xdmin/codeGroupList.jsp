@@ -118,8 +118,8 @@
 				<div class="d-flex mb-1">
 					<div class="p-1"><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#ban_del"><i class="fa-solid fa-ban"></i></button></div>
 					<div class="p-1"><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#ban_del2"><i class="fa-solid fa-trash"></i></button></div>
-					<div class="p-1 ms-auto"><button type="button" class="btn btn-success"><i class="fa-solid fa-file-excel"></i></button></div>
-					<div class="p-1"><button type="button" class="btn btn-primary"><i class="fa-solid fa-plus"></i></button></div>
+					<div class="p-1 ms-auto"><button type="button" class="btn btn-success"><i class="fa-solid fa-file-excel"></i></a></button></div>
+					<div class="p-1"><button type="button" class="btn btn-primary" onclick="location.href='codeGroupForm'"><i class="fa-solid fa-plus"></i></button></div>
 				</div>
 			</div>
 			<div id='footer'>

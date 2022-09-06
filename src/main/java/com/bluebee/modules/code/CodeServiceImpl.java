@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CodeServiceImpl implements CodeService {
+
 	@Autowired
 	CodeDao dao;
 	
@@ -14,4 +15,18 @@ public class CodeServiceImpl implements CodeService {
 	public List<Code> selectList(CodeVo vo) throws Exception {
 		return dao.selectList(vo);
 	}
+	
+	@Override
+	public int insert(Code dto) throws Exception {
+		return dao.insert(dto);
+	}
+
+	@Override
+	public List<Code> ccgviewr() throws Exception {
+		// TODO Auto-generated method stub
+		return dao.ccgviewr();
+	}
+
+
+	
 }

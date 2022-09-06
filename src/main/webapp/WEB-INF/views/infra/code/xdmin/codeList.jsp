@@ -26,7 +26,7 @@
 				</ul>
 			</div>
 			<div id='content'>
-				<h2>코드그룹 관리</h2>
+				<h2>코드 관리</h2>
 				<div class='condition'>
 					<select id='shDelNy' name='shDelNy'>
 						<option value="" <c:if test="${empty vo.shDelNy}">selected</c:if>>검색구분</option>
@@ -115,7 +115,7 @@
 					<div class="p-1"><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#ban_del"><i class="fa-solid fa-ban"></i></button></div>
 					<div class="p-1"><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#ban_del2"><i class="fa-solid fa-trash"></i></button></div>
 					<div class="p-1 ms-auto"><button type="button" class="btn btn-success"><i class="fa-solid fa-file-excel"></i></button></div>
-					<div class="p-1"><button type="button" class="btn btn-primary"><i class="fa-solid fa-plus"></i></button></div>
+					<div class="p-1"><button type="button" class="btn btn-primary" onclick="location.href='codeForm'"><i class="fa-solid fa-plus"></i></button></div>
 				</div>
 			</div>
 

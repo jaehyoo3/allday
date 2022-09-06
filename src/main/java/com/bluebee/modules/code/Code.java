@@ -5,7 +5,7 @@ public class Code {
 	private String cname;
 	private Integer ccorder;
 	private Integer userNY;
-	private Integer codegroup_ccgseq_ccgSeq;
+	private Integer codegroup_ccgSeq;
 	private Integer yn;
 	private String ccgseq;
 	private String codeName;
@@ -34,11 +34,11 @@ public class Code {
 	public void setUserNY(Integer userNY) {
 		this.userNY = userNY;
 	}
-	public Integer getCodegroup_ccgseq_ccgSeq() {
-		return codegroup_ccgseq_ccgSeq;
+	public Integer getCodegroup_ccgSeq() {
+		return codegroup_ccgSeq;
 	}
-	public void setCodegroup_ccgseq_ccgSeq(Integer codegroup_ccgseq_ccgSeq) {
-		this.codegroup_ccgseq_ccgSeq = codegroup_ccgseq_ccgSeq;
+	public void setCodegroup_ccgSeq(Integer codegroup_ccgSeq) {
+		this.codegroup_ccgSeq = codegroup_ccgSeq;
 	}
 	public Integer getYn() {
 		return yn;
