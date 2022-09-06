@@ -35,8 +35,9 @@
 		    ,b.yn
 		    FROM codegroup a
 		    LEFT JOIN code b ON b.codegroup_ccgSeq = a.ccgSeq
+		    WHERE 1=1
+		    AND a.delNy = 0
 		    GROUP BY codeName
-		
 	</select>
 	
 	<insert id="insert">

@@ -39,7 +39,6 @@
 							<c:forEach items="${list}" var="list" varStatus="status">
 								<option value=<c:out value="${list.ccgseq}"/>><c:out value="${list.codeName }"/></option>
 							</c:forEach>
-
 							</select>
 				    		</div>
 				    	</div>
