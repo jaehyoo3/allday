@@ -55,10 +55,10 @@
 					<div class="row mb-3">
 						<div class="col" >
 							<span>사용 여부</span>
-							<select class="form-select" id="userNY" name='userNY' value="<c:out value="${item.userNY }"/>">
+							<select class="form-select" id="userNY" name='userNY'>
 								<option>사용</option>
-								<option value='0'>N</option>
-								<option value='1'>Y</option>
+								<option value='0' <c:if test="${item.userNY eq 0 }">selected</c:if>>N</option>
+								<option value='1' <c:if test="${item.userNY eq 1 }">selected</c:if>>Y</option>
 							</select>
 			    		</div>
    				 		<div class="col">

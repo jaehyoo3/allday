@@ -10,4 +10,9 @@ public class StoreController {
 		
 			return "infra/store/storeMain";
 		}
+		@RequestMapping(value = "login")
+		public String Login() {
+		
+			return "infra/store/memberLogin";
+		}
 }

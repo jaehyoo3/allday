@@ -8,7 +8,7 @@
 
 <html>
 	<head>
-		<link href="/resources/css/loginCss.css" rel="stylesheet" />
+		<link href="/resources/Images/loginCss.css" rel="stylesheet" />
 		<title>BLUEBEE</title>
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 	</head>
@@ -29,7 +29,7 @@
 			</div>
 			<div class="navbar">
 		        <a href="#" id="logo">
-		            <img src="../img/logo2.png" height="60" onClick="location.href='../store/storeMain.html'">
+		            <img src="/resources/Images/img/logo2.png" height="60" onClick="location.href='/'">
 		        </a>
 		        <ul id="menu">
 		            <li><a href="#"><b>New</b></a></li>
