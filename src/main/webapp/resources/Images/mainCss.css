@@ -171,7 +171,7 @@
 				font-size: 20px;
 			} #poster{
 				background-attachment: fixed;
-				background-image: url("../img/poster.jpg");
+				background-image: url("img/poster.jpg");
 				background-size:cover;
 				height: 1000px;
 			} .search-box{

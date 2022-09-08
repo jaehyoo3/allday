@@ -18,15 +18,15 @@
 				<div class='menu'>
 					<ul class='ul'>
 						<li class='b'>
-						<div class="search-box">
-				    		<a href="#"><button class="btn-search"><i class="fas fa-search"></i></button></a>
-				   			<input type="text" class="input-search" placeholder="Search">
-				  		</div>
-				  		
+							<div class="search-box">
+					    		<a href="#"><button class="btn-search"><i class="fas fa-search"></i></button></a>
+					   			<input type="text" class="input-search" placeholder="Search">
+					  		</div>
 						</li>
 						<li class='b'><div class="vr"></li>
 						<li class='b'><a href="#" onClick="location.href='login'"><i class="fa-solid fa-bag-shopping"></i></a></li>
 						<li class='b'><a href="#" onClick="location.href='../member/memberMod.html'"><i class="fa-solid fa-user"></i></a></li>
+						<li class='b'><a href="#" onClick="location.href='login'"><i class="fa-solid fa-right-to-bracket"></i></a></li>
 						<li class='b'><div class="vr"></li>
 						<li class='b'><a href="#">고객센터</a></li>
 					</ul>
@@ -37,7 +37,7 @@
 		            <img src="/resources/Images/img/logo2.png" height="60">
 		        </a>
 		        <ul id="menu">
-		            <li><a href="#" onClick="location.href='../store/storeNew.html'"><b>New</b></a></li>
+		            <li><a href="#" onClick="location.href='storeNew'"><b>New</b></a></li>
 		            <li><a href="#"><b>Best</b></a></li>
 		            <li><a href="#"><b>Outer</b></a></li>
 		            <li><a href="#"><b>Top</b></a></li>

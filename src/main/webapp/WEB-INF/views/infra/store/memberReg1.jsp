@@ -10,7 +10,7 @@
 
 		<title>BLUEBEE</title>
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-		<link href="/resources/Images/LoginCss.css" rel="stylesheet">
+		<link href="/resources/Images/memberReg.css" rel="stylesheet">
 	</head>
 	
 	<body>
@@ -48,46 +48,65 @@
 		        </ul>
 	  		</div>
 		<div id='content'>
-			<div class='login'>
-				<h3><strong>로그인</strong></h3>
-				<span>가입하신 아이디로 로그인하세요.</span>
-				<br>
-				<hr>
-				<br>
-				<input type="text" class="form-control" id="exampleFormControlInput1" placeholder="아이디">
-				<input type="password" class="form-control" id="inputPassword" placeholder="비밀번호">
-				<div class="d-flex mb-1">
-					<div class="p-1">
-						<div class="form-check">
-							<input class="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate">
-							<label class="form-check-label" for="flexCheckIndeterminate">
-								로그인상태유지
-							</label>
-						</div>
+			<h1>이용약관</h1>
+			<span>BLUEBEE가 제공하는 많은 쇼핑 혜택들 누리 실 수 있습니다!</span>
+			<br><br><br>
+			<hr>
+			<br>
+						<div class="d-flex mb-1">
+				<div class="p-1">
+			<div class="form-check">
+				<input class="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate">
+				<label class="form-check-label" for="flexCheckIndeterminate">
+					이용약관, 개인정보 수집 및 이용에 모두 동의합니다.
+				</label>
+			</div>
+			</div>
+			</div>
+			<div class="d-flex mb-1">
+				<div class="p-1">
+					<div class="form-check">
+						<input class="form-check-input" type="checkbox" value="" id="ma1">
+						<label class="form-check-label" for="ma1">
+							이용약관 동의 (필수)
+						</label>
 					</div>
-					<div class="p-1 ms-auto"><span><a href="#">아이디·비밀번호 찾기</a></span></div>
 				</div>
-				<br>
-				<div class="d-grid gap-2">
-					<button type="button" class="btn text-white fw-bold" style="background-color:rgb(44, 62, 80);">로그인</button>
-				</div>
-				<br>
-				<div class="hr-sect"> 또는 </div>
-				<br>
-				<div class="d-grid gap-2 col-12">
-					<button class="btn text-white fw-bold" type="button" style="background-color:#2DB400;">네이버로 시작하기</button>
-					<button class="btn text-white fw-bold" type="button" style="background-color:#FEE500;">카카오로 시작하기</button>
-				</div>
-			</div>
-				<div class='join'>
-				<h3 ><strong>BLUE BEE 회원가입</strong></h3>
-				<span>BLUEBEE가 제공하는 많은 쇼핑 혜택들 누리 실 수 있습니다.</span><br>
-				<br><button type="button" class="btn text-white fw-bold" style="background-color:rgb(44, 62, 80);" onClick="location.href='reg1'">가입하기</button>
-			</div>
+				<div class="p-1 ms-auto">
+					<span style="color:rgb(44, 62, 80);"><b>약관동의</b> > 회원가입 정보입력 > 가입완료</span>
+			</div>	
 		</div>
-		<div id='footer'>
-			   	<div class='copyright'>© 2022. Bluebee all rights reserved.</div>
-		</div>
+			<div class="mb-3">
+	  			<textarea class="form-control" id="exampleFormControlTextarea1" rows="10"style="resize: none;">ddd</textarea>
+			</div>
+			<div class="form-check">
+				<input class="form-check-input" type="checkbox" value="" id="222">
+				<label class="form-check-label" for="222">
+					개인정보 수집 및 이용 동의 (필수)
+				</label>
+			</div>
+			<div class="mb-3">
+	  			<textarea class="form-control" id="exampleFormControlTextarea1" rows="10"style="resize: none;">ddd</textarea>
+			</div>
+			<span>마케팅 활용 동의 및 광고 수신 동의</span>
+				<div class="mb-3">
+	  				<textarea class="form-control" id="exampleFormControlTextarea1" rows="10"style="resize: none;">ddd</textarea>
+				</div>
+			<div class="form-check">
+				<input class="form-check-input" type="checkbox" value="" id="333">
+				<label class="form-check-label" for="333">
+					E-Mail 수신 동의 (선택)
+				</label>
+			</div>
+			<center>
+				<button type="button" class="btn btn-secondary">취소</button> 
+				<button type="button" class="btn text-white fw-bold" style="background-color:rgb(44, 62, 80);" onClick="location.href='reg2'">가입하기</button>
+			</center>
+			</div>
+			<div id='footer'>
+				   	<div class='copyright'>© 2022. Bluebee all rights reserved.</div>
+			</div>
+
 		</form>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 		<script src="https://kit.fontawesome.com/a1961b2393.js" crossorigin="anonymous"></script>
