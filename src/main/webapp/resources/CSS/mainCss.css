@@ -1,0 +1,222 @@
+			#header {
+				height: 30px;
+				background-color: #f0f0f0;
+				width:100%;
+			    padding-left: 20px;
+			    padding-right: 20px;
+			} #header .menu {
+				width:95%;
+			    float: right;
+			    padding: 0;
+			    margin: 0;
+			}  #header .ul .b {
+				list-style-type: none; 
+				float: right;
+				padding: 3px 10px;
+				margin: auto 0;
+			} #header .ul a {
+			    color: #545454;
+			    font-size: 15px;
+			    text-decoration: none;
+			} .navbar {
+				width:100%;
+			    height: 80px;
+			    padding-left: 50px;
+			    padding-right: 50px;
+			} .navbar #logo {
+			    line-height: 60px;
+			} .navbar img {
+			    vertical-align: top;
+			} .navbar #menu {
+			    float: right;
+			    list-style-type: none;
+			    padding: 0;
+			    margin: 0;
+			} .navbar #menu li {
+			    float: left;
+				line-height: 60px;
+				margin-left: 30px;
+			} .navbar #menu li a {
+			    color: #545454;
+			    font-size: 15px;
+			    text-decoration: none;
+			} #ad {
+				width: 100%;
+				margin: auto;
+			} #content {
+				margin:auto;
+				margin-top: 100px;
+				width: 60%;
+			} .left {
+				width: 45%;
+				float:left;
+			} .right {
+				width: 45%;
+				float:left;
+				margin-left: 10%;
+			} #footer {
+				background-color: black;
+				color: white;
+				clear: both;
+				height: 100px;
+				width: 100%;
+			} #footer .copyright {
+				text-align: center;
+				padding: 32px;
+			} @font-face {
+			    font-family: 'ChosunGu';
+			    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/ChosunGu.woff') format('woff');
+			    font-weight: normal;
+			    font-style: normal;
+			} body {
+				font-family: 'ChosunGu';
+				justify-content: center;
+			} .mainproduct {
+				width:100%;
+				display:inline-block;
+			} .mainproduct img {
+				width: 100%;
+			} #bestcontent {
+				background-color: #e6e6e6;
+				padding-top: 50px;
+				padding-bottom: 50px;
+			} .bastproduct {
+				width: 60%;
+				margin:auto;
+			}  .container {
+				position: relative;
+				z-index: 1;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				flex-wrap: wrap;
+				margin: 40px 0;
+			}.container .card {
+				position: relative;
+				width: 300px;
+				height: 300px;
+				background: white;
+				margin: 20px;
+				border-radius: 15px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				backdrop-filter: blur(10px);
+			}
+			.container .card .content {
+				position: relative;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				flex-direction: column;
+				transition: 0.5s;
+			}
+			.container .card:hover .content {
+				transform: translateY(-20px);
+			}
+			.container .card .content .imgBx {
+				position: relative;
+				width: 150px;
+				height: 150px;
+				overflow: hidden;
+			}
+			.container .card .content .imgBx img {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
+			.container .card .content .contentBx h3 {
+				color: #fff;
+				text-transform: uppercase;
+				letter-spacing: 2px;
+				font-weight: 500;
+				font-size: 18px;
+				text-align: center;
+				margin: 20px 0 10px;
+				line-height: 1.1em;
+				color: black;
+			}
+			.container .card .content .contentBx h3 span {
+				font-size: 12px;
+				font-weight: 300;
+				text-transform: initial;
+				color: black;
+			}
+			.container .card .sci {
+				position: absolute;
+				bottom: 50px;
+				left: 100px;
+				display: flex;
+				text-align:center;
+			}
+			.container .card .sci li {
+			
+				list-style: none;
+				transform: translateY(40px);
+				transition: 0.5s;
+				opacity: 0;
+			}
+			.container .card:hover .sci li {
+				transform: translateY(40px);
+				text-align: center;
+				opacity: 1;
+			}
+			.container .card .sci li a {
+				color: black;
+				font-size: 20px;
+			} #poster{
+				background-attachment: fixed;
+				background-image: url("/resources/Images/img/poster.jpg");
+				background-size:cover;
+				height: 1000px;
+			} .search-box{
+			  width: fit-content;
+			  height: fit-content;
+			  position: relative;
+			} .input-search{
+			  height: 25px;
+			  width: 50px;
+			  border-style: none;
+			  padding: 10px;
+			  font-size: 10px;
+			  outline: none;
+			  border-radius: 25px;
+			  transition: all .5s ease-in-out;
+			  padding-right: 20px;
+			}
+			.input-search::placeholder{
+			  font-size: 10px;
+			  font-weight: 10;
+			}
+			.btn-search{
+			  width: 50px;
+			  height: 27px;
+			  border-style: none;
+			  font-size: 10px;
+			  font-weight: bold;
+			  outline: none;
+			  cursor: pointer;
+			  border-radius: 25PX;
+			  position: absolute;
+			  right: 0px;
+			  pointer-events: none;  
+			}
+			.btn-search:focus ~ .input-search{
+			  width: 300px;
+			  border-radius: 0px;
+			  border-bottom:1px solid rgba(255,255,255,.5);
+			  background-color: transparent;
+			  transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+			}
+			.input-search:focus{
+			  width: 300px;
+			  border-radius: 0px;
+			  border-bottom:1px solid rgba(255,255,255,.5);
+			  background-color: transparent;
+			  transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+			} .menu a:hover {
+				opacity: 0.5;
+			}

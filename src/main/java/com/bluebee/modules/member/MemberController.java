@@ -15,9 +15,9 @@ public class MemberController {
 	MemberServiceImpl service;
 	
 	@RequestMapping(value = "memberList")
-	public String MemberList(Model model) throws Exception {
+	public String MemberList(Model model, MemberVo vo) throws Exception {
 
-		List<Member> list = service.selectList();
+		List<Member> list = service.selectList(vo);
 		model.addAttribute("list", list);
 		
 		return "infra/member/xdmin/memberList";

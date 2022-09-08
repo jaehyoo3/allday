@@ -7,7 +7,14 @@ public class CodeGroupVo {
 	private Integer shDate;
 	private String shstartDate;
 	private String shendDate;	
+	private String ccgSeq;
 	
+	public String getccgSeq() {
+		return ccgSeq;
+	}
+	public void setccgseq(String ccgSeq) {
+		this.ccgSeq = ccgSeq;
+	}
 	public String getShstartDate() {
 		return shstartDate;
 	}

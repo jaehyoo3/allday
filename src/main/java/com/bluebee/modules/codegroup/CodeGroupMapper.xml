@@ -30,8 +30,15 @@
 				<when test="shOption == 3">AND codeNameEng LIKE CONCAT('%',#{shValue},'%')</when>
 		
 				<otherwise></otherwise>
-				
 			</choose> 
+	</select>
+	<select id="selectOne" resultMap="resultMapObj">
+		SELECT
+			a.*
+		from codegroup a
+		WHERE 1=1
+		AND ccgSeq = #{ccgSeq}
+	
 	</select>
 	<insert id="insert">
 		insert into codegroup (

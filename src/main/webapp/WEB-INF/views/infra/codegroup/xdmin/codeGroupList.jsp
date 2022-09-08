@@ -87,7 +87,7 @@
 								<c:forEach items="${list}" var="list" varStatus="status">
 									<tr>
 										<td><input type='checkbox'></td>
-										<td><c:out value="${list.ccgseq }"/></td>
+										<td><a href="/codeGroup/codeGroupView?ccgseq=<c:out value="${list.ccgseq }"/>"><c:out value="${list.ccgseq }"/></a></td>
 										<td><c:out value="${list.ccorder }"/></td>
 										<td><c:out value="${list.codeName }"/></td>
 										<td><c:out value="${list.codeNameEng }"/></td>

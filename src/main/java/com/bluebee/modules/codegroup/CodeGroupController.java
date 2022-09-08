@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.bluebee.modules.code.Code;
+
 @Controller
 @RequestMapping(value = "/codeGroup/")
 public class CodeGroupController {
@@ -33,6 +35,13 @@ public class CodeGroupController {
 	@RequestMapping(value = "codeGroupForm")
 	public String codeGroupForm() throws Exception {
 		return "infra/codegroup/xdmin/codeGroupForm";
+	}
+	@RequestMapping(value = "codeGroupView")
+	public String codeGroupView(Model model, CodeGroupVo vo) throws Exception {
+		CodeGroup views = service.selectOne(vo);
+		model.addAttribute("item", views);
+		
+		return "infra/codegroup/xdmin/codeGroupView";
 	}
 	
 	@RequestMapping(value= "codeGroupInst")

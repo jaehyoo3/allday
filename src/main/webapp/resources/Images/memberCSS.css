@@ -44,6 +44,11 @@
 				text-align: center;
 				padding: 30px;
 			}
+						.condition {
+				border: 1px solid black;
+				width: 100%;
+				padding: 10px;
+			}
 			@font-face {
 				font-family: 'ChosunGu';
 				src:

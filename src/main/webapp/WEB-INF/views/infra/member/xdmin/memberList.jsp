@@ -9,6 +9,10 @@
 	<head>
 	<title>WoW</title>
 	    	<link href="/resources/Images/memberCSS.css" rel="stylesheet" />
+	    <link href="/resources/Images/css/bootstrap.min.css" rel="stylesheet"> 
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
+    	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	    	
 
 	</head>
 	<body>
@@ -26,6 +30,32 @@
 			</div>
 			<div id='content'>
 			<h3>회원관리</h3>
+			<div class='condition'>
+					<select id='shDelNy' name='shDelNy'>
+						<option value="">검색구분</option>
+						<option value='0' >N</option>
+						<option value='1'>Y</option>
+					</select>
+					
+					<br><br>
+					<select>
+						<option>수정일</option>
+						<option>등록일</option>
+					</select>
+ 					<input type='text' id='startDate' name='shstartDate' placeholder='시작일'>
+ 					<input type='text' id='endDate' name='shendDate' placeholder='종료일'>
+ 					
+					<select id="shOption" name="shOption">
+						<option value="">검색구분</option>
+						<option value="1" <c:if test="${vo.shOption eq 1 }">selected</c:if>>이름</option>
+						<option value="2" <c:if test="${vo.shOption eq 2 }">selected</c:if>>아이디</option>
+						<option value="3" <c:if test="${vo.shOption eq 3 }">selected</c:if>>닉네임</option>
+					</select>
+					
+					<input type='text' id="shValue" name="shValue" <c:out value="${vo.shValue }"/>"placeholder="검색어">
+					
+					<input type="submit">	
+				</div>
 				<table>
 					<thead>
 						<tr>

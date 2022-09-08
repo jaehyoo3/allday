@@ -12,5 +12,11 @@
 		SELECT
 			a.*
 		FROM member a
+		WHERE 1=1
+		<choose>
+			<when test = "shOption == 1">AND userName LIKE CONCAT('%',#{shValue},'%')</when>
+			<when test = "shOption == 2">AND userID LIKE CONCAT('%', #{shValue},'%')</when>
+			<when test = "shOption == 3">AND userNick LIKE CONCAT('%',#{shValue}, '%')</when>
+		</choose>
 	</select>
 </mapper>		
