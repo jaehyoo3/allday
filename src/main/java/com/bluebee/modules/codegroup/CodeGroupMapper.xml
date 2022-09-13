@@ -37,9 +37,10 @@
 			a.*
 		from codegroup a
 		WHERE 1=1
-		AND ccgSeq = #{ccgSeq}
+		AND ccgseq = #{ccgseq}
 	
 	</select>
+	
 	<insert id="insert">
 		insert into codegroup (
 				ccorder
@@ -60,7 +61,32 @@
 		<selectKey resultType="String" keyProperty="ccgseq" order="AFTER">
 			select last_insert_id()
 		</selectKey>
-			
+			</insert>
+		
+		<update id="update">
+			UPDATE codegroup
+			SET	
+				ccorder = #{ccorder}
+				,codeName = #{codeName}
+				,userNY = #{userNY}
+				,codeNameEng = #{codeNameEng}
+				,modifyDate = NOW()
+				,delNy = #{delNy}
+			WHERE
+				ccgseq = #{ccgseq }
+		</update>
+		
+		
+		<update id="uelete">
+			UPDATE codegroup
+			SET
+				delNy = 1
+			WHERE
+				ccgseq= #{ccgseq}
+		</update>
+		
+		<delete id="delete">
+		delete from codegroup where ccgseq = #{ccgseq}
+		</delete>
 	
-	</insert>
 </mapper>		

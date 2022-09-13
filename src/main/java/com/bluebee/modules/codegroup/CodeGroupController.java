@@ -6,9 +6,8 @@ import java.util.Locale;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import com.bluebee.modules.code.Code;
 
 @Controller
 @RequestMapping(value = "/codeGroup/")
@@ -34,14 +33,19 @@ public class CodeGroupController {
 	
 	@RequestMapping(value = "codeGroupForm")
 	public String codeGroupForm() throws Exception {
+
 		return "infra/codegroup/xdmin/codeGroupForm";
 	}
+	
 	@RequestMapping(value = "codeGroupView")
-	public String codeGroupView(Model model, CodeGroupVo vo) throws Exception {
+	public String codeGroupView(Model model, @ModelAttribute("vo") CodeGroupVo vo) throws Exception {
+		if(vo.getCcgseq().equals("0") || vo.getCcgseq().equals("")) {
+		
+		} else {
 		CodeGroup views = service.selectOne(vo);
 		model.addAttribute("item", views);
-		
-		return "infra/codegroup/xdmin/codeGroupView";
+		}
+		return "infra/codegroup/xdmin/codeGroupForm";
 	}
 	
 	@RequestMapping(value= "codeGroupInst")
@@ -49,6 +53,28 @@ public class CodeGroupController {
 		
 		int result = service.insert(dto);
 		System.out.println("controller result: " + result);
+		
+		return "redirect:/codeGroup/codeGroupList";
+	}
+	
+	@RequestMapping(value = "codeGroupUpdt")
+	public String codeGroupUpdt(CodeGroup dto) throws Exception {
+		int result = service.update(dto);
+		System.out.println("controller result updt: " + result);
+		return "redirect:/codeGroup/codeGroupList";
+	}
+	
+	@RequestMapping(value = "codeGroupUele")
+	public String codeGroupUele(CodeGroup dto) throws Exception {
+		int result = service.uelete(dto);
+		
+		return "redirect:/codeGroup/codeGroupList";
+	}
+	
+	@RequestMapping(value = "codeGroupDele")
+	public String codeGroupDele(Model model, CodeGroupVo vo) throws Exception {
+		int dele = service.delete(vo);
+		model.addAttribute("item", dele);
 		
 		return "redirect:/codeGroup/codeGroupList";
 	}

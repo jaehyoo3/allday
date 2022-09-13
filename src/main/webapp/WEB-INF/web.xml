@@ -44,5 +44,10 @@
 			<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	<!-- for korean breaking e 2022.02.25 -->	
-
+<jsp-config>
+  <jsp-property-group>
+    <url-pattern>*.jsp</url-pattern>
+    <trim-directive-whitespaces>true</trim-directive-whitespaces>
+  </jsp-property-group>
+</jsp-config>
 </web-app>

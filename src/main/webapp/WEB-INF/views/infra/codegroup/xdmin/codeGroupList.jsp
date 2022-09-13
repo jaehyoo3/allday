@@ -18,7 +18,7 @@
 		<form method="post" action="/codeGroup/codeGroupList" autocomplete="off">
 			<div id='haeder'></div>
 			<div class="navbar">
-				<a href="#" id="logo"> <img src="/resources/Images/logo2.png" height="60"onClick="location.href='./wowMain.html'">
+				<a href="#" id="logo"> <img src="/resources/Images/img/logo2.png" height="60"onClick="location.href='./wowMain.html'">
 				</a>
 				<ul id="menu">
 					<li><a href="#" onClick="location.href='./wowProduct.html'"><b>상품관리</b></a></li>
@@ -51,7 +51,6 @@
 						<option value="3" <c:if test="${vo.shOption eq 3}">selected</c:if>>코드그룹 이름(영어)</option>
 					</select>
 					<input type='text' id="shValue" name="shValue" value="<c:out value="${vo.shValue }"/>" placeholder="검색어">
-					
 					<input type="submit">	
 				</div>
 				<br>
@@ -117,8 +116,8 @@
 						</nav>
 					</div>
 				<div class="d-flex mb-1">
-					<div class="p-1"><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#ban_del"><i class="fa-solid fa-ban"></i></button></div>
-					<div class="p-1"><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#ban_del2"><i class="fa-solid fa-trash"></i></button></div>
+					<div class="p-1"><button type="button" class="btn btn-danger"  data-bs-target="#ban_del"><i class="fa-solid fa-ban"></i></button></div>
+					<div class="p-1"><button type="button" class="btn btn-danger" data-bs-target="#ban_del2"><i class="fa-solid fa-trash"></i></button></div>
 					<div class="p-1 ms-auto"><button type="button" class="btn btn-success"><i class="fa-solid fa-file-excel"></i></a></button></div>
 					<div class="p-1"><button type="button" class="btn btn-primary" onclick="location.href='codeGroupForm'"><i class="fa-solid fa-plus"></i></button></div>
 				</div>
@@ -127,10 +126,12 @@
 				<div class='copyright'>© 2022. Bluebee all rights reserved.</div>
 			</div>
 		</form>
+		
 	<script src="https://kit.fontawesome.com/15c84217dd.js" crossorigin="anonymous"></script>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+
 <script type="text/javascript">
     $(document).ready(function () {
             $.datepicker.setDefaults($.datepicker.regional['ko']);

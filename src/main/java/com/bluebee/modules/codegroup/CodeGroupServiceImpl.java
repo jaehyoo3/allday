@@ -25,6 +25,23 @@ public class CodeGroupServiceImpl implements CodeGroupService {
 	public CodeGroup selectOne(CodeGroupVo vo) throws Exception {
 		return dao.selectOne(vo);
 	}
+
+	@Override
+	public int update(CodeGroup dto) throws Exception {
+		return dao.update(dto);
+	}
+
+	@Override
+	public int uelete(CodeGroup dto) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.uelete(dto);
+	}
+
+	@Override
+	public int delete(CodeGroupVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.delete(vo);
+	}
 	
 
 }
