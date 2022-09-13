@@ -5,11 +5,14 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
 
+
 <html>
 	<head>
+		<meta charset='uTF-8'> 
+		<meta name ='viewport' content='width=device-width, initial-scaLe=1.0'>
 		<title>BLUEBEE</title>
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-		<link href="/resources/Images/LoginCss.css" rel="stylesheet">
+		<link href="/resources/Images/memberFindPW.css" rel="stylesheet">
 	</head>
 	
 	<body>
@@ -46,50 +49,27 @@
 		            <li><a href="#"><b><i class="fa-brands fa-instagram fa-xl"></i></b></a></li>
 		        </ul>
 	  		</div>
-		<div id='content'>
-			<div class='login'>
-				<h3><strong>로그인</strong></h3>
-				<span>가입하신 아이디로 로그인하세요.</span>
-				<br>
+			<div id='content'>
+				<h1>비밀번호 찾기</h1>
 				<hr>
-				<br>
-				<input type="text" class="form-control" id="exampleFormControlInput1" placeholder="아이디">
-				<input type="password" class="form-control" id="inputPassword" placeholder="비밀번호">
-				<div class="d-flex mb-1">
-					<div class="p-1">
-						<div class="form-check">
-							<input class="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate">
-							<label class="form-check-label" for="flexCheckIndeterminate">
-								로그인상태유지
-							</label>
-						</div>
+				<div class='boxx'>
+					<div class='boxbox'>
+						<center>
+							<input class="form-control mb-2" type="password" placeholder="변경 할 비밀번호" style="width: 40%;">
+							<input class="form-control mb-2" type="password" placeholder="변경 할 비밀번호 확인" style="width: 40%;">
+							<p>영문+숫자+특수기호 8자리 이상으로 구성하여야 합니다.</p>
+						</center>
 					</div>
-					<div class="p-1 ms-auto"><span><a href="find" >아이디·비밀번호 찾기</a></span></div>
-				</div>
-				<br>
-				<div class="d-grid gap-2">
-					<button type="button" class="btn text-white fw-bold" style="background-color:rgb(44, 62, 80);">로그인</button>
-				</div>
-				<br>
-				<div class="hr-sect"> 또는 </div>
-				<br>
+				</div>	
 				<div class="d-grid gap-2 col-12">
-					<button class="btn text-white fw-bold" type="button" style="background-color:#2DB400;">네이버로 시작하기</button>
-					<button class="btn text-white fw-bold" type="button" style="background-color:#FEE500;">카카오로 시작하기</button>
+					<button class="btn text-white fw-bold" type="button" style="background-color:rgb(44, 62, 80);" onClick='location="login"'>비밀번호 변경</button>
 				</div>
 			</div>
-				<div class='join'>
-				<h3 ><strong>BLUE BEE 회원가입</strong></h3>
-				<span>BLUEBEE가 제공하는 많은 쇼핑 혜택들 누리 실 수 있습니다.</span><br>
-				<br><button type="button" class="btn text-white fw-bold" style="background-color:rgb(44, 62, 80);" onClick="location.href='reg1'">가입하기</button>
+			<div id='footer'>
+				<div class='copyright'>© 2022. Bluebee all rights reserved.</div>
 			</div>
-		</div>
-		<div id='footer'>
-			   	<div class='copyright'>© 2022. Bluebee all rights reserved.</div>
-		</div>
 		</form>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 		<script src="https://kit.fontawesome.com/a1961b2393.js" crossorigin="anonymous"></script>
-		
 	</body>
 </html>

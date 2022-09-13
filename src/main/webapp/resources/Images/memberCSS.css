@@ -1,6 +1,11 @@
 			#haeder {
 				height: 50px;
 			}
+			#header .ul a {
+			    color: #545454;
+			    font-size: 15px;
+			    text-decoration: none;
+			}
 			.navbar {
 				height: 80px;
 				padding-left: 50px;

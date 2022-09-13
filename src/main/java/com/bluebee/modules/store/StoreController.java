@@ -29,4 +29,46 @@ public class StoreController {
 		public String StoreNew() {
 			return "infra/store/storeNew";
 		}
+		@RequestMapping(value = "product")
+		public String Product() {
+			return "infra/store/storeProduct";
+		}
+		@RequestMapping(value = "storeBuy")
+		public String StoreBuy() {
+			return "infra/store/storeBuy";
+		}
+		@RequestMapping(value = "storeBuySuccess")
+		public String StoreBuySuccess() {
+			return "infra/store/storeBuysuccess";
+		}
+		@RequestMapping(value = "modify")
+		public String MemberModify() {
+			return "infra/store/memberMod";
+		}
+		@RequestMapping(value = "wish")
+		public String MemberWish() {
+			return "infra/store/memberWish";
+		}
+		@RequestMapping(value = "update")
+		public String MemberUpdate() {
+			return "infra/store/memberUpdate";
+		}
+		@RequestMapping(value = "basket")
+		public String MemberBasket() {
+			return "infra/store/memberBasket";
+		}
+		@RequestMapping(value = "find")
+		public String MemberFind() {
+			return "infra/store/memberFind";
+		}
+		@RequestMapping(value = "findID")
+		public String MemberFindID() {
+			return "infra/store/memberFindID";
+		}
+		@RequestMapping(value = "findPW")
+		public String MemberFindPW() {
+			return "infra/store/memberFindPW";
+		}
+		
+		
 }

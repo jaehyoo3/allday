@@ -24,8 +24,8 @@
 					  		</div>
 						</li>
 						<li class='b'><div class="vr"></li>
-						<li class='b'><a href="#" onClick="location.href='login'"><i class="fa-solid fa-bag-shopping"></i></a></li>
-						<li class='b'><a href="#" onClick="location.href='../member/memberMod.html'"><i class="fa-solid fa-user"></i></a></li>
+						<li class='b'><a href="#" onClick="location.href='basket'"><i class="fa-solid fa-bag-shopping"></i></a></li>
+						<li class='b'><a href="#" onClick="location.href='modify'"><i class="fa-solid fa-user"></i></a></li>
 						<li class='b'><a href="#" onClick="location.href='login'"><i class="fa-solid fa-right-to-bracket"></i></a></li>
 						<li class='b'><div class="vr"></li>
 						<li class='b'><a href="#">고객센터</a></li>

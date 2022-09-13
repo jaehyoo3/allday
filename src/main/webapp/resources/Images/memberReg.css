@@ -14,7 +14,12 @@
 				float: right;
 				padding: 3px 10px;
 				margin: auto 0;
-			} .navbar {
+			} #header .ul a {
+			    color: #545454;
+			    font-size: 15px;
+			    text-decoration: none;
+			}
+			.navbar {
 			    height: 80px;
 			    padding-left: 50px;
 			    padding-right: 50px;

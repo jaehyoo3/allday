@@ -26,8 +26,8 @@
 					  		</div>
 						</li>
 						<li class='b'><div class="vr"></li>
-						<li class='b'><a href="#" onClick="location.href='login'"><i class="fa-solid fa-bag-shopping"></i></a></li>
-						<li class='b'><a href="#" onClick="location.href='../member/memberMod.html'"><i class="fa-solid fa-user"></i></a></li>
+						<li class='b'><a href="#" onClick="location.href='basket'"><i class="fa-solid fa-bag-shopping"></i></a></li>
+						<li class='b'><a href="#" onClick="location.href='modify'"><i class="fa-solid fa-user"></i></a></li>
 						<li class='b'><a href="#" onClick="location.href='login'"><i class="fa-solid fa-right-to-bracket"></i></a></li>
 						<li class='b'><div class="vr"></li>
 						<li class='b'><a href="#">고객센터</a></li>
@@ -57,7 +57,7 @@
 				</div>
 			</div>
 			<div class="products">
-				<a href="#" onClick="location.href='storeProduct'"> 
+				<a href="#" onClick="location.href='product'"> 
 					<img src="/resources/Images/img/knit.jpg"><br>
 					<span>이비자 코스트 시트론 레트로 네츄럴 메쉬 니트</span> <span class='new'>New</span>
 					<p class="price">￦49,000</p>

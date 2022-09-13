@@ -7,11 +7,12 @@
 
 <html>
 	<head>
+		<meta charset='uTF-8'> 
+		<meta name ='viewport' content='width=device-width, initial-scaLe=1.0'>
 		<title>BLUEBEE</title>
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-		<link href="/resources/Images/LoginCss.css" rel="stylesheet">
+		<link href="/resources/Images/memberMod.css" rel="stylesheet">
 	</head>
-	
 	<body>
 		<form>
 			<div id='header'>
@@ -46,50 +47,56 @@
 		            <li><a href="#"><b><i class="fa-brands fa-instagram fa-xl"></i></b></a></li>
 		        </ul>
 	  		</div>
-		<div id='content'>
-			<div class='login'>
-				<h3><strong>로그인</strong></h3>
-				<span>가입하신 아이디로 로그인하세요.</span>
-				<br>
-				<hr>
-				<br>
-				<input type="text" class="form-control" id="exampleFormControlInput1" placeholder="아이디">
-				<input type="password" class="form-control" id="inputPassword" placeholder="비밀번호">
-				<div class="d-flex mb-1">
-					<div class="p-1">
-						<div class="form-check">
-							<input class="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate">
-							<label class="form-check-label" for="flexCheckIndeterminate">
-								로그인상태유지
-							</label>
+			<div id='content'>
+				<div class='modify'>
+					<div class='left'>
+						<ul class="a">
+							<li><a href="#" onClick="location.href='basket'">장바구니</a></li>
+							<li><a href="#" onclick="location.href='modify'">주문조회</a></li>
+							<li><a href="#" onClick="location.href='wish'">위시리스트</a></li>
+							<li><a href="#" onClick="location.href='update'">개인정보수정</a></li>
+							<li><a href="#">회원탈퇴</a></li>
+						</ul>
+					</div>
+					<div class='right'>
+						<div class='boxx'>
+							<div class='grade'>
+							<h3><b><span style='color:purple'>Normal</span>_홍길동님 안녕하세요</b></h3>
+							<p>구매금액: 10,000,000원 달성시<br>Bronze로 승급 됩니다.</p>
+						</div>
+						<div class="point">
+							<div class="d-flex" style="height: 150px;">
+  								<div class="vr"></div>
+							</div>
+						</div>
+							<div class="point2">
+								<p>포인트</p>
+								<p style="font-size:50px;"><b>0P</b></p>
+							</div>
+						</div>
+						<div class='listt'>
+							<h6>주문조회</h6>
+							<div class='storeorder'>
+							<a href='#'>
+								<div class='storeimg'><img src='/resources/Images/img/knit.jpg'> </div>
+								<div class='storeinfor'>
+									<span class='title'>LOGO TEE | TOP</span><br>
+									<span class='option'>01. RED</span><br>
+									<span class='price'>￦29,000</span>
+								</div>
+								<div class='situation'>
+								입금대기</div>
+							</div>
+							</a>
 						</div>
 					</div>
-					<div class="p-1 ms-auto"><span><a href="find" >아이디·비밀번호 찾기</a></span></div>
-				</div>
-				<br>
-				<div class="d-grid gap-2">
-					<button type="button" class="btn text-white fw-bold" style="background-color:rgb(44, 62, 80);">로그인</button>
-				</div>
-				<br>
-				<div class="hr-sect"> 또는 </div>
-				<br>
-				<div class="d-grid gap-2 col-12">
-					<button class="btn text-white fw-bold" type="button" style="background-color:#2DB400;">네이버로 시작하기</button>
-					<button class="btn text-white fw-bold" type="button" style="background-color:#FEE500;">카카오로 시작하기</button>
 				</div>
 			</div>
-				<div class='join'>
-				<h3 ><strong>BLUE BEE 회원가입</strong></h3>
-				<span>BLUEBEE가 제공하는 많은 쇼핑 혜택들 누리 실 수 있습니다.</span><br>
-				<br><button type="button" class="btn text-white fw-bold" style="background-color:rgb(44, 62, 80);" onClick="location.href='reg1'">가입하기</button>
+			<div id='footer'>
+				<div class='copyright'>© 2022. Bluebee all rights reserved.</div>
 			</div>
-		</div>
-		<div id='footer'>
-			   	<div class='copyright'>© 2022. Bluebee all rights reserved.</div>
-		</div>
 		</form>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 		<script src="https://kit.fontawesome.com/a1961b2393.js" crossorigin="anonymous"></script>
-		
 	</body>
 </html>
