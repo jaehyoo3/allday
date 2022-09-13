@@ -69,6 +69,10 @@
 			} .a {
 				list-style:none;
 				line-height: 30px;
+			}.a a {
+			    color: #545454;
+			    font-size: 17px;
+			    text-decoration: none;
 			} a {
 			    color: #545454;
 			    text-decoration: none;

@@ -1,6 +1,4 @@
-			* {
-				box-sizing: border-box;
-			} #header {
+ 			#header {
 				height: 30px;
 				background-color: #f0f0f0;
 				width:100%;
@@ -16,16 +14,15 @@
 				float: right;
 				padding: 3px 10px;
 				margin: auto 0;
-			}#header .ul a {
+			} #header .ul a {
 			    color: #545454;
 			    font-size: 15px;
 			    text-decoration: none;
-			}
-			 .navbar {
+			} .navbar {
+				width:100%;
 			    height: 80px;
 			    padding-left: 50px;
 			    padding-right: 50px;
-			    width: 100%;
 			} .navbar #logo {
 			    line-height: 60px;
 			} .navbar img {
@@ -43,6 +40,8 @@
 			    color: #545454;
 			    font-size: 15px;
 			    text-decoration: none;
+			} .navbar #menu li a:hover {
+			 	color: silver;
 			} #content {
 				width: 85%;
 				margin: auto;
