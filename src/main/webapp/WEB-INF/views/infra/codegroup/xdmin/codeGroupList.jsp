@@ -51,7 +51,8 @@
 						<option value="3" <c:if test="${vo.shOption eq 3}">selected</c:if>>코드그룹 이름(영어)</option>
 					</select>
 					<input type='text' id="shValue" name="shValue" value="<c:out value="${vo.shValue }"/>" placeholder="검색어">
-					<input type="submit">	
+					<input type="submit">
+					<button type='button' id='reset'>리셋</button>	
 				</div>
 				<br>
 				<span>total:</span>
@@ -170,7 +171,12 @@
                  }
             });
     });
+
+    var goUrlList = "/codeGroup/codeGroupList";
     
+	$("#reset").on("click", function() {
+			$(location).attr("href",goUrlList);
+	});
 
 </script>
 	</body>

@@ -1,55 +1,40 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
+<!<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" trimDirectiveWhitespaces="true"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
+
 <html>
 	<head>
-		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>WoW</title>
-		<link href="/resources/Images/css/bootstrap.min.css" rel="stylesheet"> 
-    	<link href="/resources/Images/ccReg.css" rel="stylesheet" />
-		<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
-    	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+		<title>관리자 페이지</title>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+		<link href="/resources/Images/xdminCodeForm.css" rel="stylesheet">
 	</head>
+
 	
 	<body>
-		<form method='post' action='codeInst'>
+		<form>
+			<input type="checkbox" id="menu-toggle"/>
+			<label for="menu-toggle" class="menu-icon"><i class="fa fa-bars"></i></label>
+			<div class="content-container">
 			<div id='haeder'></div>
 			<div class="navbar">
-				<a href="#" id="logo"> <img src="/resources/Images/logo2.png" height="60"
-					onClick="location.href='./wowMain.html'">
+				<a href="#" id="logo"> <img src="../img/logo2.png" height="60"
+					onClick="location.href='main'">
 				</a>
-				<ul id="menu">
-					<li><a href="#" onClick="location.href='./wowProduct.html'"><b>상품관리</b></a></li>
-					<li><a href="#"><b>회원관리</b></a></li>
-					<li><a href="#"><b>문의관리</b></a></li>
-					<li><a href="#"><b>배송관리</b></a></li>
-				</ul>
 			</div>
 			<div id='content'>
 				<div class="container">
 				<h3>코드관리</h3>
 					<div class="row mb-3">
 						<div class="col-6">
-							<span>코드그룹</span>
-							<select class="form-select" name='codegroup_ccgSeq'>
- 								<c:choose>
-	 								<c:when test="${item.codegroup_ccgSeq == null}">
-	 									<option>
-	 										<c:out value="${item.codegroup_ccgSeq }"/>
-	 									</option>
-	 								</c:when>
-	 								<otherwise>
-	 								<c:forEach items="${list}" var="list" varStatus="status">'
-	 									<option>
-	 										<c:out value="${list.codeName}"/>
-	 									</option>
-	 								</c:forEach>
-	 								</otherwise>
- 								</c:choose>
+							<span>사용 여부</span>
+							<select class="form-select">
+								<option selected>선택</option>
+								<option>N</option>
+								<option>Y</option>
 							</select>
 				    		</div>
 				    	</div>
@@ -60,13 +45,13 @@
 			    		</div>
    				 		<div class="col">
 							<span>코드(Another)</span>
-							<input class="form-control" type="text" name='ccorder' value="<c:out value="${item.ccorder }"/>" aria-label="default input example">
+							<input class="form-control" type="text" aria-label="default input example">
 						</div>
 					</div>
 					<div class="row mb-3">
 						<div class="col">
 							<span>코드 이름(한글)</span>
-							<input class="form-control" type="text" name='cname' value="<c:out value="${item.cname }"/>"  aria-label="Disabled input example">
+							<input class="form-control" type="text"  aria-label="Disabled input example">
 			    		</div>
    				 		<div class="col">
 							<span>코드 이름(영문)</span>
@@ -74,12 +59,11 @@
 						</div>
 					</div>
 					<div class="row mb-3">
-						<div class="col" >
+						<div class="col">
 							<span>사용 여부</span>
-							<select class="form-select" id="userNY" name='userNY'>
-								<option>사용</option>
-								<option value='0' <c:if test="${item.userNY eq 0 }">selected</c:if>>N</option>
-								<option value='1' <c:if test="${item.userNY eq 1 }">selected</c:if>>Y</option>
+							<select class="form-select">
+								<option>N</option>
+								<option>Y</option>
 							</select>
 			    		</div>
    				 		<div class="col">
@@ -94,10 +78,9 @@
 			    		</div>
    				 		<div class="col">
 							<span>삭제여부</span>
-							<select class="form-select" id='yn' name='yn'>
-								<option>사용</option>
-								<option value='0' <c:if test="${item.yn eq 0 }">selected</c:if>>N</option>
-								<option value='1' <c:if test="${item.yn eq 1 }">selected</c:if>>Y</option>
+							<select class="form-select" aria-label="Default select example">
+								<option>N</option>
+								<option>Y</option>
 							</select>
 						</div>
 					</div>
@@ -139,11 +122,25 @@
 					<div class="p-1  ms-auto"><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#ban_del2"><i class="fa-solid fa-x"></i></button></div>
 					<div class="p-1"><button type="button" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button></div>
 					<div class="p-1"><button type="button" class="btn btn-success"><i class="fa-solid fa-bookmark"></i></button></div>
-					<input type='submit'>
 				</div>
 			</div>
 			<div id='footer'>
 				<div class='copyright'>© 2022. Bluebee all rights reserved.</div>
+			</div>
+						</div>
+				<div class="slideout-sidebar">
+			<i class="fa-regular fa-user fa-5x"></i>
+			<p>관리자님</p>환영합니다
+			<i class="fa-solid fa-x fa-xs"></i>
+				<ul>
+					<li onClick="location.href='main'">HOME</li>
+					<li onClick="location.href='product'">상품관리</li>
+					<li onClick="location.href='user'">회원관리</li>
+					<li>문의관리</li>
+					<li>배송관리</li>
+					<li onClick="location.href='code'">코드관리</li>
+					<li onClick="location.href='codegroup'">코드그룹관리</li>
+				</ul>
 			</div>
 		</form>
 		<script src="https://kit.fontawesome.com/a1961b2393.js"crossorigin="anonymous"></script>

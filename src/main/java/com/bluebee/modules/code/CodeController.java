@@ -5,7 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.bluebee.modules.codegroup.CodeGroup;
+import com.bluebee.modules.codegroup.CodeGroupVo;
 
 @Controller
 @RequestMapping(value = "/code/")
@@ -24,6 +28,16 @@ public class CodeController {
 		model.addAttribute("list", list);
 		
 		return "infra/code/xdmin/codeList";
+	}
+	@RequestMapping(value = "codeView")
+	public String codeView(Model model, @ModelAttribute("vo") CodeVo vo) throws Exception {
+		if(vo.getCcseq().equals("0") || vo.getCcseq().equals("")) {
+		
+		} else {
+		Code views = service.selectOne(vo);
+		model.addAttribute("item", views);
+		}
+		return "infra/code/xdmin/codeForm";
 	}
 	
 	@RequestMapping(value = "codeForm")

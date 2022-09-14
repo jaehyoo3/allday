@@ -7,8 +7,14 @@ public class CodeVo {
 	private Integer shDate;
 	private String startDate;
 	private String endDate;	
-
+	private Integer ccseq;
 	
+	public Integer getCcseq() {
+		return ccseq;
+	}
+	public void setCcseq(Integer ccseq) {
+		this.ccseq = ccseq;
+	}
 	public String getStartDate() {
 		return startDate;
 	}

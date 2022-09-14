@@ -27,6 +27,12 @@ public class CodeServiceImpl implements CodeService {
 		return dao.ccgviewr();
 	}
 
+	@Override
+	public Code selectOne(CodeVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.selectOne(vo);
+	}
+
 
 	
 }

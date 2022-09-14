@@ -22,7 +22,11 @@ public class CodeDao {
 		int result = sqlSession.insert(namespace+".insert", dto);
 		return result;
 	}
+	
 	public List<Code> ccgviewr() {return sqlSession.selectList(namespace + ".ccgviewr");}
 
+	public Code selectOne(CodeVo vo) {
+		return sqlSession.selectOne(namespace+ ".selectOne",vo);
+	}
 
 }

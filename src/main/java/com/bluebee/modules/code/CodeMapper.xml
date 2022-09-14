@@ -10,11 +10,8 @@
 	
 	<select id="selectList" resultMap="resultMapObj">
 		SELECT
-			a.ccgSeq
-		    ,a.codeName
-		    ,b.ccSeq
-		    ,b.cname
-		    ,b.yn
+			a.*
+		    ,b.*
 		    FROM codegroup a
 		    LEFT JOIN code b ON b.codegroup_ccgSeq = a.ccgSeq
 			WHERE 1=1
@@ -26,13 +23,18 @@
 				<otherwise></otherwise>
 			</choose>
 	</select>
+		<select id="selectOne" resultMap="resultMapObj">
+		SELECT
+			a.*
+		from code a
+		WHERE 1=1
+		AND ccseq = #{ccseq}
+	
+	</select>
 	<select id="ccgviewr" resultMap="resultMapObj">
 	SELECT
-			a.ccgSeq
-		    ,a.codeName
-		    ,b.ccSeq
-		    ,b.cname
-		    ,b.yn
+			a.*
+		    ,b.*
 		    FROM codegroup a
 		    LEFT JOIN code b ON b.codegroup_ccgSeq = a.ccgSeq
 		    WHERE 1=1
