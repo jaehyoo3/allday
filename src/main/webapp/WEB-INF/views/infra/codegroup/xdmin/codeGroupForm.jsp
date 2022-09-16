@@ -16,7 +16,8 @@
 	</head>
 	
 	<body>
-		<form method='post' name='form' id='myform'>
+	<form id="form" name="form" method="post" autocomplete="off" ">
+		<%@include file="codeGroupVo.jsp"%>
 			<div id='haeder'></div>
 			<div class="navbar">
 				<a href="#" id="logo"> <img src="/resources/Images/img/logo2.png" height="60"
@@ -32,7 +33,6 @@
 			<div id='content'>
 				<div class="container">
 				<h3>코드그룹 관리</h3>
-					<input class="form-control" name="ccgseq" id="ccgseq" value="<c:out value="${item.ccgseq }"/>" type="hidden">
 					<div class="row mb-3">
 						<div class="col">
 							<span>코드그룹 코드</span>
@@ -115,6 +115,8 @@
 			    		</div>
 					</div>
 				</div>
+
+				
 				<div class="modal fade" id="modalConfirm" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 				<div class="modal-dialog">
 					<div class="modal-content">
@@ -132,8 +134,9 @@
 					</div>
 				</div>
 			</div>
+
 				<div class="d-flex mb-1">
-					<div class="p-1"><button type="button" class="btn btn-secondary" ><i class="fa-solid fa-list"></i></button></div>
+					<div class="p-1"><button type="button" class="btn btn-secondary" name="btnList" id="btnList" ><i class="fa-solid fa-list"></i></button></div>
 					<div class="p-1  ms-auto"><button type="button" class="btn btn-danger" name='btnUelete' id="btnUelete"><i class="fa-solid fa-x"></i></button></div>
 					<div class="p-1"><button type="button" class="btn btn-danger" name='btnDelete' id="btnDelete"><i class="fa-solid fa-trash"></i></button></div>
 					<div class="p-1"><button type="button" class="btn btn-success" name="btnSave" id="btnSave" ><i class="fa-solid fa-bookmark" ></i></button></div>
@@ -143,6 +146,9 @@
 			<div id='footer'>
 				<div class='copyright'>© 2022. Bluebee all rights reserved.</div>
 			</div>
+		</form>
+		<form name="formVo" id="formVo" method="post">
+			<%@include file="codeGroupVo.jsp"%>		<!-- #-> -->
 		</form>
 
 		<script src="https://kit.fontawesome.com/a1961b2393.js"crossorigin="anonymous"></script>
@@ -158,8 +164,9 @@
 			var goUrlDele = "/codeGroup/codeGroupDele";				/* #-> */
 			
 			var seq = $("input:hidden[name=ccgseq]");				/* #-> */
-			
 			var form = $("form[name=form]")
+			var formVo = $("form[name=formVo]");
+
 
 			$("#btnSave").on("click", function() {
 				if(seq.val() == "0" || seq.val() == "") {
@@ -197,6 +204,13 @@
 				$("#modalConfirm").modal("hide");
 				form.attr("action", goUrlDele).submit();
 			});
+			
+			<!-- cxv -->
+
+			$("#btnList").on("click", function(){
+				formVo.attr("action", goUrlList).submit();
+			});
+
 		</script>
 	</body>
 </html>

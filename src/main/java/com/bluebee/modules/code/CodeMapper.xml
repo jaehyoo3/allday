@@ -26,9 +26,11 @@
 		<select id="selectOne" resultMap="resultMapObj">
 		SELECT
 			a.*
+			,b.*
 		from code a
+		LEFT JOIN codegroup b ON a.codegroup_ccgSeq = b.ccgSeq
 		WHERE 1=1
-		AND ccseq = #{ccseq}
+		AND a.ccseq = #{ccseq}
 	
 	</select>
 	<select id="ccgviewr" resultMap="resultMapObj">
@@ -50,15 +52,26 @@
 		,yn
 		)
 		values(
-			#{cname}
-			,#{ccorder}
-			,#{codegroup_ccgSeq}
-			,#{yn}
+		#{cname}
+		,#{ccorder}
+		,#{codegroup_ccgSeq}
+		,#{yn}
 		)
 		<selectKey resultType="String" keyProperty="ccSeq" order="AFTER"> 
 			select last_insert_id()
 		</selectKey>
 	</insert>
+	<update id="update">
+	update code
+	set
+		cname = #{cname}
+		,ccorder = #{ccorder}
+		,yn = #{yn}
+		,uesrNY = #{userNY}
+		,codegroup_ccgSeq = #{codegroup_ccgSeq}
+			WHERE
+				ccseq = #{ccseq }
+	</update>
 	
 	
 </mapper>	

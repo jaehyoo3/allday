@@ -37,13 +37,22 @@ public class CodeController {
 		Code views = service.selectOne(vo);
 		model.addAttribute("item", views);
 		}
+		
+		List<Code> list = service.ccgviewr();
+		model.addAttribute("list", list);
+		
 		return "infra/code/xdmin/codeForm";
 	}
 	
 	@RequestMapping(value = "codeForm")
-	public String codeForm(Model model) throws Exception {	
+	public String codeForm(Model model, @ModelAttribute("vo") CodeVo vo) throws Exception {	
+
+		Code views = service.selectOne(vo);
+		model.addAttribute("item", views);
+		
 		List<Code> list = service.ccgviewr();
 		model.addAttribute("list", list);
+		
 		
 		return "infra/code/xdmin/codeForm";
 	}
@@ -52,6 +61,12 @@ public class CodeController {
 	public String codeInst(Code dto) throws Exception {
 		int result = service.insert(dto);
 		
+		return "redirect:/code/codeList";
+	}
+	@RequestMapping(value = "codeUpdt")
+	public String codeUpdt(Code dto) throws Exception {
+		int result = service.update(dto);
+		System.out.println("controller result updt: " + result);
 		return "redirect:/code/codeList";
 	}
 }

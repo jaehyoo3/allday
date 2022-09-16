@@ -16,7 +16,7 @@
 	</head>
 	
 	<body>
-		<form method='post' action='codeInst'>
+		<form method='post' name='form'>
 			<div id='haeder'></div>
 			<div class="navbar">
 				<a href="#" id="logo"> <img src="/resources/Images/logo2.png" height="60"
@@ -30,29 +30,27 @@
 				</ul>
 			</div>
 			<div id='content'>
+			<input type="hidden" name='ccseq' value="<c:out value="${item.ccseq }"/>">
 				<div class="container">
 				<h3>코드관리</h3>
 					<div class="row mb-3">
 						<div class="col-6">
 							<span>코드그룹</span>
 							<select class="form-select" name='codegroup_ccgSeq'>
- 								<c:choose>
-	 								<c:when test="${item.codegroup_ccgSeq == null}">
-	 									<option>
-	 										<c:out value="${item.codegroup_ccgSeq }"/>
-	 									</option>
-	 								</c:when>
-	 								<otherwise>
-	 								<c:forEach items="${list}" var="list" varStatus="status">'
-	 									<option>
-	 										<c:out value="${list.codeName}"/>
-	 									</option>
-	 								</c:forEach>
-	 								</otherwise>
- 								</c:choose>
+								<c:forEach items="${list}" var="list" varStatus="status">
+									<c:choose>
+										<c:when test="${empty item.ccseq}">
+											<option value="<c:out value="${list.ccgseq }"/>"><c:out value="${list.codeName}"/></option>
+										</c:when>
+										<c:otherwise>
+											<option value="<c:out value="${list.codegroup_ccgSeq }"/>" <c:if test="${list.codegroup_ccgSeq eq item.codegroup_ccgSeq}">selected</c:if>><c:out value="${list.codeName}"/></option>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
 							</select>
 				    		</div>
 				    	</div>
+
 					<div class="row mb-3">
 						<div class="col">
 							<span>코드</span>
@@ -138,7 +136,7 @@
 					<div class="p-1"><button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#ban_del"><i class="fa-solid fa-list"></i></button></div>
 					<div class="p-1  ms-auto"><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#ban_del2"><i class="fa-solid fa-x"></i></button></div>
 					<div class="p-1"><button type="button" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button></div>
-					<div class="p-1"><button type="button" class="btn btn-success"><i class="fa-solid fa-bookmark"></i></button></div>
+					<div class="p-1"><button type="button" name='btnSave' id='btnSave' class="btn btn-success"><i class="fa-solid fa-bookmark"></i></button></div>
 					<input type='submit'>
 				</div>
 			</div>
@@ -148,6 +146,27 @@
 		</form>
 		<script src="https://kit.fontawesome.com/a1961b2393.js"crossorigin="anonymous"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
- 
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+		<script>
+	    var goUrlList = "/code/codeList"; 			/* #-> */
+		var goUrlInst = "/code/codeInst"; 			/* #-> */
+		var goUrlUpdt = "/code/codeUpdt";				/* #-> */
+		var goUrlUele = "/code/codeUele";				/* #-> */
+		var goUrlDele = "/code/codeDele";				/* #-> */
+		
+		var seq = $("input:hidden[name=ccseq]");				/* #-> */
+		
+		var form = $("form[name=form]")
+
+		$("#btnSave").on("click", function() {
+			if(seq.val() == "0" || seq.val() == "") {
+				form.attr("action", goUrlInst).submit();
+			} else {
+				form.attr("action", goUrlUpdt).submit();
+			}
+		});
+ 		
+ 		</script>
 	</body>
 </html>

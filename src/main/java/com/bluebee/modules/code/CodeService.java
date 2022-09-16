@@ -7,4 +7,5 @@ public interface CodeService {
 	public int insert(Code dto) throws Exception;
 	public List<Code> ccgviewr() throws Exception;
 	public Code selectOne(CodeVo vo) throws Exception;
+	public int update(Code dto) throws Exception;
 }

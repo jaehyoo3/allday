@@ -8,6 +8,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class CodeServiceImpl implements CodeService {
 
+	@Override
+	public int update(Code dto) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.update(dto);
+	}
+
 	@Autowired
 	CodeDao dao;
 	

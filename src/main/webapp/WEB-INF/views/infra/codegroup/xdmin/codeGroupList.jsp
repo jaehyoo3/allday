@@ -15,7 +15,11 @@
 	</head>
 	
 	<body>
-		<form method="post" action="/codeGroup/codeGroupList" autocomplete="off">
+		<form method="post" name="form" action="/codeGroup/codeGroupList" autocomplete="off">
+			<input type="hidden" name="ccgseq">
+			<input type="hidden" name="checkboxSeqArray" >
+			<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage}" default="1"/>">
+			<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>">
 			<div id='haeder'></div>
 			<div class="navbar">
 				<a href="#" id="logo"> <img src="/resources/Images/img/logo2.png" height="60"onClick="location.href='./wowMain.html'">
@@ -27,11 +31,12 @@
 					<li><a href="#"><b>배송관리</b></a></li>
 				</ul>
 			</div>
+
 			<div id='content'>
 				<h2>코드그룹 관리</h2>
 				<div class='condition'>
 					<select id='shDelNy' name='shDelNy'>
-						<option value="" <c:if test="${empty vo.shDelNy}">selected</c:if>>검색구분</option>
+						<option value="9" <c:if test="${vo.shDelNy eq 9}">selected</c:if>>검색구분</option>
 						<option value='0' <c:if test="${vo.shDelNy eq 0}">selected</c:if>>N</option>
 						<option value='1' <c:if test="${vo.shDelNy eq 1}">selected</c:if>>Y</option>
 					</select>
@@ -55,8 +60,8 @@
 					<button type='button' id='reset'>리셋</button>	
 				</div>
 				<br>
-				<span>total:</span>
-				<select style="float:right;">
+				<span>total:<c:out value="${vo.totalRows}"/></span>
+				<select id="rowNumToShow" style="float:right;">
 					<option>10</option>
 					<option>20</option>
 					<option>30</option>
@@ -65,6 +70,7 @@
 					<thead>
 						<tr>
 							<th><input type='checkbox'></th>
+							<th>#</th>
 							<th>#</th>
 							<th>코드그룹 코드</th>
 							<th>코드그룹 이름</th>
@@ -87,7 +93,8 @@
 								<c:forEach items="${list}" var="list" varStatus="status">
 									<tr>
 										<td><input type='checkbox'></td>
-										<td><a href="/codeGroup/codeGroupView?ccgseq=<c:out value="${list.ccgseq }"/>"><c:out value="${list.ccgseq }"/></a></td>
+										<td><a href="javascript:goForm(<c:out value="${list.ccgseq }"/>)" class="text-decoration-none"><c:out value="${list.ccgseq }"/></a></td>
+										<td><c:out value="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + status.index) }"/></td>
 										<td><c:out value="${list.ccorder }"/></td>
 										<td><c:out value="${list.codeName }"/></td>
 										<td><c:out value="${list.codeNameEng }"/></td>
@@ -102,7 +109,7 @@
 						</c:choose>
 					</tbody>				
 				</table>
-					<div class="wrapper">
+		<!-- 			<div class="wrapper">
 					     <nav aria-label="Page navigation example">
 						  <ul class="pagination">
 						    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
@@ -115,12 +122,44 @@
 						    <li class="page-item"><a class="page-link" href="#">Next</a></li>
 						  </ul>
 						</nav>
-					</div>
+					</div> -->
+					
+					
+					
+					
+
+				<div class="container-fluid px-0 mt-2">
+				    <div class="row">
+				        <div class="col">
+				            <!-- <ul class="pagination pagination-sm justify-content-center mb-0"> -->
+				            <ul class="pagination justify-content-center mb-0">
+				                <!-- <li class="page-item"><a class="page-link" href="#"><i class="fa-solid fa-angles-left"></i></a></li> -->
+				<c:if test="${vo.startPage gt vo.pageNumToShow}">
+				                <li class="page-item"><a class="page-link" href="javascript:goList(${vo.startPage - 1})"><i class="fa-solid fa-angle-left"></i></a></li>
+				</c:if>
+				<c:forEach begin="${vo.startPage}" end="${vo.endPage}" varStatus="i">
+					<c:choose>
+						<c:when test="${i.index eq vo.thisPage}">
+				                <li class="page-item active"><a class="page-link" href="javascript:goList(${i.index})">${i.index}</a></li>
+						</c:when>
+						<c:otherwise>             
+				                <li class="page-item"><a class="page-link" href="javascript:goList(${i.index})">${i.index}</a></li>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>                
+				<c:if test="${vo.endPage ne vo.totalPages}">                
+				                <li class="page-item"><a class="page-link" href="javascript:goList(${vo.endPage + 1})"><i class="fa-solid fa-angle-right"></i></a></li>
+				</c:if>
+				                <!-- <li class="page-item"><a class="page-link" href="#"><i class="fa-solid fa-angles-right"></i></a></li> -->
+				            </ul>
+				        </div>
+				    </div>
+				</div>
 				<div class="d-flex mb-1">
 					<div class="p-1"><button type="button" class="btn btn-danger"  data-bs-target="#ban_del"><i class="fa-solid fa-ban"></i></button></div>
 					<div class="p-1"><button type="button" class="btn btn-danger" data-bs-target="#ban_del2"><i class="fa-solid fa-trash"></i></button></div>
 					<div class="p-1 ms-auto"><button type="button" class="btn btn-success"><i class="fa-solid fa-file-excel"></i></a></button></div>
-					<div class="p-1"><button type="button" class="btn btn-primary" onclick="location.href='codeGroupForm'"><i class="fa-solid fa-plus"></i></button></div>
+					<div class="p-1"><button type="button" class="btn btn-primary" name="btnForm" id="btnForm"><i class="fa-solid fa-plus"></i></button></div>
 				</div>
 			</div>
 			<div id='footer'>
@@ -173,10 +212,28 @@
     });
 
     var goUrlList = "/codeGroup/codeGroupList";
-    
+    var goUrlForm = "/codeGroup/codeGroupForm";
+	var form = $("form[name=form]")
+	var seq = $("input:hidden[name=ccgseq]");
+	
 	$("#reset").on("click", function() {
 			$(location).attr("href",goUrlList);
 	});
+<!-- ddddddddddddddddd -->
+	goList = function(thisPage) {
+		$("input:hidden[name=thisPage]").val(thisPage);
+		form.attr("action", goUrlList).submit();
+	}
+
+	$('#btnForm').on("click", function() {
+		goForm(0);                
+	});
+
+	goForm = function(keyValue) {
+    	/* if(keyValue != 0) seq.val(btoa(keyValue)); */
+    	seq.val(keyValue);
+		form.attr("action", goUrlForm).submit();
+	}
 
 </script>
 	</body>

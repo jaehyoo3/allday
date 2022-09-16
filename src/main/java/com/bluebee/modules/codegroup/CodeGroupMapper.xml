@@ -9,6 +9,7 @@
     <resultMap id="resultMapObj" type="com.bluebee.modules.codegroup.CodeGroup"></resultMap>
 	
 	<select id="selectList" resultMap="resultMapObj">
+	<include refid="selectListUpperForMysql" />
 		SELECT
 			a.ccgSeq
 			,a.codeName
@@ -18,28 +19,32 @@
 			,a.modifyDate
 			,a.delNy
 			,a.codeNameEng
-            ,(SELECT count(bb.ccSeq) FROM code bb WHERE bb.codegroup_ccgSeq = a.ccgSeq) as cnt
-			FROM codegroup a
-			WHERE 1=1
-			<if test="shDelNy != null and !shDelNy.equals('')">AND delNy = #{shDelNy}</if>
-			<if test="shstartDate != null and !shstartDate.equals('') and shendDate != null and !shendDate.equals('')"> AND a.regDate between #{shstartDate} AND #{shendDate}</if>
-			
-			<choose>
-				<when test="shOption == 1">AND ccgSeq = #{shValue}</when>
-				<when test="shOption == 2">AND codeName LIKE CONCAT('%',#{shValue},'%')</when>
-				<when test="shOption == 3">AND codeNameEng LIKE CONCAT('%',#{shValue},'%')</when>
-		
-				<otherwise></otherwise>
-			</choose> 
+            ,(SELECT count(aa.ccSeq) FROM code aa WHERE aa.codegroup_ccgSeq = a.ccgSeq) as cnt
+			<include refid="selectCommon" />
+			ORDER BY a.ccgSeq DESC
+			<include refid="selectListLowerForMysql" />
 	</select>
-	<select id="selectOne" resultMap="resultMapObj">
-		SELECT
-			a.*
-		from codegroup a
-		WHERE 1=1
-		AND ccgseq = #{ccgseq}
+		<sql id="selectListUpperForMysql">
+			SELECT aa.* FROM (
+		</sql>
 	
-	</select>
+		<sql id="selectListLowerForMysql">	
+			) aa
+			limit #{rowNumToShow} offset ${startRnumForMysql}
+		</sql>
+			
+		<select id="selectOneCount" resultType="Integer">
+			SELECT COUNT(*)
+			<include refid="selectCommon" />
+		</select>
+		
+		<select id="selectOne" resultMap="resultMapObj">
+			SELECT
+				a.*
+			from codegroup a
+			WHERE 1=1
+			AND ccgseq = #{ccgseq}
+		</select>
 	
 	<insert id="insert">
 		insert into codegroup (
@@ -88,5 +93,22 @@
 		<delete id="delete">
 		delete from codegroup where ccgseq = #{ccgseq}
 		</delete>
-	
+		
+
+	<sql id ="selectCommon">
+		FROM codegroup a
+		WHERE 1=1
+			<if test="shstartDate != null and !shstartDate.equals('') and shendDate != null and !shendDate.equals('')"> AND a.regDate between #{shstartDate} AND #{shendDate}</if>
+			
+			<choose>
+				<when test="shOption == 1">AND ccgSeq = #{shValue}</when>
+				<when test="shOption == 2">AND codeName LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shOption == 3">AND codeNameEng LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shDelNy == 0">AND delNy = #{shDelNy}</when>
+				<when test="shDelNy == 1">AND delNy = #{shDelNy}</when>
+				<when test="shDelNy == 9"></when>
+			</choose>
+	</sql>
+
+
 </mapper>		
