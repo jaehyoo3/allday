@@ -58,7 +58,7 @@
 			    		</div>
    				 		<div class="col">
 							<span>코드(Another)</span>
-							<input class="form-control" type="text" name='ccorder' value="<c:out value="${item.ccorder }"/>" aria-label="default input example">
+							<input class="form-control" type="text" name='corder' value="<c:out value="${item.corder }"/>" aria-label="default input example">
 						</div>
 					</div>
 					<div class="row mb-3">

@@ -13,7 +13,11 @@
 	</head>
 	
 	<body>
-		<form method="post" action="/code/codeList">
+		<form method="post" name='form' action="/code/codeList">
+			<input type="hidden" name="ccseq">
+			<input type="hidden" name="checkboxSeqArray" >
+			<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage}" default="1"/>">
+			<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>">
 			<div id='haeder'></div>
 			<div class="navbar">
 				<a href="#" id="logo"> <img src="/resources/Images/logo2.png" height="60"onClick="location.href='./wowMain.html'">
@@ -85,7 +89,7 @@
 							<td><c:out value="${list.codegroup_ccgSeq }"/></td>
 							<td><c:out value="${list.codeName }"/></td>
 							<td><a href="/code/codeView?ccseq=<c:out value="${list.ccseq }"/>"><c:out value="${list.ccseq }"/></a></td>
-							<td><c:out value="${list.ccorder }"/></td>
+							<td><c:out value="${list.corder }"/></td>
 							<td><c:out value="${list.cname }"/></td>
 							<td><c:out value="${list.yn }"/></td>
 							<td></td>
@@ -97,20 +101,7 @@
 					</c:choose>
 					</tbody>				
 				</table>
-					<div class="wrapper">
-					     <nav aria-label="Page navigation example">
-						  <ul class="pagination">
-						    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-						    <li class="page-item"><a class="page-link" href="#">1</a></li>
-						    <li class="page-item"><a class="page-link" href="#">2</a></li>
-						    <li class="page-item"><a class="page-link" href="#">3</a></li>
-						    <li class="page-item"><a class="page-link" href="#">4</a></li>
-						    <li class="page-item"><a class="page-link" href="#">5</a></li>
-						    <li class="page-item"><a class="page-link" href="#">6</a></li>
-						    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-						  </ul>
-						</nav>
-					</div>
+				<%@include file="../../../infra/includeV1/pagination.jsp"%>
 				<div class="d-flex mb-1">
 					<div class="p-1"><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#ban_del"><i class="fa-solid fa-ban"></i></button></div>
 					<div class="p-1"><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#ban_del2"><i class="fa-solid fa-trash"></i></button></div>
@@ -121,5 +112,73 @@
 
 		</form>
 	<script src="https://kit.fontawesome.com/15c84217dd.js" crossorigin="anonymous"></script>
+	
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+            $.datepicker.setDefaults($.datepicker.regional['ko']);
+            $( "#startDate" ).datepicker({
+                 changeMonth: true,
+                 changeYear: true,
+                 nextText: '다음 달',
+                 prevText: '이전 달',
+                 dayNames: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
+                 dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+                 monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                 monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                 dateFormat: "yy-mm-dd",
+                 /* maxDate: 0,                       // 선택할수있는 최소날짜, ( 0 : 오늘 이후 날짜 선택 불가) */
+                 onClose: function( selectedDate ) {
+                      //시작일(startDate) datepicker가 닫힐때
+                      //종료일(endDate)의 선택할수있는 최소 날짜(minDate)를 선택한 시작일로 지정
+                     $("#endDate").datepicker( "option", "minDate", selectedDate );
+                 }
+            });
+            $( "#endDate" ).datepicker({
+                 changeMonth: true,
+                 changeYear: true,
+                 nextText: '다음 달',
+                 prevText: '이전 달',
+                 dayNames: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
+                 dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+                 monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                 monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                 dateFormat: "yy-mm-dd",
+                 /* maxDate: 0,                       // 선택할수있는 최대날짜, ( 0 : 오늘 이후 날짜 선택 불가) */
+                 onClose: function( selectedDate ) {
+                     // 종료일(endDate) datepicker가 닫힐때
+                     // 시작일(startDate)의 선택할수있는 최대 날짜(maxDate)를 선택한 시작일로 지정
+                     $("#startDate").datepicker( "option", "maxDate", selectedDate );
+                 }
+            });
+    });
+	
+	    var goUrlList = "/code/codeList";
+	    var goUrlForm = "/code/codeForm";
+		var form = $("form[name=form]")
+		var seq = $("input:hidden[name=ccseq]");
+		
+		$("#reset").on("click", function() {
+				$(location).attr("href",goUrlList);
+		});
+		
+		goList = function(thisPage) {
+			$("input:hidden[name=thisPage]").val(thisPage);
+			form.attr("action", goUrlList).submit();
+		}
+	
+		$('#btnForm').on("click", function() {
+			goForm(0);                
+		});
+	
+		goForm = function(keyValue) {
+	    	/* if(keyValue != 0) seq.val(btoa(keyValue)); */
+	    	seq.val(keyValue);
+			form.attr("action", goUrlForm).submit();
+		}
+
+</script>
 	</body>
 </html>

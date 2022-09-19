@@ -8,21 +8,20 @@
 
     <resultMap id="resultMapObj" type="com.bluebee.modules.code.Code"></resultMap>
 	
-	<select id="selectList" resultMap="resultMapObj">
-		SELECT
-			a.*
-		    ,b.*
-		    FROM codegroup a
-		    LEFT JOIN code b ON b.codegroup_ccgSeq = a.ccgSeq
-			WHERE 1=1
-			<if test="shDelNy != null and !shDelNy.equals('')">AND yn = #{shDelNy}</if>
-			<choose>
-				<when test="shOption == 1">AND ccgSeq = #{shValue}</when>
-				<when test="shOption == 2">AND codeName LIKE CONCAT('%',#{shValue},'%')</when>
-				<when test="shOption == 3">AND cname LIKE CONCAT('%',#{shValue},'%')</when>
-				<otherwise></otherwise>
-			</choose>
-	</select>
+		<select id="selectList" resultMap="resultMapObj">
+	 		<include refid="Base.selectListUpper" />
+			SELECT
+				a.*
+			    ,b.*
+			 <include refid='common' />
+			 <include refid='Base.selectListLower' />
+		</select>
+	
+		<select id="selectOneCount" resultType="Integer">
+			SELECT COUNT(*)
+			<include refid="common" />
+		</select>
+		
 		<select id="selectOne" resultMap="resultMapObj">
 		SELECT
 			a.*
@@ -72,6 +71,18 @@
 			WHERE
 				ccseq = #{ccseq }
 	</update>
+		
+	<sql id="common">
+			    FROM codegroup a
+		    LEFT JOIN code b ON b.codegroup_ccgSeq = a.ccgSeq
+			WHERE 1=1
+			<if test="shDelNy != null and !shDelNy.equals('')">AND yn = #{shDelNy}</if>
+			<choose>
+				<when test="shOption == 1">AND ccgSeq = #{shValue}</when>
+				<when test="shOption == 2">AND codeName LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shOption == 3">AND cname LIKE CONCAT('%',#{shValue},'%')</when>
+			</choose>
+	</sql>
 	
 	
 </mapper>	

@@ -18,7 +18,9 @@ public class CodeController {
 	CodeServiceImpl service;
 	
 	@RequestMapping(value = "codeList")
-	public String codeList(Model model, CodeVo vo) throws Exception {
+	public String codeList(Model model, @ModelAttribute("vo") CodeVo vo) throws Exception {
+		/* vo.setShDelNy(vo.getShDelNy() == null ? 0 : vo.getShDelNy()); */
+		vo.setParamsPaging(service.selectOneCount(vo));
 		
 		System.out.println("vo.getShValue: " + vo.getShValue());
 		System.out.println("vo.getShOption: " + vo.getShOption());

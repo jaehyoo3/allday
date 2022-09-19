@@ -20,6 +20,7 @@
 			<input type="hidden" name="checkboxSeqArray" >
 			<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage}" default="1"/>">
 			<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>">
+			
 			<div id='haeder'></div>
 			<div class="navbar">
 				<a href="#" id="logo"> <img src="/resources/Images/img/logo2.png" height="60"onClick="location.href='./wowMain.html'">

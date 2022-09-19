@@ -3,7 +3,7 @@ package com.bluebee.modules.code;
 public class Code {
 	private String ccSeq;
 	private String cname;
-	private Integer ccorder;
+	private Integer corder;
 	private Integer userNY;
 	private Integer codegroup_ccgSeq;
 	private Integer yn;
@@ -22,11 +22,11 @@ public class Code {
 	public void setCname(String cname) {
 		this.cname = cname;
 	}
-	public Integer getCcorder() {
-		return ccorder;
+	public Integer getCorder() {
+		return corder;
 	}
-	public void setCcorder(Integer ccorder) {
-		this.ccorder = ccorder;
+	public void setCorder(Integer corder) {
+		this.corder = corder;
 	}
 	public Integer getUserNY() {
 		return userNY;

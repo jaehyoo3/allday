@@ -16,12 +16,12 @@ public class CodeServiceImpl implements CodeService {
 
 	@Autowired
 	CodeDao dao;
-	
+
 	@Override
 	public List<Code> selectList(CodeVo vo) throws Exception {
 		return dao.selectList(vo);
 	}
-	
+
 	@Override
 	public int insert(Code dto) throws Exception {
 		return dao.insert(dto);
@@ -39,6 +39,10 @@ public class CodeServiceImpl implements CodeService {
 		return dao.selectOne(vo);
 	}
 
+	@Override
+	public int selectOneCount(CodeVo vo) throws Exception {
+		return dao.selectOneCount(vo);
+	}
 
 	
 }

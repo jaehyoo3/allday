@@ -24,12 +24,9 @@ public class CodeDao {
 	}
 	
 	public List<Code> ccgviewr() {return sqlSession.selectList(namespace + ".ccgviewr");}
-
-	public Code selectOne(CodeVo vo) {
-		return sqlSession.selectOne(namespace+ ".selectOne",vo);
-	}
-	public int update(Code dto) {
-		return sqlSession.update(namespace+".update", dto);
-	}
+	public Code selectOne(CodeVo vo) { return sqlSession.selectOne(namespace+ ".selectOne",vo); }
+	public int update(Code dto) { return sqlSession.update(namespace+".update", dto); }
+	public int selectOneCount(CodeVo vo) { return sqlSession.selectOne(namespace + ".selectOneCount", vo); }
+	 
 
 }

@@ -1,10 +1,10 @@
-package com.bluebee.modules.xdmin;
+package com.bluebee.modules.xdmincg;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping(value = "/xdmin/")
-public class XdminController {
+public class XdminCGController {
 		
 		@RequestMapping(value = "/")
 		public String wowLogin() {

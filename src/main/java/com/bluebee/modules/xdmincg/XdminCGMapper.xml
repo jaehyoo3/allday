@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bluebee.modules.xdmincg.XdminCGMapper">
+
+    <resultMap id="resultMapObj" type="com.bluebee.modules.xdmincg.XdminCGMapper"></resultMap>
+    
+    <select id="selectList" resultMap="resultMapObj">
+    	select
+    		a.codeGroupSeq
+    		,a.codeGroupName
+    		,a.codeGroupNameEng
+    		,a.codeGroupOrder
+    		,a.codeGroupUseNY
+    		,a.codeGroupUseNY;
+			,a.codeGroupDelNY;
+			,a.codeGroupRegdate;
+			,a.codeGroupUpdate;
+			<include refid="basic" />
+    </select>
+    
+    <sql id='basic'>
+    	from CodeGroup a
+    	WHERE 1=1
+    </sql>
+</mapper>
