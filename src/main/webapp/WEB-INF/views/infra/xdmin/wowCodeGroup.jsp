@@ -19,9 +19,7 @@
 			<div class="content-container">
 			<div id='haeder'></div>
 			<div class="navbar">
-				<a href="#" id="logo"> <img src="../img/logo2.png" height="60"
-					onClick="location.href='main'">
-				</a>
+				<a href="#" id="logo"><img src="/resources/Images/img/logo2.png" height="60" onClick="location.href='main'"></a>
 			</div>
 			<div id='content'>
 				<h2>코드그룹 관리</h2>
@@ -69,45 +67,57 @@
 					<thead>
 						<tr>
 							<th><input type='checkbox'></th>
+							<th>seq</th>
 							<th>#</th>
 							<th>코드그룹 코드</th>
 							<th>코드그룹 이름(한글)</th>
 							<th>코드그룹 이름(영문)</th>
-							<th>코드갯수</th>
+							<th>코드그룹 순서</th>
+							<th>코드그룹 사용</th>
+							<th>삭제여부</th>
 							<th>등록일</th>
 							<th>수정일</th>
 						</tr>
 					</thead>	
 					<tbody>
-						<tr>
-							<td><input type='checkbox'></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
+						<c:choose>
+							<c:when test="${fn:length(list) eq 0}">
+							<tr>
+								<td colspan='11'>검색 된 코드그룹이 존재하지 않습니다.</td>
+							</tr>
+							</c:when>
+							<c:otherwise>
+								<c:forEach items="${list}" var="list" varStatus="status">
+									<tr>
+										<td><input type='checkbox'></td>
+										<td><c:out value="${list.codeGroupSeq }"/></a></td>
+										<td></td>
+										<td><c:out value="${list.codeGroupOrder }"/></td>
+										<td><c:out value="${list.codeGroupName }"/></td>
+										<td><c:out value="${list.codeGroupNameEng }"/></td>
+										<td><c:out value="${list.codeGroupOrder }"/></td>
+										<td><c:out value="${list.codeGroupUseNY }"/></td>
+										<td><c:out value="${list.codeGroupDelNY }"/></td>
+										<td><fmt:formatDate value="${list.codeGroupRegdate }" pattern="yyyy-MM-dd hh:mm:ss"/></td>
+										<td><fmt:formatDate value="${list.codeGroupUpdate }" pattern="yyyy-MM-dd hh:mm:ss"/></td>
+									</tr>
+								</c:forEach>
+							</c:otherwise>
+						</c:choose>
 					</tbody>				
 				</table>
-			<ul class="pagination modal-5">
+				<button type='button' onClick="location.href='codegroupform'">+</button>
+				<ul class="pagination modal-5">
 				  <li><a href="#" class="prev fa fa-arrow-left"> </a></li>
 				  <li> <a href="#" class="active">1</a></li>
 				  <li> <a href="#">2</a></li>
 				  <li> <a href="#">3</a></li>
-				  <li> <a href="#">4</a></li>
-				  <li> <a href="#">5</a></li>
-				  <li> <a href="#">6</a></li>
-				  <li> <a href="#">7</a></li>
-				  <li> <a href="#">8</a></li>
-				  <li> <a href="#">9</a></li>
 				  <li><a href="#" class="next fa fa-arrow-right"></a></li>
 				</ul>
 			</div>
-			<div id='footer'>
-				<div class='copyright'>© 2022. Bluebee all rights reserved.</div>
-			</div>
+			<!-- footer s  -->
+				<%@include file="../../infra/includeV1/footer.jsp"%>
+			<!-- footer e -->
 			</div>
 				<div class="slideout-sidebar">
 			<i class="fa-regular fa-user fa-5x"></i>

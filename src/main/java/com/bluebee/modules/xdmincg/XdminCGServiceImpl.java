@@ -12,6 +12,13 @@ public class XdminCGServiceImpl implements XdminCGService {
 
 	@Override
 	public List<XdminCG> selectList() throws Exception { return dao.selectList(); }
+
+	@Override
+	public int insert(XdminCG dto) throws Exception { return dao.insert(dto); }
+
+	@Override
+	public int update(XdminCG dto) throws Exception { return dao.update(dto); }
+	
 	
 	
 }

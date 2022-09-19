@@ -16,13 +16,11 @@
 	</head>
 	
 	<body>
-	<form id="form" name="form" method="post" autocomplete="off" ">
+	<form id="form" name="form" method="post" autocomplete="off">
 		<%@include file="codeGroupVo.jsp"%>
 			<div id='haeder'></div>
 			<div class="navbar">
-				<a href="#" id="logo"> <img src="/resources/Images/img/logo2.png" height="60"
-					onClick="location.href='codeGroupList'">
-				</a>
+				<a href="#" id="logo"> <img src="/resources/Images/img/logo2.png" height="60" onClick="location.href='main'"> </a>
 				<ul id="menu">
 					<li><a href="#" onClick="location.href='./wowProduct.html'"><b>상품관리</b></a></li>
 					<li><a href="#"><b>회원관리</b></a></li>

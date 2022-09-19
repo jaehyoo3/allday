@@ -21,7 +21,7 @@
 				<div id='haeder'></div>
 				<div class="navbar">
 			        <a href="#" id="logo">
-			            <img src="resources/Images/img/logo2.png" height="60" onClick="location.href='Main'">
+			            <img src="resources/Images/img/logo2.png" height="60" onClick="location.href='main'">
 			        </a>
 		  		</div>
 		  		<div id='content'>
@@ -190,8 +190,8 @@
 					<li onClick="location.href='user'">회원관리</li>
 					<li>문의관리</li>
 					<li>배송관리</li>
-					<li>코드관리</li>
-					<li>코드그룹관리</li>
+					<li onClick="location.href='code'">코드관리</li>
+					<li onClick="location.href='codegroup'">코드그룹관리</li>
 				</ul>
 			</div>
 		</form>
