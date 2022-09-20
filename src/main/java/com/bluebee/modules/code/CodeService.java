@@ -8,5 +8,5 @@ public interface CodeService {
 	public List<Code> ccgviewr() throws Exception;
 	public Code selectOne(CodeVo vo) throws Exception;
 	public int update(Code dto) throws Exception;
-	 public int selectOneCount(CodeVo vo) throws Exception; 
+	public int selectOneCount(CodeVo vo) throws Exception;
 }

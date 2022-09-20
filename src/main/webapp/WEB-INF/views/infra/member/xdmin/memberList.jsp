@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
+
 	
 <html>
 	<head>
@@ -16,6 +17,7 @@
 
 	</head>
 	<body>
+	
 		<form>
 			<div id='haeder'></div>
 			<div class="navbar">
@@ -28,6 +30,8 @@
 					<li><a href="#"><b>배송관리</b></a></li>
 				</ul>
 			</div>
+			<jsp:useBean id="CodeServiceImpl" class="com.bluebee.modules.code.CodeServiceImpl"/>
+			<c:set var="listCodeGender" value="${CodeServiceImpl.selectListCachedCode('3')}"/>
 			<div id='content'>
 			<h3>회원관리</h3>
 			<div class='condition'>
@@ -72,8 +76,9 @@
 							<th>최근 접속일</th>
 						</tr>
 					</thead>
+									
 					<tbody>
-					<c:forEach items="${list }" var="list" varStatus="status">
+					<c:forEach items="${list}" var="list" varStatus="status">
 						<tr>
 							<td><input type='checkbox'></td>
 							<td><c:out value="${list.userCode }"/></td>
@@ -82,9 +87,13 @@
 							<td><fmt:formatDate value="${list.userDOB }" pattern="yyyy-MM-dd"/></td>
 							<td><c:out value="${list.userGender }"/></td>
 							<td><c:out value="${list.userGrade }"/></td>
-							<td>남</td>
+							<td>
+								<c:forEach items="${listCodeGender}" var="listGender" varStatus="statusGender">
+									<c:if test="${list.userGender eq listGender.corder}"><c:out value="${listGender.cname }"/> </c:if>
+								</c:forEach>
+							</td>
 							<td>브론즈</td>
-							<td>2022.08.25</td>
+							<td>2022.08.251</td>
 							<td>2022.08.25 15:12</td>
 						</tr>
 						</c:forEach>

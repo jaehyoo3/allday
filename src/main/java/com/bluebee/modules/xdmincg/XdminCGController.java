@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Controller
@@ -67,14 +68,14 @@ public class XdminCGController {
 		}
 		
 		@RequestMapping(value = "codegroupInst")
-		public String wowCodeGroupInst(XdminCG dto) throws Exception { 		
+		public String wowCodeGroupInst(XdminCGVo vo, XdminCG dto, RedirectAttributes redirectAttributes) throws Exception { 		
 			service.insert(dto);
 			
 			return "redirect:/xdmin/codegroup";
 		}
 		
 		@RequestMapping(value = "codegroupUpdt")
-		public String wowCodeGroupUpdt(XdminCG dto) throws Exception { 		
+		public String wowCodeGroupUpdt(XdminCGVo vo, XdminCG dto, RedirectAttributes redirectAttributes) throws Exception { 		
 			service.update(dto);
 			
 			return "redirect:/xdmin/codegroup";

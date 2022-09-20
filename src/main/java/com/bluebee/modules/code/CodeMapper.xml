@@ -84,5 +84,17 @@
 			</choose>
 	</sql>
 	
+	    <select id="selectListCachedCodeArrayList" resultMap="resultMapObj">
+		SELECT 
+			ccseq
+			,cname
+			,codegroup_ccgseq
+			,corder
+		FROM
+			code
+		WHERE 1=1
+			AND yn = 0
+		    AND uesrNY = 1
+    </select>
 	
 </mapper>	

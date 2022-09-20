@@ -1,5 +1,8 @@
 package com.bluebee.modules.code;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Code {
 	private String ccSeq;
 	private String cname;
@@ -9,6 +12,8 @@ public class Code {
 	private Integer yn;
 	private String ccgseq;
 	private String codeName;
+	
+	public static List<Code> cachedCodeArrayList = new ArrayList<Code>();
 	
 	public String getCcseq() {
 		return ccSeq;
