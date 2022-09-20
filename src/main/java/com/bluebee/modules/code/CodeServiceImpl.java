@@ -56,10 +56,10 @@ public class CodeServiceImpl implements CodeService {
 		System.out.println("cachedCodeArrayList: " + Code.cachedCodeArrayList.size() + " chached !");
 	}
 	
-	public static List<Code> selectListCachedCode(String codegroup_ccgseq) throws Exception {
+	public static List<Code> selectListCachedCode(String ccgSeq) throws Exception {
 		List<Code> rt = new ArrayList<Code>();
 		for(Code codeRow : Code.cachedCodeArrayList) {
-			if (codeRow.getCcgseq().equals(codegroup_ccgseq)) {
+			if (codeRow.getCcgseq().equals(ccgSeq)) {
 				rt.add(codeRow);
 			} else {
 				// by pass
