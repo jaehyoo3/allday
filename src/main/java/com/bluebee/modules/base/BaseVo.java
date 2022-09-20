@@ -12,8 +12,8 @@ public class BaseVo {
 	private Integer shOption;
 	private Integer shDelNy;
 	private Integer shDate;
-	private String startDate;
-	private String endDate;	
+	private String shstartDate;
+	private String shendDate;	
 	
 	private int totalRows;										// 전체 데이터 갯수
 	private int totalPages;										// 전체 페이지 번호
@@ -65,17 +65,17 @@ public class BaseVo {
 	public void setShDate(Integer shDate) {
 		this.shDate = shDate;
 	}
-	public String getStartDate() {
-		return startDate;
+	public String getShstartDate() {
+		return shstartDate;
 	}
-	public void setStartDate(String startDate) {
-		this.startDate = startDate;
+	public void setShstartDate(String shstartDate) {
+		this.shstartDate = shstartDate;
 	}
-	public String getEndDate() {
-		return endDate;
+	public String getShendDate() {
+		return shendDate;
 	}
-	public void setEndDate(String endDate) {
-		this.endDate = endDate;
+	public void setShendDate(String shendDate) {
+		this.shendDate = shendDate;
 	}
 	public int getTotalRows() {
 		return totalRows;
@@ -158,8 +158,8 @@ public class BaseVo {
 		System.out.println("getTotalPages():" + getTotalPages());
 		System.out.println("getStartPage():" + getStartPage());
 		System.out.println("getEndPage():" + getEndPage());		
-		System.out.println("getStartRnumForOracle():" + getStartRnumForMysql());
-		System.out.println("getEndRnumForOracle():" + getEndRnumForMysql());
+		System.out.println("getStartRnumForMysql():" + getStartRnumForMysql());
+		System.out.println("getEndRnumForMysql():" + getEndRnumForMysql());
 	}
 
 }

@@ -8,7 +8,6 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-
 @Repository
 public class XdminCGDao {
 	@Inject
@@ -17,7 +16,9 @@ public class XdminCGDao {
 	
 	private static String namespace = "com.bluebee.modules.xdmincg.XdminCGMapper";
 
-	public List<XdminCG> selectList() { return sqlSession.selectList(namespace + ".selectList", ""); }
+	public List<XdminCG> selectList(XdminCGVo vo) { return sqlSession.selectList(namespace + ".selectList", vo); }
 	public int insert(XdminCG dto) { return sqlSession.insert(namespace+".insert", dto); }
 	public int update(XdminCG dto) { return sqlSession.update(namespace+".update", dto); }
+	public XdminCG selectOne(XdminCGVo vo) { return sqlSession.selectOne(namespace+".selectOne", vo); }
+	public int selectOneCount(XdminCGVo vo) { return sqlSession.selectOne(namespace+".selectOneCount", vo); }
 }

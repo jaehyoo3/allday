@@ -7,7 +7,6 @@ public class XdminCGVo extends BaseVo {
 	public String getCodeGroupSeq() {
 		return codeGroupSeq;
 	}
-
 	public void setCodeGroupSeq(String codeGroupSeq) {
 		this.codeGroupSeq = codeGroupSeq;
 	}

@@ -13,18 +13,23 @@
 		<link href="/resources/Images/xdminCode.css" rel="stylesheet">
 	</head>
 	<body>
-		<form>
+		<form name='form' method='post'>
 			<input type="checkbox" id="menu-toggle"/>
 			<label for="menu-toggle" class="menu-icon"><i class="fa fa-bars"></i></label>
 			<div class="content-container">
 			<div id='haeder'></div>
+			<input type="hidden" name="codeGroupSeq">
+			<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage}" default="1"/>">
+			<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>">
+			
 			<div class="navbar">
 				<a href="#" id="logo"><img src="/resources/Images/img/logo2.png" height="60" onClick="location.href='main'"></a>
 			</div>
 			<div id='content'>
 				<h2>코드그룹 관리</h2>
 				<div class='search'>
-					<input type="textbox"style='width:30%;'> <button>검색</button>
+					<input type='text' id="shValue" name="shValue" value="<c:out value="${vo.shValue }"/>" placeholder="검색어">
+					<input type="submit" value='검색'>
 					<br>
 					<span style="cursor:pointer;" onclick="showHide('id_test_div');"> 
 						<a class="myButton"id="subscriberBtn" onclick='change()' style="font-size:8px;">검색조건</a>
@@ -32,17 +37,17 @@
 					<div id="id_test_div" style="display:none;">
 						<div class=' detail'>
 							<label>코드:</label> 
-							<select>
-								<option>검색기준</option>
-								<option>코드그룹 코드</option>
-								<option>코드그룹 이름(한글)</option>
-								<option>코드그룹 이름(영문)</option>
+							<select id="shOption" name="shOption">
+								<option value="" <c:if test="${empty vo.shOption }">selected</c:if>>검색구분</option>
+								<option value="1" <c:if test="${vo.shOption eq 1}">selected</c:if>>코드그룹 코드</option>
+								<option value="2" <c:if test="${vo.shOption eq 2}">selected</c:if>>코드그룹 이름(한글)</option>
+								<option value="3" <c:if test="${vo.shOption eq 3}">selected</c:if>>코드그룹 이름(영어)</option>
 							</select>
 							<label>삭제여부:</label>
-							<select>
-								<option>사용여부</option>
-								<option>Y</option>
-								<option>N</option>
+							<select id='shDelNy' name='shDelNy'>
+								<option value="">검색구분</option>
+								<option value='0' <c:if test="${vo.shDelNy eq 0}">selected</c:if>>N</option>
+								<option value='1' <c:if test="${vo.shDelNy eq 1}">selected</c:if>>Y</option>
 							</select>
 							<br>
 							<label>기간:</label>
@@ -51,8 +56,8 @@
 								<option>등록일</option>
 								<option>수정일</option>
 							</select>
-							<input type='text' class='startDate' placeholder='시작일'>
- 							<input type='text' class='endDate' id='endDate'  placeholder='종료일'>
+							<input type='text' id='startDate' name='shstartDate' <c:out value="${vo.shstartDate }"/> placeholder='시작일'>
+ 							<input type='text' id='endDate' name='shendDate' <c:out value="${vo.shendDate }"/> placeholder='종료일'>
 						</div>
 					</div>
 				</div>
@@ -66,17 +71,17 @@
 				<table>
 					<thead>
 						<tr>
-							<th><input type='checkbox'></th>
-							<th>seq</th>
-							<th>#</th>
-							<th>코드그룹 코드</th>
-							<th>코드그룹 이름(한글)</th>
-							<th>코드그룹 이름(영문)</th>
-							<th>코드그룹 순서</th>
-							<th>코드그룹 사용</th>
-							<th>삭제여부</th>
-							<th>등록일</th>
-							<th>수정일</th>
+							<th style="width:3%;"><input type='checkbox'></th>
+							<th style="width:3%;">seq</th>
+							<th style="width:3%;">#</th>
+							<th style="width:8%;">코드그룹 코드</th>
+							<th style="width:12%;">코드그룹 이름(한글)</th>
+							<th style="width:12%;">코드그룹 이름(영문)</th>
+							<th style="width:8%;">코드그룹 순서</th>
+							<th style="width:8%;">코드그룹 사용</th>
+							<th style="width:5%;">삭제여부</th>
+							<th style="width:16%;">등록일</th>
+							<th style="width:16%;">수정일</th>
 						</tr>
 					</thead>	
 					<tbody>
@@ -90,8 +95,8 @@
 								<c:forEach items="${list}" var="list" varStatus="status">
 									<tr>
 										<td><input type='checkbox'></td>
-										<td><c:out value="${list.codeGroupSeq }"/></a></td>
-										<td></td>
+										<td><a href="javascript:goForm(<c:out value="${list.codeGroupSeq }"/>)" class="text-decoration-none"><c:out value="${list.codeGroupSeq }"/></a></td>
+										<td><c:out value="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + status.index) }"/></td>
 										<td><c:out value="${list.codeGroupOrder }"/></td>
 										<td><c:out value="${list.codeGroupName }"/></td>
 										<td><c:out value="${list.codeGroupNameEng }"/></td>
@@ -107,14 +112,13 @@
 					</tbody>				
 				</table>
 				<button type='button' onClick="location.href='codegroupform'">+</button>
-				<ul class="pagination modal-5">
-				  <li><a href="#" class="prev fa fa-arrow-left"> </a></li>
-				  <li> <a href="#" class="active">1</a></li>
-				  <li> <a href="#">2</a></li>
-				  <li> <a href="#">3</a></li>
-				  <li><a href="#" class="next fa fa-arrow-right"></a></li>
-				</ul>
+				<!-- pagination s  -->
+				<center>
+				<%@include file="../../infra/includeV1/pagination.jsp"%>
+				</center>
+				<!-- pagination e -->
 			</div>
+			
 			<!-- footer s  -->
 				<%@include file="../../infra/includeV1/footer.jsp"%>
 			<!-- footer e -->
@@ -134,8 +138,59 @@
 				</ul>
 			</div>
 		</form>
+		
 		<script src="https://kit.fontawesome.com/a1961b2393.js"crossorigin="anonymous"></script>
-		<script type="text/javascript">
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+            $.datepicker.setDefaults($.datepicker.regional['ko']);
+            $( "#startDate" ).datepicker({
+                 changeMonth: true,
+                 changeYear: true,
+                 nextText: '다음 달',
+                 prevText: '이전 달',
+                 dayNames: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
+                 dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+                 monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                 monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                 dateFormat: "yy-mm-dd",
+                 /* maxDate: 0,                       // 선택할수있는 최소날짜, ( 0 : 오늘 이후 날짜 선택 불가) */
+                 onClose: function( selectedDate ) {
+                      //시작일(startDate) datepicker가 닫힐때
+                      //종료일(endDate)의 선택할수있는 최소 날짜(minDate)를 선택한 시작일로 지정
+                     $("#endDate").datepicker( "option", "minDate", selectedDate );
+                 }
+
+            });
+            $( "#endDate" ).datepicker({
+                 changeMonth: true,
+                 changeYear: true,
+                 nextText: '다음 달',
+                 prevText: '이전 달',
+                 dayNames: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
+                 dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+                 monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                 monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                 dateFormat: "yy-mm-dd",
+                 /* maxDate: 0,                       // 선택할수있는 최대날짜, ( 0 : 오늘 이후 날짜 선택 불가) */
+                 onClose: function( selectedDate ) {
+                     // 종료일(endDate) datepicker가 닫힐때
+                     // 시작일(startDate)의 선택할수있는 최대 날짜(maxDate)를 선택한 시작일로 지정
+                     $("#startDate").datepicker( "option", "maxDate", selectedDate );
+                 }
+
+            });
+    });    
+		    var goUrlList = "/xdmin/codegroup";
+		    var goUrlForm = "/xdmin/codegroupform";
+		    var goUrlView = "/xdmin/codegroupView";
+		    		    
+			var form = $("form[name=form]")
+			var seq = $("input:hidden[name=codeGroupSeq]");
+	
 			function showHide(id){
 			     var objId = document.getElementById(id);
 			     if(objId.style.display=="block"){
@@ -144,6 +199,7 @@
 			        objId.style.display = "block";
 			     }
 			} 
+			
 			function change() {
 				const subs = document.getElementById("subscriberBtn")
 		
@@ -151,6 +207,21 @@
 				        subs.innerText = '닫기';
 				    } else subs.innerText ='검색조건';
 			};
+			
+			goList = function(thisPage) {
+				$("input:hidden[name=thisPage]").val(thisPage);
+				form.attr("action", goUrlList).submit();
+			}
+
+			$('#btnForm').on("click", function() {
+				goForm(0);                
+			});
+
+			goForm = function(keyValue) {
+		    	/* if(keyValue != 0) seq.val(btoa(keyValue)); */
+		    	seq.val(keyValue);
+				form.attr("action", goUrlView).submit();
+			}
 		 </script>
 	</body>
 </html>

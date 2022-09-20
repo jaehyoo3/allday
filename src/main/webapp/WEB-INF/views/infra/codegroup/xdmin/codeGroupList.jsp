@@ -213,7 +213,7 @@
     });
 
     var goUrlList = "/codeGroup/codeGroupList";
-    var goUrlForm = "/codeGroup/codeGroupForm";
+    var goUrlForm = "/codeGroup/codegroupform";
 	var form = $("form[name=form]")
 	var seq = $("input:hidden[name=ccgseq]");
 	

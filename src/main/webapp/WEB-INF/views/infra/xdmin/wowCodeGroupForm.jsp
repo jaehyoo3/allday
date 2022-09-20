@@ -15,10 +15,6 @@
 
 	<body>
 		<form id="form" name="form" method="post" autocomplete="off">
-		<input type='hidden' name="CodeGroupSeq" value="<c:out value="${CodeGroupSeq }"/>"/>
-
-		
-		
 			<input type="checkbox" id="menu-toggle"/>
 			<label for="menu-toggle" class="menu-icon"><i class="fa fa-bars"></i></label>
 			<div class="content-container">
@@ -32,29 +28,29 @@
 				<h3>코드그룹 관리</h3>
 					<div class="row mb-3">
 						<span>코드</span>
-						<input class="form-control" type="text" name="codeGroupSeq" id="codeGroupSeq" placeholder="한글,숫자">
+						<input class="form-control" type="text" name="codeGroupSeq" id="codeGroupSeq" value="<c:out value="${item.codeGroupSeq }" />" placeholder="한글,숫자">
 					</div>
 					<div class="row mb-3">
 						<div class="col">
 							<span>코드그룹 이름(한글)</span>
-							<input class="form-control" type="text" name="codeGroupName" id="codeGroupName" placeholder="한글,숫자">
+							<input class="form-control" type="text" name="codeGroupName" id="codeGroupName" value="<c:out value="${item.codeGroupName }"/>" placeholder="한글,숫자">
 			    		</div>
    				 		<div class="col">
 							<span>코드그룹 이름(영문)</span>
-							<input class="form-control" type="text" name= "codeGroupNameEng" id="codeGroupNameEng" placeholder="영문(대소문자),숫자">
+							<input class="form-control" type="text" name= "codeGroupNameEng" id="codeGroupNameEng" value="<c:out value="${item.codeGroupNameEng }"/>" placeholder="영문(대소문자),숫자">
 						</div>
 					</div>
 					<div class="row mb-3">
 						<div class="col">
 							<span>사용 여부</span>
 							<select class="form-select" id="codeGroupUseNY" name="codeGroupUseNY">
-								<option value="0">N</option>
-								<option value="1">Y</option>
+								<option value='0' <c:if test="${item.codeGroupUseNY eq 0 }">selected</c:if>>N</option>
+								<option value='1' <c:if test="${item.codeGroupUseNY eq 1 }">selected</c:if>>Y</option>
 							</select>
 			    		</div>
    				 		<div class="col">
 							<span>순서</span>
-							<input class="form-control" type="text" name="codeGroupOrder" id="codeGroupOrder">
+							<input class="form-control" type="text" name="codeGroupOrder" id="codeGroupOrder" value="<c:out value="${item.codeGroupOrder }"/>">
 						</div>
 					</div>
 					<div class="row mb-3">
@@ -87,14 +83,15 @@
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 		<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
-		<script>
-		    var goUrlList = "/xdmin/wowCodeGroupList"; 			/* #-> */
-			var goUrlInst = "/xdmin/wowCodeGroupInst"; 			/* #-> */
-			var goUrlUpdt = "/xdmin/wowCodeGroupUpdt";			/* #-> */
+		<script type="text/javascript">
+		
+
+		    var goUrlList = "/xdmin/codeGroupList"; 			/* #-> */
+			var goUrlInst = "/xdmin/codegroupInst"; 			/* #-> */
+			var goUrlUpdt = "/xdmin/codegroupUpdt";			/* #-> */
 			
-			var seq = $("input:hidden[name=CodeGroupSeq]");				/* #-> */
+			var seq = $("input:text[name=codeGroupSeq]");				/* #-> */
 			var form = $("form[name=form]")
-			var formVo = $("form[name=formVo]");
 			
 			$("#btnSave").on("click", function() {
 				if(seq.val() == "0" || seq.val() == "") {

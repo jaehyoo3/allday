@@ -4,8 +4,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 
 @Controller
 @RequestMapping(value = "/xdmin/")
@@ -51,10 +52,12 @@ public class XdminCGController {
 		}
 		
 		@RequestMapping(value = "codegroup")
-		public String wowCodeGroup(Model model) throws Exception {
-			List<XdminCG> list = service.selectList();
-			model.addAttribute("list", list);
+		public String wowCodeGroup(@ModelAttribute("vo") XdminCGVo vo, Model model) throws Exception {
 			
+			vo.setParamsPaging(service.selectOneCount(vo));
+			
+			List<XdminCG> list = service.selectList(vo);
+			model.addAttribute("list", list);
 			return "infra/xdmin/wowCodeGroup";
 		}
 				
@@ -63,16 +66,25 @@ public class XdminCGController {
 			return "infra/xdmin/wowCodeGroupForm"; 
 		}
 		
-		@RequestMapping(value = "CodeGroupInst")
+		@RequestMapping(value = "codegroupInst")
 		public String wowCodeGroupInst(XdminCG dto) throws Exception { 		
 			service.insert(dto);
 			
-			return "redirect:/wowCodeGroupForm"; 
+			return "redirect:/xdmin/codegroup";
 		}
 		
-		@RequestMapping(value = "codegroupUdpt")
+		@RequestMapping(value = "codegroupUpdt")
 		public String wowCodeGroupUpdt(XdminCG dto) throws Exception { 		
 			service.update(dto);
-			return "redirect:/xdmin/wowCodeGroupForm"; 
+			
+			return "redirect:/xdmin/codegroup";
+		}
+		@RequestMapping(value = "codegroupView")
+		public String wowCodeGroupView(XdminCGVo vo, Model model) throws Exception { 		
+			
+			XdminCG item = service.selectOne(vo);
+			model.addAttribute("item", item);
+			
+			return "infra/xdmin/wowCodeGroupForm"; 
 		}
 }

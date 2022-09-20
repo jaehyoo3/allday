@@ -9,6 +9,7 @@
     <resultMap id="resultMapObj" type="com.bluebee.modules.xdmincg.XdminCG"></resultMap>
     
     <select id="selectList" resultMap="resultMapObj">
+    	<include refid="Base.selectListUpper"/>
     	select
     		a.codeGroupSeq
     		,a.codeGroupName
@@ -19,11 +20,39 @@
 			,a.codeGroupRegdate
 			,a.codeGroupUpdate
 			<include refid="basic" />
+			ORDER BY a.codeGroupSeq DESC
+			<include refid='Base.selectListLower'/>
     </select>
     
     <sql id='basic'>
     	from CodeGroup a
+    	WHERE 1=1
+    	
+			<if test="shstartDate != null and !shstartDate.equals('') and shendDate != null and !shendDate.equals('')"> AND codeGroupRegdate between #{shstartDate} AND #{shendDate}</if>
+			
+			<choose>
+				<when test="shOption == 1">AND codeGroupSeq = #{shValue}</when>
+				<when test="shOption == 2">AND codeGroupName LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shOption == 3">AND codeGroupNameEng LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shDelNy == 0">AND codeGroupDelNY = #{shDelNy}</when>
+				<when test="shDelNy == 1">AND codeGroupDelNY = #{shDelNy}</when>
+				<when test="shDelNy == 9"></when>
+			</choose>
     </sql>
+    
+    <select id="selectOne" resultMap="resultMapObj">
+		SELECT
+			a.*
+		from CodeGroup a
+		WHERE 1=1
+		AND codeGroupSeq = #{codeGroupSeq}
+	</select>
+	
+	<select id="selectOneCount" resultType="Integer">
+		SELECT COUNT(*)
+		<include refid="basic" />
+	</select>
+	
     
 	<insert id="insert">
 		insert into CodeGroup (
@@ -36,13 +65,13 @@
 			,codeGroupRegdate
 			)
 			values(
-			codeGroupSeq = #{codeGroupSeq}
-			,codeGroupName = #{codeGroupName}
-			,codeGroupNameEng = #{codeGroupNameEng}
-			,codeGroupOrder = #{codeGroupOrder}
-			,codeGroupUseNY = #{codeGroupUseNY}
-			,codeGroupDelNY = #{codeGroupDelNY}
-			,codeGroupRegdate = now()
+			 #{codeGroupSeq}
+			,#{codeGroupName}
+			,#{codeGroupNameEng}
+			,#{codeGroupOrder}
+			,#{codeGroupUseNY}
+			,#{codeGroupDelNY}
+			,now()
 			)
 			
 		<selectKey resultType="String" keyProperty="codeGroupSeq" order="AFTER">
@@ -51,15 +80,16 @@
 	</insert>
 	
 	<update id="update">
-		UPDATE codeGroup
+		UPDATE CodeGroup
 		SET	
-			codeGroupName = #{codeGroupName}
-			,codeGroupNameEng = #{codeGroupNameEng}
-			,codeGroupOrder = #{codeGroupOrder}
-			,codeGroupUseNY = #{codeGroupUseNY}
-			,codeGroupDelNY = #{codeGroupDelNY}
+			codeGroupName = #{codeGroupName }
+			,codeGroupNameEng = #{codeGroupNameEng }
+			,codeGroupOrder = #{codeGroupOrder }
+			,codeGroupUseNY = #{codeGroupUseNY }
+			,codeGroupDelNY = #{codeGroupDelNY }
 			,codeGroupUpdate = now()
 		WHERE
-			codeGroupSeq = #{codeGroupSeq }
+			codeGroupSeq = #{codeGroupSeq}
 	</update>
+	
 </mapper>

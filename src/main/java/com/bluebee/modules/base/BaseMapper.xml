@@ -6,11 +6,11 @@
 
 <mapper namespace="Base">
 	<sql id="selectListUpper">
-		select aa.* from(
+		select b.* from(
 	</sql>
 	
 	<sql id="selectListLower">
-		) aa
+		) b
 		limit #{rowNumToShow} offset #{startRnumForMysql}
 	</sql>
 	
