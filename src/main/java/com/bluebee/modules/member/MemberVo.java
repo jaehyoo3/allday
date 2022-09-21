@@ -1,27 +1,18 @@
 package com.bluebee.modules.member;
 
-public class MemberVo {
-	private String shValue;
-	private Integer shOption;
-	private Integer shDelny;
+import com.bluebee.modules.base.BaseVo;
+
+public class MemberVo extends BaseVo {
+
+	private String userCode;
 	
 	
-	public String getShValue() {
-		return shValue;
+	public String getUserCode() {
+		return userCode;
 	}
-	public void setShValue(String shValue) {
-		this.shValue = shValue;
+	public void setUserCode(String userCode) {
+		this.userCode = userCode;
 	}
-	public Integer getShOption() {
-		return shOption;
-	}
-	public void setShOption(Integer shOption) {
-		this.shOption = shOption;
-	}
-	public Integer getShDelny() {
-		return shDelny;
-	}
-	public void setShDelny(Integer shDelny) {
-		this.shDelny = shDelny;
-	}
+
+
 }

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bluebee.modules.xdmincode.XdminCodeMapper">
+
+    <resultMap id="resultMapObj" type="com.bluebee.modules.xdmincode.XdminCode"></resultMap>
+	
+		<select id="selectList" resultMap="resultMapObj">
+	 		<include refid="Base.selectListUpper" />
+			SELECT
+				a.codeSeq
+				,a.codeGroupSeq
+				,b.codeGroupName
+				,a.codeName
+				,a.codeNameEng
+				,a.codeOrder
+				,a.codeUseNY
+				,a.codeDelNY
+				,a.codeRegdate
+				,a.codeUpdate
+			<include refid='common' />
+			<include refid='Base.selectListLower' />
+		</select>
+	
+		<select id="selectOneCount" resultType="Integer">
+			SELECT COUNT(*)
+			<include refid="common" />
+		</select>
+		
+		<select id="selectOne" resultMap="resultMapObj">
+			SELECT
+				a.codeSeq
+				,a.codeGroupSeq
+				,b.codeGroupName
+				,a.codeName
+				,a.codeNameEng
+				,a.codeOrder
+				,a.codeUseNY
+				,a.codeDelNY
+				,a.codeRegdate
+				,a.codeUpdate
+			<include refid='common' />
+			and a.codeSeq = #{codeSeq}
+		</select>
+		
+		<select id="codegroupViewer" resultMap="resultMapObj">
+			SELECT
+				a.codeSeq
+				,a.codeGroupSeq
+				,b.codeGroupName
+				,a.codeName
+				,a.codeNameEng
+				,a.codeOrder
+				,a.codeUseNY
+				,a.codeDelNY
+				,a.codeRegdate
+				,a.codeUpdate
+			<include refid='common' />
+			GROUP BY codeGroupName
+		</select>
+	
+		<insert id="insert">
+			insert into Code(
+				codeName
+				,codeGroupSeq
+				,codeNameEng
+				,codeOrder
+				,codeUseNY
+				,codeDelNY
+				,codeRegdate
+			)
+			values(
+				#{codeName}
+				,#{codeGroupSeq}
+				,#{codeNameEng}
+				,#{codeOrder}
+				,#{codeUseNY}
+				,#{codeDelNY}
+				,now()
+			)
+			<selectKey resultType="String" keyProperty="codeSeq" order="AFTER"> 
+				select last_insert_id()
+			</selectKey>
+		</insert>
+		
+		<update id="update">
+			update Code
+			set
+				codeName = #{codeName}
+				,codeGroupSeq = #{codeGroupSeq}
+				,codeNameEng = #{codeNameEng}
+				,codeOrder = #{codeOrder}
+				,codeUseNY = #{codeUseNY}
+				,codeDelNY = #{codeDelNY}
+				,codeUpdate = now()
+			where 
+				codeSeq = #{codeSeq}	
+		</update>
+		
+		<!--  SQL  -->
+		<sql id="common">
+			FROM Code a
+			left join CodeGroup b on a.codeGroupSeq = b.codeGroupSeq
+			where 1=1
+		</sql>
+	
+	    <select id="selectListCachedCodeArrayList" resultMap="resultMapObj">
+    	</select>
+	
+</mapper>	

@@ -19,4 +19,33 @@
 			<when test = "shOption == 3">AND userNick LIKE CONCAT('%',#{shValue}, '%')</when>
 		</choose>
 	</select>
+	
+	<insert id="insert">
+		insert into member(
+		userID
+		,userPW
+		,zip
+		,addr1
+		,addr2
+		)
+		values(
+		#{userID}
+		,#{userPW}
+		,#{zip}
+		,#{addr1}
+		,#{addr2}
+		)
+		<selectKey resultType="String" keyProperty="userCode" order="AFTER"> 
+			select last_insert_id()
+		</selectKey>
+	</insert>
+	
+	<select id="selectOne" resultMap="resultMapObj">
+		SELECT
+			a.*
+		from member a
+		WHERE 1=1
+		AND userCode = #{userCode}
+	
+	</select>
 </mapper>		

@@ -82,7 +82,7 @@
 						<tr>
 							<td><input type='checkbox'></td>
 							<td><c:out value="${list.userCode }"/></td>
-							<td><c:out value="${list.userID }"/></td>
+							<td><a href="/member/memberView?userCode=<c:out value="${list.userCode }"/>"><c:out value="${list.userID }"/></td>
 							<td><c:out value="${list.userName }"/></td>
 							<td><fmt:formatDate value="${list.userDOB }" pattern="yyyy-MM-dd"/></td>
 							<td><c:out value="${list.userGender }"/></td>
@@ -114,6 +114,7 @@
 				    </li>
 				  </ul>
 				</div>
+				<button type="button" onclick="location.href='memberForm'">++</button>
 			</div>
 			<div id='footer'>
 				<div class='copyright'>2022. Bluebee all rights reserved.</div>

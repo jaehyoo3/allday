@@ -43,14 +43,7 @@ public class XdminCGController {
 		public String wowUserForm() {
 			return "infra/xdmin/wowUserForm";
 		}
-		@RequestMapping(value = "code")
-		public String wowCode() {
-			return "infra/xdmin/wowCode";
-		}
-		@RequestMapping(value = "codeform")
-		public String wowCodeForm() {
-			return "infra/xdmin/wowcodeForm";
-		}
+
 		
 		@RequestMapping(value = "codegroup")
 		public String wowCodeGroup(@ModelAttribute("vo") XdminCGVo vo, Model model) throws Exception {

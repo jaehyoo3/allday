@@ -88,7 +88,7 @@
 		SELECT 
 			ccseq
 			,cname
-			,codegroup_ccgseq as ccgSeq
+			,codegroup_ccgseq AS ccgSeq
 			,corder
 		FROM
 			code

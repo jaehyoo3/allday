@@ -13,7 +13,10 @@
 		<link href="/resources/Images/xdminCode.css" rel="stylesheet">
 	</head>
 	<body>
-		<form>
+		<form name='form' method='post'>
+			<input type="hidden" name="codeSeq">
+			<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage}" default="1"/>">
+			<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>">
 			<input type="checkbox" id="menu-toggle"/>
 			<label for="menu-toggle" class="menu-icon"><i class="fa fa-bars"></i></label>
 			<div class="content-container">
@@ -59,7 +62,7 @@
 					</div>
 				</div>
 				<br>
-				<span>total:</span>
+				<span>total:<c:out value="${vo.totalRows}"/></span>
 				<select style="float:right;">
 					<option>10</option>
 					<option>20</option>
@@ -68,88 +71,146 @@
 				<table>
 					<thead>
 						<tr>
-							<th><input type='checkbox'></th>
-							<th>#</th>
-							<th>코드그룹 코드</th>
-							<th>코드그룹 이름(한글)</th>
-							<th>코드</th>
-							<th>대체코드</th>
-							<th>코드이름(한글)</th>
-							<th>코드이름(영문)</th>
-							<th>사용</th>
-							<th>순서</th>
-							<th>등록일</th>
-							<th>수정일</th>
+							<th style="width:3%;"><input type='checkbox'></th>
+							<th style="width:3%;">#</th>
+							<th style="width:8%;">코드그룹 코드</th>
+							<th style="width:12%;">코드그룹 이름(한글)</th>
+							<th style="width:3%;">코드</th>
+							<th style="width:8%;">코드이름(한글)</th>
+							<th style="width:8%;">코드이름(영문)</th>
+							<th style="width:3%;">사용</th>
+							<th style="width:5%;">삭제여부</th>
+							<th style="width:15%;">등록일</th>
+							<th style="width:15%;">수정일</th>
 						</tr>
 					</thead>	
 					<tbody>
-						<tr>
-							<td><input type='checkbox'></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-					</tbody>				
+						<c:choose>
+							<c:when test="${fn:length(list) eq 0}">
+							<tr>
+								<td colspan='11'>검색 된 코드그룹이 존재하지 않습니다.</td>
+							</tr>
+							</c:when>
+							<c:otherwise>
+								<c:forEach items="${list}" var="list" varStatus="status">
+									<tr>
+										<td><input type='checkbox'></td>
+										<td><c:out value="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + status.index) }"/></td>
+										<td><c:out value="${list.codeGroupSeq }"/></td>
+										<td><c:out value="${list.codeGroupName }"/></td>
+										<td><c:out value="${list.codeOrder }"/></td>
+										<td><a href="javascript:goForm(<c:out value="${list.codeSeq }"/>)" class="text-decoration-none"><c:out value="${list.codeName }"/></a></td>
+										<td><c:out value="${list.codeNameEng }"/></td>
+										<td><c:out value="${list.codeUseNY }"/></td>
+										<td><c:out value="${list.codeDelNY }"/></td>
+										<td><fmt:formatDate value="${list.codeRegdate }" pattern="yyyy-MM-dd hh:mm:ss"/></td>
+										<td><fmt:formatDate value="${list.codeUpdate }" pattern="yyyy-MM-dd hh:mm:ss"/></td>
+									</tr>
+								</c:forEach>
+							</c:otherwise>
+						</c:choose>
+					</tbody>			
 				</table>
-				<button>+</button>
-			<ul class="pagination modal-5">
-				  <li><a href="#" class="prev fa fa-arrow-left"> </a></li>
-				  <li> <a href="#" class="active">1</a></li>
-				  <li> <a href="#">2</a></li>
-				  <li> <a href="#">3</a></li>
-				  <li> <a href="#">4</a></li>
-				  <li> <a href="#">5</a></li>
-				  <li> <a href="#">6</a></li>
-				  <li> <a href="#">7</a></li>
-				  <li> <a href="#">8</a></li>
-				  <li> <a href="#">9</a></li>
-				  <li><a href="#" class="next fa fa-arrow-right"></a></li>
-				</ul>
+				<button type='button' onClick="location.href='codeform'">+</button>
+				<!-- pagination s  -->
+				<center>
+				<%@include file="../../infra/includeV1/pagination.jsp"%>
+				</center>
+				<!-- pagination e -->
 			</div>
-			<div id='footer'>
-				<div class='copyright'>© 2022. Bluebee all rights reserved.</div>
+			
+			<!-- footer s  -->
+				<%@include file="../../infra/includeV1/footer.jsp"%>
+			<!-- footer e -->
 			</div>
-			</div>
-				<div class="slideout-sidebar">
-			<i class="fa-regular fa-user fa-5x"></i>
-			<p>관리자님</p>환영합니다
-			<i class="fa-solid fa-x fa-xs"></i>
-				<ul>
-					<li onClick="location.href='main'">HOME</li>
-					<li onClick="location.href='product'">상품관리</li>
-					<li onClick="location.href='user'">회원관리</li>
-					<li>문의관리</li>
-					<li>배송관리</li>
-					<li onClick="location.href='code'">코드관리</li>
-					<li onClick="location.href='codegroup'">코드그룹관리</li>
-				</ul>
-			</div>
+			<!-- sideMenu s  -->
+				<%@include file="../../infra/includeV1/sideMenu.jsp"%>
+			<!-- sideMenu e -->
 		</form>
-		<script src="https://kit.fontawesome.com/a1961b2393.js"crossorigin="anonymous"></script>
-		<script type="text/javascript">
-			function showHide(id){
-			     var objId = document.getElementById(id);
-			     if(objId.style.display=="block"){
-			        objId.style.display = "none";
-			     } else {
-			        objId.style.display = "block";
-			     }
-			} 
-			function change() {
-				const subs = document.getElementById("subscriberBtn")
 		
-				    if(subs.innerText == '검색조건') {
-				        subs.innerText = '닫기';
-				    } else subs.innerText ='검색조건';
-			};
+		<script src="https://kit.fontawesome.com/a1961b2393.js"crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+		<script type="text/javascript">
+		    $(document).ready(function () {
+		            $.datepicker.setDefaults($.datepicker.regional['ko']);
+		            $( "#startDate" ).datepicker({
+		                 changeMonth: true,
+		                 changeYear: true,
+		                 nextText: '다음 달',
+		                 prevText: '이전 달',
+		                 dayNames: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
+		                 dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+		                 monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+		                 monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+		                 dateFormat: "yy-mm-dd",
+		                 /* maxDate: 0,                       // 선택할수있는 최소날짜, ( 0 : 오늘 이후 날짜 선택 불가) */
+		                 onClose: function( selectedDate ) {
+		                      //시작일(startDate) datepicker가 닫힐때
+		                      //종료일(endDate)의 선택할수있는 최소 날짜(minDate)를 선택한 시작일로 지정
+		                     $("#endDate").datepicker( "option", "minDate", selectedDate );
+		                 }
+		
+		            });
+		            
+		            $( "#endDate" ).datepicker({
+		                 changeMonth: true,
+		                 changeYear: true,
+		                 nextText: '다음 달',
+		                 prevText: '이전 달',
+		                 dayNames: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
+		                 dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+		                 monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+		                 monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+		                 dateFormat: "yy-mm-dd",
+		                 /* maxDate: 0,                       // 선택할수있는 최대날짜, ( 0 : 오늘 이후 날짜 선택 불가) */
+		                 onClose: function( selectedDate ) {
+		                     // 종료일(endDate) datepicker가 닫힐때
+		                     // 시작일(startDate)의 선택할수있는 최대 날짜(maxDate)를 선택한 시작일로 지정
+		                     $("#startDate").datepicker( "option", "maxDate", selectedDate );
+		                 }
+		
+		            });
+		  		  });    
+			    var goUrlList = "/xdmin/code";
+			    var goUrlForm = "/xdmin/codeform";
+			    var goUrlView = "/xdmin/codeView";
+			    		    
+				var form = $("form[name=form]")
+				var seq = $("input:hidden[name=codeSeq]");
+		
+				function showHide(id){
+				     var objId = document.getElementById(id);
+				     if(objId.style.display=="block"){
+				        objId.style.display = "none";
+				     } else {
+				        objId.style.display = "block";
+				     }
+				} 
+				
+				function change() {
+					const subs = document.getElementById("subscriberBtn")
+			
+					    if(subs.innerText == '검색조건') {
+					        subs.innerText = '닫기';
+					    } else subs.innerText ='검색조건';
+				};
+				
+				goList = function(thisPage) {
+					$("input:hidden[name=thisPage]").val(thisPage);
+					form.attr("action", goUrlList).submit();
+				}
+	
+				$('#btnForm').on("click", function() {
+					goForm(0);                
+				});
+	
+				goForm = function(keyValue) {
+			    	/* if(keyValue != 0) seq.val(btoa(keyValue)); */
+			    	seq.val(keyValue);
+					form.attr("action", goUrlView).submit();
+				}
 		 </script>
 	</body>
 </html>

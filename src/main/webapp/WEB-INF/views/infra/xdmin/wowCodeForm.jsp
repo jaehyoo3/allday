@@ -15,7 +15,7 @@
 
 	
 	<body>
-		<form>
+		<form name="form" id="form" name="form" method="post" autocomplete="off">
 			<input type="checkbox" id="menu-toggle"/>
 			<label for="menu-toggle" class="menu-icon"><i class="fa fa-bars"></i></label>
 			<div class="content-container">
@@ -30,121 +30,99 @@
 				<h3>코드관리</h3>
 					<div class="row mb-3">
 						<div class="col-6">
-							<span>사용 여부</span>
-							<select class="form-select">
-								<option selected>선택</option>
-								<option>N</option>
-								<option>Y</option>
+							<span>코드그룹</span>
+								<select class="form-select" name='codeGroupSeq'>
+								<c:forEach items="${list}" var="list" varStatus="status">
+									<c:choose>
+										<c:when test="${empty item.codeSeq}">
+											<option value="<c:out value="${list.codeGroupSeq }"/>"><c:out value="${list.codeGroupName}"/></option>
+										</c:when>
+										<c:otherwise>
+											<option value="<c:out value="${list.codeGroupSeq }"/>" <c:if test="${list.codeGroupSeq eq item.codeGroupSeq}">selected</c:if>><c:out value="${list.codeGroupName}"/></option>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
 							</select>
 				    		</div>
 				    	</div>
 					<div class="row mb-3">
 						<div class="col">
-							<span>코드</span>
-							<input class="form-control" type="text" placeholder="자동생성" aria-label="Disabled input example" disabled>
+							<span># 코드</span>
+							<input class="form-control" type="text" value="<c:out value="${item.codeSeq }" />" id="codeSeq" name="codeSeq" disabled>
 			    		</div>
-   				 		<div class="col">
-							<span>코드(Another)</span>
-							<input class="form-control" type="text" aria-label="default input example">
-						</div>
+			    		<div class="col">
+							<span>사용 코드</span>
+							<input class="form-control" type="text" placeholder="자동생성" value="<c:out value="${item.codeOrder}" />" id="codeOrder" name="codeOrder">
+			    		</div>
 					</div>
 					<div class="row mb-3">
 						<div class="col">
 							<span>코드 이름(한글)</span>
-							<input class="form-control" type="text"  aria-label="Disabled input example">
+							<input class="form-control" type="text" id="codeName" name="codeName" value="<c:out value="${item.codeName}" />">
 			    		</div>
    				 		<div class="col">
 							<span>코드 이름(영문)</span>
-							<input class="form-control" type="text" aria-label="default input example">
+							<input class="form-control" type="text" id="codeNameEng" name="codeNameEng" value="<c:out value="${item.codeNameEng}" />">
 						</div>
 					</div>
 					<div class="row mb-3">
 						<div class="col">
 							<span>사용 여부</span>
-							<select class="form-select">
-								<option>N</option>
-								<option>Y</option>
+							<select class="form-select" name="codeUseNY" id="codeUseNY">
+								<option value='0' <c:if test="${item.codeUseNY eq 0 }">selected</c:if>>N</option>
+								<option value='1' <c:if test="${item.codeUseNY eq 1 }">selected</c:if>>Y</option>
 							</select>
 			    		</div>
-   				 		<div class="col">
-							<span>순서</span>
-							<input class="form-control" type="text" aria-label="default input example">
-						</div>
 					</div>
 					<div class="row mb-3">
-						<div class="col">
-							<span>설명</span>
-							<textarea  class="form-control" type="text" aria-label="Disabled input example"></textarea>
-			    		</div>
    				 		<div class="col">
 							<span>삭제여부</span>
-							<select class="form-select" aria-label="Default select example">
-								<option>N</option>
-								<option>Y</option>
+							<select class="form-select" name="codeDelNY" id="codeDelNY">
+								<option value='0' <c:if test="${item.codeDelNY eq 0 }">selected</c:if>>N</option>
+								<option value='1' <c:if test="${item.codeDelNY eq 1 }">selected</c:if>>Y</option>
 							</select>
 						</div>
-					</div>
-					<div class="row mb-3">
-						<div class="col">
-							<span>예비1(varchar type)</span>
-							<input class="form-control" type="text" aria-label="Disabled input example">
-			    		</div>
-   				 		<div class="col">
-							<span>예비2(varchar type)</span>
-							<input class="form-control" type="text" aria-label="default input example">
-						</div>
-					</div>
-					<div class="row mb-3">
-						<div class="col-6">
-							<span>예비3(varchar type)</span>
-							<input class="form-control" type="text" aria-label="Disabled input example">
-			    		</div>
-					</div>
-					<div class="row mb-3">
-						<div class="col">
-							<span>예비1(Int type)</span>
-							<input class="form-control" type="text" aria-label="Disabled input example">
-			    		</div>
-   				 		<div class="col">
-							<span>예비2(Int type)</span>
-							<input class="form-control" type="text"  aria-label="default input example">
-						</div>
-					</div>
-					<div class="row mb-3">
-						<div class="col-6">
-							<span>예비3(Int type)3</span>
-							<input class="form-control" type="text" aria-label="Disabled input example">
-			    		</div>
 					</div>
 				</div>
 				<div class="d-flex mb-1">
 					<div class="p-1"><button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#ban_del"><i class="fa-solid fa-list"></i></button></div>
 					<div class="p-1  ms-auto"><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#ban_del2"><i class="fa-solid fa-x"></i></button></div>
 					<div class="p-1"><button type="button" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button></div>
-					<div class="p-1"><button type="button" class="btn btn-success"><i class="fa-solid fa-bookmark"></i></button></div>
+					<div class="p-1"><button type="button" class="btn btn-success" id='btnSave' name='btnSave'><i class="fa-solid fa-bookmark"></i></button></div>
 				</div>
 			</div>
-			<div id='footer'>
-				<div class='copyright'>© 2022. Bluebee all rights reserved.</div>
+			<!-- CODEVO s  -->
+				<%@include file="../../infra/includeV1/codeVo.jsp"%>
+			<!-- CODEVO e -->
+			
+			<!-- footer s  -->
+				<%@include file="../../infra/includeV1/footer.jsp"%>
+			<!-- footer e -->
 			</div>
-						</div>
-				<div class="slideout-sidebar">
-			<i class="fa-regular fa-user fa-5x"></i>
-			<p>관리자님</p>환영합니다
-			<i class="fa-solid fa-x fa-xs"></i>
-				<ul>
-					<li onClick="location.href='main'">HOME</li>
-					<li onClick="location.href='product'">상품관리</li>
-					<li onClick="location.href='user'">회원관리</li>
-					<li>문의관리</li>
-					<li>배송관리</li>
-					<li onClick="location.href='code'">코드관리</li>
-					<li onClick="location.href='codegroup'">코드그룹관리</li>
-				</ul>
-			</div>
+			<!-- sideMenu s  -->
+				<%@include file="../../infra/includeV1/sideMenu.jsp"%>
+			<!-- sideMenu e -->
 		</form>
 		<script src="https://kit.fontawesome.com/a1961b2393.js"crossorigin="anonymous"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
- 
+ 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+		
+ 		<script type="text/javascript">
+ 		    var goUrlList = "/xdmin/code"; 			/* #-> */
+			var goUrlInst = "/xdmin/codeInst"; 			/* #-> */
+			var goUrlUpdt = "/xdmin/codeUpdt";			/* #-> */
+			
+			var seq = $("input:text[name=codeSeq]");				/* #-> */
+			var form = $("form[name=form]")
+			
+			$("#btnSave").on("click", function() {
+				if(seq.val() == "0" || seq.val() == "") {
+					form.attr("action", goUrlInst).submit();
+				} else {
+					form.attr("action", goUrlUpdt).submit();
+				}
+			});
+		</script>
 	</body>
 </html>
