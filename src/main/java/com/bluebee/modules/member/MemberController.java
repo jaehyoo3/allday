@@ -12,13 +12,12 @@ import com.bluebee.modules.xdmincg.XdminCGVo;
 
 
 @Controller
-@RequestMapping(value = "/member/")
 public class MemberController {
 	
 	@Autowired
 	MemberServiceImpl service;
 	
-	@RequestMapping(value = "memberList")
+	@RequestMapping(value = "/admin/memberList")
 	public String MemberList(Model model, MemberVo vo) throws Exception {
 
 		List<Member> list = service.selectList(vo);
