@@ -13,11 +13,9 @@
 	    <link href="/resources/Images/css/bootstrap.min.css" rel="stylesheet"> 
 		<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
     	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-	    	
-
 	</head>
 	<body>
-	
+				
 		<form>
 			<div id='haeder'></div>
 			<div class="navbar">
@@ -30,8 +28,8 @@
 					<li><a href="#"><b>배송관리</b></a></li>
 				</ul>
 			</div>
-			<jsp:useBean id="CodeServiceImpl" class="com.bluebee.modules.code.CodeServiceImpl"/>
-			<c:set var="listCodeGender" value="${CodeServiceImpl.selectListCachedCode('3')}"/>
+			<jsp:useBean id="XdminCodeServiceImpl" class="com.bluebee.modules.xdmincode.XdminCodeServiceImpl"/>
+			<c:set var="listCodeGender" value="${XdminCodeServiceImpl.selectListCachedCode('3')}"/>
 			<div id='content'>
 			<h3>회원관리</h3>
 			<div class='condition'>
@@ -81,20 +79,20 @@
 					<c:forEach items="${list}" var="list" varStatus="status">
 						<tr>
 							<td><input type='checkbox'></td>
-							<td><c:out value="${list.userCode }"/></td>
-							<td><a href="/member/memberView?userCode=<c:out value="${list.userCode }"/>"><c:out value="${list.userID }"/></td>
-							<td><c:out value="${list.userName }"/></td>
-							<td><fmt:formatDate value="${list.userDOB }" pattern="yyyy-MM-dd"/></td>
-							<td><c:out value="${list.userGender }"/></td>
-							<td><c:out value="${list.userGrade }"/></td>
+							<td><c:out value="${list.memberSeq }"/></td>
+							<td><a href="/member/memberView?memberSeq=<c:out value="${list.memberSeq }"/>"><c:out value="${list.memberID }"/></td>
+							<td><c:out value="${list.memberName }"/></td>
+							<td><c:out value="${list.memberDob }"/></td>
+							<td><c:out value="${list.memberGender }"/></td>
+							<td><c:out value="${list.memberNick}"/></td>
 							<td>
 								<c:forEach items="${listCodeGender}" var="listGender" varStatus="statusGender">
-									<c:if test="${list.userGender eq listGender.corder}"><c:out value="${listGender.cname }"/> </c:if>
+									<c:if test="${list.memberGender eq listGender.codeOrder}">dd</c:if>
 								</c:forEach>
 							</td>
-							<td>브론즈</td>
-							<td>2022.08.251</td>
-							<td>2022.08.25 15:12</td>
+							<td><c:out value="${list.memberGrade }"/></td>
+							<td><c:out value="${list.memberRegdate }"/></td>
+							<td><c:out value="${list.memberUpdate }"/></td>
 						</tr>
 						</c:forEach>
 					</tbody>

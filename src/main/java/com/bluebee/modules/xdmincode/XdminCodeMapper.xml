@@ -107,7 +107,17 @@
 			where 1=1
 		</sql>
 	
-	    <select id="selectListCachedCodeArrayList" resultMap="resultMapObj">
-    	</select>
+	 <select id="selectListCachedCodeArrayList" resultMap="resultMapObj">
+			SELECT 
+				a.codeSeq
+				,a.codeName
+				,a.codeGroupSeq
+				,a.codeOrder
+			FROM
+				Code a
+			WHERE 1=1
+				AND codeDelNY = 0
+			    AND codeUseNY = 1
+	    </select>
 	
 </mapper>	

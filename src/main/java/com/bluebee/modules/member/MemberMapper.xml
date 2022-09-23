@@ -10,32 +10,78 @@
 	
 	<select id="selectList" resultMap="resultMapObj">
 		SELECT
-			a.*
-		FROM member a
+			*
+		FROM member
 		WHERE 1=1
 		<choose>
-			<when test = "shOption == 1">AND userName LIKE CONCAT('%',#{shValue},'%')</when>
-			<when test = "shOption == 2">AND userID LIKE CONCAT('%', #{shValue},'%')</when>
-			<when test = "shOption == 3">AND userNick LIKE CONCAT('%',#{shValue}, '%')</when>
+			<when test = "shOption == 1">AND memberName LIKE CONCAT('%',#{shValue},'%')</when>
+			<when test = "shOption == 2">AND memberID LIKE CONCAT('%', #{shValue},'%')</when>
+			<when test = "shOption == 3">AND memberNick LIKE CONCAT('%',#{shValue}, '%')</when>
 		</choose>
 	</select>
 	
 	<insert id="insert">
 		insert into member(
-		userID
-		,userPW
-		,zip
-		,addr1
-		,addr2
+		memberID
+		,memberPW
+		,memberNick
+		,memberName
+		,memberDob
+		,memberGender
+		,memberEmail
+		,memberMobile
+		,memberDelNy
+		,memberAd
+		,memberGrade
 		)
 		values(
-		#{userID}
-		,#{userPW}
-		,#{zip}
-		,#{addr1}
-		,#{addr2}
+		#{memberID}
+		,#{memberPW}
+		,#{memberNick}
+		,#{memberName}
+		,#{memberDob}
+		,#{memberGender}
+		,#{memberEmail}
+		,#{memberMobile}
+		,0
+		,#{memberAd}
+		,1
 		)
-		<selectKey resultType="String" keyProperty="userCode" order="AFTER"> 
+		<selectKey resultType="String" keyProperty="memberSeq" order="AFTER"> 
+			select last_insert_id()
+		</selectKey>
+	</insert>
+	
+	<insert id="signup">
+		insert into member(
+		memberID
+		,memberPW
+		,memberNick
+		,memberName
+		,memberDob
+		,memberGender
+		,memberEmail
+		,memberMobile
+		,memberDelNy
+		,memberAd
+		,memberGrade
+		,memberRegdate
+		)
+		values(
+		#{memberID}
+		,#{memberPW}
+		,#{memberNick}
+		,#{memberName}
+		,#{memberDob}
+		,#{memberGender}
+		,#{memberEmail}
+		,#{memberMobile}
+		,0
+		,#{memberAd}
+		,1
+		,now()
+		)
+		<selectKey resultType="String" keyProperty="memberSeq" order="AFTER"> 
 			select last_insert_id()
 		</selectKey>
 	</insert>
@@ -45,7 +91,7 @@
 			a.*
 		from member a
 		WHERE 1=1
-		AND userCode = #{userCode}
+		AND memberSeq = #{memberSeq}
 	
 	</select>
 </mapper>		

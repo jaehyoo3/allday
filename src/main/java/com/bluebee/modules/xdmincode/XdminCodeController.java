@@ -8,10 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.bluebee.modules.codegroup.CodeGroup;
-import com.bluebee.modules.codegroup.CodeGroupVo;
-import com.bluebee.modules.xdmincg.XdminCGVo;
-
 @Controller
 @RequestMapping(value = "/xdmin/")
 public class XdminCodeController {

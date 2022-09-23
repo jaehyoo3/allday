@@ -3,131 +3,111 @@ package com.bluebee.modules.member;
 import java.util.Date;
 
 public class Member {
-	private String userCode;
-	private String userID;
-	private String userNick;
-	private String userPW;
-	public String getUserPW() {
-		return userPW;
+	private String memberSeq;
+	private String memberID;
+	private String memberPW;
+	private String memberNick;
+	private String memberDob;
+	private Integer memberGender;
+	private String memberEmail;
+	private Integer memberMobile;
+	private Integer memberDelNy;
+	private Integer memberAd;
+	private Integer memberGrade;
+	private Integer memberPoint;
+	private String memberName;
+	public Date getMemberRegdate() {
+		return memberRegdate;
 	}
-	public void setUserPW(String userPW) {
-		this.userPW = userPW;
+	public void setMemberRegdate(Date memberRegdate) {
+		this.memberRegdate = memberRegdate;
 	}
-	private String userPhone;
-	public String getUserPhone() {
-		return userPhone;
+	public Date getMemberUpdate() {
+		return memberUpdate;
 	}
-	public void setUserPhone(String userPhone) {
-		this.userPhone = userPhone;
+	public void setMemberUpdate(Date memberUpdate) {
+		this.memberUpdate = memberUpdate;
 	}
-	private String userName;
-	private Date userDOB;
-	private Integer userGender;
-	private String userGrade;
-	private String AddrCode;
-	private String member_userCode;
-	private String userEmail;
-	private String addrname;
-	private String receiver;
-	private Integer addrdefault;
-	private String addr1;
-	private Integer zip;
-	private String addr2;
+	private Date memberRegdate;
+	private Date memberUpdate;
 	
-	public String getUserEmail() {
-		return userEmail;
+	public String getMemberName() {
+		return memberName;
 	}
-	public void setUserEmail(String userEmail) {
-		this.userEmail = userEmail;
+	public void setMemberName(String memberName) {
+		this.memberName = memberName;
 	}
-	public String getAddrCode() {
-		return AddrCode;
+	public String getMemberSeq() {
+		return memberSeq;
 	}
-	public void setAddrCode(String addrCode) {
-		AddrCode = addrCode;
+	public void setMemberSeq(String memberSeq) {
+		this.memberSeq = memberSeq;
 	}
-	public String getMember_userCode() {
-		return member_userCode;
+	public String getMemberID() {
+		return memberID;
 	}
-	public void setMember_userCode(String member_userCode) {
-		this.member_userCode = member_userCode;
+	public void setMemberID(String memberID) {
+		this.memberID = memberID;
 	}
-	public String getAddrname() {
-		return addrname;
+	public String getMemberPW() {
+		return memberPW;
 	}
-	public void setAddrname(String addrname) {
-		this.addrname = addrname;
+	public void setMemberPW(String memberPW) {
+		this.memberPW = memberPW;
 	}
-	public String getReceiver() {
-		return receiver;
+	public String getMemberNick() {
+		return memberNick;
 	}
-	public void setReceiver(String receiver) {
-		this.receiver = receiver;
+	public void setMemberNick(String memberNick) {
+		this.memberNick = memberNick;
 	}
-	public Integer getAddrdefault() {
-		return addrdefault;
+	public String getMemberDob() {
+		return memberDob;
 	}
-	public void setAddrdefault(Integer addrdefault) {
-		this.addrdefault = addrdefault;
+	public void setMemberDob(String memberDob) {
+		this.memberDob = memberDob;
 	}
-	public String getAddr1() {
-		return addr1;
+	public Integer getMemberGender() {
+		return memberGender;
 	}
-	public void setAddr1(String addr1) {
-		this.addr1 = addr1;
+	public void setMemberGender(Integer memberGender) {
+		this.memberGender = memberGender;
 	}
-	public Integer getZip() {
-		return zip;
+	public String getMemberEmail() {
+		return memberEmail;
 	}
-	public void setZip(Integer zip) {
-		this.zip = zip;
+	public void setMemberEmail(String memberEmail) {
+		this.memberEmail = memberEmail;
 	}
-	public String getAddr2() {
-		return addr2;
+	public Integer getMemberMobile() {
+		return memberMobile;
 	}
-	public void setAddr2(String addr2) {
-		this.addr2 = addr2;
+	public void setMemberMobile(Integer memberMobile) {
+		this.memberMobile = memberMobile;
 	}
-	public String getUserCode() {
-		return userCode;
+	public Integer getMemberDelNy() {
+		return memberDelNy;
 	}
-	public void setUserCode(String userCode) {
-		this.userCode = userCode;
+	public void setMemberDelNy(Integer memberDelNy) {
+		this.memberDelNy = memberDelNy;
 	}
-	public String getUserID() {
-		return userID;
+	public Integer getMemberAd() {
+		return memberAd;
 	}
-	public void setUserID(String userID) {
-		this.userID = userID;
+	public void setMemberAd(Integer memberAd) {
+		this.memberAd = memberAd;
 	}
-	public String getUserNick() {
-		return userNick;
+	public Integer getMemberGrade() {
+		return memberGrade;
 	}
-	public void setUserNick(String userNick) {
-		this.userNick = userNick;
+	public void setMemberGrade(Integer memberGrade) {
+		this.memberGrade = memberGrade;
 	}
-	public String getUserName() {
-		return userName;
+	public Integer getMemberPoint() {
+		return memberPoint;
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setMemberPoint(Integer memberPoint) {
+		this.memberPoint = memberPoint;
 	}
-	public Date getUserDOB() {
-		return userDOB;
-	}
-	public void setUserDOB(Date userDOB) {
-		this.userDOB = userDOB;
-	}
-	public Integer getUserGender() {
-		return userGender;
-	}
-	public void setUserGender(Integer userGender) {
-		this.userGender = userGender;
-	}
-	public String getUserGrade() {
-		return userGrade;
-	}
-	public void setUserGrade(String userGrade) {
-		this.userGrade = userGrade;
-	}
+	
 }

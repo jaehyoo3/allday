@@ -4,15 +4,16 @@ import com.bluebee.modules.base.BaseVo;
 
 public class MemberVo extends BaseVo {
 
-	private String userCode;
-	
-	
-	public String getUserCode() {
-		return userCode;
+	private String memberSeq;
+
+	public String getMemberSeq() {
+		return memberSeq;
 	}
-	public void setUserCode(String userCode) {
-		this.userCode = userCode;
+
+	public void setMemberSeq(String memberSeq) {
+		this.memberSeq = memberSeq;
 	}
+
 
 
 }

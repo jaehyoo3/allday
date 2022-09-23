@@ -47,43 +47,43 @@ public class CodeServiceImpl implements CodeService {
 		return dao.selectOneCount(vo);
 	}
 	
-	@PostConstruct
-	public void selectListCachedCodeArrayList() throws Exception {
-		List<Code> codeListFromDb = (ArrayList<Code>) dao.selectListCachedCodeArrayList();
-//		codeListFromDb = (ArrayList<Code>) dao.selectListCachedCodeArrayList();
-		Code.cachedCodeArrayList.clear(); 
-		Code.cachedCodeArrayList.addAll(codeListFromDb);
-		System.out.println("cachedCodeArrayList: " + Code.cachedCodeArrayList.size() + " chached !");
-	}
-	
-	public static List<Code> selectListCachedCode(String ccgSeq) throws Exception {
-		List<Code> rt = new ArrayList<Code>();
-		for(Code codeRow : Code.cachedCodeArrayList) {
-			if (codeRow.getCcgseq().equals(ccgSeq)) {
-				rt.add(codeRow);
-			} else {
-				// by pass
-			}
-		}
-		return rt;
-	}
-	
-	public static String selectOneCachedCode(int code) throws Exception {
-		String rt = "";
-		for(Code codeRow : Code.cachedCodeArrayList) {
-			if (codeRow.getCcgseq().equals(Integer.toString(code))) {
-				rt = codeRow.getCname();
-				System.out.println("selectOneCachedCode");
-			} else {
-				// by pass
-			}
-		}
-		return rt;
-	}
-	
-	
-	public static void clear() throws Exception {
-		Code.cachedCodeArrayList.clear();
-	}
+//	@PostConstruct
+//	public void selectListCachedCodeArrayList() throws Exception {
+//		List<Code> codeListFromDb = (ArrayList<Code>) dao.selectListCachedCodeArrayList();
+////		codeListFromDb = (ArrayList<Code>) dao.selectListCachedCodeArrayList();
+//		Code.cachedCodeArrayList.clear(); 
+//		Code.cachedCodeArrayList.addAll(codeListFromDb);
+//		System.out.println("cachedCodeArrayList: " + Code.cachedCodeArrayList.size() + " chached !");
+//	}
+//	
+//	public static List<Code> selectListCachedCode(String ccgSeq) throws Exception {
+//		List<Code> rt = new ArrayList<Code>();
+//		for(Code codeRow : Code.cachedCodeArrayList) {
+//			if (codeRow.getCcgseq().equals(ccgSeq)) {
+//				rt.add(codeRow);
+//			} else {
+//				// by pass
+//			}
+//		}
+//		return rt;
+//	}
+//	
+//	public static String selectOneCachedCode(int code) throws Exception {
+//		String rt = "";
+//		for(Code codeRow : Code.cachedCodeArrayList) {
+//			if (codeRow.getCcgseq().equals(Integer.toString(code))) {
+//				rt = codeRow.getCname();
+//				System.out.println("selectOneCachedCode");
+//			} else {
+//				// by pass
+//			}
+//		}
+//		return rt;
+//	}
+//	
+//	
+//	public static void clear() throws Exception {
+//		Code.cachedCodeArrayList.clear();
+//	}
 	
 }

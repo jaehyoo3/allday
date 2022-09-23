@@ -14,7 +14,7 @@
 	</head>
 	
 	<body>
-		<form>
+		<form method="post" action="signUp">
 			<div id='header'>
 				<div class='menu'>
 					<ul class='ul'>
@@ -63,34 +63,32 @@
 					<input type='text' name='file2' id='file2' style='display:none;'> 
 					<br>
 				</center>
-				<input type="text" class="form-control mb-2" id="userid" placeholder="아이디">
-				<input type="password" class="form-control mb-2" id="inputPassword" placeholder="비밀번호">
+				<input type="text" class="form-control mb-2" id="memeberID" name="memberID" placeholder="아이디">
+				<input type="password" class="form-control mb-2" id="memberPW" name='memberPW' placeholder="비밀번호">
 				<input type="password" class="form-control mb-2" id="inputPassword" placeholder="비밀번호 확인">
 				<span>닉네임</span>
-				<input type="text" class="form-control mb-2" id="nickname" placeholder="닉네임">
+				<input type="text" class="form-control mb-2" id="memberNick" name="memberNick" placeholder="닉네임">
 				<span>이름</span>
-				<input type="text" class="form-control mb-2" id="name" placeholder="이름">
+				<input type="text" class="form-control mb-2" id="memberName" name="memberName" placeholder="이름">
 				<span>생년월일</span>
 				<div class="input-group flex-nowrap">
-						<input type="number" class="form-control mb-2" id="usernumber" name="usernumber"min="1900" max="2022" value="2022" style="width:200px;">
-						<input type="number" class="form-control mb-2" id="usernumber" name="usernumber"min="1" max="12" value="7" style="width:200px;">
-						<input type="number" class="form-control mb-2" id="usernumber" name="usernumber"min="1" max="31" value="26" style="width:200px;">
+						<input type="text" class="form-control mb-2" id='datepicker1' name="memberDob" style="width:200px;">
 				</div>
 				<span>성별</span>
 				<div class="d-flex mb-1">
 					<div class="p-1">
-					<input class="form-check-input" name="gender" type="radio" id="man"checked>
+					<input class="form-check-input" name="memberGender" type="radio" vaule="2" id="man">
 					<label for="man">남자</label>
 					</div>
 					<div class="p-1 mx-auto">
-					<input class="form-check-input" name="gender" id="girl" type="radio">
+					<input class="form-check-input" name="memberGender" id="girl" value="2" type="radio">
 					<label for="girl">여자</label>
 					</div>
 				</div>
 				<span>이메일</span>
 				<div class="row">
 					<div class="col">
-						<input type="text" class="form-control mb-2" id="userid" placeholder="이메일">
+						<input type="text" class="form-control mb-2" id="memberEmail" name="memberEmail" placeholder="이메일">
 					</div>
 					<div class="col">
      					<select class="form-select">
@@ -104,7 +102,7 @@
 				<span>연락처</span
 				<div class="row">
 					<div class="col">
-						<select class="form-select">
+						<select class="form-select" name="memberMobile">
 							<option value="1">010</option>
 							<option value="2">011</option>
 							<option value="3">012</option>
@@ -139,15 +137,21 @@
 					</div>
 				</div>
 				<div class="d-grid gap-2 col-12">
+					<input type="submit">ㅇㅇ</button>
 					<button type="button" class="btn text-white fw-bold" onClick="location.href='reg3'" style="background-color:rgb(44, 62, 80);">가입하기</button>
 					</div>
 			</div>
-			<div id='footer'>
-				<div class='copyright'>© 2022. Bluebee all rights reserved.</div>
-			</div>
+			<!-- footer s  -->
+				<%@include file="../../infra/includeV1/footer.jsp"%>
+			<!-- footer e -->
 		</form>
+		
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 		<script src="https://kit.fontawesome.com/a1961b2393.js" crossorigin="anonymous"></script>
+		
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 		
 		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 		<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3d9122ea8fc388f07cd56d7692121430&libraries=services"></script>
@@ -207,6 +211,24 @@
 		            }
 		        }).open();
 		    }
+		    
+		    $.datepicker.setDefaults({
+		        dateFormat: 'yy-mm-dd',
+		        prevText: '이전 달',
+		        nextText: '다음 달',
+		        monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+		        monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+		        dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+		        dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+		        dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+		        showMonthAfterYear: true,
+		        yearSuffix: '년'
+		    });
+
+		    $(function() {
+		        $("#datepicker1").datepicker();
+		    });
+		    
 		</script>
 	</body>
 </html>

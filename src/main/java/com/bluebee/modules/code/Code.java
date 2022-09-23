@@ -12,9 +12,9 @@ public class Code {
 	private Integer yn;
 	private String ccgseq;
 	private String codeName;
-	
-	public static List<Code> cachedCodeArrayList = new ArrayList<Code>();
-	
+//	
+//	public static List<Code> cachedCodeArrayList = new ArrayList<Code>();
+//	
 	public String getCcseq() {
 		return ccSeq;
 	}

@@ -1,6 +1,8 @@
 package com.bluebee.modules.xdmincode;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class XdminCode {
 	private String codeSeq;
@@ -13,6 +15,8 @@ public class XdminCode {
 	private Date codeRegdate;
 	private Date codeUpdate;
 	private String codeGroupName;
+	
+	public static List<XdminCode> cachedCodeArrayList = new ArrayList<XdminCode>();
 	
 	public String getCodeGroupName() {
 		return codeGroupName;
