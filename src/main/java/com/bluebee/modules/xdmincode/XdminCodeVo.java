@@ -4,6 +4,15 @@ import com.bluebee.modules.base.BaseVo;
 
 public class XdminCodeVo extends BaseVo {
 	private String codeSeq;
+	private String codeName;
+
+	public String getCodeName() {
+		return codeName;
+	}
+
+	public void setCodeName(String codeName) {
+		this.codeName = codeName;
+	}
 
 	public String getCodeSeq() {
 		return codeSeq;

@@ -30,87 +30,63 @@
 				</ul>
 			</div>
 			<div id='content'>
-			<input type="hidden" name='userCode' value="<c:out value="${item.userCode }"/>">
+			<input type="hidden" name='memberSeq' value="<c:out value="${item.memberSeq }"/>">
+			<input type="hidden" id="checkIdNy" name="checkIdNy"> 
 				<div class="container">
 				<h3>코드관리</h3>
 					<div class="row mb-3">
 						<div class="col">
 							<span>ID</span>
-							<input class="form-control" type="text" name='userID' value="<c:out value="${item.userID }"/>">
+							<input class="form-control" type="text" id='memberID' name='memberID' value="<c:out value="${item.memberID }"/>">
+							<div class='invalid-feedback' id='idFeedback'></div>
 			    		</div>
    				 		<div class="col">
 							<span>비밀번호</span>
-							<input class="form-control" type="text" name='userPW' value="<c:out value="${item.userPW }"/>">
+							<input class="form-control" type="text" name='memberPW' value="<c:out value="${item.memberPW }"/>">
 						</div>
 					</div>
 					<div class="row mb-3">
 						<div class="col">
 							<span>닉네임</span>
-							<input class="form-control" type="text" name='userNick' value="<c:out value="${item.userNick }"/>">
+							<input class="form-control" type="text" name='memberNick' value="<c:out value="${item.memberNick }"/>">
 			    		</div>
    				 		<div class="col">
 							<span>이름</span>
-							<input class="form-control" type="text" name='userName' value="<c:out value="${item.userName }"/>">
+							<input class="form-control" type="text" name='memberName' value="<c:out value="${item.memberName }"/>">
 						</div>
 					</div>
 					<div class="row mb-3">
    				 		<div class="col">
 							<span>성별</span>
-							<select class="form-select">
+							<select class="form-select" name="memberGender">
 								<option>사용</option>
-								<option value='1' <c:if test="${userGender.yn eq 1 }">selected</c:if>>남자</option>
-								<option value='2' <c:if test="${userGender.yn eq 2 }">selected</c:if>>여자</option>
+								<option value='1' <c:if test="${item.memberGender eq 1 }">selected</c:if>>남자</option>
+								<option value='2' <c:if test="${item.memberGender eq 2 }">selected</c:if>>여자</option>
+								<option value='3' <c:if test="${item.memberGender eq 3 }">selected</c:if>>기타</option>
 							</select>
 						</div>
 					</div>
 					<div class="row mb-3">
 						<div class="col">
 							<span>이메일</span>
-							<input class="form-control" type="text" name='userEmail' value="<c:out value="${item.userEmail }"/>">
+							<input class="form-control" type="text" name='memberEmail' value="<c:out value="${item.memberEmail }"/>">
 			    		</div>
    				 		<div class="col">
 							<span>핸드폰</span>
-							<input class="form-control" type="text" name='userPhone' value="<c:out value="${item.userPhone }"/>" >
+							<input class="form-control" type="text" name='memberMobile' value="<c:out value="${item.memberMobile }"/>" >
 						</div>
 					</div>
 					<div class="row mb-3">
 						<div class="col">
 							<span>등급</span>
-							<select class="form-select">
+							<select class="form-select" name="memberGrade">
 								<option>사용</option>
-								<option value='1' <c:if test="${userGrade.yn eq 1 }">selected</c:if>>브론즈</option>
-								<option value='2' <c:if test="${userGrade.yn eq 2 }">selected</c:if>>실버</option>
-								<option value='3' <c:if test="${userGrade.yn eq 3 }">selected</c:if>>골드</option>
-								<option value='4' <c:if test="${userGrade.yn eq 4 }">selected</c:if>>다이아몬드</option>
+								<option value='1' <c:if test="${item.memberGrade eq 1 }">selected</c:if>>브론즈</option>
+								<option value='2' <c:if test="${item.memberGrade eq 2 }">selected</c:if>>실버</option>
+								<option value='3' <c:if test="${item.memberGrade eq 3 }">selected</c:if>>골드</option>
+								<option value='4' <c:if test="${item.memberGrade eq 4 }">selected</c:if>>다이아몬드</option>
 							</select>
 			    		</div>
-   				 		<div class="col">
-							<span>zip</span>
-							<input class="form-control" type="text" id='zip' name='zip' value="<c:out value="${item.zip }"/>">
-							<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-						</div>
-					</div>
-					<div class="row mb-3">
-						<div class="col-6">
-							<span>주소</span>
-							<input class="form-control" type="text" name='addr1' id='addr1' value="<c:out value="${item.addr1 }"/>">
-			    		</div>
-					</div>
-					<div class="row mb-3">
-						<div class="col">
-							<span>상세주소</span>
-							<input class='form-control' type='text' id='addr3'>
-							<input class="form-control" type="text" id='addr2' name='addr2' value="<c:out value="${item.addr2 }"/>">
-			    		</div>
-					</div>
-				</div>
-					<input type="text" id="sample5_postcode" placeholder="우편번호">
-					<input type="text" id="sample5_address" placeholder="주소">
-					<input type="button" onclick="sample5_execDaumPostcode()" value="주소 검색"><br>
-					<input type="text" id="sample6_detailAddress" name='addr1' value="<c:out value="${item.addr2 }"/>" placeholder="상세주소"><br>
-			<div id="map" style="display:none"></div>
-			<input type="text" id="resulty">
-			<input type="text" id="resultx">
 				<div class="d-flex mb-1">
 					<div class="p-1"><button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#ban_del"><i class="fa-solid fa-list"></i></button></div>
 					<div class="p-1  ms-auto"><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#ban_del2"><i class="fa-solid fa-x"></i></button></div>
@@ -137,7 +113,7 @@
 		var goUrlUele = "/code/codeUele";				/* #-> */
 		var goUrlDele = "/code/codeDele";				/* #-> */
 		
-		var seq = $("input:hidden[name=userCode]");				/* #-> */
+		var seq = $("input:hidden[name=memberSeq]");				/* #-> */
 		
 		var form = $("form[name=form]")
 
@@ -148,56 +124,45 @@
 				form.attr("action", goUrlUpdt).submit();
 			}
 		});
-		  	    
-	    var mapContainer = document.getElementById('map'), // 지도를 표시할 div
-	    mapOption = {
-	        center: new daum.maps.LatLng(37.537187, 127.005476), // 지도의 중심좌표
-	        level: 5 // 지도의 확대 레벨
-	    };
-	
-		//지도를 미리 생성
-		var map = new daum.maps.Map(mapContainer, mapOption);
-		//주소-좌표 변환 객체를 생성
-		var geocoder = new daum.maps.services.Geocoder();
-		//마커를 미리 생성
-		var marker = new daum.maps.Marker({
-		    position: new daum.maps.LatLng(37.537187, 127.005476),
-		    map: map
-		});
 		
-		function sample5_execDaumPostcode() {
-		    new daum.Postcode({
-		        oncomplete: function(data) {
-		            var addr = data.address; // 최종 주소 변수
+		$("#memberID").on("focusout", function(){
+				$.ajax({
+					async: true 
+					,cache: false
+					,type: "post"
+					/* ,dataType:"json" */
+					,url: "/xdmin/checkId"
+					/* ,data : $("#formLogin").serialize() */
+					,data : { "memberID" : $("#memberID").val() }
+					,success: function(response) {
+						if(response.rt == "success") {
+							document.getElementById("memberID").classList.remove('is-invalid');
+							document.getElementById("memberID").classList.add('is-valid');
+		
+							document.getElementById("idFeedback").classList.remove('invalid-feedback');
+							document.getElementById("idFeedback").classList.add('valid-feedback');
+							document.getElementById("idFeedback").innerText = "사용 가능 합니다.";
+							
+							document.getElementById("checkIdNy").value = 1;
+							
+						} else {
+							document.getElementById("memberID").classList.remove('is-valid');
+							document.getElementById("memberID").classList.add('is-invalid');
+							
+							document.getElementById("idFeedback").classList.remove('valid-feedback');
+							document.getElementById("idFeedback").classList.add('invalid-feedback');
+							document.getElementById("idFeedback").innerText = "사용 불가능 합니다";
+							
+							document.getElementById("checkIdNy").value = 0;
+						}
+					}
+					,error : function(jqXHR, textStatus, errorThrown){
+						alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+					} 
+				});
+			});
 
-		            // 주소 정보를 해당 필드에 넣는다.
-		            document.getElementById("sample5_address").value = addr;
-		            // 주소로 상세 정보를 검색
-		            geocoder.addressSearch(data.address, function(results, status) {
-		                // 정상적으로 검색이 완료됐으면
-		                if (status === daum.maps.services.Status.OK) {
-		
-		                    var result = results[0]; //첫번째 결과의 값을 활용
-		
-		                    // 해당 주소에 대한 좌표를 받아서
-		                    var coords = new daum.maps.LatLng(result.y, result.x);
-		                    var zzx = result.x;
-		                    var zzy = result.y
-		                    // 지도를 보여준다.
-		                    mapContainer.style.display = "block";
-		                    document.getElementById('sample5_postcode').value = data.zonecode;
-		                    document.getElementById("resulty").value = zzy;
-		                    document.getElementById("resultx").value = zzx;
-		                    map.relayout();
-		                    // 지도 중심을 변경한다.
-		                    map.setCenter(coords);
-		                    // 마커를 결과값으로 받은 위치로 옮긴다.
-		                    marker.setPosition(coords)
-		                }
-		            });
-		        }
-		    }).open();
-		}
+		  	    
 	</script>
 		
 	</body>

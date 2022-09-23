@@ -22,7 +22,9 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int signup(Member dto) throws Exception { return dao.signup(dto); }
-	
+
+	@Override
+	public int selectOneIdCheck(Member dto) throws Exception {return dao.selectOneIdCheck(dto); }
 	
 	
 

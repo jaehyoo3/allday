@@ -80,14 +80,14 @@
 						<tr>
 							<td><input type='checkbox'></td>
 							<td><c:out value="${list.memberSeq }"/></td>
-							<td><a href="/member/memberView?memberSeq=<c:out value="${list.memberSeq }"/>"><c:out value="${list.memberID }"/></td>
+							<td><a href="/xdmin/memberView?memberSeq=<c:out value="${list.memberSeq }"/>"><c:out value="${list.memberID }"/></td>
 							<td><c:out value="${list.memberName }"/></td>
 							<td><c:out value="${list.memberDob }"/></td>
 							<td><c:out value="${list.memberGender }"/></td>
 							<td><c:out value="${list.memberNick}"/></td>
 							<td>
 								<c:forEach items="${listCodeGender}" var="listGender" varStatus="statusGender">
-									<c:if test="${list.memberGender eq listGender.codeOrder}">dd</c:if>
+									<c:if test="${list.memberGender eq listGender.codeOrder}"><c:out value="${listGender.codeName}"/></c:if>
 								</c:forEach>
 							</td>
 							<td><c:out value="${list.memberGrade }"/></td>
