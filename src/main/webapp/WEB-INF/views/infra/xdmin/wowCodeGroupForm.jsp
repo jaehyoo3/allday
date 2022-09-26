@@ -16,6 +16,10 @@
 
 	<body>
 		<form id="form" name="form" method="post" autocomplete="off">
+			<!--  codeGroup Vo s -->
+			<%@include file="codeGroupVo.jsp"%>
+			<!--  codeGroup Vo e -->
+			
 			<input type="checkbox" id="menu-toggle"/>
 			<label for="menu-toggle" class="menu-icon"><i class="fa fa-bars"></i></label>
 			<div class="content-container">
@@ -28,8 +32,10 @@
 				<div class="container">
 				<h3>코드그룹 관리</h3>
 					<div class="row mb-3">
-						<span>코드</span>
-						<input class="form-control" type="text" name="codeGroupSeq" id="codeGroupSeq" value="<c:out value="${item.codeGroupSeq }" />" placeholder="한글,숫자">
+						<div class="col">
+							<span>코드</span>
+							<input class="form-control" type="text" name="codeGroupSeq" id="codeGroupSeq" value="<c:out value="${item.codeGroupSeq }" />" placeholder="한글,숫자">
+						</div>
 					</div>
 					<div class="row mb-3">
 						<div class="col">
@@ -64,10 +70,14 @@
 						</div>
 					</div>
 				</div>
+				<!-- modal s  -->
+					<%@include file="../../infra/includeV1/modals.jsp"%>
+				<!-- modal e --> 
+				
 				<div class="d-flex mb-1">
-					<div class="p-1"><button type="button" class="btn btn-secondary"><i class="fa-solid fa-list"></i></button></div>
-					<div class="p-1  ms-auto"><button type="button" class="btn btn-danger"><i class="fa-solid fa-x"></i></button></div>
-					<div class="p-1"><button type="button" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button></div>
+					<div class="p-1"><button type="button" class="btn btn-secondary" name="btnList" id="btnList" ><i class="fa-solid fa-list"></i></button></div>
+					<div class="p-1  ms-auto"><button type="button" class="btn btn-danger" name='btnUelete' id="btnUelete"><i class="fa-solid fa-x"></i></button></div>
+					<div class="p-1"><button type="button" class="btn btn-danger" name='btnDelete' id="btnDelete"><i class="fa-solid fa-trash"></i></button></div>
 					<div class="p-1"><button type="button" class="btn btn-success" id="btnSave"><i class="fa-solid fa-bookmark"></i></button></div>
 				</div>
 			</div>
@@ -80,19 +90,25 @@
 				<!-- sideMenu e -->
 		</form>
 		
+		<form name="formVo" id="formVo" method="post">
+			<%@include file="codeGroupVo.jsp"%>		<!-- #-> -->
+		</form>
+		
  		<script src="https://kit.fontawesome.com/a1961b2393.js"crossorigin="anonymous"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 		<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
-		<script type="text/javascript">
 		
-
-		    var goUrlList = "/xdmin/codeGroupList"; 			/* #-> */
+		<script>
+		    var goUrlList = "/xdmin/codegroup"; 			/* #-> */
 			var goUrlInst = "/xdmin/codegroupInst"; 			/* #-> */
 			var goUrlUpdt = "/xdmin/codegroupUpdt";			/* #-> */
+			var goUrlUele = "/xdmin/codegroupUele";				/* #-> */
+			var goUrlDele = "/xdmin/codegroupDele";				/* #-> */
 			
-			var seq = $("input:text[name=codeGroupSeq]");				/* #-> */
+			var seq = $("input:hidden[name=codeGroupSeq2]");				/* #-> */
 			var form = $("form[name=form]")
+			var formVo = $("form[name=formVo]");
 			
 			$("#btnSave").on("click", function() {
 				if(seq.val() == "0" || seq.val() == "") {
@@ -101,6 +117,38 @@
 					form.attr("action", goUrlUpdt).submit();
 				}
 			});
+			
+			$("#btnUelete").on("click", function(){
+				$(".modal-title").text("확 인");
+				$(".modal-body").text("해당 데이터를 Uelete 삭제하시겠습니까 ?");
+				$("#btnModalUelete").show();
+				$("#btnModalDelete").hide();
+				$("#modalConfirm").modal("show");
+			});
+			
+			$("#btnDelete").on("click", function(){
+				$(".modal-title").text("확 인");
+				$(".modal-body").text("해당 데이터를 Delete 삭제하시겠습니까 ?");
+				$("#btnModalUelete").hide();
+				$("#btnModalDelete").show();
+				$("#modalConfirm").modal("show");
+			});
+			
+			$("#btnModalUelete").on("click", function(){
+				$("#modalConfirm").modal("hide");
+				form.attr("action", goUrlUele).submit();
+			});
+			
+			$("#btnModalDelete").on("click", function(){
+				$("#modalConfirm").modal("hide");
+				form.attr("action", goUrlDele).submit();
+			});
+			
+			<!--  리스트Vo s -->
+			$("#btnList").on("click", function(){
+				formVo.attr("action", goUrlList).submit();
+			});
+			
 		</script>
 	</body>
 </html>

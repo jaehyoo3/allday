@@ -61,14 +61,13 @@ public class CodeController {
 
 	@RequestMapping(value = "codeInst")
 	public String codeInst(Code dto) throws Exception {
-		int result = service.insert(dto);
+		service.insert(dto);
 		
 		return "redirect:/code/codeList";
 	}
 	@RequestMapping(value = "codeUpdt")
 	public String codeUpdt(Code dto) throws Exception {
-		int result = service.update(dto);
-		System.out.println("controller result updt: " + result);
+		service.update(dto);
 		return "redirect:/code/codeList";
 	}
 }

@@ -81,6 +81,7 @@
 							<td><input type='checkbox'></td>
 							<td><c:out value="${list.memberSeq }"/></td>
 							<td><a href="/xdmin/memberView?memberSeq=<c:out value="${list.memberSeq }"/>"><c:out value="${list.memberID }"/></td>
+							<td><c:out value="${list.memberNick }"/></td>
 							<td><c:out value="${list.memberName }"/></td>
 							<td><c:out value="${list.memberDob }"/></td>
 							<td><c:out value="${list.memberGender }"/></td>

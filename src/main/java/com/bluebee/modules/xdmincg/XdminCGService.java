@@ -9,5 +9,7 @@ public interface XdminCGService {
 	public int update(XdminCG dto) throws Exception;
 	public XdminCG selectOne(XdminCGVo vo) throws Exception;
 	public int selectOneCount(XdminCGVo vo) throws Exception; 
+	public int uelete(XdminCG dto) throws Exception;
+	public int delete(XdminCGVo vo) throws Exception;
 }
 

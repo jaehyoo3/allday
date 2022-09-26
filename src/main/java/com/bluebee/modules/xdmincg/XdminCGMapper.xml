@@ -92,4 +92,20 @@
 			codeGroupSeq = #{codeGroupSeq}
 	</update>
 	
+	<update id="uelete">
+		UPDATE 
+			CodeGroup
+		SET
+			codeGroupDelNY = 1
+		WHERE
+			codeGroupSeq= #{codeGroupSeq}
+		</update>
+		
+		<delete id="delete">
+		delete from 
+			CodeGroup 
+		where 
+			codeGroupSeq = #{codeGroupSeq}
+		</delete>
+	
 </mapper>

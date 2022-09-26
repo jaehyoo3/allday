@@ -178,8 +178,7 @@
 			}
 			.pagination a:active {
 			  outline: none;
-			}
-			
+			}			
 			.modal-5 {
 			  position: relative;
 			}
@@ -244,3 +243,4 @@
 			.modal-5 a.active:hover:after {
 			  display: none;
 			}
+			

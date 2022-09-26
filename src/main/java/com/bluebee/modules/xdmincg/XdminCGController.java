@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.bluebee.modules.codegroup.CodeGroup;
+import com.bluebee.modules.codegroup.CodeGroupVo;
+
 
 @Controller
 @RequestMapping(value = "/xdmin/")
@@ -80,5 +83,20 @@ public class XdminCGController {
 			model.addAttribute("item", item);
 			
 			return "infra/xdmin/wowCodeGroupForm"; 
+		}
+		
+		@RequestMapping(value = "codegroupUele")
+		public String codeGroupUele(XdminCG dto) throws Exception {
+			int result = service.uelete(dto);
+			
+			return "redirect:/xdmin/codegroup";
+		}
+		
+		@RequestMapping(value = "codegroupDele")
+		public String codeGroupDele(Model model, XdminCGVo vo) throws Exception {
+			int dele = service.delete(vo);
+			model.addAttribute("item", dele);
+			
+			return "redirect:/xdmin/codegroup";
 		}
 }

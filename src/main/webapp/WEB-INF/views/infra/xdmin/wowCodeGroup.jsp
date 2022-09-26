@@ -12,16 +12,17 @@
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 		<link href="/resources/Images/xdminCode.css" rel="stylesheet">
 	</head>
+	
 	<body>
-		<form name='form' method='post'>
+		<form name="form" method="post">
+		<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage}" default="1"/>">
+		<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>">
+		<input type="hidden" name="codeGroupSeq" value="<c:out value="${vo.codeGroupSeq}"/>"/>
+	
 			<input type="checkbox" id="menu-toggle"/>
 			<label for="menu-toggle" class="menu-icon"><i class="fa fa-bars"></i></label>
 			<div class="content-container">
 			<div id='haeder'></div>
-			<input type="hidden" name="codeGroupSeq">
-			<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage}" default="1"/>">
-			<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>">
-			
 			<div class="navbar">
 				<a href="#" id="logo"><img src="/resources/Images/img/logo2.png" height="60" onClick="location.href='main'"></a>
 			</div>
@@ -176,10 +177,12 @@
 		    var goUrlList = "/xdmin/codegroup";
 		    var goUrlForm = "/xdmin/codegroupform";
 		    var goUrlView = "/xdmin/codegroupView";
-		    		    
 			var form = $("form[name=form]")
 			var seq = $("input:hidden[name=codeGroupSeq]");
-	
+			
+			$("#reset").on("click", function() {
+				$(location).attr("href",goUrlList);
+			});
 			function showHide(id){
 			     var objId = document.getElementById(id);
 			     if(objId.style.display=="block"){

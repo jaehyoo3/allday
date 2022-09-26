@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class XdminCGServiceImpl implements XdminCGService {
+
 	@Autowired
 	XdminCGDao dao;
 
@@ -24,5 +25,12 @@ public class XdminCGServiceImpl implements XdminCGService {
 
 	@Override
 	public int selectOneCount(XdminCGVo vo) throws Exception { return dao.selectOneCount(vo); }
+	
+	@Override
+	public int uelete(XdminCG dto) throws Exception { return dao.uelete(dto); }
+
+	@Override
+	public int delete(XdminCGVo vo) throws Exception { return dao.delete(vo); }
+
 	
 }
