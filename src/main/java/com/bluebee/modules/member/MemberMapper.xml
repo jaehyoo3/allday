@@ -9,15 +9,12 @@
     <resultMap id="resultMapObj" type="com.bluebee.modules.member.Member"></resultMap>
 	
 	<select id="selectList" resultMap="resultMapObj">
+	    	<include refid="Base.selectListUpper"/>
 		SELECT
 			*
-		FROM member
-		WHERE 1=1
-		<choose>
-			<when test = "shOption == 1">AND memberName LIKE CONCAT('%',#{shValue},'%')</when>
-			<when test = "shOption == 2">AND memberID LIKE CONCAT('%', #{shValue},'%')</when>
-			<when test = "shOption == 3">AND memberNick LIKE CONCAT('%',#{shValue}, '%')</when>
-		</choose>
+		<include refid="basic" />
+			ORDER BY memberSeq DESC
+		<include refid='Base.selectListLower'/>
 	</select>
 	
 	<insert id="insert">
@@ -33,6 +30,7 @@
 		,memberDelNy
 		,memberAd
 		,memberGrade
+		,memberRegdate
 		)
 		values(
 		#{memberID}
@@ -46,12 +44,45 @@
 		,0
 		,#{memberAd}
 		,1
+		,now()
 		)
 		<selectKey resultType="String" keyProperty="memberSeq" order="AFTER"> 
 			select last_insert_id()
 		</selectKey>
 	</insert>
+		<select id="selectOneCount" resultType="Integer">
+			SELECT COUNT(*)
+			<include refid="basic" />
+		</select>
+
+		<update id="update">
+		UPDATE member
+		SET	
+			memberID = #{memberID}
+			,memberPW = #{memberPW}
+			,memberNick = #{memberNick}
+			,memberName = #{memberName}
+			,memberDob = #{memberDob}
+		where
+			memberSeq = #{memberSeq}
+	</update>
 	
+	<update id="uelete">
+		UPDATE 
+			member
+		SET
+			memberDelNy = 1
+		WHERE
+			memberSeq = #{memberSeq}
+		</update>
+		
+		<delete id="delete">
+		delete from 
+			member 
+		where 
+			memberSeq = #{memberSeq}
+		</delete>
+	<!-- 회원가입 -->
 	<insert id="signup">
 		insert into member(
 		memberID
@@ -103,4 +134,14 @@
 				memberID = #{memberID}
 				
 		</select>
+		
+		<sql id='basic'>
+		FROM member
+			WHERE 1=1
+			<choose>
+				<when test = "shOption == 1">AND memberName LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test = "shOption == 2">AND memberID LIKE CONCAT('%', #{shValue},'%')</when>
+				<when test = "shOption == 3">AND memberNick LIKE CONCAT('%',#{shValue}, '%')</when>
+			</choose>
+    </sql>
 </mapper>		

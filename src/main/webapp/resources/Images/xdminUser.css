@@ -30,8 +30,8 @@
 			}
 
 				.Rposition {
-		float:right;
-	}
+					float:right;
+				}
 			body {
 				font-family: 'Lato', arial, sans-serif;
 				margin: 0;
@@ -43,6 +43,7 @@
 				width: 300px;
 				border-top: 1px solid rgba(0, 0, 0, .1);
 				border-bottom: 1px solid rgba(0, 0, 0, .1);
+				text-align:center;
 				padding: 5px;
 				color:gray;
 				font-size: 14px;

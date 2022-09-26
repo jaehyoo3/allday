@@ -54,14 +54,19 @@ public class XdminCodeController {
 	@RequestMapping(value = "codeInst")
 	public String codeInst(XdminCodeVo vo, XdminCode dto, RedirectAttributes redirectAttributes) throws Exception {
 		service.insert(dto);
+		vo.setCodeSeq(dto.getCodeSeq());
+		redirectAttributes.addFlashAttribute("vo", vo);
 		
-		return "redirect:/xdmin/code";
+		return "redirect:/xdmin/codeform";
 	}
 	@RequestMapping(value = "codeUpdt")
-	public String codeUpdt(XdminCode dto) throws Exception {
-		service.update(dto);
+	public String codeUpdt(XdminCodeVo vo, XdminCode dto, RedirectAttributes redirectAttributes) throws Exception {
 		
-		return "redirect:/xdmin/code";
+		service.update(dto);
+		vo.setCodeSeq(dto.getCodeSeq());
+		redirectAttributes.addFlashAttribute("vo", vo);
+		
+		return "redirect:/xdmin/codeform";
 	}
 	
 	@RequestMapping(value = "codeUele")

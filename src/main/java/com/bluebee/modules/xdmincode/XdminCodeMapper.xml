@@ -98,7 +98,18 @@
 		<sql id="common">
 			FROM Code a
 			left join CodeGroup b on a.cGroupSeq = b.codeGroupSeq
-			where 1=1
+    		WHERE 1=1
+    	
+			<if test="shstartDate != null and !shstartDate.equals('') and shendDate != null and !shendDate.equals('')"> AND codeRegdate between #{shstartDate} AND #{shendDate}</if>
+			
+			<choose>
+				<when test="shOption == 1">AND codeSeq = #{shValue}</when>
+				<when test="shOption == 2">AND codeName LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shOption == 3">AND codeNameEng LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shDelNy == 0">AND codepDelNY = #{shDelNy}</when>
+				<when test="shDelNy == 1">AND codeDelNY = #{shDelNy}</when>
+				<when test="shDelNy == 9"></when>
+			</choose>
 		</sql>
 	
 	 <select id="selectListCachedCodeArrayList" resultMap="resultMapObj">

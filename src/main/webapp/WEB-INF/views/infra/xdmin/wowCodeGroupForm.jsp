@@ -139,8 +139,8 @@
 			});
 			
 		</script>
-			<!-- modal s  -->
-		<%@include file="../../infra/includeV1/modals.jsp"%>
-	<!-- modal e --> 
+		<!-- modal s  -->
+			<%@include file="../../infra/includeV1/modals.jsp"%>
+		<!-- modal e --> 
 	</body>
 </html>

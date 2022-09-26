@@ -23,20 +23,38 @@ public class MemberController {
 		List<Member> list = service.selectList(vo);
 		model.addAttribute("list", list);
 		
-		return "infra/member/xdmin/memberList";
+		return "infra/xdmin/wowUser";
 	}
 	
 	@RequestMapping(value = "/xdmin/memberForm")
 	public String MemberForm() throws Exception {
 		
-		return "infra/member/xdmin/memberForm";
+		return "infra/xdmin/wowUserForm";
 	}
 	
 	@RequestMapping(value = "/xdmin/memberInst")
 	public String memberInst(Member dto) throws Exception {
 		service.insert(dto);
 		
-		return "redirect:/member/memberList";
+		return "redirect:/xdmin/memberList";
+	}
+	
+	@RequestMapping(value = "/xdmin/memberUpdt")
+	public String memberUpdt(Member dto) throws Exception {
+		service.update(dto);
+		
+		return "redirect:/xdmin/memberList";
+	}
+	@RequestMapping(value = "/xdmin/memberUele")
+	public String memberUele(Member dto) throws Exception {
+		service.uelete(dto);
+		return "redirect:/memberForm";
+	}
+	@RequestMapping(value = "/xdmin/memberDele")
+	public String memberDele(MemberVo vo) throws Exception {
+		service.delete(vo);
+		
+		return "redirect:/memberForm";
 	}
 	
 	@RequestMapping(value = "/xdmin/memberView")
@@ -45,7 +63,7 @@ public class MemberController {
 		Member item = service.selectOne(vo);
 		model.addAttribute("item", item);
 		
-		return "infra/member/xdmin/memberForm"; 
+		return "infra/xdmin/wowUserForm"; 
 	}
 //	USER
 	@RequestMapping(value = "/reg1")

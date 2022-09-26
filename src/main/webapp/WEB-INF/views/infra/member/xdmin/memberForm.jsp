@@ -110,8 +110,8 @@
 	    var goUrlList = "/member/memberList"; 			/* #-> */
 		var goUrlInst = "/member/memberInst"; 			/* #-> */
 		var goUrlUpdt = "/member/memberUpdt";				/* #-> */
-		var goUrlUele = "/code/codeUele";				/* #-> */
-		var goUrlDele = "/code/codeDele";				/* #-> */
+		var goUrlUele = "/member/codeUele";				/* #-> */
+		var goUrlDele = "/member/codeDele";				/* #-> */
 		
 		var seq = $("input:hidden[name=memberSeq]");				/* #-> */
 		

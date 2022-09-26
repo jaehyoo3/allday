@@ -35,15 +35,6 @@ public class XdminCGController {
 		public String wowProductUpdt() {
 			return "infra/xdmin/wowProductUpdate";
 		}
-		@RequestMapping(value = "user")
-		public String wowUser() {
-			return "infra/xdmin/wowUser";
-		}
-		@RequestMapping(value = "userform")
-		public String wowUserForm() {
-			return "infra/xdmin/wowUserForm";
-		}
-
 		@RequestMapping(value = "codegroup")
 		public String wowCodeGroup(@ModelAttribute("vo") XdminCGVo vo, Model model) throws Exception {
 			

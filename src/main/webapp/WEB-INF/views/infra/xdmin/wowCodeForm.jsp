@@ -16,7 +16,7 @@
 	
 	<body>
 		<form name="form" id="form" name="form" method="post" autocomplete="off">
-		
+		<%@include file="codeVo.jsp"%>	
 			<input type="checkbox" id="menu-toggle"/>
 			<label for="menu-toggle" class="menu-icon"><i class="fa fa-bars"></i></label>
 			<div class="content-container">
@@ -90,8 +90,7 @@
 					<div class="p-1"><button type="button" class="btn btn-secondary" name="btnList" id="btnList" ><i class="fa-solid fa-list"></i></button></div>
 					<div class="p-1  ms-auto"><button type="button" class="btn btn-danger" name='btnUelete' id="btnUelete"><i class="fa-solid fa-x"></i></button></div>
 					<div class="p-1"><button type="button" class="btn btn-danger" name='btnDelete' id="btnDelete"><i class="fa-solid fa-trash"></i></button></div>
-					<div class="p-1"><button type="button" class="btn btn-success" id="btnSave"><i class="fa-solid fa-bookmark"></i></button></div>				</div>
-				
+					<div class="p-1"><button type="button" class="btn btn-success" id="btnSave"><i class="fa-solid fa-bookmark"></i></button></div>
 			</div>
 			
 			<!-- CODEVO s  -->
@@ -105,6 +104,10 @@
 			<!-- sideMenu s  -->
 				<%@include file="../../infra/includeV1/sideMenu.jsp"%>
 			<!-- sideMenu e -->
+
+		</form>
+		<form name="formVo" id="formVo" method="post">
+			<%@include file="codeVo.jsp"%>	
 		</form>
 		
 		<script src="https://kit.fontawesome.com/a1961b2393.js"crossorigin="anonymous"></script>
@@ -120,7 +123,8 @@
 			var goUrlDele = "/xdmin/codeDele";
 			
 			var seq = $("input:text[name=codeSeq]");				/* #-> */
-			var form = $("form[name=form]")
+			var form = $("form[name=form]");
+			var formVo = $("form[name=formVo]");
 			
 			$("#btnSave").on("click", function() {
 				if(seq.val() == "0" || seq.val() == "") {
@@ -128,6 +132,10 @@
 				} else {
 					form.attr("action", goUrlUpdt).submit();
 				}
+			});
+			
+		$("#btnList").on("click", function(){
+				formVo.attr("action", goUrlList).submit();
 			});
 		$("#btnUelete").on("click", function(){
 			$(".modal-title").text("확 인");
@@ -154,6 +162,7 @@
 			$("#modalConfirm").modal("hide");
 			form.attr("action", goUrlDele).submit();
 		});
+		
 		</script>
 		<%@include file="../../infra/includeV1/modals.jsp"%>
 	</body>

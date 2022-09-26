@@ -29,7 +29,8 @@
 			<div id='content'>
 				<h2>코드 관리</h2>
 				<div class='search'>
-					<input type="textbox"style='width:30%;'> <button>검색</button>
+					<input type='text' id="shValue" name="shValue" value="<c:out value="${vo.shValue }"/>" placeholder="검색어">
+					<input type="submit" value='검색'>
 					<br>
 					<span style="cursor:pointer;" onclick="showHide('id_test_div');"> 
 						<a class="myButton"id="subscriberBtn" onclick='change()' style="font-size:8px;">검색조건</a>
@@ -37,17 +38,17 @@
 					<div id="id_test_div" style="display:none;">
 						<div class=' detail'>
 							<label>코드:</label> 
-							<select>
-								<option>검색기준</option>
-								<option>코드그룹 코드</option>
-								<option>코드그룹 이름(한글)</option>
-								<option>코드그룹 이름(영문)</option>
+								<select id="shOption" name="shOption">
+								<option value="" <c:if test="${empty vo.shOption }">selected</c:if>>검색구분</option>
+								<option value="1" <c:if test="${vo.shOption eq 1}">selected</c:if>>코드그룹 코드</option>
+								<option value="2" <c:if test="${vo.shOption eq 2}">selected</c:if>>코드그룹 이름(한글)</option>
+								<option value="3" <c:if test="${vo.shOption eq 3}">selected</c:if>>코드그룹 이름(영어)</option>
 							</select>
 							<label>삭제여부:</label>
-							<select>
-								<option>사용여부</option>
-								<option>Y</option>
-								<option>N</option>
+							<select id='shDelNy' name='shDelNy'>
+								<option value="">검색구분</option>
+								<option value='0' <c:if test="${vo.shDelNy eq 0}">selected</c:if>>N</option>
+								<option value='1' <c:if test="${vo.shDelNy eq 1}">selected</c:if>>Y</option>
 							</select>
 							<br>
 							<label>기간:</label>
@@ -56,8 +57,8 @@
 								<option>등록일</option>
 								<option>수정일</option>
 							</select>
-							<input type='text' class='startDate' placeholder='시작일'>
- 							<input type='text' class='endDate' id='endDate'  placeholder='종료일'>
+							<input type='text' id='startDate' name='shstartDate' <c:out value="${vo.shstartDate }"/> placeholder='시작일'>
+ 							<input type='text' id='endDate' name='shendDate' <c:out value="${vo.shendDate }"/> placeholder='종료일'>
 						</div>
 					</div>
 				</div>
@@ -112,11 +113,11 @@
 					</tbody>			
 				</table>
 				<button type='button' onClick="location.href='codeform'">+</button>
-				<!-- pagination s  -->
-				<center>
-				<%@include file="../../infra/includeV1/pagination.jsp"%>
-				</center>
-				<!-- pagination e -->
+			<!-- pagination s  -->
+			<center>
+			<%@include file="../../infra/includeV1/pagination.jsp"%>
+			</center>
+			<!-- pagination e -->
 			</div>
 			
 			<!-- footer s  -->

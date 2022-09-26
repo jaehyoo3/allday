@@ -26,6 +26,7 @@
 				</a>
 
 			</div>
+
 			<div id='content'>
 			<h3>회원관리</h3>
 				<table>
@@ -33,10 +34,12 @@
 						<tr>
 							<th style='width:3%;'><input type='checkbox'></th>
 							<th style='width:5%;'>#</th>
+							<th style='width:5%;'>Seq</th>
 							<th>이름</th>
 							<th>아이디</th>
 							<th>닉네임</th>
 							<th>전화번호</th>
+							<th>생년월일</th>
 							<th>이메일</th>
 							<th>성별</th>
 							<th>등급</th>
@@ -45,19 +48,27 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr onclick="location.href='./wowUserMod.html'" style="cursor: pointer;">
+					<c:forEach items="${list}" var="list" varStatus="status">
+						<tr>
 							<td><input type='checkbox'></td>
-							<td>1</td>
-							<td>정봉남</td>
-							<td>sadplz</td>
-							<td>사망한직후</td>
-							<td>010-1234-5678</td>
-							<td>sadending@gmail.com</td>
-							<td>남</td>
-							<td>브론즈</td>
-							<td>2022.08.25</td>
-							<td>2022.08.25 15:12</td>
+							<td></td>
+							<td><c:out value="${list.memberSeq }"/></td>
+							<td><c:out value="${list.memberName }"/></td>
+							<td><a href="/xdmin/memberView?memberSeq=<c:out value="${list.memberSeq }"/>"><c:out value="${list.memberID }"/></td>
+							<td><c:out value="${list.memberNick }"/></td>
+							<td><c:out value="${list.memberMobile }"/></td>
+							<td><c:out value="${list.memberDob }"/></td>
+							<td><c:out value="${list.memberEmail }"/></td>
+							<td>
+								<c:forEach items="${listCodeGender}" var="listGender" varStatus="statusGender">
+									<c:if test="${list.memberGender eq listGender.codeOrder}"><c:out value="${listGender.codeName}"/></c:if>
+								</c:forEach>
+							</td>
+							<td><c:out value="${list.memberGrade }"/></td>
+							<td><c:out value="${list.memberRegdate }"/></td>
+							<td><c:out value="${list.memberUpdate }"/></td>
 						</tr>
+						</c:forEach>
 					</tbody>
 				</table>
 				<div class='Rposition'>
@@ -80,24 +91,13 @@
 				  </ul>
 				</div>
 			</div>
-			<div id='footer'>
-				<div class='copyright'>© 2022. Bluebee all rights reserved.</div>
+				<!-- footer s  -->
+					<%@include file="../../infra/includeV1/footer.jsp"%>
+				<!-- footer e -->
 			</div>
-			</div>
-			<div class="slideout-sidebar">
-			<i class="fa-regular fa-user fa-5x"></i>
-			<p>관리자님</p>환영합니다
-			<i class="fa-solid fa-x fa-xs"></i>
-				<ul>
-					<li onClick="location.href='main'">HOME</li>
-					<li onClick="location.href='product'">상품관리</li>
-					<li onClick="location.href='user'">회원관리</li>
-					<li>문의관리</li>
-					<li>배송관리</li>
-					<li onClick="location.href='code'">코드관리</li>
-					<li onClick="location.href='codegroup'">코드그룹관리</li>
-				</ul>
-			</div>
+				<!-- sideMenu s  -->
+					<%@include file="../../infra/includeV1/sideMenu.jsp"%>
+				<!-- sideMenu e -->
 		</form>
 		<script src="https://kit.fontawesome.com/a1961b2393.js"crossorigin="anonymous"></script>
 	</body>

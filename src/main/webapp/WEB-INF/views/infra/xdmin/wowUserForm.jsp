@@ -15,7 +15,7 @@
 	</head>
 	
 	<body>
-		<form>
+		<form name='form' id='form' method="post">
 			<input type="checkbox" id="menu-toggle"/>
 			<label for="menu-toggle" class="menu-icon"><i class="fa fa-bars"></i></label>
 			<div class="content-container">
@@ -32,21 +32,26 @@
 					<img class="profile" src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png' name='find' id='find' border='0' onclick='document.all.fileup1.click(); document.all.fileup2.value=document.all.fileup1.value' style="cursor:pointer;">
 				</div>
 				<input type='text' name='file2' id='file2' style='display:none;'>
+				<input type="hidden" name='memberSeq' value="<c:out value="${item.memberSeq }"/>">
 				<lable>CODE</lable>
-				<input type='text' class='form-control' value='1' disabled>
+				<input type='text' class='form-control' name='memberSeq' id='memberSeq' value="<c:out value="${item.memberSeq}"/>" disabled>
 				<lable>이름</lable>
-				<input type='text' class='form-control' value="정봉남">
-				닉네임<input type='text 'class='form-control' value='사망한직후'>
-				ID:<input type='text' class='form-control' value="sadplz">
+				<input class="form-control" type="text" name='memberName' value="<c:out value="${item.memberName }"/>">
+				<label>비밀번호</label>
+				<input class="form-control" type="password" name='memberPW' value="<c:out value="${item.memberPW }"/>">
+				닉네임<input class="form-control" type="text" name='memberNick' value="<c:out value="${item.memberNick }"/>">
+				ID:<input class="form-control" type="text" id='memberID' name='memberID' value="<c:out value="${item.memberID }"/>">
 				생년월일<div class="input-group"><input type='text' class='form-control' value='2022'>
 				<input type='text' class='form-control' value='07'>
 				<input type='text' class='form-control' value='10'>
 				</div>
-				등급<select class="form-select w-25">
-					<option>브론즈</option>
-					<option selected>실버</option>
-					<option>골드</option>
-					<option>플레티넘</option>
+				등급	
+				<select class="form-select" name="memberGrade">
+					<option>사용</option>
+					<option value='1' <c:if test="${item.memberGrade eq 1 }">selected</c:if>>브론즈</option>
+					<option value='2' <c:if test="${item.memberGrade eq 2 }">selected</c:if>>실버</option>
+					<option value='3' <c:if test="${item.memberGrade eq 3 }">selected</c:if>>골드</option>
+					<option value='4' <c:if test="${item.memberGrade eq 4 }">selected</c:if>>다이아몬드</option>
 				</select>
 				<label>전화번호</label>
 				<div class="input-group flex-nowrap">
@@ -54,11 +59,12 @@
 					<option selected>SKT</option>
 					<option>KT</option>
 					<option>LG U+</option>
-				</select><input type='text' class='form-control w-50' value='01012345678'>
+				</select>
+				<input class="form-control" type="text" name='memberMobile' value="<c:out value="${item.memberMobile }"/>" >
 				</div>
 				Email
 				<div class="input-group flex-nowrap">
-				<input type='text' class='form-control' value='sadending'>
+				<input class="form-control" type="text" name='memberEmail' value="<c:out value="${item.memberEmail }"/>">
 				<select class="form-select">
 				<option selected>gmail.com</option>
 				<option>naver.com</option>
@@ -66,56 +72,57 @@
 				</select>
 				</div>
 				<lable>성별</lable>
-				<div class="d-flex mb-1">
-					<div class="p-1">
-						<input class="form-check-input" name="gender" type="radio" id="man"checked>
-						<label for="man">남자</label>
-					</div>
-					<div class="p-1 mx-auto">
-						<input class="form-check-input" name="gender" id="girl" type="radio">
-						<label for="girl">여자</label>
-					</div>
-				</div>
+				<select class="form-select" name="memberGender">
+					<option>사용</option>
+					<option value='1' <c:if test="${item.memberGender eq 1 }">selected</c:if>>남자</option>
+					<option value='2' <c:if test="${item.memberGender eq 2 }">selected</c:if>>여자</option>
+					<option value='3' <c:if test="${item.memberGender eq 3 }">selected</c:if>>기타</option>
+				</select>
 					<label>주소(기본배송지)</label>		
 				<div class="input-group flex-nowrap" style="width:40%">	
 					<input class="form-control" type="text" value="14759">
 					<button class="btn text-white fw-bold" type="button" style="background-color:rgb(44, 62, 80);">검색하기</button>
 				</div>
-				<input class="form-control" type="text" value="인천광역시 부평구 어디로 999번길 10(부평동, 동아아파트)">
-				<input class="form-control" type="text" value="999동 9999호">
-				<br>
-				<label>추가배송지</label>
-				<div class="input-group flex-nowrap" style="width:40%">	
 				<input class="form-control" type="text">
-				<button class="btn text-white fw-bold" type="button" style="background-color:rgb(44, 62, 80);">검색하기</button>
+				<input class="form-control" type="text">
+				<br>
+				<div class="d-flex mb-1">
+					<div class="p-1"><button type="button" class="btn btn-secondary" name="btnList" id="btnList" ><i class="fa-solid fa-list"></i></button></div>
+					<div class="p-1  ms-auto"><button type="button" class="btn btn-danger" name='btnUelete' id="btnUelete"><i class="fa-solid fa-x"></i></button></div>
+					<div class="p-1"><button type="button" class="btn btn-danger" name='btnDelete' id="btnDelete"><i class="fa-solid fa-trash"></i></button></div>
+					<div class="p-1"><button type="button" class="btn btn-success" id="btnSave"><i class="fa-solid fa-bookmark"></i></button></div>
 				</div>
-				<input class="form-control" type="text">
-				<input class="form-control" type="text">
-				<br>
-				<center>
-				<button class="btn text-white fw-bold" type="button" style="background-color:rgb(127, 127, 127); width:15%;">취소</button>
-				<button class="btn text-white fw-bold" type="button" style="background-color:rgb(44, 62, 80); width:15%;">수정하기</button>
-				</center>	
 			</div>
+				<!-- footer s  -->
+					<%@include file="../../infra/includeV1/footer.jsp"%>
+				<!-- footer e -->
 			</div>
-			<div id='footer'>
-				<div class='copyright'>© 2022. Bluebee all rights reserved.</div>
-			</div>
-					<div class="slideout-sidebar">
-			<i class="fa-regular fa-user fa-5x"></i>
-			<p>관리자님</p>환영합니다
-			<i class="fa-solid fa-x fa-xs"></i>
-				<ul>
-					<li onClick="location.href='main'">HOME</li>
-					<li onClick="location.href='product'">상품관리</li>
-					<li onClick="location.href='user'">회원관리</li>
-					<li>문의관리</li>
-					<li>배송관리</li>
-					<li onClick="location.href='code'">코드관리</li>
-					<li onClick="location.href='codegroup'">코드그룹관리</li>
-				</ul>
-			</div>
+				<!-- sideMenu s  -->
+					<%@include file="../../infra/includeV1/sideMenu.jsp"%>
+				<!-- sideMenu e -->
 		</form>
 		<script src="https://kit.fontawesome.com/a1961b2393.js"crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+ 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+		
+		<script type="text/javascript">
+		    var goUrlList = "/xdmin/memberList"; 			/* #-> */
+			var goUrlInst = "/xdmin/memberInst"; 			/* #-> */
+			var goUrlUpdt = "/xdmin/memberUpdt";				/* #-> */
+			var goUrlUele = "/xdmin/memberUele";				/* #-> */
+			var goUrlDele = "/xdmin/memberDele";				/* #-> */
+			
+			var seq = $("input:text[name=memberSeq]");				/* #-> */
+			var form = $("form[name=form]")
+	
+			$("#btnSave").on("click", function() {
+				if(seq.val() == "0" || seq.val() == "") {
+					form.attr("action", goUrlInst).submit();
+				} else {
+					form.attr("action", goUrlUpdt).submit();
+				}
+			});
+			</script>
 	</body>
 </html>
