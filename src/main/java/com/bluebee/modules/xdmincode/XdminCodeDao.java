@@ -28,6 +28,7 @@ public class XdminCodeDao {
 	public int update(XdminCode dto) { return sqlSession.update(namespace+".update", dto); }
 	public int selectOneCount(XdminCodeVo vo) { return sqlSession.selectOne(namespace + ".selectOneCount", vo); }
 	public List<XdminCode> selectListCachedCodeArrayList(){ return sqlSession.selectList(namespace + ".selectListCachedCodeArrayList", null); }
-	 
+	public int uelete(XdminCode dto) { return sqlSession.update(namespace+".uelete", dto); }
+	public int delete(XdminCodeVo vo) { return sqlSession.delete(namespace+".delete", vo); }
 
 }

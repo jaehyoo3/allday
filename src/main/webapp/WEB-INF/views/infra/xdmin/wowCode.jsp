@@ -96,7 +96,7 @@
 									<tr>
 										<td><input type='checkbox'></td>
 										<td><c:out value="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + status.index) }"/></td>
-										<td><c:out value="${list.codeGroupSeq }"/></td>
+										<td><c:out value="${list.cGroupSeq }"/></td>
 										<td><c:out value="${list.codeGroupName }"/></td>
 										<td><c:out value="${list.codeOrder }"/></td>
 										<td><a href="javascript:goForm(<c:out value="${list.codeSeq }"/>)" class="text-decoration-none"><c:out value="${list.codeName }"/></a></td>

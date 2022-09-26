@@ -8,9 +8,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.bluebee.modules.codegroup.CodeGroup;
-import com.bluebee.modules.codegroup.CodeGroupVo;
-
 
 @Controller
 @RequestMapping(value = "/xdmin/")
@@ -47,7 +44,6 @@ public class XdminCGController {
 			return "infra/xdmin/wowUserForm";
 		}
 
-		
 		@RequestMapping(value = "codegroup")
 		public String wowCodeGroup(@ModelAttribute("vo") XdminCGVo vo, Model model) throws Exception {
 			
@@ -59,22 +55,29 @@ public class XdminCGController {
 		}
 				
 		@RequestMapping(value = "codegroupform")
-		public String wowCodeGroupForm() throws Exception { 		
+		public String wowCodeGroupForm(@ModelAttribute("vo") XdminCGVo vo, Model model) throws Exception { 
+			XdminCG item = service.selectOne(vo);
+			model.addAttribute("item", item);
+
 			return "infra/xdmin/wowCodeGroupForm"; 
 		}
 		
 		@RequestMapping(value = "codegroupInst")
 		public String wowCodeGroupInst(XdminCGVo vo, XdminCG dto, RedirectAttributes redirectAttributes) throws Exception { 		
-			service.insert(dto);
 			
-			return "redirect:/xdmin/codegroup";
+			service.insert(dto);
+			vo.setCodeGroupSeq(dto.getCodeGroupSeq());
+			redirectAttributes.addFlashAttribute("vo", vo);
+			
+			return "redirect:/xdmin/codegroupform";
 		}
 		
 		@RequestMapping(value = "codegroupUpdt")
 		public String wowCodeGroupUpdt(XdminCGVo vo, XdminCG dto, RedirectAttributes redirectAttributes) throws Exception { 		
 			service.update(dto);
-			
-			return "redirect:/xdmin/codegroup";
+			vo.setCodeGroupSeq(dto.getCodeGroupSeq());
+			redirectAttributes.addFlashAttribute("vo", vo);
+			return "redirect:/xdmin/codegroupform";
 		}
 		@RequestMapping(value = "codegroupView")
 		public String wowCodeGroupView(XdminCGVo vo, Model model) throws Exception { 		

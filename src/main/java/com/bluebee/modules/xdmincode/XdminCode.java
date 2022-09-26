@@ -6,6 +6,13 @@ import java.util.List;
 
 public class XdminCode {
 	private String codeSeq;
+	private String cGroupSeq;
+	public String getcGroupSeq() {
+		return cGroupSeq;
+	}
+	public void setcGroupSeq(String cGroupSeq) {
+		this.cGroupSeq = cGroupSeq;
+	}
 	private String codeGroupSeq;
 	private String codeName;
 	private String codeNameEng;

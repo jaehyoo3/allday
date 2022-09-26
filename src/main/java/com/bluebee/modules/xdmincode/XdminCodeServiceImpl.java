@@ -28,6 +28,11 @@ public class XdminCodeServiceImpl implements XdminCodeService {
 	public int selectOneCount(XdminCodeVo vo) throws Exception { return dao.selectOneCount(vo); }
 	
 
+	@Override
+	public int uelete(XdminCode dto) throws Exception { return dao.uelete(dto); }
+	@Override
+	public int delete(XdminCodeVo vo) throws Exception { return dao.delete(vo); }
+	
 	@PostConstruct
 	public void selectListCachedCodeArrayList() throws Exception {
 		List<XdminCode> codeListFromDb = (ArrayList<XdminCode>) dao.selectListCachedCodeArrayList();

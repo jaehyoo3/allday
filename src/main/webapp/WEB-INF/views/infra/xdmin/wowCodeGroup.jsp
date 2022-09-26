@@ -17,7 +17,7 @@
 		<form name="form" method="post">
 		<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage}" default="1"/>">
 		<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>">
-		<input type="hidden" name="codeGroupSeq" value="<c:out value="${vo.codeGroupSeq}"/>"/>
+		<input type="hidden" name="codeGroupSeq"/>
 	
 			<input type="checkbox" id="menu-toggle"/>
 			<label for="menu-toggle" class="menu-icon"><i class="fa fa-bars"></i></label>
@@ -176,13 +176,13 @@
     });    
 		    var goUrlList = "/xdmin/codegroup";
 		    var goUrlForm = "/xdmin/codegroupform";
-		    var goUrlView = "/xdmin/codegroupView";
 			var form = $("form[name=form]")
 			var seq = $("input:hidden[name=codeGroupSeq]");
 			
 			$("#reset").on("click", function() {
 				$(location).attr("href",goUrlList);
 			});
+			
 			function showHide(id){
 			     var objId = document.getElementById(id);
 			     if(objId.style.display=="block"){
@@ -210,9 +210,8 @@
 			});
 
 			goForm = function(keyValue) {
-		    	/* if(keyValue != 0) seq.val(btoa(keyValue)); */
 		    	seq.val(keyValue);
-				form.attr("action", goUrlView).submit();
+				form.attr("action", goUrlForm).submit();
 			}
 		 </script>
 	</body>

@@ -17,26 +17,19 @@
 	<body>
 		<form id="form" name="form" method="post" autocomplete="off">
 			<!--  codeGroup Vo s -->
-			<%@include file="codeGroupVo.jsp"%>
+				<%@include file="codeGroupVo.jsp"%>
 			<!--  codeGroup Vo e -->
-			
+
 			<input type="checkbox" id="menu-toggle"/>
 			<label for="menu-toggle" class="menu-icon"><i class="fa fa-bars"></i></label>
 			<div class="content-container">
 				<div id='haeder'></div>
 			<div class="navbar">
-				<a href="#" id="logo"> <img src="/resources/Images/img/logo2.png" height="60" onClick="location.href='main'">
-				</a>
+				<a href="#" id="logo"> <img src="/resources/Images/img/logo2.png" height="60" onClick="location.href='main'"> </a>
 			</div>
 			<div id='content'>
 				<div class="container">
 				<h3>코드그룹 관리</h3>
-					<div class="row mb-3">
-						<div class="col">
-							<span>코드</span>
-							<input class="form-control" type="text" name="codeGroupSeq" id="codeGroupSeq" value="<c:out value="${item.codeGroupSeq }" />" placeholder="한글,숫자">
-						</div>
-					</div>
 					<div class="row mb-3">
 						<div class="col">
 							<span>코드그룹 이름(한글)</span>
@@ -70,9 +63,7 @@
 						</div>
 					</div>
 				</div>
-				<!-- modal s  -->
-					<%@include file="../../infra/includeV1/modals.jsp"%>
-				<!-- modal e --> 
+
 				
 				<div class="d-flex mb-1">
 					<div class="p-1"><button type="button" class="btn btn-secondary" name="btnList" id="btnList" ><i class="fa-solid fa-list"></i></button></div>
@@ -89,9 +80,8 @@
 					<%@include file="../../infra/includeV1/sideMenu.jsp"%>
 				<!-- sideMenu e -->
 		</form>
-		
-		<form name="formVo" id="formVo" method="post">
-			<%@include file="codeGroupVo.jsp"%>		<!-- #-> -->
+ 		<form name="formVo" id="formVo" method="post">
+			<%@include file="codeGroupVo.jsp"%>	
 		</form>
 		
  		<script src="https://kit.fontawesome.com/a1961b2393.js"crossorigin="anonymous"></script>
@@ -99,14 +89,14 @@
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 		<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 		
-		<script>
-		    var goUrlList = "/xdmin/codegroup"; 			/* #-> */
-			var goUrlInst = "/xdmin/codegroupInst"; 			/* #-> */
-			var goUrlUpdt = "/xdmin/codegroupUpdt";			/* #-> */
-			var goUrlUele = "/xdmin/codegroupUele";				/* #-> */
-			var goUrlDele = "/xdmin/codegroupDele";				/* #-> */
+		<script type="text/javascript">
+		    var goUrlList = "/xdmin/codegroup"; 			
+			var goUrlInst = "/xdmin/codegroupInst"; 			
+			var goUrlUpdt = "/xdmin/codegroupUpdt";			
+			var goUrlUele = "/xdmin/codegroupUele";				
+			var goUrlDele = "/xdmin/codegroupDele";
 			
-			var seq = $("input:hidden[name=codeGroupSeq2]");				/* #-> */
+			var seq = $("input:hidden[name=codeGroupSeq]");			
 			var form = $("form[name=form]")
 			var formVo = $("form[name=formVo]");
 			
@@ -144,11 +134,13 @@
 				form.attr("action", goUrlDele).submit();
 			});
 			
-			<!--  리스트Vo s -->
 			$("#btnList").on("click", function(){
 				formVo.attr("action", goUrlList).submit();
 			});
 			
 		</script>
+			<!-- modal s  -->
+		<%@include file="../../infra/includeV1/modals.jsp"%>
+	<!-- modal e --> 
 	</body>
 </html>

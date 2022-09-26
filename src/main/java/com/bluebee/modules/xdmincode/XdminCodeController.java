@@ -7,6 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.bluebee.modules.xdmincg.XdminCG;
+import com.bluebee.modules.xdmincg.XdminCGVo;
 
 @Controller
 @RequestMapping(value = "/xdmin/")
@@ -48,7 +52,7 @@ public class XdminCodeController {
 	}
 
 	@RequestMapping(value = "codeInst")
-	public String codeInst(XdminCodeVo vo, XdminCode dto) throws Exception {
+	public String codeInst(XdminCodeVo vo, XdminCode dto, RedirectAttributes redirectAttributes) throws Exception {
 		service.insert(dto);
 		
 		return "redirect:/xdmin/code";
@@ -56,6 +60,21 @@ public class XdminCodeController {
 	@RequestMapping(value = "codeUpdt")
 	public String codeUpdt(XdminCode dto) throws Exception {
 		service.update(dto);
+		
+		return "redirect:/xdmin/code";
+	}
+	
+	@RequestMapping(value = "codeUele")
+	public String codeGroupUele(XdminCode dto) throws Exception {
+		service.uelete(dto);
+		
+		return "redirect:/xdmin/code";
+	}
+	
+	@RequestMapping(value = "codeDele")
+	public String codeGroupDele(Model model, XdminCodeVo vo) throws Exception {
+		int dele = service.delete(vo);
+		model.addAttribute("item", dele);
 		
 		return "redirect:/xdmin/code";
 	}

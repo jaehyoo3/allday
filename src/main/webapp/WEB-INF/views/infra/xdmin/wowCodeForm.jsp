@@ -16,6 +16,7 @@
 	
 	<body>
 		<form name="form" id="form" name="form" method="post" autocomplete="off">
+		
 			<input type="checkbox" id="menu-toggle"/>
 			<label for="menu-toggle" class="menu-icon"><i class="fa fa-bars"></i></label>
 			<div class="content-container">
@@ -27,11 +28,12 @@
 			</div>
 			<div id='content'>
 				<div class="container">
+				
 				<h3>코드관리</h3>
 					<div class="row mb-3">
 						<div class="col-6">
 							<span>코드그룹</span>
-								<select class="form-select" name='codeGroupSeq'>
+								<select class="form-select" name='cGroupSeq'>
 								<c:forEach items="${list}" var="list" varStatus="status">
 									<c:choose>
 										<c:when test="${empty item.codeSeq}">
@@ -85,12 +87,13 @@
 					</div>
 				</div>
 				<div class="d-flex mb-1">
-					<div class="p-1"><button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#ban_del"><i class="fa-solid fa-list"></i></button></div>
-					<div class="p-1  ms-auto"><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#ban_del2"><i class="fa-solid fa-x"></i></button></div>
-					<div class="p-1"><button type="button" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button></div>
-					<div class="p-1"><button type="button" class="btn btn-success" id='btnSave' name='btnSave'><i class="fa-solid fa-bookmark"></i></button></div>
-				</div>
+					<div class="p-1"><button type="button" class="btn btn-secondary" name="btnList" id="btnList" ><i class="fa-solid fa-list"></i></button></div>
+					<div class="p-1  ms-auto"><button type="button" class="btn btn-danger" name='btnUelete' id="btnUelete"><i class="fa-solid fa-x"></i></button></div>
+					<div class="p-1"><button type="button" class="btn btn-danger" name='btnDelete' id="btnDelete"><i class="fa-solid fa-trash"></i></button></div>
+					<div class="p-1"><button type="button" class="btn btn-success" id="btnSave"><i class="fa-solid fa-bookmark"></i></button></div>				</div>
+				
 			</div>
+			
 			<!-- CODEVO s  -->
 				<%@include file="../../infra/includeV1/codeVo.jsp"%>
 			<!-- CODEVO e -->
@@ -103,6 +106,7 @@
 				<%@include file="../../infra/includeV1/sideMenu.jsp"%>
 			<!-- sideMenu e -->
 		</form>
+		
 		<script src="https://kit.fontawesome.com/a1961b2393.js"crossorigin="anonymous"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
  		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
@@ -112,6 +116,8 @@
  		    var goUrlList = "/xdmin/code"; 			/* #-> */
 			var goUrlInst = "/xdmin/codeInst"; 			/* #-> */
 			var goUrlUpdt = "/xdmin/codeUpdt";			/* #-> */
+			var goUrlUele = "/xdmin/codeUele";				
+			var goUrlDele = "/xdmin/codeDele";
 			
 			var seq = $("input:text[name=codeSeq]");				/* #-> */
 			var form = $("form[name=form]")
@@ -123,6 +129,32 @@
 					form.attr("action", goUrlUpdt).submit();
 				}
 			});
+		$("#btnUelete").on("click", function(){
+			$(".modal-title").text("확 인");
+			$(".modal-body").text("해당 데이터를 삭제하시겠습니까 ?");
+			$("#btnModalUelete").show();
+			$("#btnModalDelete").hide();
+			$("#modalConfirm").modal("show");
+		});
+
+		$("#btnDelete").on("click", function(){
+			$(".modal-title").text("확 인");
+			$(".modal-body").text("해당 데이터를 삭제하시겠습니까 ?");
+			$("#btnModalUelete").hide();
+			$("#btnModalDelete").show();
+			$("#modalConfirm").modal("show");
+		});
+		
+		$("#btnModalUelete").on("click", function(){
+			$("#modalConfirm").modal("hide");
+			form.attr("action", goUrlUele).submit();
+		});
+		
+		$("#btnModalDelete").on("click", function(){
+			$("#modalConfirm").modal("hide");
+			form.attr("action", goUrlDele).submit();
+		});
 		</script>
+		<%@include file="../../infra/includeV1/modals.jsp"%>
 	</body>
 </html>

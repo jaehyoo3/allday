@@ -12,7 +12,8 @@
 	 		<include refid="Base.selectListUpper" />
 			SELECT
 				a.codeSeq
-				,a.codeGroupSeq
+				,a.cGroupSeq
+				,b.codeGroupSeq
 				,b.codeGroupName
 				,a.codeName
 				,a.codeNameEng
@@ -33,7 +34,8 @@
 		<select id="selectOne" resultMap="resultMapObj">
 			SELECT
 				a.codeSeq
-				,a.codeGroupSeq
+				,a.cGroupSeq
+				,b.codeGroupSeq
 				,b.codeGroupName
 				,a.codeName
 				,a.codeNameEng
@@ -48,24 +50,16 @@
 		
 		<select id="codegroupViewer" resultMap="resultMapObj">
 			SELECT
-				a.codeSeq
-				,a.codeGroupSeq
-				,b.codeGroupName
-				,a.codeName
-				,a.codeNameEng
-				,a.codeOrder
-				,a.codeUseNY
-				,a.codeDelNY
-				,a.codeRegdate
-				,a.codeUpdate
-			<include refid='common' />
-			GROUP BY codeGroupName
+				codeGroupName
+				,codeGroupSeq
+			FROM CodeGroup
+			
 		</select>
 	
 		<insert id="insert">
 			insert into Code(
 				codeName
-				,codeGroupSeq
+				,cGroupSeq
 				,codeNameEng
 				,codeOrder
 				,codeUseNY
@@ -74,7 +68,7 @@
 			)
 			values(
 				#{codeName}
-				,#{codeGroupSeq}
+				,#{cGroupSeq}
 				,#{codeNameEng}
 				,#{codeOrder}
 				,#{codeUseNY}
@@ -90,7 +84,7 @@
 			update Code
 			set
 				codeName = #{codeName}
-				,codeGroupSeq = #{codeGroupSeq}
+				,cGroupSeq = #{cGroupSeq}
 				,codeNameEng = #{codeNameEng}
 				,codeOrder = #{codeOrder}
 				,codeUseNY = #{codeUseNY}
@@ -103,7 +97,7 @@
 		<!--  SQL  -->
 		<sql id="common">
 			FROM Code a
-			left join CodeGroup b on a.codeGroupSeq = b.codeGroupSeq
+			left join CodeGroup b on a.cGroupSeq = b.codeGroupSeq
 			where 1=1
 		</sql>
 	
@@ -111,7 +105,7 @@
 			SELECT 
 				a.codeSeq
 				,a.codeName
-				,a.codeGroupSeq 
+				,a.cGroupSeq 
 				,a.codeOrder
 			FROM
 				Code a
@@ -119,5 +113,20 @@
 				AND codeDelNY = 0
 			    AND codeUseNY = 1
 	    </select>
-	
+	    
+		<update id="uelete">
+		UPDATE 
+			Code
+		SET
+			codeDelNY = 1
+		WHERE
+			codeSeq= #{codeSeq}
+		</update>
+		
+		<delete id="delete">
+		delete from 
+			Code 
+		where
+			codeSeq = #{codeSeq}
+		</delete>
 </mapper>	
