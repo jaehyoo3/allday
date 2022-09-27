@@ -23,6 +23,7 @@
 			
 			<jsp:useBean id="XdminCodeServiceImpl" class="com.bluebee.modules.xdmincode.XdminCodeServiceImpl"/>
 			<c:set var="listCodeGender" value="${XdminCodeServiceImpl.selectListCachedCode('2')}"/>
+			<c:set var="listGrade" value="${XdminCodeServiceImpl.selectListCachedCode('8')}"/>
 			
 			<input type="checkbox" id="menu-toggle"/>
 			<label for="menu-toggle" class="menu-icon"><i class="fa fa-bars"></i></label>
@@ -75,7 +76,12 @@
 									<c:if test="${list.memberGender eq listGender.codeOrder}"><c:out value="${listGender.codeName}"/></c:if>
 								</c:forEach>
 							</td>
-							<td><c:out value="${list.memberGrade }"/></td>
+							<td>
+								<c:forEach items="${listGrade}" var="listGrade" varStatus="statusGrade">
+									<c:if test="${list.memberGrade eq listGrade.codeOrder}"><c:out value="${listGrade.codeName}"/></c:if>
+								</c:forEach> 
+								
+							</td>
 							<td><c:out value="${list.memberRegdate }"/></td>
 							<td><c:out value="${list.memberUpdate }"/></td>
 						</tr>

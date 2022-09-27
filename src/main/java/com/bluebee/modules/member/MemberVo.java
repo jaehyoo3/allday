@@ -1,7 +1,7 @@
 package com.bluebee.modules.member;
 import com.bluebee.modules.base.BaseVo;
 
-public class MemberVo extends BaseVo {
+public class MemberVo extends BaseVo{
 
 	private String memberSeq;
 

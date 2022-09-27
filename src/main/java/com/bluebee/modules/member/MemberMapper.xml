@@ -149,5 +149,27 @@
 				<when test = "shOption == 2">AND memberID LIKE CONCAT('%', #{shValue},'%')</when>
 				<when test = "shOption == 3">AND memberNick LIKE CONCAT('%',#{shValue}, '%')</when>
 			</choose>
-    </sql>
+   		</sql>
+   		
+   		<select id="selectOneId" resultMap="resultMapObj">
+   			select
+   				a.memberSeq
+   				,a.memberID
+   			from
+   				member a
+   			WHERE 1=1
+   				and a.memberID = #{memberID}
+   		</select>    
+   		
+    	<select id="selectOneLogin" resultMap="resultMapObj">
+    		select
+    			a.memberSeq
+    			,a.memberID
+    			,a.memberName
+    		from
+    			member a
+    		where 1=1
+    			and a.memberID = #{memberID}
+    			<if test="memberPW != null and !memberPW.equals('')">and a.memberPW = #{memberPW}</if>
+    	</select>
 </mapper>		

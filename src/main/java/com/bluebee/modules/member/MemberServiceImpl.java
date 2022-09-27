@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.bluebee.modules.util.UtilSecurity;
+
 @Service
 public class MemberServiceImpl implements MemberService {
 	
@@ -20,13 +22,18 @@ public class MemberServiceImpl implements MemberService {
 	public List<Member> selectList(MemberVo vo) throws Exception {return dao.selectList(vo); }
 
 	@Override
-	public int insert(Member dto) throws Exception { return dao.insert(dto);}
+	public int insert(Member dto) throws Exception { 
+		return dao.insert(dto);
+	}
 
 	@Override
 	public Member selectOne(MemberVo vo) throws Exception { return dao.selectOne(vo); }
 
 	@Override
-	public int signup(Member dto) throws Exception { return dao.signup(dto); }
+	public int signup(Member dto) throws Exception { 
+	 	dto.setMemberPW(UtilSecurity.encryptSha256(dto.getMemberPW()));    	
+		return dao.insert(dto);
+}
 
 	@Override
 	public int selectOneIdCheck(Member dto) throws Exception {return dao.selectOneIdCheck(dto); }
@@ -46,6 +53,16 @@ public class MemberServiceImpl implements MemberService {
 	public int update(Member dto) throws Exception {
 
 		return dao.update(dto);
+	}
+
+	@Override
+	public Member selectOneId(Member dto) throws Exception {
+		return dao.selectOneId(dto);
+	}
+
+	@Override
+	public Member selectOneLogin(Member dto) throws Exception {
+		return dao.selectOneLogin(dto);
 	}
 	
 	

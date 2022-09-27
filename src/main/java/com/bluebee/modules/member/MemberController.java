@@ -1,8 +1,15 @@
 package com.bluebee.modules.member;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +19,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.bluebee.modules.constants.Constants;
+import com.bluebee.modules.util.UtilSecurity;
+
 @Controller
 public class MemberController {
 	
@@ -19,17 +29,19 @@ public class MemberController {
 	MemberServiceImpl service;
 	
 	@RequestMapping(value = "/xdmin/memberList")
-	public String MemberList(MemberVo vo, Model model) throws Exception {
+	public String MemberList(@ModelAttribute("vo") MemberVo vo, Model model) throws Exception {
 		vo.setParamsPaging(service.selectOneCount(vo));
 		
 		List<Member> list = service.selectList(vo);
 		model.addAttribute("list", list);
 		
+		System.out.println("dd:"+vo.getRowNumToShow());
+		
 		return "infra/xdmin/wowUser";
 	}
 	
 	@RequestMapping(value = "/xdmin/memberForm")
-	public String MemberForm(MemberVo vo, Model model) throws Exception {
+	public String MemberForm(@ModelAttribute("vo") MemberVo vo, Model model) throws Exception {
 		
 		Member item = service.selectOne(vo);
 		model.addAttribute("item", item);
@@ -38,7 +50,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/xdmin/memberInst")
-	public String memberInst(MemberVo vo, Member dto, RedirectAttributes redirectAttributes) throws Exception {
+	public String memberInst(@ModelAttribute("vo") MemberVo vo, Member dto, RedirectAttributes redirectAttributes) throws Exception {
 		service.insert(dto);
 		vo.setMemberSeq(dto.getMemberSeq());
 		redirectAttributes.addFlashAttribute("vo", vo);
@@ -47,7 +59,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/xdmin/memberUpdt")
-	public String memberUpdt(MemberVo vo, Member dto, RedirectAttributes redirectAttributes) throws Exception {
+	public String memberUpdt(@ModelAttribute("vo") MemberVo vo, Member dto, RedirectAttributes redirectAttributes) throws Exception {
 		service.update(dto);
 		vo.setMemberSeq(dto.getMemberSeq());
 		redirectAttributes.addFlashAttribute("vo", vo);
@@ -66,7 +78,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/xdmin/memberView")
-	public String memberView(MemberVo vo, Model model) throws Exception { 		
+	public String memberView(@ModelAttribute("vo") MemberVo vo, Model model) throws Exception { 		
 		
 		Member item = service.selectOne(vo);
 		model.addAttribute("item", item);
@@ -110,4 +122,34 @@ public class MemberController {
 		}
 		return returnMap;
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "member/loginProc")
+	public Map<String, Object> loginProc(Member dto, HttpSession httpSession) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+
+		Member rtMember = service.selectOneId(dto);
+
+		if (rtMember != null) {
+			dto.setMemberPW(UtilSecurity.encryptSha256(dto.getMemberPW()));
+			Member rtMember2 = service.selectOneLogin(dto);
+
+			if (rtMember2 != null) {
+				httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE); // 60second * 30 = 30minute
+				httpSession.setAttribute("sessSeq", rtMember2.getMemberSeq());
+				httpSession.setAttribute("sessId", rtMember2.getMemberID());
+				httpSession.setAttribute("sessName", rtMember2.getMemberName());
+
+				returnMap.put("rt", "success");
+			} else {
+				dto.setMemberSeq(rtMember.getMemberSeq());
+				returnMap.put("rt", "fail");
+			}
+		} else {
+			returnMap.put("rt", "fail");
+		}
+		return returnMap;
+	}
+	
+
 }
