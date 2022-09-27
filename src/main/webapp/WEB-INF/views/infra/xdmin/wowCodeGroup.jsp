@@ -64,11 +64,12 @@
 				</div>
 				<br>
 				<span>total:<c:out value="${vo.totalRows}"/></span>
-				<select style="float:right;">
-					<option>10</option>
-					<option>20</option>
-					<option>30</option>
+				<select name="rowNumToShow" style="float:right;">
+					<option value=10 <c:if test="${vo.rowNumToShow == 10}">selected</c:if>>10</option>
+					<option value=30 <c:if test="${vo.rowNumToShow == 30}">selected</c:if>>30</option>
+					<option value=50 <c:if test="${vo.rowNumToShow == 50}">selected</c:if>>50</option>
 				</select>
+				
 				<table>
 					<thead>
 						<tr>
