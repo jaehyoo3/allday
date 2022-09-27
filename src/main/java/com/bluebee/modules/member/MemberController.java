@@ -139,7 +139,6 @@ public class MemberController {
 				httpSession.setAttribute("sessSeq", rtMember2.getMemberSeq());
 				httpSession.setAttribute("sessId", rtMember2.getMemberID());
 				httpSession.setAttribute("sessName", rtMember2.getMemberName());
-
 				returnMap.put("rt", "success");
 			} else {
 				dto.setMemberSeq(rtMember.getMemberSeq());
@@ -150,6 +149,7 @@ public class MemberController {
 		}
 		return returnMap;
 	}
+	
 	
 
 }

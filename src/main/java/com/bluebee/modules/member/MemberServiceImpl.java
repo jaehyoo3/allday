@@ -33,8 +33,7 @@ public class MemberServiceImpl implements MemberService {
 	public int signup(Member dto) throws Exception { 
 	 	dto.setMemberPW(UtilSecurity.encryptSha256(dto.getMemberPW()));    	
 		return dao.insert(dto);
-}
-
+	}
 	@Override
 	public int selectOneIdCheck(Member dto) throws Exception {return dao.selectOneIdCheck(dto); }
 

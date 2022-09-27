@@ -244,10 +244,6 @@
     	    $(function() {
     	        $("#datepicker1").datepicker();
     	    });
-
-
-
- 		    
 		    <!-- 비밀번호 일치 -->
 		    $('#memberPW, #memberPW2').on('keyup', function () {
 		    	  if ($('#memberPW').val() == $('#memberPW2').val()) {

@@ -247,3 +247,6 @@
 			  right: 0;
 			  top: 0;
 			}
+			html {
+				margin:0;
+			}

@@ -6,7 +6,7 @@
 	<ul>
 		<li onClick="location.href='main'">HOME</li>
 		<li onClick="location.href='product'">상품관리</li>
-		<li onClick="location.href='user'">회원관리</li>
+		<li onClick="location.href='memberList'">회원관리</li>
 		<li>문의관리</li>
 		<li>배송관리</li>
 		<li onClick="location.href='code'">코드관리</li>

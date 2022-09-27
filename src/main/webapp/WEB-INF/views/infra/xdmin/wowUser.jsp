@@ -23,7 +23,7 @@
 			
 			<jsp:useBean id="XdminCodeServiceImpl" class="com.bluebee.modules.xdmincode.XdminCodeServiceImpl"/>
 			<c:set var="listCodeGender" value="${XdminCodeServiceImpl.selectListCachedCode('2')}"/>
-			<c:set var="listGrade" value="${XdminCodeServiceImpl.selectListCachedCode('8')}"/>
+			<c:set var="listCodeGrade" value="${XdminCodeServiceImpl.selectListCachedCode('8')}"/>
 			
 			<input type="checkbox" id="menu-toggle"/>
 			<label for="menu-toggle" class="menu-icon"><i class="fa fa-bars"></i></label>
@@ -66,7 +66,7 @@
 							<td><c:out value="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + status.index) }"/></td>
 							<td><c:out value="${list.memberSeq }"/></td>
 							<td><c:out value="${list.memberName }"/></td>
-							<td><a href="javascript:goForm(<c:out value="${list.memberSeq }"/>)" class="text-decoration-none"><c:out value="${list.memberName }"/></a></td>
+							<td><a href="javascript:goForm(<c:out value="${list.memberSeq }"/>)" class="text-decoration-none"><c:out value="${list.memberID }"/></a></td>
 							<td><c:out value="${list.memberNick }"/></td>
 							<td><c:out value="${list.memberMobile }"/></td>
 							<td><c:out value="${list.memberDob }"/></td>
@@ -77,10 +77,9 @@
 								</c:forEach>
 							</td>
 							<td>
-								<c:forEach items="${listGrade}" var="listGrade" varStatus="statusGrade">
-									<c:if test="${list.memberGrade eq listGrade.codeOrder}"><c:out value="${listGrade.codeName}"/></c:if>
-								</c:forEach> 
-								
+ 								<c:forEach items="${listCodeGrade}" var="list2" varStatus="statusGender">
+									<c:if test="${list.memberGrade eq list2.codeOrder}"><c:out value="${list2.codeName}"/></c:if>
+								</c:forEach>
 							</td>
 							<td><c:out value="${list.memberRegdate }"/></td>
 							<td><c:out value="${list.memberUpdate }"/></td>

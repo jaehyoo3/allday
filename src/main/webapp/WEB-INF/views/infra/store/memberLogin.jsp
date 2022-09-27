@@ -76,7 +76,9 @@
 				<div class="d-grid gap-2 col-12">
 					<button class="btn text-white fw-bold" type="button" style="background-color:#2DB400;">네이버로 시작하기</button>
 					<button class="btn text-white fw-bold" type="button" style="background-color:#FEE500;">카카오로 시작하기</button>
-				</div>
+				</div>sessSeq: <c:out value="${sessSeq }"/><br>
+					sessName: <c:out value="${sessName }"/><br>
+					sessId: <c:out value="${sessId }"/><br>
 
 			</div>
 				<div class='join'>
