@@ -63,6 +63,11 @@
 			,memberNick = #{memberNick}
 			,memberName = #{memberName}
 			,memberDob = #{memberDob}
+			,memberEmail = #{memberEmail}
+			,memberMobile = #{memberMobile}
+			,memberDelNy = 1
+			,memberGrade = #{memberGrade}
+			,memberGender = #{memberGender} 
 		where
 			memberSeq = #{memberSeq}
 	</update>
