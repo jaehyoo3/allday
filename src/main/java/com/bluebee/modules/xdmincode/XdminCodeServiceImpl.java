@@ -42,10 +42,10 @@ public class XdminCodeServiceImpl implements XdminCodeService {
 		System.out.println("cachedCodeArrayList: " + XdminCode.cachedCodeArrayList.size() + " chached !");
 	}
 	
-	public static List<XdminCode> selectListCachedCode(String codeGroupSeq) throws Exception {
+	public static List<XdminCode> selectListCachedCode(String cGroupSeq) throws Exception {
 		List<XdminCode> rt = new ArrayList<XdminCode>();
 		for(XdminCode codeRow : XdminCode.cachedCodeArrayList) {
-			if (codeRow.getCodeGroupSeq().equals(codeGroupSeq)) {
+			if (codeRow.getcGroupSeq().equals(cGroupSeq)) {
 				rt.add(codeRow);
 			} else {
 				// by pass

@@ -7,9 +7,10 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class MemberController {
@@ -18,8 +19,9 @@ public class MemberController {
 	MemberServiceImpl service;
 	
 	@RequestMapping(value = "/xdmin/memberList")
-	public String MemberList(Model model, MemberVo vo) throws Exception {
-
+	public String MemberList(MemberVo vo, Model model) throws Exception {
+		vo.setParamsPaging(service.selectOneCount(vo));
+		
 		List<Member> list = service.selectList(vo);
 		model.addAttribute("list", list);
 		
@@ -27,34 +29,40 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/xdmin/memberForm")
-	public String MemberForm() throws Exception {
+	public String MemberForm(MemberVo vo, Model model) throws Exception {
+		
+		Member item = service.selectOne(vo);
+		model.addAttribute("item", item);
 		
 		return "infra/xdmin/wowUserForm";
 	}
 	
 	@RequestMapping(value = "/xdmin/memberInst")
-	public String memberInst(Member dto) throws Exception {
+	public String memberInst(MemberVo vo, Member dto, RedirectAttributes redirectAttributes) throws Exception {
 		service.insert(dto);
+		vo.setMemberSeq(dto.getMemberSeq());
+		redirectAttributes.addFlashAttribute("vo", vo);
 		
-		return "redirect:/xdmin/memberList";
+		return "redirect:/xdmin/memberForm";
 	}
 	
 	@RequestMapping(value = "/xdmin/memberUpdt")
-	public String memberUpdt(Member dto) throws Exception {
+	public String memberUpdt(MemberVo vo, Member dto, RedirectAttributes redirectAttributes) throws Exception {
 		service.update(dto);
+		vo.setMemberSeq(dto.getMemberSeq());
+		redirectAttributes.addFlashAttribute("vo", vo);
 		
-		return "redirect:/xdmin/memberList";
+		return "redirect:/xdmin/memberForm";
 	}
 	@RequestMapping(value = "/xdmin/memberUele")
 	public String memberUele(Member dto) throws Exception {
 		service.uelete(dto);
-		return "redirect:/memberForm";
+		return "redirect:/xdmin/memberList";
 	}
 	@RequestMapping(value = "/xdmin/memberDele")
 	public String memberDele(MemberVo vo) throws Exception {
 		service.delete(vo);
-		
-		return "redirect:/memberForm";
+		return "redirect:/xdmin/memberList";
 	}
 	
 	@RequestMapping(value = "/xdmin/memberView")

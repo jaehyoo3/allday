@@ -7,7 +7,6 @@
 
 <html>
 	<head>
-		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>관리자 페이지</title>
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
@@ -15,7 +14,10 @@
 	</head>
 	
 	<body>
-		<form name='form' id='form' method="post">
+		<form name="form" id="form" method="post">
+		
+		<%@include file="memberVo.jsp"%>
+		
 			<input type="checkbox" id="menu-toggle"/>
 			<label for="menu-toggle" class="menu-icon"><i class="fa fa-bars"></i></label>
 			<div class="content-container">
@@ -32,9 +34,10 @@
 					<img class="profile" src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png' name='find' id='find' border='0' onclick='document.all.fileup1.click(); document.all.fileup2.value=document.all.fileup1.value' style="cursor:pointer;">
 				</div>
 				<input type='text' name='file2' id='file2' style='display:none;'>
-				<input type="hidden" name='memberSeq' value="<c:out value="${item.memberSeq }"/>">
 				<lable>CODE</lable>
 				<input type='text' class='form-control' name='memberSeq' id='memberSeq' value="<c:out value="${item.memberSeq}"/>" disabled>
+				<lable>사용여부</label>
+				<input type='text' class='form-control' name='memberDelNy' id='memberDelNy' value="<c:out value="${item.memberDelNy}"/>" disabled>
 				<lable>이름</lable>
 				<input class="form-control" type="text" name='memberName' value="<c:out value="${item.memberName }"/>">
 				<label>비밀번호</label>
@@ -100,6 +103,11 @@
 				<!-- sideMenu s  -->
 					<%@include file="../../infra/includeV1/sideMenu.jsp"%>
 				<!-- sideMenu e -->
+				
+				<%@include file="../../infra/includeV1/modals.jsp"%>
+		</form>
+		<form name="formVo" id="formVo" method="post">
+			<%@include file="memberVo.jsp"%>	
 		</form>
 		<script src="https://kit.fontawesome.com/a1961b2393.js"crossorigin="anonymous"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
@@ -115,6 +123,7 @@
 			
 			var seq = $("input:text[name=memberSeq]");				/* #-> */
 			var form = $("form[name=form]")
+			var formVo = $("form[name=formVo]");
 	
 			$("#btnSave").on("click", function() {
 				if(seq.val() == "0" || seq.val() == "") {
@@ -123,6 +132,37 @@
 					form.attr("action", goUrlUpdt).submit();
 				}
 			});
-			</script>
+			
+			$("#btnUelete").on("click", function(){
+				$(".modal-title").text("확 인");
+				$(".modal-body").text("해당 데이터를 Uelete 삭제하시겠습니까 ?");
+				$("#btnModalUelete").show();
+				$("#btnModalDelete").hide();
+				$("#modalConfirm").modal("show");
+			});
+			
+			$("#btnDelete").on("click", function(){
+				$(".modal-title").text("확 인");
+				$(".modal-body").text("해당 데이터를 Delete 삭제하시겠습니까 ?");
+				$("#btnModalUelete").hide();
+				$("#btnModalDelete").show();
+				$("#modalConfirm").modal("show");
+			});
+			
+			$("#btnModalUelete").on("click", function(){
+				$("#modalConfirm").modal("hide");
+				form.attr("action", goUrlUele).submit();
+			});
+			
+			$("#btnModalDelete").on("click", function(){
+				$("#modalConfirm").modal("hide");
+				form.attr("action", goUrlDele).submit();
+			});
+			
+			$("#btnList").on("click", function(){
+				formVo.attr("action", goUrlList).submit();
+			});
+		</script>
+
 	</body>
 </html>

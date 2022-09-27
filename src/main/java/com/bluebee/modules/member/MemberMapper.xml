@@ -50,6 +50,7 @@
 			select last_insert_id()
 		</selectKey>
 	</insert>
+	
 		<select id="selectOneCount" resultType="Integer">
 			SELECT COUNT(*)
 			<include refid="basic" />

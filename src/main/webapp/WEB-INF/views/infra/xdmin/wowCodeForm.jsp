@@ -15,7 +15,7 @@
 
 	
 	<body>
-		<form name="form" id="form" name="form" method="post" autocomplete="off">
+		<form name="form" id="form" method="post" autocomplete="off">
 		<%@include file="codeVo.jsp"%>	
 			<input type="checkbox" id="menu-toggle"/>
 			<label for="menu-toggle" class="menu-icon"><i class="fa fa-bars"></i></label>
@@ -92,11 +92,7 @@
 					<div class="p-1"><button type="button" class="btn btn-danger" name='btnDelete' id="btnDelete"><i class="fa-solid fa-trash"></i></button></div>
 					<div class="p-1"><button type="button" class="btn btn-success" id="btnSave"><i class="fa-solid fa-bookmark"></i></button></div>
 			</div>
-			
-			<!-- CODEVO s  -->
-				<%@include file="../../infra/includeV1/codeVo.jsp"%>
-			<!-- CODEVO e -->
-			
+						
 			<!-- footer s  -->
 				<%@include file="../../infra/includeV1/footer.jsp"%>
 			<!-- footer e -->

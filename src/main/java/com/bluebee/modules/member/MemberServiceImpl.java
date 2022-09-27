@@ -8,6 +8,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class MemberServiceImpl implements MemberService {
 	
+	@Override
+	public int selectOneCount(MemberVo vo) throws Exception {
+		return dao.selectOneCount(vo);
+	}
+
 	@Autowired
 	MemberDao dao;
 	

@@ -15,8 +15,15 @@
 	</head>
 	
 	<body>
-		<form>
+		<form name='form' method="post">
 			<div id='haeder'></div>
+			<input type="hidden" name="memberSeq">
+			<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage}" default="1"/>">
+			<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>">
+			
+			<jsp:useBean id="XdminCodeServiceImpl" class="com.bluebee.modules.xdmincode.XdminCodeServiceImpl"/>
+			<c:set var="listCodeGender" value="${XdminCodeServiceImpl.selectListCachedCode('2')}"/>
+			
 			<input type="checkbox" id="menu-toggle"/>
 			<label for="menu-toggle" class="menu-icon"><i class="fa fa-bars"></i></label>
 			<div class="content-container">
@@ -24,11 +31,15 @@
 				<a href="#" id="logo"> <img src="../img/logo2.png" height="60"
 					onClick="location.href='main.html'">
 				</a>
-
 			</div>
-
 			<div id='content'>
 			<h3>회원관리</h3>
+				<span>total:<c:out value="${vo.totalRows}"/></span>
+				<select style="float:right;">
+					<option>10</option>
+					<option>20</option>
+					<option>30</option>
+				</select>
 				<table>
 					<thead>
 						<tr>
@@ -51,10 +62,10 @@
 					<c:forEach items="${list}" var="list" varStatus="status">
 						<tr>
 							<td><input type='checkbox'></td>
-							<td></td>
+							<td><c:out value="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + status.index) }"/></td>
 							<td><c:out value="${list.memberSeq }"/></td>
 							<td><c:out value="${list.memberName }"/></td>
-							<td><a href="/xdmin/memberView?memberSeq=<c:out value="${list.memberSeq }"/>"><c:out value="${list.memberID }"/></td>
+							<td><a href="javascript:goForm(<c:out value="${list.memberSeq }"/>)" class="text-decoration-none"><c:out value="${list.memberName }"/></a></td>
 							<td><c:out value="${list.memberNick }"/></td>
 							<td><c:out value="${list.memberMobile }"/></td>
 							<td><c:out value="${list.memberDob }"/></td>
@@ -72,24 +83,14 @@
 					</tbody>
 				</table>
 				<div class='Rposition'>
-					<button type='button' onClick="location.href='userform'">+</button>
+					<button type='button' id="btnForm">+</button>
 					<button>-</button>
 				</div>
-				<div class="container">
-				  <ul class="pagination">
-				    <li class="icon">
-				      <a href="#"><span class="fas fa-angle-left"></span></a>
-				    </li>
-				    <li><a href="#">1</a></li>
-				    <li><a href="#">2</a></li>
-				    <li><a href="#">3</a></li>
-				    <li><a href="#">4</a></li>
-				    <li><a href="#">5</a></li>
-				    <li class="icon">
-				      <a href="#"><span class="fas fa-angle-right"></span></a>
-				    </li>
-				  </ul>
-				</div>
+			<!-- pagination s  -->
+			<center>
+			<%@include file="../../infra/includeV1/pagination.jsp"%>
+			</center>
+			<!-- pagination e -->
 			</div>
 				<!-- footer s  -->
 					<%@include file="../../infra/includeV1/footer.jsp"%>
@@ -99,6 +100,89 @@
 					<%@include file="../../infra/includeV1/sideMenu.jsp"%>
 				<!-- sideMenu e -->
 		</form>
-		<script src="https://kit.fontawesome.com/a1961b2393.js"crossorigin="anonymous"></script>
+				<script src="https://kit.fontawesome.com/a1961b2393.js"crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+		<script type="text/javascript">
+		    $(document).ready(function () {
+		            $.datepicker.setDefaults($.datepicker.regional['ko']);
+		            $( "#startDate" ).datepicker({
+		                 changeMonth: true,
+		                 changeYear: true,
+		                 nextText: '다음 달',
+		                 prevText: '이전 달',
+		                 dayNames: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
+		                 dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+		                 monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+		                 monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+		                 dateFormat: "yy-mm-dd",
+		                 /* maxDate: 0,                       // 선택할수있는 최소날짜, ( 0 : 오늘 이후 날짜 선택 불가) */
+		                 onClose: function( selectedDate ) {
+		                      //시작일(startDate) datepicker가 닫힐때
+		                      //종료일(endDate)의 선택할수있는 최소 날짜(minDate)를 선택한 시작일로 지정
+		                     $("#endDate").datepicker( "option", "minDate", selectedDate );
+		                 }
+		
+		            });
+		            
+		            $( "#endDate" ).datepicker({
+		                 changeMonth: true,
+		                 changeYear: true,
+		                 nextText: '다음 달',
+		                 prevText: '이전 달',
+		                 dayNames: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
+		                 dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+		                 monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+		                 monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+		                 dateFormat: "yy-mm-dd",
+		                 /* maxDate: 0,                       // 선택할수있는 최대날짜, ( 0 : 오늘 이후 날짜 선택 불가) */
+		                 onClose: function( selectedDate ) {
+		                     // 종료일(endDate) datepicker가 닫힐때
+		                     // 시작일(startDate)의 선택할수있는 최대 날짜(maxDate)를 선택한 시작일로 지정
+		                     $("#startDate").datepicker( "option", "maxDate", selectedDate );
+		                 }
+		
+		            });
+		  		  });    
+			    var goUrlList = "/xdmin/memberList";
+			    var goUrlForm = "/xdmin/memberForm";
+			    var goUrlView = "/xdmin/memberView";
+			    		    
+				var form = $("form[name=form]")
+				var seq = $("input:hidden[name=memberSeq]");
+		
+				function showHide(id){
+				     var objId = document.getElementById(id);
+				     if(objId.style.display=="block"){
+				        objId.style.display = "none";
+				     } else {
+				        objId.style.display = "block";
+				     }
+				} 
+				
+				function change() {
+					const subs = document.getElementById("subscriberBtn")
+			
+					    if(subs.innerText == '검색조건') {
+					        subs.innerText = '닫기';
+					    } else subs.innerText ='검색조건';
+				};
+				
+				goList = function(thisPage) {
+					$("input:hidden[name=thisPage]").val(thisPage);
+					form.attr("action", goUrlList).submit();
+				}
+	
+				$('#btnForm').on("click", function() {
+					goForm(0);                
+				});
+	
+				goForm = function(keyValue) {
+			    	/* if(keyValue != 0) seq.val(btoa(keyValue)); */
+			    	seq.val(keyValue);
+					form.attr("action", goUrlView).submit();
+				}
+		</script>
 	</body>
 </html>
