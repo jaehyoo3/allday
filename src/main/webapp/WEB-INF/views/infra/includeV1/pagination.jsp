@@ -15,6 +15,7 @@
 				 			</c:otherwise>
 				 		</c:choose>
 				 	</c:forEach>
+				 	
 				 	<c:if test="${vo.endPage ne vo.totalPages}">  
 				  <li><a href="javascript:goList(${vo.endPage + 1})" class="next fa fa-arrow-right"></a></li>
 				 	</c:if>

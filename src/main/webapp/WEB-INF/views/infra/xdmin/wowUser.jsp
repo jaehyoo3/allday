@@ -140,12 +140,22 @@
 							  	</c:choose>
 						</span>
 						<span class='pagination1'>
-						<c:if test="${vo.startPage gt vo.pageNumToShow}">
-                			<a class="prev fa fa-arrow-left" href="javascript:goList(${vo.startPage - 1})"></a>
-						</c:if>
-						<c:if test="${vo.endPage ne vo.totalPages}">  
-				 			<a href="javascript:goList(${vo.endPage + 1})" class="next fa fa-arrow-right"></a></li>
-				 		</c:if>
+							<c:choose>
+								<c:when test="${vo.thisPage gt 1}">
+	                				<a href="javascript:goList(${vo.thisPage - 1})"><i class="fa-solid fa-chevron-left"></i></a>
+	                			</c:when>
+	                			<c:otherwise>
+	                				<i class="fa-solid fa-chevron-left"></i>
+	                			</c:otherwise>
+	                		</c:choose>
+	                		<c:choose>
+							<c:when test="${vo.endPage ne vo.totalPages}">
+					 			<a href="javascript:goList(${vo.thisPage + 1})"><i class="fa-solid fa-angle-right"></i></a>
+					 		</c:when>
+	                			<c:otherwise>
+	                			<i class="fa-solid fa-angle-right"></i>
+	                			</c:otherwise>
+	                		</c:choose>
 				 		</span>
 					</span>
 					
