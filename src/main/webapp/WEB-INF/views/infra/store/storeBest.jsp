@@ -32,7 +32,7 @@
 				<c:if test="${list.productBest eq 1}">
 					<a>
 						<img src="/resources/Images/img/knit.jpg"><br>
-						<span><c:out value="${list.productName}"/></span> <span class='new'>Best</span>
+						<span><c:out value="${list.productName}"/></span> <span class='best'>Best</span>
 						<p class="price">￦<fmt:formatNumber value="${list.productPrice}" pattern="##,###" /></p>
 					</a> 
 				</c:if>

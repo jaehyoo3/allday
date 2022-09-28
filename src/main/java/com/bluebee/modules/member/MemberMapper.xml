@@ -167,6 +167,7 @@
     			,a.memberID
     			,a.memberName
     			,a.memberNick
+    			,a.memberGrade
     		from
     			member a
     		where 1=1

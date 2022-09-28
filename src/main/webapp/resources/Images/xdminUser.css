@@ -1,228 +1,121 @@
-			#haeder {
-				height: 50px;
-			}
-			.navbar {
-				height: 80px;
-				padding-left: 50px;
-				padding-right: 50px;
-			}
-			.navbar #logo {
-				line-height: 60px;
-			}
-			.navbar img {
-				vertical-align: top;
-			}
-			#content {
-				width: 80%;
-				margin: auto;
-				margin-bottom: 50px;
-			}
-			#footer {
-				background-color: black;
-				color: white;
-				height: 90px;
-				width: 100%;
-				clear: both;
-			}
-			#footer .copyright {
-				text-align: center;
-				padding: 30px;
-			}
-
-				.Rposition {
-					float:right;
-				}
-			body {
-				font-family: 'Lato', arial, sans-serif;
-				margin: 0;
-			} table {
-				border-collapse: collapse;
-				margin-bottom:20px;
-				width: 100%;
-			} thead th{
-				width: 300px;
-				border-top: 1px solid rgba(0, 0, 0, .1);
-				border-bottom: 1px solid rgba(0, 0, 0, .1);
-				text-align:center;
-				padding: 5px;
-				color:gray;
-				font-size: 14px;
-			}  tbody td {
-				text-align: center;
-				border-bottom: 1px solid rgba(0, 0, 0, .1);
-				border-left: 1px solid rgba(0, 0, 0, .1);
-				border-right: 1px solid rgba(0, 0, 0, .1);
-				padding: 10px;
-				font-size: 14px;
-			}  tbody td:first-child {
-				border-left: 0;
-			}  tbody td:last-child {
-				border-right: 0;
-			} :selection {
-			  color: #fff;
-			  background: #f23b26;
-			}
-
-			.pagination {
-			  list-style: none;
-			  display: inline-block;
-			  padding: 0;
-			  margin-top: 10px;
-			}
-			.pagination li {
-			  display: inline;
-			  text-align: center;
-			}
-			.pagination a {
-			  float: left;
-			  display: block;
-			  font-size: 14px;
-			  text-decoration: none;
-			  padding: 5px 12px;
-			  color: #fff;
-			  margin-left: -1px;
-			  border: 1px solid transparent;
-			  line-height: 1.5;
-			}
-			.pagination a.active {
-			  cursor: default;
-			}
-			.pagination a:active {
-			  outline: none;
-			}			
-			.modal-5 {
-			  position: relative;
-			}
-			.modal-5:after {
-			  content: '';
-			  position: absolute;
-			  width: 100%;
-			  height: 35px;
-			  left: 0;
-			  bottom: 0;
-			  z-index: -1;
-			  background-image: -moz-linear-gradient(left, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.65) 40%, rgba(0, 0, 0, 0.65) 50%, rgba(0, 0, 0, 0.65) 60%, rgba(0, 0, 0, 0) 100%);
-			  background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.65) 40%, rgba(0, 0, 0, 0.65) 50%, rgba(0, 0, 0, 0.65) 60%, rgba(0, 0, 0, 0) 100%);
-			  background-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.65) 40%, rgba(0, 0, 0, 0.65) 50%, rgba(0, 0, 0, 0.65) 60%, rgba(0, 0, 0, 0) 100%);
-			}
-			.modal-5 a {
-			  color: #666;
-			  padding: 13px 5px 5px;
-			  margin: 0 10px;
-			  position: relative;
-			}
-			.modal-5 a:hover {
-			  color: #fff;
-			}
-			.modal-5 a:hover:after {
-			  content: '';
-			  position: absolute;
-			  width: 24px;
-			  height: 24px;
-			  background: #1E7EE2;
-			  -moz-border-radius: 100%;
-			  -webkit-border-radius: 100%;
-			  border-radius: 100%;
-			  z-index: -1;
-			  left: -3px;
-			  bottom: 4px;
-			  margin: auto;
-			}
-			.modal-5 a.next, .modal-5 a.prev {
-			  color: #1E7EE2;
-			}
-			.modal-5 a.next:hover, .modal-5 a.prev:hover {
-			  color: #fff;
-			}
-			.modal-5 a.next:hover:after, .modal-5 a.prev:hover:after {
-			  display: none;
-			}
-			.modal-5 a.active {
-			  background: #1E7EE2;
-			  color: #fff;
-			}
-			.modal-5 a.active:before {
-			  content: '';
-			  position: absolute;
-			  top: -11px;
-			  left: -10px;
-			  width: 18px;
-			  border: 10px solid transparent;
-			  border-bottom: 7px solid #104477;
-			  z-index: -1;
-			}
-			.modal-5 a.active:hover:after {
-			  display: none;
-			}
-
-			.content-container {
-			  position: relative;
-			  z-index: 0;
-			  overflow: hidden;
-			  transition: all 300ms ease-in-out;
-			}
-			.slideout-sidebar {
-			  position: fixed;
-			  top: 0;
-			  left: -190px;
-			  z-index: 0;
-			  width: 150px;
-			  height: 100%;
-			  padding: 20px;
-			  background-color: #212121;
-			  transition: all 300ms ease-in-out;
-			  color: rgba(244,244,244,0.7);
-			  text-align:center;
-			}
-			.slideout-sidebar ul {
-			  list-style: none;
-			  margin: 0;
-			  padding: 0;
-			}
-			.slideout-sidebar ul li {
-			  padding: 18px 0;
-			  border-bottom: 1px solid rgba(244,244,244,0.4);
-			  cursor: pointer;
-			  color: rgba(244,244,244,0.7);
-			}
-			.slideout-sidebar ul li:last-child {
-			  border-bottom: 0;
-			}
-			.slideout-sidebar ul li:hover {
-			  color: rgba(244,244,244,1);
-			}			
-			#menu-toggle {
-			  display: none;
-			}
-			.menu-icon {
-			  position: absolute;
-			  top: 18px;
-			  left: 30px;
-			  font-size: 24px;
-			  z-index: 1;
-			  transition: all 300ms ease-in-out;
-			}
-			#menu-toggle:checked ~ .slideout-sidebar {
+			.navbar-global {
+			  background-color: #62757f;
+			} .navbar-global .navbar-brand {
+			  color: white;
+			} .navbar-global .navbar-user > li > a {
+			  color: white;
+			} .navbar-primary {
+			  background-color: #90a4ae;
+			  bottom: 0px;
 			  left: 0px;
-			}
-			
-			#menu-toggle:checked + .menu-icon {
-			  left: 210px;
-			}
-			
-			#menu-toggle:checked ~ .content-container {
-			  padding-left: 190px;
-			}
-			  
-			#menu-toggle:checked ~ .content-container {
-			    padding-left: 200;
-			}
-			  
-			.slideout-sidebar ul {
+			  position: absolute;
+			  top: 51px;
+			  width: 200px;
+			  z-index: 8;
+			  overflow: hidden;
+			  -webkit-transition: all 0.1s ease-in-out;
+			  -moz-transition: all 0.1s ease-in-out;
+			  transition: all 0.1s ease-in-out;
+			} .navbar-primary.collapsed {
+			  width: 60px;
+			} .navbar-primary.collapsed .glyphicon {
+			  font-size: 22px;
+			} .navbar-primary.collapsed .nav-label {
+			  display: none;
+			} .btn-expand-collapse {
+			    position: absolute;
+			    display: block;
+			    left: 0px;
+			    bottom:0;
+			    width: 100%;
+			    padding: 8px 0;
+			    border-top:solid 1px #666;
+			    color: white;
+			    background-color:#4b636e;
+			    font-size: 20px;
 			    text-align: center;
-			    max-width: 200px;
-			    margin: 30px auto 0;
+			} .btn-expand-collapse:hover,
+			.btn-expand-collapse:focus {
+			    background-color: #62757f;
+			    color: white;
+			} .btn-expand-collapse:active {
+			    background-color: #111;
+			} .navbar-primary-menu,
+			.navbar-primary-menu li {
+			  margin:0; padding:0;
+			  list-style: none;
+			} .navbar-primary-menu li a {
+			  display: block;
+			  padding: 10px 18px;
+			  text-align: left;
+			  border-bottom:solid 1px #444;
+			  color: white;
+			} .navbar-primary-menu li a:hover {
+			  background-color: #000;
+			  text-decoration: none;
+			  color: white;
+			} .navbar-primary-menu li a .glyphicon {
+			  margin-right: 6px;
+			} .navbar-primary-menu li a:hover .glyphicon {
+			  color: #a7c0cd;
+			} .main-content {
+			  margin-top: 60px;
+			  margin-left: 200px;
+			  padding: 20px;
+			} .collapsed + .main-content {
+			  margin-left: 60px;
+			} .main-content .table-box{
+				width:100%;
 			}
-			.menu-icon {
-			    left: 20px
+			table, td, th {
+				border: 1px solid black;
+				border-collapse: collapse;
+				text-align: center;
+			} thead {
+				background-color:black;
+				color:white;
+			} table {
+				width: 100%;
+				margin-top: 60px;
+			}
+			.select-style {
+			    padding: 0;
+			    margin: 0;
+			    border-bottom: 1px solid #ccc;
+			    width: 40px;
+			    overflow: hidden;
+			    background-color: #fff;
+			    display:inline-block;
+			}
+			.select-style select {
+			    padding: 5px 8px;
+			    width: 100%;
+			    border: none ;
+			    box-shadow: none;
+			    background-color: transparent;
+			    background-image: none;
+			    -webkit-appearance: none;
+			    -moz-appearance: none;
+			    appearance: none;
+			} .pagination1 {
+				vertical-align: 10px;
+			} .main-content .serach-box {
+				width: 50%;
+				margin:auto;
+				text-align:center;
+			} .serach-box input {
+				border:1px solid #E0E0E0;
+				border-radius: 6px;
+				height: 30px;
+			} .serach-box select {
+				border:1px solid #e0e0e0;
+				border-radius: 6px;
+				height: 30px;
+			} button {
+				background-color:white;
+				border-radius: 6px;
+				border: 1px solid #e0e0e0;
+				height: 30px;
+			}.main-content .pagination-box {
+				float: right;
 			}
