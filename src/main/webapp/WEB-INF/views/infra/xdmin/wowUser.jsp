@@ -16,7 +16,6 @@
 	
 	<body>
 		<form name='form' method="post">
-			<div id='haeder'></div>
 			<input type="hidden" name="memberSeq">
 			<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage}" default="1"/>">
 			<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>">
@@ -24,97 +23,151 @@
 			<jsp:useBean id="XdminCodeServiceImpl" class="com.bluebee.modules.xdmincode.XdminCodeServiceImpl"/>
 			<c:set var="listCodeGender" value="${XdminCodeServiceImpl.selectListCachedCode('2')}"/>
 			<c:set var="listCodeGrade" value="${XdminCodeServiceImpl.selectListCachedCode('8')}"/>
-			
-			<input type="checkbox" id="menu-toggle"/>
-			<label for="menu-toggle" class="menu-icon"><i class="fa fa-bars"></i></label>
-			<div class="content-container">
-			<div class="navbar">
-				<a href="#" id="logo"> <img src="../img/logo2.png" height="60"
-					onClick="location.href='main.html'">
-				</a>
-			</div>
-			<div id='content'>
-			<h3>회원관리</h3>
-				<span>total:<c:out value="${vo.totalRows}"/></span>
-				<select style="float:right;">
-					<option>10</option>
-					<option>20</option>
-					<option>30</option>
-				</select>
-				<table>
-					<thead>
-						<tr>
-							<th style='width:3%;'><input type='checkbox'></th>
-							<th style='width:5%;'>#</th>
-							<th style='width:5%;'>Seq</th>
-							<th>이름</th>
-							<th>아이디</th>
-							<th>닉네임</th>
-							<th>전화번호</th>
-							<th>생년월일</th>
-							<th>이메일</th>
-							<th>성별</th>
-							<th>등급</th>
-							<th>가입일</th>
-							<th>최근 접속일</th>
-						</tr>
-					</thead>
-					<tbody>
-					<c:forEach items="${list}" var="list" varStatus="status">
-						<tr>
-							<td><input type='checkbox'></td>
-							<td><c:out value="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + status.index) }"/></td>
-							<td><c:out value="${list.memberSeq }"/></td>
-							<td><c:out value="${list.memberName }"/></td>
-							<td><a href="javascript:goForm(<c:out value="${list.memberSeq }"/>)" class="text-decoration-none"><c:out value="${list.memberID }"/></a></td>
-							<td><c:out value="${list.memberNick }"/></td>
-							<td><c:out value="${list.memberMobile }"/></td>
-							<td><c:out value="${list.memberDob }"/></td>
-							<td><c:out value="${list.memberEmail }"/></td>
-							<td>
-								<c:forEach items="${listCodeGender}" var="listGender" varStatus="statusGender">
-									<c:if test="${list.memberGender eq listGender.codeOrder}"><c:out value="${listGender.codeName}"/></c:if>
-								</c:forEach>
-							</td>
-							<td>
- 								<c:forEach items="${listCodeGrade}" var="list2" varStatus="statusGender">
-									<c:if test="${list.memberGrade eq list2.codeOrder}"><c:out value="${list2.codeName}"/></c:if>
-								</c:forEach>
-							</td>
-							<td><c:out value="${list.memberRegdate }"/></td>
-							<td><c:out value="${list.memberUpdate }"/></td>
-						</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-				<div class='Rposition'>
-					<button type='button' id="btnForm">+</button>
-					<button>-</button>
+		
+		<nav class="navbar navbar-inverse navbar-global navbar-fixed-top">
+			<div class="container-fluid">
+		    	<div class="navbar-header">
+		          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+		            <span class="sr-only">Toggle navigation</span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+		          </button>
+		          <a class="navbar-brand" href="#">BlueBeE</a>
+		        </div>
+		        <div id="navbar" class="collapse navbar-collapse">
+		          <ul class="nav navbar-nav navbar-user navbar-right">
+		            <li><a href="#"><span class="glyphicon glyphicon-user"></span> Admin</a></li>
+		            <li><a href="#about"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+		          </ul>
+		        </div><!--/.nav-collapse -->
+		      </div>
+		    </nav>
+		<nav class="navbar-primary">
+		  <a href="#" class="btn-expand-collapse"><i class="fa-solid fa-backward-step"></i></a>
+		  <ul class="navbar-primary-menu">
+		    <li>
+		      <a href="#"><i class="fa-solid fa-user"></i> <span class="nav-label">Member</span></a>
+		      <a href="#"><i class="fa-solid fa-cart-flatbed"></i> <span class="nav-label">Product</span></a>
+		      <a href="#"><i class="fa-solid fa-code"></i> <span class="nav-label">Code</span></a>
+		      <a href="#"><i class="fa-solid fa-folder-open"></i> <span class="nav-label">CodeGroup</span></a>
+		    </li>
+		  </ul>
+		</nav>
+		<div class="main-content">
+			<h1><i class="fa-solid fa-user"></i> Member</h1>
+				<div class="serach-box">
+					<p> 
+						<select style="width:30%;"></select>
+						<select style="width:30%;"></select>
+						<select style="width:30%;"></select>
+					</p>
+					<p>
+						<input type="text" style="width:49.5%;">
+						<input type="text" style="width:49.5%;">
+					</p>
+					<p>
+						<input type="text" style="width:70%;">
+						<button><i class="fa-solid fa-magnifying-glass"></i></button>
+						<button><i class="fa-solid fa-rotate-left"></i></button>
+					</p>
 				</div>
-	  <div class="input-field col s12">
-                  <select name="role" required="required" id="role">
-                    <option value="0">Player</option>
-                    <option value="1">Coach</option>
-                    <option value="2">Scout</option>
-                  </select>
-                  <label for="role">I'm a </label>
-                </div>
-			<span>Rows per page:</span>
-			<!-- pagination s  -->
-			<center>
-			<%@include file="../../infra/includeV1/pagination.jsp"%>
-			</center>
-			<!-- pagination e -->
-			</div>
-				<!-- footer s  -->
-					<%@include file="../../infra/includeV1/footer.jsp"%>
-				<!-- footer e -->
-			</div>
-				<!-- sideMenu s  -->
-					<%@include file="../../infra/includeV1/sideMenu.jsp"%>
-				<!-- sideMenu e -->
+			<p>
+				<div class='table-box'>
+					<table>
+						<thead>
+							<tr>
+								<th style='width:3%;'><input type='checkbox'></th>
+								<th style='width:5%;'>#</th>
+								<th style='width:5%;'>Seq</th>
+								<th>이름</th>
+								<th>아이디</th>
+								<th>닉네임</th>
+								<th>전화번호</th>
+								<th>생년월일</th>
+								<th>이메일</th>
+								<th>성별</th>
+								<th>등급</th>
+								<th>가입일</th>
+							</tr>
+						</thead>	
+						<tbody>
+							<c:forEach items="${list}" var="list" varStatus="status">
+								<tr>
+									<td><input type='checkbox'></td>
+									<td><c:out value="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + status.index) }"/></td>
+									<td><c:out value="${list.memberSeq }"/></td>
+									<td><c:out value="${list.memberName }"/></td>
+									<td><a href="javascript:goForm(<c:out value="${list.memberSeq }"/>)" class="text-decoration-none"><c:out value="${list.memberID }"/></a></td>
+									<td><c:out value="${list.memberNick }"/></td>
+									<td><c:out value="${list.memberMobile }"/></td>
+									<td><c:out value="${list.memberDob }"/></td>
+									<td><c:out value="${list.memberEmail }"/></td>
+									<td>
+										<c:forEach items="${listCodeGender}" var="listGender" varStatus="statusGender">
+											<c:if test="${list.memberGender eq listGender.codeOrder}"><c:out value="${listGender.codeName}"/></c:if>
+										</c:forEach>
+									</td>
+									<td>
+		 								<c:forEach items="${listCodeGrade}" var="list2" varStatus="statusGender">
+											<c:if test="${list.memberGrade eq list2.codeOrder}"><c:out value="${list2.codeName}"/></c:if>
+										</c:forEach>
+									</td>
+									<td><c:out value="${list.memberRegdate }"/></td>
+								</tr>
+							</c:forEach>
+						</tbody>				
+					</table>
+				</div>
+				<div class='pagination-box'>
+					<span>
+						<span class='pagination1'>Rows per page:</span>
+						<div class="select-style">
+							<select name="rowNumToShow">
+								<option value=10 <c:if test="${vo.rowNumToShow == 10}">selected</c:if>>10</option>
+								<option value=30 <c:if test="${vo.rowNumToShow == 30}">selected</c:if>>30</option>
+								<option value=50 <c:if test="${vo.rowNumToShow == 50}">selected</c:if>>50</option>
+							</select>
+						</div>
+						<span class='pagination1'>
+								<c:choose>
+									<c:when test="${vo.endRnumForMysql ge vo.totalRows }">
+										${vo.startRnumForMysql + 1}-${vo.totalRows} of ${vo.totalRows}
+									</c:when>
+									<c:otherwise>
+							  			${vo.startRnumForMysql + 1}-${vo.endRnumForMysql} of ${vo.totalRows}
+							  		</c:otherwise>
+							  	</c:choose>
+						</span>
+						<span class='pagination1'>
+						<c:if test="${vo.startPage gt vo.pageNumToShow}">
+                			<a class="prev fa fa-arrow-left" href="javascript:goList(${vo.startPage - 1})"></a>
+						</c:if>
+						<c:if test="${vo.endPage ne vo.totalPages}">  
+				 			<a href="javascript:goList(${vo.endPage + 1})" class="next fa fa-arrow-right"></a></li>
+				 		</c:if>
+				 		</span>
+					</span>
+					
+				<%-- 	<ul class="pagination modal-5">
+					<c:forEach begin="${vo.startPage}" end="${vo.endPage}" varStatus="i">
+						<c:choose>
+							<c:when test="${i.index eq vo.thisPage}">
+				  				<li> <a href="javascript:goList(${i.index})" class="active">${i.index}</a></li>
+				  			</c:when>
+							<c:otherwise>  
+				 				<li> <a href="javascript:goList(${i.index})">${i.index}</a></li>
+				 			</c:otherwise>
+				 		</c:choose>
+				 	</c:forEach>
+				 	<c:if test="${vo.endPage ne vo.totalPages}">  
+				  <li><a href="javascript:goList(${vo.endPage + 1})" class="next fa fa-arrow-right"></a></li>
+				 	</c:if>
+				</ul> --%>
+				</div>
+			</p>
 		</form>
-				<script src="https://kit.fontawesome.com/a1961b2393.js"crossorigin="anonymous"></script>
+		<script src="https://kit.fontawesome.com/a1961b2393.js"crossorigin="anonymous"></script>
 		<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 		<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
