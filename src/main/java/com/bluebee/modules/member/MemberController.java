@@ -134,11 +134,12 @@ public class MemberController {
 			dto.setMemberPW(UtilSecurity.encryptSha256(dto.getMemberPW()));
 			Member rtMember2 = service.selectOneLogin(dto);
 
-			if (rtMember2 != null) {
+			if(rtMember2 != null) {
 				httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE); // 60second * 30 = 30minute
 				httpSession.setAttribute("sessSeq", rtMember2.getMemberSeq());
 				httpSession.setAttribute("sessId", rtMember2.getMemberID());
 				httpSession.setAttribute("sessName", rtMember2.getMemberName());
+				httpSession.setAttribute("sessNick", rtMember2.getMemberNick());
 				returnMap.put("rt", "success");
 			} else {
 				dto.setMemberSeq(rtMember.getMemberSeq());
@@ -150,6 +151,14 @@ public class MemberController {
 		return returnMap;
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "member/logoutProc")
+	public Map<String, Object> logoutProc(HttpSession httpSession) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		httpSession.invalidate();
+		returnMap.put("rt", "success");
+		return returnMap;
+	}
 	
 
 }

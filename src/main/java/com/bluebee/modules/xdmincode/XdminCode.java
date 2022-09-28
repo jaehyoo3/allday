@@ -22,7 +22,14 @@ public class XdminCode {
 	private Date codeRegdate;
 	private Date codeUpdate;
 	private String codeGroupName;
+	private Integer productNEW;
 	
+	public Integer getProductNEW() {
+		return productNEW;
+	}
+	public void setProductNEW(Integer productNEW) {
+		this.productNEW = productNEW;
+	}
 	public static List<XdminCode> cachedCodeArrayList = new ArrayList<XdminCode>();
 	
 	public String getCodeGroupName() {

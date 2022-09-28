@@ -91,6 +91,15 @@
 					<button type='button' id="btnForm">+</button>
 					<button>-</button>
 				</div>
+	  <div class="input-field col s12">
+                  <select name="role" required="required" id="role">
+                    <option value="0">Player</option>
+                    <option value="1">Coach</option>
+                    <option value="2">Scout</option>
+                  </select>
+                  <label for="role">I'm a </label>
+                </div>
+			<span>Rows per page:</span>
 			<!-- pagination s  -->
 			<center>
 			<%@include file="../../infra/includeV1/pagination.jsp"%>

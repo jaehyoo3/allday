@@ -16,38 +16,9 @@
 	
 	<body>
 		<form>
-			<div id='header'>
-				<div class='menu'>
-					<ul class='ul'>
-						<li class='b'>
-							<div class="search-box">
-					    		<a href="#"><button class="btn-search"><i class="fas fa-search"></i></button></a>
-					   			<input type="text" class="input-search" placeholder="Search">
-					  		</div>
-						</li>
-						<li class='b'><div class="vr"></li>
-						<li class='b'><a href="#" onClick="location.href='basket'"><i class="fa-solid fa-bag-shopping"></i></a></li>
-						<li class='b'><a href="#" onClick="location.href='modify'"><i class="fa-solid fa-user"></i></a></li>
-						<li class='b'><a href="#" onClick="location.href='login'"><i class="fa-solid fa-right-to-bracket"></i></a></li>
-						<li class='b'><div class="vr"></li>
-						<li class='b'><a href="#">고객센터</a></li>
-					</ul>
-				</div>
-			</div>
-			<div class="navbar">
-		        <a href="#" id="logo">
-		            <img src="/resources/Images/img/logo2.png" height="60" onClick="location.href='/'">
-		        </a>
-		        <ul id="menu">
-		            <li><a href="#" onClick="location.href='storeNew'"><b>New</b></a></li>
-		            <li><a href="#"><b>Best</b></a></li>
-		            <li><a href="#"><b>Outer</b></a></li>
-		            <li><a href="#"><b>Top</b></a></li>
-		            <li><a href="#"><b>Pants</b></a></li>
-		            <li><a href="#"><b><div class="vr"></b></a></li>
-		            <li><a href="#"><b><i class="fa-brands fa-instagram fa-xl"></i></b></a></li>
-		        </ul>
-	  		</div>
+		<!-- navMenu s  -->
+			<%@include file="../../infra/includeV1/Menu.jsp"%>
+		<!-- navMenu e --> 
 			<div id='content'>
 				<div class='buy'>
 					<h3>결제하기</h3>
