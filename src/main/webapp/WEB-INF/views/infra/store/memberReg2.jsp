@@ -37,6 +37,7 @@
 				</center>
 				
 				<!-- ID -->
+				<span>아이디</span>
 				<input type="text" class="form-control mb-1" id="memberID" name="memberID" placeholder="아이디">
 				<div class="invalid-feedback mb-2" id='idFeedback'></div>
 				<input type="password" class="form-control mb-1" id="memberPW" name='memberPW' placeholder="비밀번호">

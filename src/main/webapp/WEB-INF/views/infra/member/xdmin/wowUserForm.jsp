@@ -11,6 +11,17 @@
 		<title>관리자 페이지</title>
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 		<link href="/resources/Images/xdminUserForm.css" rel="stylesheet">
+		<style type="text/css">
+
+ 	
+	.input-file-button{
+		padding: 4px 25px;
+		background-color:#FF6600;
+		border-radius: 4px;
+		color: white;
+		cursor: pointer;
+	}	
+</style>
 	</head>
 	
 	<body>
@@ -29,11 +40,42 @@
 			</div>
 			<div id='content'>
 			<h3>회원관리</h3>
-				<input type=file name='fileup1' accept='image/*' style='display: none;'>
-				<div class="box" style="background: #BDBDBD;">
-					<img class="profile" src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png' name='find' id='find' border='0' onclick='document.all.fileup1.click(); document.all.fileup2.value=document.all.fileup1.value' style="cursor:pointer;">
-				</div>
-				<input type='text' name='file2' id='file2' style='display:none;'>
+			<c:forEach items="${listUploaded}" var="listUploaded" varStatus="statusUploaded">
+	<c:out value="${listUploaded.type }"/>
+</c:forEach>
+		    <div class="row mt-sm-4 ">
+		        <div class="col-sm-12 text-center">
+		<c:choose>
+			<c:when test="${fn:length(listUploaded) eq 0 }">
+				<img id="imgProfile" src="/resources/xdmin/image/default_100_100.png" class="rounded-circle mx-auto d-block" width="100" height="100">
+			</c:when>
+			<c:otherwise>
+				<c:forEach items="${listUploaded}" var="listUploaded" varStatus="statusUploaded">
+					<c:if test="${listUploaded.type eq '1' }">
+						<img id="imgProfile" src="<c:out value="${listUploaded.path }"/><c:out value="${listUploaded.uuidName }"/>" class="rounded-circle mx-auto d-block" width="100" height="100">
+					</c:if>
+				</c:forEach>
+			</c:otherwise>
+		</c:choose>
+		<%-- 
+		<c:forEach items="${listUploaded}" var="listUploaded" varStatus="statusUploaded">
+			<c:choose>
+				<c:when test="${not empty listUploaded.type && listUploaded.type eq 1 }">
+					<img id="imgProfile" src="<c:out value="${Constants.UPLOAD_PATH_PREFIX_FOR_VIEW }"/><c:out value="${listUploaded.uuidName }"/>" class="rounded-circle mx-auto d-block" width="100" height="100">
+				</c:when>
+				<c:when test="${not empty listUploaded.type }">
+					<!-- empty -->1<c:out value="${listUploaded.type }"/>
+				</c:when>
+				<c:otherwise>
+					
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>        
+		 --%>            
+					<label for="ifmmUploadedProfileImage" class="form-label input-file-button"><b>+</b></label>
+		 			<input class="form-control form-control-sm" id="ifmmUploadedProfileImage" name="ifmmUploadedProfileImage" type="file" multiple="multiple" style="display: none;" onChange="upload('ifmmUploadedProfileImage', 0, 1, 1, 0, 0, 3);">
+		        </div>
+		    </div>
 				<lable>CODE</lable>
 				<input type='text' class='form-control' name='memberSeq' id='memberSeq' value="<c:out value="${item.memberSeq}"/>" disabled>
 				<lable>사용여부</label>
@@ -96,15 +138,8 @@
 					<div class="p-1"><button type="button" class="btn btn-success" id="btnSave"><i class="fa-solid fa-bookmark"></i></button></div>
 				</div>
 			</div>
-				<!-- footer s  -->
-					<%@include file="../../infra/includeV1/footer.jsp"%>
-				<!-- footer e -->
-			</div>
-				<!-- sideMenu s  -->
-					<%@include file="../../infra/includeV1/sideMenu.jsp"%>
-				<!-- sideMenu e -->
-				
-				<%@include file="../../infra/includeV1/modals.jsp"%>
+			
+				<%@include file="../../../infra/includeV1/modals.jsp"%>
 		</form>
 		<form name="formVo" id="formVo" method="post">
 			<%@include file="memberVo.jsp"%>	
@@ -162,6 +197,73 @@
 			$("#btnList").on("click", function(){
 				formVo.attr("action", goUrlList).submit();
 			});
+			
+		upload = function(objName, seq, allowedMaxTotalFileNumber, allowedExtdiv, allowedEachFileSize, allowedTotalFileSize, uiType) {
+//		objName 과 seq 는 jsp 내에서 유일 하여야 함.
+//		memberProfileImage: 1
+//		memberImage: 2
+//		memberFile : 3
+		
+		var totalFileSize = 0;
+		var obj = $("#" + objName +"")[0].files;	
+		var fileCount = obj.length;
+		
+		allowedMaxTotalFileNumber = allowedMaxTotalFileNumber == 0 ? MAX_TOTAL_FILE_NUMBER : allowedMaxTotalFileNumber;
+		allowedEachFileSize = allowedEachFileSize == 0 ? MAX_EACH_FILE_SIZE : allowedEachFileSize;
+		allowedTotalFileSize = allowedTotalFileSize == 0 ? MAX_TOTAL_FILE_SIZE : allowedTotalFileSize;
+		
+		if(checkUploadedTotalFileNumber(obj, allowedMaxTotalFileNumber, fileCount) == false) { return false; }
+		
+		for (var i = 0 ; i < fileCount ; i++) {
+			if(checkUploadedExt($("#" + objName +"")[0].files[i].name, seq, allowedExtdiv) == false) { return false; }
+			if(checkUploadedEachFileSize($("#" + objName +"")[0].files[i], seq, allowedEachFileSize) == false) { return false; }
+			totalFileSize += $("#" + objName +"")[0].files[i].size;
+		}
+		if(checkUploadedTotalFileSize(seq, totalFileSize, allowedTotalFileSize) == false) { return false; }
+		
+		if (uiType == 1) {
+			$("#ulFile" + seq).children().remove();
+			
+			for (var i = 0 ; i < fileCount ; i++) {
+				addUploadLi(seq, i, $("#" + objName +"")[0].files[i].name);
+			}
+		} else if(uiType == 2) {
+			$("#ulFile" + seq).children().remove();
+			
+			for (var i = 0 ; i < fileCount ; i++) {
+				addUploadLi(seq, i, $("#" + objName +"")[0].files[i].name);
+			}
+		} else if (uiType == 3) {
+			var fileReader = new FileReader();
+			 fileReader.readAsDataURL($("#" + objName +"")[0].files[0]);
+			
+			 fileReader.onload = function () {
+				 $("#imgProfile").attr("src", fileReader.result);		/* #-> */
+			 }		
+		} else {
+			return false;
+		}
+		return false;
+	}
+	
+	
+	addUploadLi = function (seq, index, name){
+		
+		var ul_list = $("#ulFile0");
+		
+		li = '<li id="li_'+seq+'_'+index+'" class="list-group-item d-flex justify-content-between align-items-center">';
+		li = li + name;
+		li = li + '<span class="badge bg-danger rounded-pill" onClick="delLi('+ seq +','+ index +')"><i class="fa-solid fa-x" style="cursor: pointer;"></i></span>';
+		li = li + '</li>';
+		
+		$("#ulFile"+seq).append(li);
+	}
+	
+	
+	delLi = function(seq, index) {
+		$("#li_"+seq+"_"+index).remove();
+	}
+	
 		</script>
 
 	</body>

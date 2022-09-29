@@ -39,7 +39,7 @@
 					</p>
 					<p>
 						<input type="text" style="width:70%;">
-						<button><i class="fa-solid fa-magnifying-glass"></i></button>
+						<button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
 						<button><i class="fa-solid fa-rotate-left"></i></button>
 					</p>
 				</div>
@@ -94,10 +94,11 @@
 					<span>
 						<span class='pagination1'>Rows per page:</span>
 						<div class="select-style">
-							<select name="rowNumToShow">
-								<option value=10 <c:if test="${vo.rowNumToShow == 10}">selected</c:if>>10</option>
-								<option value=30 <c:if test="${vo.rowNumToShow == 30}">selected</c:if>>30</option>
-								<option value=50 <c:if test="${vo.rowNumToShow == 50}">selected</c:if>>50</option>
+							<select id= "changeRowNum" name="changeRowNum">
+								<option value=10 <c:if test="${vo.rowNumToShow eq 10}">selected</c:if>>10</option>
+								<option value=30 <c:if test="${vo.rowNumToShow eq 30}">selected</c:if>>30</option>
+								<option value=50 <c:if test="${vo.rowNumToShow eq 50}">selected</c:if>>50</option>
+								<option value="<c:out value="${vo.totalRows}" />" <c:if test="${vo.rowNumToShow eq vo.totalRows}">selected</c:if>>ALL</option>
 							</select>
 						</div>
 						<span class='pagination1'>
@@ -120,7 +121,7 @@
 	                			</c:otherwise>
 	                		</c:choose>
 	                		<c:choose>
-							<c:when test="${vo.endPage ne vo.totalPages}">
+							<c:when test="${vo.thisPage ne vo.totalPages}">
 					 			<a href="javascript:goList(${vo.thisPage + 1})"><i class="fa-solid fa-angle-right" style="color:#0095a8;"></i></a>
 					 		</c:when>
 	                			<c:otherwise>
@@ -140,6 +141,16 @@
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 		<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 		<script type="text/javascript">
+		 var goUrlList = "/xdmin/memberList"; 			/* #-> */
+		 
+		 var seq = $("input:text[name=memberSeq]");				/* #-> */
+		 var form = $("form[name=form]")
+		
+			$("#changeRowNum").on("change", function(){
+				$("input:hidden[name=rowNumToShow]").val($("#changeRowNum option:selected").val());
+				form.attr("action", goUrlList).submit();
+			}); 
+			
 		    $(document).ready(function () {
 		            $.datepicker.setDefaults($.datepicker.regional['ko']);
 		            $( "#startDate" ).datepicker({
