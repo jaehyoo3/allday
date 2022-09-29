@@ -17,18 +17,26 @@
 	<body>
 		<form name='form' method="post">
 		
-		<%@include file="../../../infra/includeV1/xdminSetting.jsp" %>
-		<div class="main-content">
-			<h1><i class="fa-solid fa-user"></i> Member</h1>
+			<jsp:useBean id="XdminCodeServiceImpl" class="com.bluebee.modules.xdmincode.XdminCodeServiceImpl"/>
+			<c:set var="listProductType" value="${XdminCodeServiceImpl.selectListCachedCode('9')}"/>
+			<%@include file="../../../infra/includeV1/xdminSetting.jsp" %>
+			<div class="main-content">
+			<h1><i class="fa-solid fa-cart-shopping"></i> Product</h1>
 				<div class="serach-box">
 					<p> 
-						<select style="width:30%;"></select>
-						<select style="width:30%;"></select>
-						<select style="width:30%;"></select>
+						<select style="width:30%; text-align:center;">
+							<option class="fontcolor">사용여부</option>
+						</select>
+						<select style="width:30%; text-align:center;">
+							<option>삭제여부</option>
+						</select>
+						<select style="width:30%; text-align:center; color: #black;">.
+							<option>검색어</option>
+						</select>
 					</p>
 					<p>
-						<input type="text" style="width:49.5%;">
-						<input type="text" style="width:49.5%;">
+						<input type="text" id='startDate' style="width:49.5%;">
+						<input type="text" id='endDate' style="width:49.5%;">
 					</p>
 					<p>
 						<input type="text" style="width:70%;">
@@ -43,43 +51,31 @@
 							<tr>
 								<th style='width:3%;'><input type='checkbox'></th>
 								<th style='width:5%;'>#</th>
-								<th style='width:5%;'>Seq</th>
-								<th>이름</th>
-								<th>아이디</th>
-								<th>닉네임</th>
-								<th>전화번호</th>
-								<th>생년월일</th>
-								<th>이메일</th>
-								<th>성별</th>
-								<th>등급</th>
-								<th>가입일</th>
+								<th style='width:10%;'>상품코드</th>
+								<th>상품명</th>
+								<th>상품가격</th>
+								<th>상품타입</th>
+								<th>등록일</th>
+								<th>수정일</th>
 							</tr>
 						</thead>	
 						<tbody>
-							<%-- <c:forEach items="${list}" var="list" varStatus="status">
-								<tr onclick="javascript:goForm(<c:out value="${list.memberSeq }"/>)" style="cursor:hand">
+							 <c:forEach items="${list}" var="list" varStatus="status">
+								<tr onclick="javascript:goForm(<c:out value="${list.productSeq }"/>)" style="cursor:hand">
 									<td><input type='checkbox'></td>
 									<td><c:out value="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + status.index) }"/></td>
-									<td><c:out value="${list.memberSeq }"/></td>
-									<td><c:out value="${list.memberName }"/></td>
-									<td><c:out value="${list.memberID }"/></td>
-									<td><c:out value="${list.memberNick }"/></td>
-									<td><c:out value="${list.memberMobile }"/></td>
-									<td><c:out value="${list.memberDob }"/></td>
-									<td><c:out value="${list.memberEmail }"/></td>
-									<td>
-										<c:forEach items="${listCodeGender}" var="listGender" varStatus="statusGender">
-											<c:if test="${list.memberGender eq listGender.codeOrder}"><c:out value="${listGender.codeName}"/></c:if>
+									<td><c:out value="${list.productSeq }"/></td>
+									<td><c:out value="${list.productName }"/></td>
+									<td><c:out value="${list.productPrice }"/></td>
+									<td><!-- 상품타입 공통코드 -->
+										<c:forEach items="${listProductType}" var="listType" varStatus="statusGender">
+											<c:if test="${list.productType eq listType.codeOrder}"><c:out value="${listType.codeName}"/></c:if>
 										</c:forEach>
 									</td>
-									<td>
-		 								<c:forEach items="${listCodeGrade}" var="list2" varStatus="statusGender">
-											<c:if test="${list.memberGrade eq list2.codeOrder}"><c:out value="${list2.codeName}"/></c:if>
-										</c:forEach>
-									</td>
-									<td><c:out value="${list.memberRegdate }"/></td>
+									<td><c:out value="${list.productRegDate }"/></td>
+									<td><c:out value="${list.productModDate }"/></td>
 								</tr>
-							</c:forEach> --%>
+							</c:forEach> 
 						</tbody>				
 					</table>
 				</div>
@@ -123,8 +119,8 @@
 				 		</span>
 					</div>
 					<div class='button-box'>
-						<button class='plusbtn'><i class="fa-solid fa-user-plus"></i></button>
-						<button class='minusbtn'><i class="fa-solid fa-user-minus"></i></button>
+						<button class='plusbtn'><i class="fa-sharp fa-solid fa-cart-plus"></i></button>
+						<button class='minusbtn'><i class="fa-solid fa-cart-flatbed-suitcase"></i></button>
 					</div>					
 				</p>
 			</form>

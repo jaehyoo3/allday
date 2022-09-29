@@ -13,7 +13,7 @@
 	</head>
 	
 	<body>
-		<form>
+		<form method="post">
 			<!-- navMenu s  -->
 				<%@include file="../../infra/includeV1/Menu.jsp"%>
 			<!-- navMenu e --> 
@@ -39,7 +39,7 @@
 				</div>
 				<br>
 				<div class="d-grid gap-2">
-					<button type="button" class="btn text-white fw-bold" id='btnLogin' name='btnLogin' style="background-color:rgb(44, 62, 80);">로그인</button>
+					<button type="button" class="btn text-white fw-bold" id='btnLogin' onkeyup="enterkey()" name='btnLogin' style="background-color:rgb(44, 62, 80);">로그인</button>
 				</div>
 				<br>
 				<div class="hr-sect"> 또는 </div>
@@ -86,6 +86,12 @@
 					}
 				});
 			});
+
+			function enterkey() {
+		        if (window.event.keyCode == 13) {
+		             $("#btnLogin").click();
+		        }
+		}
 		</script>
 	</body>
 	

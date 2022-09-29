@@ -22,12 +22,12 @@ public class StoreController {
 			
 			List<Store> list = service.selectList(vo);
 			model.addAttribute("list", list);
-			return "infra/product/xdmin/productForm";
+			return "infra/product/xdmin/productList";
 		}
 		
 		@RequestMapping(value = "xdmin/productForm")
 		public String ProductForm(Model model, @ModelAttribute("vo") StoreVo vo) throws Exception {
-			return "infra/product/xdmin/productList";
+			return "infra/product/xdmin/productForm";
 		}
 		
 	

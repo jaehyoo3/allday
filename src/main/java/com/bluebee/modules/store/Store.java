@@ -7,6 +7,8 @@ public class Store {
 	private Integer productPrice;
 	private Integer productBest;
 	private Integer productNew;
+	private String productRegDate;
+	private String productModDate;
 	
 	public Integer getProductBest() {
 		return productBest;
@@ -44,5 +46,18 @@ public class Store {
 	public void setProductPrice(Integer productPrice) {
 		this.productPrice = productPrice;
 	}
+	public String getProductRegDate() {
+		return productRegDate;
+	}
+	public void setProductRegDate(String productRegDate) {
+		this.productRegDate = productRegDate;
+	}
+	public String getProductModDate() {
+		return productModDate;
+	}
+	public void setProductModDate(String productModDate) {
+		this.productModDate = productModDate;
+	}
+
 
 }

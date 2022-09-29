@@ -17,8 +17,8 @@
 		  <a href="#" class="btn-expand-collapse"><i class="fa-solid fa-backward-step"></i></a>
 		  <ul class="navbar-primary-menu">
 		    <li>
-		      <a href="#"><i class="fa-solid fa-user"></i> <span class="nav-label">Member</span></a>
-		      <a href="#"><i class="fa-solid fa-cart-flatbed"></i> <span class="nav-label">Product</span></a>
+		      <a href="memberList"><i class="fa-solid fa-user"></i> <span class="nav-label">Member</span></a>
+		      <a href="productList"><i class="fa-solid fa-cart-flatbed"></i> <span class="nav-label">Product</span></a>
 		      <a href="#"><i class="fa-solid fa-code"></i> <span class="nav-label">Code</span></a>
 		      <a href="#"><i class="fa-solid fa-folder-open"></i> <span class="nav-label">CodeGroup</span></a>
 		    </li>

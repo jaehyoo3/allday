@@ -162,4 +162,6 @@
 			} .minusbtn:hover {
 				background-color:red;
 				opacity:0.5;
+			} .fontcolor {
+				color: #e0e0e0;
 			}
