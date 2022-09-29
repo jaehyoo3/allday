@@ -1,3 +1,5 @@
+			@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500&display=swap');
+			
 			.navbar-global {
 			  background-color: #62757f;
 			} .navbar-global .navbar-brand {
@@ -9,7 +11,7 @@
 			  bottom: 0px;
 			  left: 0px;
 			  position: absolute;
-			  top: 51px;
+			  top: 46px;
 			  width: 200px;
 			  z-index: 8;
 			  overflow: hidden;
@@ -68,15 +70,42 @@
 				width:100%;
 			}
 			table, td, th {
-				border: 1px solid black;
 				border-collapse: collapse;
 				text-align: center;
-			} thead {
-				background-color:black;
+			} thead th {
+				background-color: #4b636e;
 				color:white;
 			} table {
 				width: 100%;
-				margin-top: 60px;
+				margin-top: 10px;
+				background-color: #fff;
+			    border-collapse: collapse;
+			    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+			    border-radius: 5px;
+			    overflow: hidden;
+			}
+			table tr {
+			    border-bottom: 1px solid #eee;
+			}
+			table tbody tr:hover{
+				opacity:0.5;
+			}
+			table tr:last-child {
+			    border: none;
+			}
+			table tr:nth-child(odd) {
+			    background-color: #ddd;
+			}
+			table th,
+			table td {
+			    padding: 12px;
+			    text-align: center; 
+			}
+			table tr th:first-child {
+			    border-radius: 5px 0 0 0;
+			}
+			table tr th:last-child {
+		    border-radius: 0 5px 0 0;
 			}
 			.select-style {
 			    padding: 0;
@@ -117,5 +146,20 @@
 				border: 1px solid #e0e0e0;
 				height: 30px;
 			}.main-content .pagination-box {
+				margin-top: 20px;
 				float: right;
+				font-size: 12px;
+			} body {
+				font-family: 'Montserrat', sans-serif;
+			} a {
+				text-decoration: none;
+			} .button-box {
+				font-size: 14px;
+				margin-top: 20px;
+			} .plusbtn:hover {
+				background-color:green;
+				opacity:0.5;
+			} .minusbtn:hover {
+				background-color:red;
+				opacity:0.5;
 			}

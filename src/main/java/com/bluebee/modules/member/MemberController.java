@@ -37,7 +37,7 @@ public class MemberController {
 		
 		System.out.println("dd:"+vo.getRowNumToShow());
 		
-		return "infra/xdmin/wowUser";
+		return "infra/member/xdmin/wowUser";
 	}
 	
 	@RequestMapping(value = "/xdmin/memberForm")
@@ -46,7 +46,7 @@ public class MemberController {
 		Member item = service.selectOne(vo);
 		model.addAttribute("item", item);
 		
-		return "infra/xdmin/wowUserForm";
+		return "infra/member/xdmin/wowUserForm";
 	}
 	
 	@RequestMapping(value = "/xdmin/memberInst")
@@ -83,7 +83,7 @@ public class MemberController {
 		Member item = service.selectOne(vo);
 		model.addAttribute("item", item);
 		
-		return "infra/xdmin/wowUserForm"; 
+		return "infra/member/xdmin/wowUserForm"; 
 	}
 //	USER
 	@RequestMapping(value = "/reg1")

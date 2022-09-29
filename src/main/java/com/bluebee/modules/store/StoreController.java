@@ -4,13 +4,35 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.bluebee.modules.xdmincode.XdminCode;
 
 @Controller
 public class StoreController {
 	@Autowired
 	StoreServiceImpl service;
 	
+	/* Admin */
+		@RequestMapping(value = "xdmin/productList")
+		
+		public String ProductList(Model model, @ModelAttribute("vo") StoreVo vo) throws Exception {
+			vo.setParamsPaging(service.selectOneCount(vo));
+			
+			List<Store> list = service.selectList(vo);
+			model.addAttribute("list", list);
+			return "infra/product/xdmin/productForm";
+		}
+		
+		@RequestMapping(value = "xdmin/productForm")
+		public String ProductForm(Model model, @ModelAttribute("vo") StoreVo vo) throws Exception {
+			return "infra/product/xdmin/productList";
+		}
+		
+	
+	
+	/*  User  */
 		@RequestMapping(value = "/")
 		public String StoreMain() {
 			return "infra/store/storeMain";
@@ -20,15 +42,15 @@ public class StoreController {
 			return "infra/store/memberLogin";
 		}
 		@RequestMapping(value = "storeNew")
-		public String StoreNew(Model model) throws Exception {
-			List<Store> list = service.selectList();
+		public String StoreNew(Model model, StoreVo vo) throws Exception {
+			List<Store> list = service.selectList(vo);
 			model.addAttribute("list", list);
 			
 			return "infra/store/storeNew";
 		}
 		@RequestMapping(value = "storeBest")
-		public String StoreBest(Model model) throws Exception {
-			List<Store> list = service.selectList();
+		public String StoreBest(Model model, StoreVo vo) throws Exception {
+			List<Store> list = service.selectList(vo);
 			model.addAttribute("list", list);
 			
 			return "infra/store/storeBest";

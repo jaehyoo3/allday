@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+
 @Repository
 public class StoreDao {
 	@Inject
@@ -16,6 +17,9 @@ public class StoreDao {
 	
 	private static String namespace = "com.bluebee.modules.store.StoreMapper";
 	
-	public List<Store> selectList(){ return sqlSession.selectList(namespace + ".selectList", ""); }
+	public List<Store> selectList(StoreVo vo){ return sqlSession.selectList(namespace + ".selectList", vo); }
+	public Store selectOne(StoreVo vo) { return sqlSession.selectOne(namespace+ ".selectOne", vo); }
+	public int selectOneCount(StoreVo vo) { return sqlSession.selectOne(namespace + ".selectOneCount", vo); }
+
 	
 }

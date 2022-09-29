@@ -11,9 +11,9 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>관리자 페이지</title>
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-		<link href="/resources/Images/xdminUser.css" rel="stylesheet">
+		<link href="/resources/Images/XdminSetting.css" rel="stylesheet">
+
 	</head>
-	
 	<body>
 		<form name='form' method="post">
 			<input type="hidden" name="memberSeq">
@@ -24,36 +24,7 @@
 			<c:set var="listCodeGender" value="${XdminCodeServiceImpl.selectListCachedCode('2')}"/>
 			<c:set var="listCodeGrade" value="${XdminCodeServiceImpl.selectListCachedCode('8')}"/>
 		
-		<nav class="navbar navbar-inverse navbar-global navbar-fixed-top">
-			<div class="container-fluid">
-		    	<div class="navbar-header">
-		          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-		            <span class="sr-only">Toggle navigation</span>
-		            <span class="icon-bar"></span>
-		            <span class="icon-bar"></span>
-		            <span class="icon-bar"></span>
-		          </button>
-		          <a class="navbar-brand" href="#">BlueBeE</a>
-		        </div>
-		        <div id="navbar" class="collapse navbar-collapse">
-		          <ul class="nav navbar-nav navbar-user navbar-right">
-		            <li><a href="#"><span class="glyphicon glyphicon-user"></span> Admin</a></li>
-		            <li><a href="#about"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-		          </ul>
-		        </div><!--/.nav-collapse -->
-		      </div>
-		    </nav>
-		<nav class="navbar-primary">
-		  <a href="#" class="btn-expand-collapse"><i class="fa-solid fa-backward-step"></i></a>
-		  <ul class="navbar-primary-menu">
-		    <li>
-		      <a href="#"><i class="fa-solid fa-user"></i> <span class="nav-label">Member</span></a>
-		      <a href="#"><i class="fa-solid fa-cart-flatbed"></i> <span class="nav-label">Product</span></a>
-		      <a href="#"><i class="fa-solid fa-code"></i> <span class="nav-label">Code</span></a>
-		      <a href="#"><i class="fa-solid fa-folder-open"></i> <span class="nav-label">CodeGroup</span></a>
-		    </li>
-		  </ul>
-		</nav>
+		<%@include file="../../../infra/includeV1/xdminSetting.jsp" %>
 		<div class="main-content">
 			<h1><i class="fa-solid fa-user"></i> Member</h1>
 				<div class="serach-box">
@@ -93,12 +64,12 @@
 						</thead>	
 						<tbody>
 							<c:forEach items="${list}" var="list" varStatus="status">
-								<tr>
+								<tr onclick="javascript:goForm(<c:out value="${list.memberSeq }"/>)" style="cursor:hand">
 									<td><input type='checkbox'></td>
 									<td><c:out value="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + status.index) }"/></td>
 									<td><c:out value="${list.memberSeq }"/></td>
 									<td><c:out value="${list.memberName }"/></td>
-									<td><a href="javascript:goForm(<c:out value="${list.memberSeq }"/>)" class="text-decoration-none"><c:out value="${list.memberID }"/></a></td>
+									<td><c:out value="${list.memberID }"/></td>
 									<td><c:out value="${list.memberNick }"/></td>
 									<td><c:out value="${list.memberMobile }"/></td>
 									<td><c:out value="${list.memberDob }"/></td>
@@ -130,19 +101,19 @@
 							</select>
 						</div>
 						<span class='pagination1'>
-								<c:choose>
-									<c:when test="${vo.endRnumForMysql ge vo.totalRows }">
-										${vo.startRnumForMysql + 1}-${vo.totalRows} of ${vo.totalRows}
-									</c:when>
-									<c:otherwise>
-							  			${vo.startRnumForMysql + 1}-${vo.endRnumForMysql} of ${vo.totalRows}
-							  		</c:otherwise>
-							  	</c:choose>
+							<c:choose>
+								<c:when test="${vo.endRnumForMysql ge vo.totalRows }">
+									${vo.startRnumForMysql + 1}-${vo.totalRows} of ${vo.totalRows}
+								</c:when>
+								<c:otherwise>
+						  			${vo.startRnumForMysql + 1}-${vo.endRnumForMysql} of ${vo.totalRows}
+						  		</c:otherwise>
+						  	</c:choose>
 						</span>
 						<span class='pagination1'>
 							<c:choose>
 								<c:when test="${vo.thisPage gt 1}">
-	                				<a href="javascript:goList(${vo.thisPage - 1})"><i class="fa-solid fa-chevron-left"></i></a>
+	                				<a href="javascript:goList(${vo.thisPage - 1})"><i class="fa-solid fa-chevron-left" style="color:#0095a8;"></i></a>
 	                			</c:when>
 	                			<c:otherwise>
 	                				<i class="fa-solid fa-chevron-left"></i>
@@ -150,33 +121,20 @@
 	                		</c:choose>
 	                		<c:choose>
 							<c:when test="${vo.endPage ne vo.totalPages}">
-					 			<a href="javascript:goList(${vo.thisPage + 1})"><i class="fa-solid fa-angle-right"></i></a>
+					 			<a href="javascript:goList(${vo.thisPage + 1})"><i class="fa-solid fa-angle-right" style="color:#0095a8;"></i></a>
 					 		</c:when>
 	                			<c:otherwise>
 	                			<i class="fa-solid fa-angle-right"></i>
 	                			</c:otherwise>
 	                		</c:choose>
 				 		</span>
-					</span>
-					
-				<%-- 	<ul class="pagination modal-5">
-					<c:forEach begin="${vo.startPage}" end="${vo.endPage}" varStatus="i">
-						<c:choose>
-							<c:when test="${i.index eq vo.thisPage}">
-				  				<li> <a href="javascript:goList(${i.index})" class="active">${i.index}</a></li>
-				  			</c:when>
-							<c:otherwise>  
-				 				<li> <a href="javascript:goList(${i.index})">${i.index}</a></li>
-				 			</c:otherwise>
-				 		</c:choose>
-				 	</c:forEach>
-				 	<c:if test="${vo.endPage ne vo.totalPages}">  
-				  <li><a href="javascript:goList(${vo.endPage + 1})" class="next fa fa-arrow-right"></a></li>
-				 	</c:if>
-				</ul> --%>
-				</div>
-			</p>
-		</form>
+					</div>
+					<div class='button-box'>
+						<button class='plusbtn'><i class="fa-solid fa-user-plus"></i></button>
+						<button class='minusbtn'><i class="fa-solid fa-user-minus"></i></button>
+					</div>					
+				</p>
+			</form>
 		<script src="https://kit.fontawesome.com/a1961b2393.js"crossorigin="anonymous"></script>
 		<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
@@ -260,6 +218,10 @@
 			    	seq.val(keyValue);
 					form.attr("action", goUrlView).submit();
 				}
+		 	 $('.btn-expand-collapse').click(function(e) {
+				$('.navbar-primary').toggleClass('collapsed');
+				});
+
 		</script>
 	</body>
 </html>

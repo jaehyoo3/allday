@@ -9,14 +9,43 @@
     <resultMap id="resultMapObj" type="com.bluebee.modules.store.Store"></resultMap>
     
     <select id="selectList" resultMap="resultMapObj">
-    	select
-    		productSeq
-    		,productName
-    		,productType
-    		,productPrice
-    		,productNew
-    		,productBest
-    	from
-    		product
+   		<include refid="Base.selectListUpper" />
+	    	select
+	    		a.productSeq
+	    		,a.productName
+	    		,a.productType
+	    		,a.productPrice
+	    		,a.productNew
+	    		,a.productBest
+	    		,a.productRegDate
+	    		,a.productUpDate
+		<include refid='basic' />
+		<include refid='Base.selectListLower' />
     </select>
+    
+	<select id="selectOne" resultMap="resultMapObj">
+		SELECT
+    		a.productSeq
+    		,a.productName
+    		,a.productType
+    		,a.productPrice
+    		,a.productNew
+    		,a.productBest
+    		,a.productRegDate
+    		,a.productUpDate
+    	from
+    		product a
+    	where 1=1
+			and a.productSeq = #{productSeq}
+	</select>
+	
+	<select id="selectOneCount" resultType="Integer">
+		SELECT COUNT(*)
+		<include refid="basic" />
+	</select>
+    <sql id='basic'>
+		FROM 
+			product a
+		WHERE 1=1
+   	</sql>
 </mapper>
