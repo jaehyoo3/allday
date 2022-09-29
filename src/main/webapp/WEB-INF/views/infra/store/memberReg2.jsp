@@ -37,19 +37,21 @@
 				</center>
 				
 				<!-- ID -->
-				<span>아이디</span>
+				<span>아이디</span><span style="color:red">*</span>
 				<input type="text" class="form-control mb-1" id="memberID" name="memberID" placeholder="아이디">
 				<div class="invalid-feedback mb-2" id='idFeedback'></div>
+				<span>비밀번호</span><span style="color:red">*</span>
 				<input type="password" class="form-control mb-1" id="memberPW" name='memberPW' placeholder="비밀번호">
 				<div class="invalid-feedback mb-2" id='pwFeedback'></div>
+				<span>비밀번호 확인</span><span style="color:red">*</span>
 				<input type="password" class="form-control mb-2" id="memberPW2" name='memberPW2' placeholder="비밀번호 확인">
 				<label id="pw2Feedback"></label><br>
 				
 				
-				<span>닉네임</span>
+				<span>닉네임</span><span style="color:red">*</span>
 				<input type="text" class="form-control mb-2" id="memberNick" name="memberNick" placeholder="닉네임">
 				<div class="invalid-feedback mb-2" id='nickFeedback'></div>
-				<span>이름</span>
+				<span>이름</span><span style="color:red">*</span>
 				<input type="text" class="form-control mb-2" id="memberName" name="memberName" placeholder="이름">
 				<div class="invalid-feedback mb-2" id='nameFeedback'></div>
  				<span>생년월일</span>
@@ -82,7 +84,7 @@
 							<option value="4">기타</option>
 						</select>
 					</div>
-				<span>연락처</span
+				<span>연락처</span>
 				<div class="row">
 					<div class="col">
 						<select class="form-select" name="memberMobile">
@@ -93,10 +95,10 @@
 						</select>
 					</div>
 					<div class="col">
-							<input type="text" class="form-control mb-2">
+							<input type="text" maxlength="4" class="form-control mb-2">
 					</div>
 					<div class="col">
-						<input type="text" class="form-control mb-2">
+						<input type="text" maxlength="4" class="form-control mb-2">
 					</div>
 				</div>
 				<span>주소</span>
@@ -122,6 +124,7 @@
 				<div class="d-grid gap-2 col-12">
 					<button type="submit" class="btn text-white fw-bold" style="background-color:rgb(44, 62, 80);">가입하기</button>
 					</div>
+				</div>
 			</div>
 			<!-- footer s  -->
 				<%@include file="../../infra/includeV1/footer.jsp"%>
