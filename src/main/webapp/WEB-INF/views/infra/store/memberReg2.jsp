@@ -23,7 +23,7 @@
 				<h1>회원가입 정보입력</h1>
 				<div class="d-flex mb-1">
 					<div class="p-1 ms-auto">
-						<span style="color:rgb(44, 62, 80);">약관동의 > <b>회원가입 정보입력</b> > 가입완료</span>
+						<span style="color:rgb(44, 62, 80);">약관동의 > <b>회원가입 정보입력</b> > 가입완료</span><br>
 					</div>	
 				</div>
 				<hr>
@@ -37,21 +37,21 @@
 				</center>
 				
 				<!-- ID -->
-				<span>아이디</span><span style="color:red">*</span>
+				<span>아이디</span><span style="font-size:12px; color:#e0e0e0">(필수)</span>
 				<input type="text" class="form-control mb-1" id="memberID" name="memberID" placeholder="아이디">
 				<div class="invalid-feedback mb-2" id='idFeedback'></div>
-				<span>비밀번호</span><span style="color:red">*</span>
+				<span>비밀번호</span><span style="font-size:12px; color:#e0e0e0">(필수)</span>
 				<input type="password" class="form-control mb-1" id="memberPW" name='memberPW' placeholder="비밀번호">
 				<div class="invalid-feedback mb-2" id='pwFeedback'></div>
-				<span>비밀번호 확인</span><span style="color:red">*</span>
+				<span>비밀번호 확인</span><span style="font-size:12px; color:#e0e0e0">(필수)</span>
 				<input type="password" class="form-control mb-2" id="memberPW2" name='memberPW2' placeholder="비밀번호 확인">
 				<label id="pw2Feedback"></label><br>
 				
 				
-				<span>닉네임</span><span style="color:red">*</span>
+				<span>닉네임</span><span style="font-size:12px; color:#e0e0e0">(필수)</span>
 				<input type="text" class="form-control mb-2" id="memberNick" name="memberNick" placeholder="닉네임">
 				<div class="invalid-feedback mb-2" id='nickFeedback'></div>
-				<span>이름</span><span style="color:red">*</span>
+				<span>이름</span><span style="font-size:12px; color:#e0e0e0">(필수)</span>
 				<input type="text" class="form-control mb-2" id="memberName" name="memberName" placeholder="이름">
 				<div class="invalid-feedback mb-2" id='nameFeedback'></div>
  				<span>생년월일</span>
@@ -95,13 +95,13 @@
 						</select>
 					</div>
 					<div class="col">
-							<input type="text" maxlength="4" class="form-control mb-2">
+						<input type="text" maxlength="4" class="form-control mb-2">
 					</div>
 					<div class="col">
 						<input type="text" maxlength="4" class="form-control mb-2">
 					</div>
 				</div>
-				<span>주소</span>
+				<span>주소</span><span style="font-size:12px; color:#e0e0e0">(필수)</span>
 				<div class="d-flex mb-1">
 					<div class="p-0">
 						<input type="text" id="postcode" class="form-control mb-2" readonly>
@@ -110,15 +110,22 @@
 						<button type="button" class="btn text-white fw-bold" onclick="DaumPostcode()" style="background-color:rgb(44, 62, 80);">주소검색</button>
 					</div>
 				</div>
-				<input type="text" id="address" class="form-control mb-2">
-				<input type="text" id="detailAddres" class="form-control mb-2">
-				
 				<div class="row">
 					<div class="col">
-						<input type="text" id="result_x" class="form-control mb-2" disabled>
+						<input type="text" id="address" class="form-control mb-2">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<input type="text" id="detailAddres" class="form-control mb-2">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<input type="hidden" id="result_x" class="form-control mb-2" disabled>
 					</div>
 					<div class="col">
-						<input type="text" id="result_y" class="form-control mb-2" disabled>
+						<input type="hidden" id="result_y" class="form-control mb-2" disabled>
 					</div>
 				</div>
 				<div class="d-grid gap-2 col-12">
