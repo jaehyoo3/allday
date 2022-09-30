@@ -91,36 +91,59 @@
 	<!-- 회원가입 -->
 	<insert id="signup">
 		insert into member(
-		memberID
-		,memberPW
-		,memberNick
-		,memberName
-		,memberDob
-		,memberGender
-		,memberEmail
-		,memberMobile
-		,memberDelNy
-		,memberAd
-		,memberGrade
-		,memberRegdate
+			memberID
+			,memberPW
+			,memberNick
+			,memberName
+			,memberDob
+			,memberGender
+			,memberEmail
+			,memberMobile
+			,memberDelNy
+			,memberAd
+			,memberGrade
+			,memberRegdate
 		)
 		values(
-		#{memberID}
-		,#{memberPW}
-		,#{memberNick}
-		,#{memberName}
-		,#{memberDob}
-		,#{memberGender}
-		,#{memberEmail}
-		,#{memberMobile}
-		,0
-		,#{memberAd}
-		,1
-		,now()
+			#{memberID}
+			,#{memberPW}
+			,#{memberNick}
+			,#{memberName}
+			,#{memberDob}
+			,#{memberGender}
+			,#{memberEmail}
+			,#{memberMobile}
+			,0
+			,#{memberAd}
+			,1
+			,now()
 		)
 		<selectKey resultType="String" keyProperty="memberSeq" order="AFTER"> 
 			select last_insert_id()
 		</selectKey>
+	</insert>
+	<insert id="memberaddr">
+	insert into
+		memberAddr(
+			memberSeq
+			,defaultNY
+			,reciver
+			,zipcode
+			,addr1
+			,addr2
+			)
+		values(
+			#{memberSeq}
+			,1
+			,#{memberName}
+			,#{zipcode}
+			,#{addr1}
+			,#{addr2}
+		)
+		<selectKey resultType="String" keyProperty="addrSeq" order="AFTER"> 
+			select last_insert_id()
+		</selectKey>
+
 	</insert>
 	
 	<select id="selectOne" resultMap="resultMapObj">

@@ -14,7 +14,7 @@
 	</head>
 	
 	<body>
-		<form>
+		<form id='reg1' name='form' method='post'>
 			<!-- navMenu s  -->
 				<%@include file="../../infra/includeV1/Menu.jsp"%>
 			<!-- navMenu e --> 
@@ -24,20 +24,20 @@
 			<br><br><br>
 			<hr>
 			<br>
-						<div class="d-flex mb-1">
+			<div class="d-flex mb-1">
 				<div class="p-1">
-			<div class="form-check">
-				<input class="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate">
-				<label class="form-check-label" for="flexCheckIndeterminate">
-					이용약관, 개인정보 수집 및 이용에 모두 동의합니다.
-				</label>
-			</div>
-			</div>
+					<div class="form-check">
+						<input class="form-check-input" type="checkbox" id="flexCheckIndeterminate" onclick="selectAll(this)">
+						<label class="form-check-label" for="flexCheckIndeterminate">
+							이용약관, 개인정보 수집 및 이용에 모두 동의합니다.
+						</label>
+					</div>
+				</div>
 			</div>
 			<div class="d-flex mb-1">
 				<div class="p-1">
 					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value="" id="ma1">
+						<input class="form-check-input" type="checkbox" id="usecheck1" name='checking'>
 						<label class="form-check-label" for="ma1">
 							이용약관 동의 (필수)
 						</label>
@@ -51,7 +51,7 @@
 	  			<textarea class="form-control" id="exampleFormControlTextarea1" rows="10"style="resize: none;">ddd</textarea>
 			</div>
 			<div class="form-check">
-				<input class="form-check-input" type="checkbox" value="" id="222">
+				<input class="form-check-input" type="checkbox" value="" id="usecheck2" name='checking'>
 				<label class="form-check-label" for="222">
 					개인정보 수집 및 이용 동의 (필수)
 				</label>
@@ -64,23 +64,59 @@
 	  				<textarea class="form-control" id="exampleFormControlTextarea1" rows="10"style="resize: none;">ddd</textarea>
 				</div>
 			<div class="form-check">
-				<input class="form-check-input" type="checkbox" value="" id="333">
-				<label class="form-check-label" for="333">
+				<input class="form-check-input" type="checkbox" value='1' id="memberAd" name='memberAd'>
+				<input type="hidden" name="memberAd" value='0' id="memberAd_hidden"/>
+				<label class="form-check-label" for="memberAd">
 					E-Mail 수신 동의 (선택)
 				</label>
 			</div>
 			<center>
 				<button type="button" class="btn btn-secondary">취소</button> 
-				<button type="button" class="btn text-white fw-bold" style="background-color:rgb(44, 62, 80);" onClick="location.href='reg2'">가입하기</button>
+				<button type="button" class="btn text-white fw-bold" id='nextBtn' style="background-color:rgb(44, 62, 80);">가입하기</button>
 			</center>
-			</div>
+			</div> 
 			<div id='footer'>
 				   	<div class='copyright'>© 2022. Bluebee all rights reserved.</div>
 			</div>
-
 		</form>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 		<script src="https://kit.fontawesome.com/a1961b2393.js" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+		<link rel="stylesheet" href="/resources/demos/style.css">
+		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 		
+		<script type="text/javascript">
+		var memberReg2 = '/reg2';
+		var form = $("form[name=form]")
+		
+			function selectAll(selectAll)  {
+				const checkboxes = document.getElementsByName('checking');
+				checkboxes.forEach((checkbox) => {
+					checkbox.checked = selectAll.checked;
+				})
+			}
+			<!-- 유효성 검사 -->
+	           $("#nextBtn").click(function(){    
+	                if($("#usecheck1").is(":checked") == false){
+	                    alert("필수 약관에 동의 하셔야 다음 단계로 진행 가능합니다.");
+	                    $("#usecheck1").focus();
+	                    return;
+	                }else if($("#usecheck2").is(":checked") == false){
+	                    alert("필수 약관에 동의 하셔야 다음 단계로 진행 가능합니다..");
+	                    $("#usecheck2").focus();
+	                    return;
+	                }else{
+	                	form.attr("action", memberReg2).submit();
+	                }
+	            });
+	           
+	          <!-- 광고선택 -->
+	          if(document.getElementById("memberAd").checked) {
+	        	    document.getElementById("memberAd_hidden").disabled = true;
+	        	}
+
+			</script>
 	</body>
 </html>

@@ -31,8 +31,14 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int signup(Member dto) throws Exception { 
-	 	dto.setMemberPW(UtilSecurity.encryptSha256(dto.getMemberPW()));    	
-		return dao.insert(dto);
+		 try {
+			 dto.setMemberPW(UtilSecurity.encryptSha256(dto.getMemberPW())); 
+		 	dao.signup(dto);
+		 	dao.memberaddr(dto);
+	 	return 1;
+		    } catch (Exception e) {
+		        throw new Exception();
+		    }
 	}
 	@Override
 	public int selectOneIdCheck(Member dto) throws Exception {return dao.selectOneIdCheck(dto); }

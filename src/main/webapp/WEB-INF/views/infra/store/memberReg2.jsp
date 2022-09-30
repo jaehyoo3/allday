@@ -40,6 +40,7 @@
 				<span>아이디</span><span style="font-size:12px; color:#e0e0e0">(필수)</span>
 				<input type="text" class="form-control mb-1" id="memberID" name="memberID" placeholder="아이디">
 				<div class="invalid-feedback mb-2" id='idFeedback'></div>
+				
 				<span>비밀번호</span><span style="font-size:12px; color:#e0e0e0">(필수)</span>
 				<input type="password" class="form-control mb-1" id="memberPW" name='memberPW' placeholder="비밀번호">
 				<div class="invalid-feedback mb-2" id='pwFeedback'></div>
@@ -54,7 +55,7 @@
 				<span>이름</span><span style="font-size:12px; color:#e0e0e0">(필수)</span>
 				<input type="text" class="form-control mb-2" id="memberName" name="memberName" placeholder="이름">
 				<div class="invalid-feedback mb-2" id='nameFeedback'></div>
- 				<span>생년월일</span>
+ 				<span>생년월일</span><span style="font-size:12px; color:#e0e0e0">(필수)</span>
 				<div class="input-group flex-nowrap">
 						<input type="text" class="form-control mb-2" id='datepicker1' name="memberDob" style="width:200px;">
 				</div>
@@ -101,10 +102,12 @@
 						<input type="text" maxlength="4" class="form-control mb-2">
 					</div>
 				</div>
-				<span>주소</span><span style="font-size:12px; color:#e0e0e0">(필수)</span>
+				<div>
+					<span>주소</span><span style="font-size:12px; color:#e0e0e0">(필수)</span>
+				</div>
 				<div class="d-flex mb-1">
 					<div class="p-0">
-						<input type="text" id="postcode" class="form-control mb-2" readonly>
+						<input type="text" id="postcode" class="form-control mb-2"  name='zipcode'readonly>
 					</div>
 					<div class="p-1">
 						<button type="button" class="btn text-white fw-bold" onclick="DaumPostcode()" style="background-color:rgb(44, 62, 80);">주소검색</button>
@@ -112,12 +115,12 @@
 				</div>
 				<div class="row">
 					<div class="col">
-						<input type="text" id="address" class="form-control mb-2">
+						<input type="text" id="address" name='addr1' class="form-control mb-2" readonly>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col">
-						<input type="text" id="detailAddres" class="form-control mb-2">
+						<input type="text" id="detailAddres" name='addr2' class="form-control mb-2">
 					</div>
 				</div>
 				<div class="row">
@@ -130,6 +133,7 @@
 				</div>
 				<div class="d-grid gap-2 col-12">
 					<button type="submit" class="btn text-white fw-bold" style="background-color:rgb(44, 62, 80);">가입하기</button>
+					<input type="hidden" id="memberAd" value='<c:out value="${vo.memberAd}"/>' name='memberAd'>
 					</div>
 				</div>
 			</div>
@@ -141,10 +145,8 @@
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 		<script src="https://kit.fontawesome.com/a1961b2393.js" crossorigin="anonymous"></script>
 
-		<!--  아작스 s -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-		<!--  아작스e -->
-		
+
 		<!--  카카오 지도s -->
 		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 		<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3d9122ea8fc388f07cd56d7692121430&libraries=services"></script>
@@ -343,7 +345,22 @@
 		        	$("#memberName").focus();
 		        	$("#nameFeedback").text("이름은 한글로 작성해 주세요");
 	            	return false; 
-		        }
+		        }		        
+		        if($("#datepicker1").val() == "") { 		
+ 		        	$("#datepicker1").addClass("is-invalid"); 
+		        	$("#datepicker1").focus();
+		        	$("#datepicker1").text("생년월일을 입력해 주세요");
+		        	return false; 
+				}
+		        
+		        if($("#detailAddres").val() == "") { 
+		        	$("#postcode").addClass("is-invalid"); 
+		        	$("#address").addClass("is-invalid"); 
+		        	$("#detailAddres").addClass("is-invalid"); 
+		        	$("#address").focus();
+		        	$("#address").text("주소를 입력해 주세요");
+		        	return false; 
+				}
 		    }
 		</script>
 	</body>

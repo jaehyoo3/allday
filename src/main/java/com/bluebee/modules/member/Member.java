@@ -16,6 +16,49 @@ public class Member {
 	private Integer memberGrade;
 	private Integer memberPoint;
 	private String memberName;
+	private String addrSeq;
+	private Integer defaultNy;
+	private String  reciver;
+	private String zipcode;
+	public String getAddrSeq() {
+		return addrSeq;
+	}
+	public void setAddrSeq(String addrSeq) {
+		this.addrSeq = addrSeq;
+	}
+	public Integer getDefaultNy() {
+		return defaultNy;
+	}
+	public void setDefaultNy(Integer defaultNy) {
+		this.defaultNy = defaultNy;
+	}
+	public String getReciver() {
+		return reciver;
+	}
+	public void setReciver(String reciver) {
+		this.reciver = reciver;
+	}
+	public String getZipcode() {
+		return zipcode;
+	}
+	public void setZipcode(String zipcode) {
+		this.zipcode = zipcode;
+	}
+	public String getAddr1() {
+		return addr1;
+	}
+	public void setAddr1(String addr1) {
+		this.addr1 = addr1;
+	}
+	public String getAddr2() {
+		return addr2;
+	}
+	public void setAddr2(String addr2) {
+		this.addr2 = addr2;
+	}
+	private String addr1;
+	private String addr2;
+	
 	public Date getMemberRegdate() {
 		return memberRegdate;
 	}

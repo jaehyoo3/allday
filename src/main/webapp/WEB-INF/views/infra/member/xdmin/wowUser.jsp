@@ -142,7 +142,6 @@
 		<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 		<script type="text/javascript">
 		 var goUrlList = "/xdmin/memberList"; 			/* #-> */
-		 
 		 var seq = $("input:text[name=memberSeq]");				/* #-> */
 		 var form = $("form[name=form]")
 		

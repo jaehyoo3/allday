@@ -1,16 +1,10 @@
 package com.bluebee.modules.member;
 
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.temporal.ChronoUnit;
-import java.util.Date;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -85,14 +79,18 @@ public class MemberController {
 		
 		return "infra/member/xdmin/wowUserForm"; 
 	}
+	
 //	USER
 	@RequestMapping(value = "/reg1")
-	public String memberSignFirst(Member dto) throws Exception {
-		
+	public String memberSignFirst(@ModelAttribute("vo") MemberVo vo, Model model) throws Exception {
+		Member item = service.selectOne(vo);
+		model.addAttribute("item", item);
 		return "infra/store/memberReg1"; 
 	}
 	@RequestMapping(value = "/reg2")
-	public String memberSignSecond(Member dto) throws Exception {
+	public String memberSignSecond(@ModelAttribute("vo") MemberVo vo, Model model) throws Exception {
+		Member item = service.selectOne(vo);
+		model.addAttribute("item", item);
 		return "infra/store/memberReg2"; 
 	}
 	
