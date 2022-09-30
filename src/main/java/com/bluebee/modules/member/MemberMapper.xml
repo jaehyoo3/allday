@@ -161,7 +161,15 @@
 				member
 			WHERE
 				memberID = #{memberID}
-				
+		</select>
+		
+		<select id="selectOneNickCheck" resultType="Integer">
+			SELECT 
+				COUNT(*)
+			from 
+				member
+			WHERE
+				memberNick = #{memberNick}
 		</select>
 		
 		<sql id='basic'>

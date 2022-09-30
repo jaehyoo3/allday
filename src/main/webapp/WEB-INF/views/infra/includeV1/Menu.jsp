@@ -37,9 +37,9 @@
 		        <ul id="menu">
 		            <li><a href="#" onClick="location.href='storeNew'"><b>New</b></a></li>
 		            <li><a href="#" onClick="location.href='storeBest'"><b>Best</b></a></li>
-		            <li><a href="#"><b>Outer</b></a></li>
-		            <li><a href="#"><b>Top</b></a></li>
-		            <li><a href="#"><b>Pants</b></a></li>
+		            <li><a href="#"onClick="location.href='storeOuter'"><b>Outer</b></a></li>
+		            <li><a href="#"onClick="location.href='storeTop'"><b>Top</b></a></li>
+		            <li><a href="#"onClick="location.href='storePants'"><b>Pants</b></a></li>
 		            <li><a href="#"><b><div class="vr"></b></a></li>
 		            <li><a href="#"><b><i class="fa-brands fa-instagram fa-xl"></i></b></a></li>
 		        </ul>

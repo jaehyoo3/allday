@@ -120,6 +120,21 @@ public class MemberController {
 		}
 		return returnMap;
 	}
+	@ResponseBody
+	@RequestMapping(value = "xdmin/checkNick")
+	public Map<String, Object> checkNick(Member dto) throws Exception {
+
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
+		int result = service.selectOneNickCheck(dto);
+
+		if (result > 0) {
+			returnMap.put("rt", "fail");
+		} else {
+			returnMap.put("rt", "success");
+		}
+		return returnMap;
+	}
 	
 	@ResponseBody
 	@RequestMapping(value = "/member/loginProc")

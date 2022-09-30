@@ -7,7 +7,6 @@
 
 <html>
 	<head>
-
 		<title>BLUEBEE</title>
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 		<link href="/resources/Images/memberReg.css" rel="stylesheet">
@@ -16,6 +15,7 @@
 	<body>
 		<form method="post" action="signUp" onsubmit="return checks()" autocomplete="off">
 		<input type="hidden" id="checkIdNy" name="checkIdNy"> 
+		<input type="hidden" id="checkNickNy" name="checkNickNy">
 			<!-- navMenu s  -->
 				<%@include file="../../infra/includeV1/Menu.jsp"%>
 			<!-- navMenu e --> 
@@ -35,7 +35,6 @@
 					<input type='text' name='file2' id='file2' style='display:none;'> 
 					<br>
 				</center>
-				
 				<!-- ID -->
 				<span>아이디</span><span style="font-size:12px; color:#e0e0e0">(필수)</span>
 				<input type="text" class="form-control mb-1" id="memberID" name="memberID" placeholder="아이디">
@@ -47,8 +46,6 @@
 				<span>비밀번호 확인</span><span style="font-size:12px; color:#e0e0e0">(필수)</span>
 				<input type="password" class="form-control mb-2" id="memberPW2" name='memberPW2' placeholder="비밀번호 확인">
 				<label id="pw2Feedback"></label><br>
-				
-				
 				<span>닉네임</span><span style="font-size:12px; color:#e0e0e0">(필수)</span>
 				<input type="text" class="form-control mb-2" id="memberNick" name="memberNick" placeholder="닉네임">
 				<div class="invalid-feedback mb-2" id='nickFeedback'></div>
@@ -59,7 +56,6 @@
 				<div class="input-group flex-nowrap">
 						<input type="text" class="form-control mb-2" id='datepicker1' name="memberDob" style="width:200px;">
 				</div>
-				
 				<span>성별</span>
 				<div class="d-flex mb-1">
 					<div class="p-1">
@@ -161,6 +157,8 @@
 		//주소-좌표 변환 객체를 생성
 		var geocoder = new daum.maps.services.Geocoder();
     	var engnum = RegExp(/^[a-zA-Z0-9]{4,12}$/)
+    	var getNick = RegExp(/^.{3,12}$/);
+    	
 		    function DaumPostcode() {
 		        new daum.Postcode({
 		            oncomplete: function(data) {
@@ -211,7 +209,6 @@
 		            }
 		        }).open();
 		    }
-    	
     	  $.datepicker.setDefaults({
     	        dateFormat: 'yy-mm-dd',
     	        prevText: '이전 달',
@@ -234,8 +231,7 @@
 		    		$("#pw2Feedback").text("비밀번호가 일치합니다").css({'color':'#198754', 'font-size':'14px'});
 		    		} else    
 		    		$("#pw2Feedback").text("비밀번호가 일치하지 않습니다").css({'color':'#DC3545', 'font-size':'14px'});
-		    	});
-		    
+		    });
 		    <!-- 아이디 중복확인 -->
 			$("#memberID").on("focusout", function(){
 		        if($("#memberID").val() == "") {
@@ -284,7 +280,7 @@
 							
 							document.getElementById("idFeedback").classList.remove('valid-feedback');
 							document.getElementById("idFeedback").classList.add('invalid-feedback');
-							document.getElementById("idFeedback").innerText = "사용 불가능 합니다";
+							document.getElementById("idFeedback").innerText = "이미 사용중인 아이디 입니다";
 							
 							document.getElementById("checkIdNy").value = 0;
 						}
@@ -295,10 +291,67 @@
 				});
 				}
 			});
-			
+			$("#memberNick").on("focusout", function(){
+		        if($("#memberNick").val() == "") {
+		        	$("memberNick").removeClass('is-valid');
+		        	$("memberNick").addClass('is-invalid');
+		        	
+		        	$("NickFeedback").removeClass('valid-feedback');
+		        	$("NickFeedback").addClass('invalid-feedback');
+
+		        	$("#memberNick").focus();
+		        	$("#nickFeedback").text("닉네임을 입력해 주세요");
+		        	return false; 
+				}
+		        if(!getNick.test($("#memberNick").val())) {
+	            	$("#memberNick").val("");
+		        	$("memberNick").removeClass('is-valid');
+		        	$("memberNick").addClass('is-invalid');
+		        	$("nickFeedback").removeClass('valid-feedback');
+		        	$("nickFeedback").addClass('invalid-feedback');
+		        	$("#memberNick").focus();
+		        	$("#nickFeedback").text("닉네임는 3~12자 사이로 입력해 주세요");
+	            	return false; 
+		        } else {
+				$.ajax({
+					async: true 
+					,cache: false
+					,type: "post"
+					/* ,dataType:"json" */
+					,url: "/xdmin/checkNick"
+					/* ,data : $("#formLogin").serialize() */
+					,data : { "memberNick" : $("#memberNick").val() }
+					,success: function(response) {
+						if(response.rt == "success") {
+							document.getElementById("memberNick").classList.remove('is-invalid');
+							document.getElementById("memberNick").classList.add('is-valid');
+		
+							document.getElementById("nickFeedback").classList.remove('invalid-feedback');
+							document.getElementById("nickFeedback").classList.add('valid-feedback');
+							document.getElementById("nickFeedback").innerText = "사용 가능 합니다.";
+							
+							document.getElementById("checkNickNy").value = 1;
+							
+						} else {
+							document.getElementById("memberNick").classList.remove('is-valid');
+							document.getElementById("memberNick").classList.add('is-invalid');
+							
+							document.getElementById("nickFeedback").classList.remove('valid-feedback');
+							document.getElementById("nickFeedback").classList.add('invalid-feedback');
+							document.getElementById("nickFeedback").innerText = "이미 사용중인 닉네임 입니다";
+							
+							document.getElementById("checkNickNy").value = 0;
+						}
+					}
+					,error : function(jqXHR, textStatus, errorThrown){
+						alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+					} 
+				});
+				}
+			});
 			<!-- 유효성 검사 -->
 		    function checks(){
-		    	var getNick = RegExp(/^.{4,12}$/);
+
 		    	var onlyKor= RegExp(/^[가-힣]+$/);
 		    	
 		        if($("#memberID").val() == "") { 		
@@ -352,7 +405,6 @@
 		        	$("#datepicker1").text("생년월일을 입력해 주세요");
 		        	return false; 
 				}
-		        
 		        if($("#detailAddres").val() == "") { 
 		        	$("#postcode").addClass("is-invalid"); 
 		        	$("#address").addClass("is-invalid"); 

@@ -55,6 +55,28 @@ public class StoreController {
 			
 			return "infra/store/storeBest";
 		}
+		@RequestMapping(value = "storeTop")
+		public String StoreTop(Model model, StoreVo vo) throws Exception {
+			List<Store> list = service.selectList(vo);
+			model.addAttribute("list", list);
+			
+			return "infra/store/storeTop";
+		}
+		@RequestMapping(value = "storePants")
+		public String StorePants(Model model, StoreVo vo) throws Exception {
+			List<Store> list = service.selectList(vo);
+			model.addAttribute("list", list);
+			
+			return "infra/store/storePants";
+		}
+		@RequestMapping(value = "storeOuter")
+		public String StoreOuter(Model model, StoreVo vo) throws Exception {
+			List<Store> list = service.selectList(vo);
+			model.addAttribute("list", list);
+			
+			return "infra/store/storeOuter";
+		}
+		
 		@RequestMapping(value = "product")
 		public String Product() {
 			return "infra/store/storeProduct";
