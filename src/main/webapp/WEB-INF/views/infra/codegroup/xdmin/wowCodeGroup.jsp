@@ -22,7 +22,7 @@
 		
 			<%@include file="../../../infra/includeV1/xdminSetting.jsp" %>
 			<div class="main-content">
-				<h1><i class="fa-solid fa-user"></i> CodeGroup</h1>
+				<h1><i class="fa-regular fa-file"></i> CodeGroup</h1>
 					<div class="serach-box">
 						<p> 
 							<select style="width:30%;"></select>
@@ -127,8 +127,8 @@
 				 		</span>
 					</div>
 					<div class='button-box'>
-						<button class='plusbtn' id='btnForm'><i class="fa-solid fa-user-plus"></i></button>
-						<button class='minusbtn'><i class="fa-solid fa-user-minus"></i></button>
+						<button class='plusbtn' id='btnForm'><i class="fa-solid fa-file-circle-plus"></i></button>
+						<button class='minusbtn'><i class="fa-solid fa-file-circle-minus"></i></button>
 					</div>					
 				</p>
 			</form>

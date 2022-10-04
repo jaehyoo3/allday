@@ -32,8 +32,8 @@
 					<div class='right'>
 						<div class='boxx'>
 							<div class='grade'>
-							<h3><b><span style='color:purple'>Normal</span>_홍길동님 안녕하세요</b></h3>
-							<p>구매금액: 10,000,000원 달성시<br>Bronze로 승급 됩니다.</p>
+							<h3><b><span style='color:purple'>Normal</span>_"<c:out value="${sessNick}"/>(<c:out value="${sessName}"/>)" 님 안녕하세요</b></h3>
+							<p>구매금액: 10,000,000원 달성시<br><c:out value="${sessGrade}"/>로 승급 됩니다.</p>
 						</div>
 						<div class="point">
 							<div class="d-flex" style="height: 150px;">

@@ -17,7 +17,7 @@
 			<%@include file="codeVo.jsp"%>	
 			<%@include file="../../../infra/includeV1/xdminSetting.jsp" %>
 			<div class="main-content">
-				<h1><i class="fa-solid fa-user"></i> Code</h1>
+				<h1><i class="fa-regular fa-file"></i> Code</h1>
 				<div class='form-box'>
 					<p style="padding-bottom:30px; padding-top:30px;">Code No. <c:out value="${item.codeSeq }" /></p>
 					<p>* 코드그룹</p>
@@ -85,7 +85,7 @@
 			var goUrlUele = "codeUele";				
 			var goUrlDele = "codeDele";
 			
-			var seq = $("input:text[name=codeSeq]");				/* #-> */
+			var seq = $("input:hidden[name=codeSeq]");				/* #-> */
 			var form = $("form[name=form]");
 			var formVo = $("form[name=formVo]");
 			

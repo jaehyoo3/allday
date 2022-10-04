@@ -19,7 +19,7 @@
 		<!--  codeGroup Vo e -->
 		<%@include file="../../../infra/includeV1/xdminSetting.jsp" %>
 			<div class="main-content">
-				<h1><i class="fa-solid fa-user"></i> CodeGroup</h1>
+				<h1><i class="fa-regular fa-file"></i> CodeGroup</h1>
 				<div class='form-box'>
 					<p style="padding-bottom:30px; padding-top:30px;">No. <c:out value="${item.codeGroupSeq }" /></p>
 					<p>* 코드그룹 이름(Kor)</p>
