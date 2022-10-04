@@ -33,7 +33,7 @@ public class XdminCGController {
 		}
 		@RequestMapping(value = "productupdt")
 		public String wowProductUpdt() {
-			return "infra/xdmin/wowProductUpdate";
+			return "infra/codegroup/xdmin/wowProductUpdate";
 		}
 		@RequestMapping(value = "codegroup")
 		public String wowCodeGroup(@ModelAttribute("vo") XdminCGVo vo, Model model) throws Exception {
@@ -42,7 +42,7 @@ public class XdminCGController {
 			
 			List<XdminCG> list = service.selectList(vo);
 			model.addAttribute("list", list);
-			return "infra/xdmin/wowCodeGroup";
+			return "infra/codegroup/xdmin/wowCodeGroup";
 		}
 				
 		@RequestMapping(value = "codegroupform")
@@ -50,7 +50,7 @@ public class XdminCGController {
 			XdminCG item = service.selectOne(vo);
 			model.addAttribute("item", item);
 
-			return "infra/xdmin/wowCodeGroupForm"; 
+			return "infra/codegroup/xdmin/wowCodeGroupForm"; 
 		}
 		
 		@RequestMapping(value = "codegroupInst")

@@ -11,5 +11,4 @@
 
 <input type="hidden" name="shOption" value="<c:out value="${vo.shOption}"/>"/>
 <input type="hidden" name="shValue" value="<c:out value="${vo.shValue}"/>"/>
-
-<input type="hidden" name="ccseq" value="<c:out value="${vo.ccseq}"/>"/>
+<input type="hidden" name="codeSeq" value="<c:out value="${vo.codeSeq}"/>"/>

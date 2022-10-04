@@ -25,7 +25,7 @@ public class XdminCodeController {
 		List<XdminCode> list = service.selectList(vo);
 		model.addAttribute("list", list);
 		
-		return "infra/xdmin/wowCode";
+		return "infra/code/xdmin/wowCode";
 	}
 	@RequestMapping(value = "codeView")
 	public String codeView(Model model, @ModelAttribute("vo") XdminCodeVo vo) throws Exception {
@@ -36,7 +36,7 @@ public class XdminCodeController {
 		List<XdminCode> list = service.codegroupViewer();
 		model.addAttribute("list", list);
 		
-		return "infra/xdmin/wowCodeForm";
+		return "infra/code/xdmin/wowCodeForm";
 	}
 	
 	@RequestMapping(value = "codeform")
@@ -48,7 +48,7 @@ public class XdminCodeController {
 		List<XdminCode> list = service.codegroupViewer();
 		model.addAttribute("list", list);
 		
-		return "infra/xdmin/wowCodeForm";
+		return "infra/code/xdmin/wowCodeForm";
 	}
 
 	@RequestMapping(value = "codeInst")

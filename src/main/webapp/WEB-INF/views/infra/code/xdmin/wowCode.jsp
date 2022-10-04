@@ -115,17 +115,17 @@
 				<button type='button' onClick="location.href='codeform'">+</button>
 			<!-- pagination s  -->
 			<center>
-			<%@include file="../../infra/includeV1/pagination.jsp"%>
+			<%@include file="../../../infra/includeV1/pagination.jsp"%>
 			</center>
 			<!-- pagination e -->
 			</div>
 			
 			<!-- footer s  -->
-				<%@include file="../../infra/includeV1/footer.jsp"%>
+				<%@include file="../../../infra/includeV1/footer.jsp"%>
 			<!-- footer e -->
 			</div>
 			<!-- sideMenu s  -->
-				<%@include file="../../infra/includeV1/sideMenu.jsp"%>
+				<%@include file="../../../infra/includeV1/sideMenu.jsp"%>
 			<!-- sideMenu e -->
 		</form>
 		
