@@ -1,6 +1,6 @@
 package com.bluebee.modules.xdmincode;
 
-import com.bluebee.common.base.BaseVo;
+import com.bluebee.modules.base.BaseVo;
 
 public class XdminCodeVo extends BaseVo {
 	private String codeSeq;

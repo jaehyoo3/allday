@@ -16,21 +16,13 @@
 	</head>
 	
 	<body>
-		<form>
+		<form name="form" method="post">
 			<!-- navMenu s  -->
 				<%@include file="../../infra/includeV1/Menu.jsp"%>
 			<!-- navMenu e --> 
 			<div id='content'>
 				<div class='modify'>
-					<div class='left'>
-						<ul class="a">
-							<li><a href="#" onClick="location.href='basket'">장바구니</a></li>
-							<li><a href="#" onclick="location.href='modify'">주문조회</a></li>
-							<li><a href="#" onClick="location.href='wish'">위시리스트</a></li>
-							<li><a href="#" onClick="location.href='update'">개인정보수정</a></li>
-							<li><a href="#">회원탈퇴</a></li>
-						</ul>
-					</div>
+					<%@include file="../../infra/includeV1/modifyMenu.jsp"%>
 					<div class='right'>
 						<h1>개인정보수정</h1>
 						<br>
@@ -42,19 +34,19 @@
 								</div>
 								<input type='text' name='file2' id='file2' style='display:none;'> 
 								<br>
-								<input class="form-control" type="text" value="wowdmin123" disabled readonly>
+								<input class="form-control" type="text" value="<c:out value="${sessId}"/>" readonly>
 								<input class="form-control" type="password" placeholder="기존 비밀번호 입력">
 								<input type="password" class="form-control" placeholder="비밀번호를 변경 하는 경우 입력 하세요">
 								<input type="password" class="form-control" placeholder=" 비밀번호 확인">
 								<br>
 								<br>
 								<lable>이름</lable>
-								<input class="form-control" type="text" value="홍길동" disabled readonly>
+								<input class="form-control" type="text" value="<c:out value="${item.memberName}" />" disabled readonly>
 								<br>
 								<lable>성별</lable>
 								<div class="d-flex mb-1">
 									<div class="p-1">
-										<input class="form-check-input" name="gender" type="radio" id="man"checked>
+										<input class="form-check-input" name="gender" type="radio" id="man">
 										<label for="man">남자</label>
 									</div>
 									<div class="p-1 mx-auto">
@@ -63,7 +55,7 @@
 									</div>
 								</div><br>
 								<lable>연락처</lable>
-								<input class="form-control" type="text" value="010-1234-5678" disabled readonly>
+								<input class="form-control" type="text" value="<c:out value="${item.mobile }" disabled readonly>
 								<br>
 								<lable>이메일</lable>
 								<div class="input-group flex-nowrap">
@@ -112,5 +104,6 @@
 		</form>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 		<script src="https://kit.fontawesome.com/a1961b2393.js" crossorigin="anonymous"></script>
+
 	</body>
 </html>

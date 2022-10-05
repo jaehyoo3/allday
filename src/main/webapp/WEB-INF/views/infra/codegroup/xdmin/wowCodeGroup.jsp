@@ -15,7 +15,7 @@
 
 	</head>
 	<body>
-		<form name='form' method="post">
+		<form name='form'>
 			<input type="hidden" name="codeGroupSeq">
 			<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage}" default="1"/>">
 			<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>">

@@ -14,21 +14,14 @@
 		<link href="/resources/Images/memberMod.css" rel="stylesheet">
 	</head>
 	<body>
-		<form>
+		<form name="form" method="post">
+		<input type="hidden" name="sessSeq">
 			<!-- navMenu s  -->
 				<%@include file="../../infra/includeV1/Menu.jsp"%>
 			<!-- navMenu e --> 
 			<div id='content'>
 				<div class='modify'>
-					<div class='left'>
-						<ul class="a">
-							<li><a href="#" onClick="location.href='basket'">장바구니</a></li>
-							<li><a href="#" onclick="location.href='modify'">주문조회</a></li>
-							<li><a href="#" onClick="location.href='wish'">위시리스트</a></li>
-							<li><a href="#" onClick="location.href='update'">개인정보수정</a></li>
-							<li><a href="#">회원탈퇴</a></li>
-						</ul>
-					</div>
+					<%@include file="../../infra/includeV1/modifyMenu.jsp"%>
 					<div class='right'>
 						<div class='boxx'>
 							<div class='grade'>

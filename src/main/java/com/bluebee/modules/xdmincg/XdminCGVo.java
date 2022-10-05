@@ -1,5 +1,5 @@
 package com.bluebee.modules.xdmincg;
-import com.bluebee.common.base.BaseVo;
+import com.bluebee.modules.base.BaseVo;
 
 public class XdminCGVo extends BaseVo {
 	private String codeGroupSeq;

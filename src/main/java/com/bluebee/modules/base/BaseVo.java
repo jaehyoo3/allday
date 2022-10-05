@@ -1,4 +1,4 @@
-package com.bluebee.common.base;
+package com.bluebee.modules.base;
 
 import com.bluebee.modules.constants.Constants;
 

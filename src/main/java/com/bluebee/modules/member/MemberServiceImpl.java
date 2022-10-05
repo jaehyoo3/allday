@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.bluebee.common.util.UtilSecurity;
+import com.bluebee.modules.util.UtilSecurity;
 
 @Service
 public class MemberServiceImpl implements MemberService {

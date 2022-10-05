@@ -13,7 +13,7 @@
 		<link href="/resources/Images/css/code.css" rel="stylesheet">
 	</head>
 	<body>
-		<form name='form' method="post">
+		<form name='form'>
 		<!--  codeGroup Vo s -->
 			<%@include file="codeGroupVo.jsp"%>
 		<!--  codeGroup Vo e -->

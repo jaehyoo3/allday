@@ -1,4 +1,4 @@
-package com.bluebee.common.util;
+package com.bluebee.modules.util;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.bluebee.modules.constants.Constants;
-import com.bluebee.common.util.UtilSecurity;
+import com.bluebee.modules.util.UtilSecurity;
 
 @Controller
 public class MemberController {
@@ -173,5 +173,14 @@ public class MemberController {
 		return returnMap;
 	}
 	
-
+	@RequestMapping(value = "/memberView")
+	public String userView(@ModelAttribute("vo") MemberVo vo, Model model) throws Exception { 		
+		
+		Member item = service.selectOne(vo);
+		model.addAttribute("item", item);
+		
+		return "infra/store/memberUpdate"; 
+	}
+	
+	
 }
