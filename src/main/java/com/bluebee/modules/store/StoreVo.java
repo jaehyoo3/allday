@@ -1,6 +1,6 @@
 package com.bluebee.modules.store;
 
-import com.bluebee.modules.base.BaseVo;
+import com.bluebee.common.base.BaseVo;
 
 public class StoreVo extends BaseVo{
 	private String productSeq;

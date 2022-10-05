@@ -1,5 +1,5 @@
 package com.bluebee.modules.member;
-import com.bluebee.modules.base.BaseVo;
+import com.bluebee.common.base.BaseVo;
 
 public class MemberVo extends BaseVo{
 

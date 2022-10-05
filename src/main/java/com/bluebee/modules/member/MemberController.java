@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.bluebee.modules.constants.Constants;
-import com.bluebee.modules.util.UtilSecurity;
+import com.bluebee.common.util.UtilSecurity;
 
 @Controller
 public class MemberController {

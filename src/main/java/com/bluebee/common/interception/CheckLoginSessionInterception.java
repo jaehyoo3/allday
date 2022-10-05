@@ -1,4 +1,4 @@
-package com.bluebee.modules.interception;
+package com.bluebee.common.interception;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

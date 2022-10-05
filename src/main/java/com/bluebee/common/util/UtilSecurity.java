@@ -1,4 +1,4 @@
-package com.bluebee.modules.util;
+package com.bluebee.common.util;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
