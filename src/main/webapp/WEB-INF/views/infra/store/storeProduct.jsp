@@ -20,57 +20,36 @@
 				<%@include file="../../infra/includeV1/Menu.jsp"%>
 			<!-- navMenu e --> 
 			<div id='content'>
+			<jsp:useBean id="XdminCodeServiceImpl" class="com.bluebee.modules.xdmincode.XdminCodeServiceImpl"/>
+			<c:set var="listCodeType" value="${XdminCodeServiceImpl.selectListCachedCode('9')}"/>
 			<p>Home > Top</p>
 				<div class="productimg">
 					<img src='/resources/Images/img/knit.jpg' style="width:80%;">
 				</div>
 				<div class="productbuy">
-					<div class='title'>이비자 코스트 시트론 레트로 네츄럴 메쉬 니트 | TOP</div>
+					<div class='title'><c:out value="${item.productName }"/> | 
+						<c:forEach items="${listCodeType}" var="listCode" varStatus="statusGender">
+							<c:if test="${item.productType eq listCode.codeOrder}"><c:out value="${listCode.codeName}"/></c:if>
+						</c:forEach>
+					
+					</div>
 					<div>
-					<div class='price'>￦49,000</div>
+					<div class='price'><fmt:formatNumber value="${item.productPrice}" pattern="##,###" /></div>
 					<hr>
 					<div class='express'>배송방법: 택배</div>
 					<br>
-					<span style="font-size:12px; font-weight:bold;">색상 *</span>
-					<div class="custom-radios">
-					  <div>
-					    <input type="radio" id="color-1" name="color" value="color-1">
-					    <label for="color-1">
-					      <span>
-					        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
-					      </span>
-					    </label>
-					  </div>
-					  
-					  <div>
-					    <input type="radio" id="color-2" name="color" value="color-2">
-					    <label for="color-2">
-					      <span>
-					        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
-					      </span>
-					    </label>
-					  </div>
-					  
-					  <div>
-					    <input type="radio" id="color-3" name="color" value="color-3">
-					    <label for="color-3">
-					      <span>
-					        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
-					      </span>
-					    </label>
-					  </div>
-					
-					  <div>
-					    <input type="radio" id="color-4" name="color" value="color-4">
-					    <label for="color-4">
-					      <span>
-					        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
-					      </span>
-					    </label>
-					  </div>
-					</div>
+					<p style="font-size:12px; font-weight:bold;">색상 *</p>
+					<label for="red">
+						  <input class="product_color" data-color-hex="red" type="radio" name="color"/>
+					</label>
+					<label for="blue">
+						<input class="product_color" data-color-hex="blue" type="radio" name="color"/>
+					</label>
+					<label for="green">
+						<input class="product_color" data-color-hex="green" type="radio" name="color"/>
+					</label>
 					<br>
-					<span style="font-size:12px; font-weight:bold;">사이즈 *</span>
+					<p style="font-size:12px; font-weight:bold;">사이즈 *</p>
 					<select class="form-select" aria-label="Default select example">
 					  <option selected>사이즈(필수)</option>
 					  <option value="1">S (90)</option>
@@ -209,6 +188,7 @@
 		</form>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 		<script src="https://kit.fontawesome.com/a1961b2393.js" crossorigin="anonymous"></script>
+		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 		<script type="text/javascript">
 
 		function showHide(id){
@@ -227,6 +207,13 @@
 			    } else subs.innerText ='상품정보 더보기 ▽';
 		};
 		
+		$(document).ready( function() {
+		       $(".product_color").each( function(index){
+		         var color = $(this).attr('data-color-hex');
+		         $(this).css('background',color);
+		               
+		       });
+		});
 		
 
 		</script>

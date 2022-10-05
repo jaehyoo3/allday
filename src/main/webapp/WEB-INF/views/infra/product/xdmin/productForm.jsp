@@ -16,50 +16,145 @@
 		<form name='form' method="post">
 		<%@include file="../../../infra/includeV1/xdminSetting.jsp" %>
 			<div class="main-content">
-				<h1><i class="fa-solid fa-user"></i> Member</h1>
+				<h1><i class="fa-regular fa-file"></i> Member</h1>
 				<div class='form-box'>
-					<p style="padding-bottom:30px; padding-top:30px;">No.</p>
-					<p>* 코드그룹 이름(Kor)</p>
+					<p style="padding-bottom:30px; padding-top:10px;">No. <c:out value="${item.productSeq }" /></p>
+					<p>* 상품이름</p>
+					<input type="text" name="memberName" id="memberName" placeholder="한글">
+					<p>* 가격</p>
+					<input type="text" name="memberID" id="memberID" placeholder="한글,숫자">
+					<p>* 사이즈 - 컬러 - 갯수</p>
+					<input type="text" name= "memberNick" id="memberNick"  placeholder="한글, 영문(대소문자),숫자" style="width:19%;"> - <input type="text" style="width:19%;"> - <input type="text" style="width:19%;">
+					<p>* 상품 상세이미지</p>
+					<input type="text" name= "memberDob" id='datepicker1'  placeholder="한글, 영문(대소문자),숫자">
+					<p>* 상품 대표이미지</p>
+					<input type="text" name= "memberMobile" id="memberMobile" placeholder="한글, 영문(대소문자),숫자">			
+					<h4>상품정보 제공공시</h4>
+					<p>종류</p>
 					<input type="text">
-					<p>* 코드그룹 이름(Eng)</p>
+					<p>소재</p>
 					<input type="text">
-					<p>코드그룹 사용 여부</p>
+					<p>색상</p>
+					<input type="text">
+					<p>크기</p>
+					<input type="text">
+					<p>제조사</p>
+					<input type="text">
+					<p>제조국</p>
+					<input type="text">
+					<p>취급시 주의사항</p>
+					<input type="text">
+					<p>품질보증기준</p>
+					<input type="text">
+					<p>A/S책임자·전화번호</p>
+					<input type="text">
+					<p>상품 삭제 여부</p>
 					<p style='font-size:6px; color:#e0e0e0;'>(설정하지 않을경우 기본값으로 설정됩니다.)</p>
-					<select>
-						<option>설정</option>
-						<option>사용하기</option>
-						<option>사용하지않기</option>
+					<select id="memberDelNy" name="memberDelNy">
+						<option value=''>설정하기</option>
+						<option value='0'>사용하지않기</option>
+						<option value='1'>사용하기</option>
 					</select>
-					<p>코드그룹 삭제 여부</p>
-					<p style='font-size:6px; color:#e0e0e0;'>(설정하지 않을경우 기본값으로 설정됩니다.)</p>
-					<select>
-						<option>설정</option>
-						<option>사용하기</option>
-						<option>사용하지않기</option>
-					</select>
-					<ul>
-						<li>
-						<span>등록일: </span>
-						<input type=text readonly>
-						</li>
-						<li>
-						<span>수정일: </span>
-						<input type=text readonly>
-						</li>
-					</ul>
-					<button style='background-color:#ab000d; float:left;'>DELETE</button>
-					<button style='background-color:#ab000d; float:left;'>UELETE</button>
-					<button style='float:right;'>INSERT</button>
+						<ul>
+							<li>
+							<span>등록일: </span>
+								<input type=text readonly>
+							</li>
+							<li>
+							<span>수정일: </span>
+								<input type=text readonly>	
+							</li>
+						</ul>
+						<button> 리뷰창 열기</button>
+					</div>
+					<div class='btn-box'>
+						<button style='background-color:#ab000d;'>DELETE</button>
+						<button style='background-color:#ab000d;'>UELETE</button>
+						<button id="btnSave">INSERT</button>
+						<button id="btnList">LdIST</button>
 				</div>
 			</div>
-		<script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+		</form>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-  
-		<script src="https://kit.fontawesome.com/a1961b2393.js"crossorigin="anonymous"></script>
-		 <script type="text/javascript">
-		  $('.btn-expand-collapse').click(function(e) {
-				$('.navbar-primary').toggleClass('collapsed');
-		});
-  		</script>
-  </body>
+		<script src="https://kit.fontawesome.com/a1961b2393.js" crossorigin="anonymous"></script>
+		
+		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+		<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3d9122ea8fc388f07cd56d7692121430&libraries=services"></script>
+		
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+		<link rel="stylesheet" href="/resources/demos/style.css">
+		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		
+		<script type="text/javascript">
+		    var goUrlList = "/xdmin/memberList"; 			/* #-> */
+			var goUrlInst = "/xdmin/memberInst"; 			/* #-> */
+			var goUrlUpdt = "/xdmin/memberUpdt";				/* #-> */
+			var goUrlUele = "/xdmin/memberUele";				/* #-> */
+			var goUrlDele = "/xdmin/memberDele";				/* #-> */
+			
+			var seq = $("input:hidden[name=memberSeq]");				/* #-> */
+			var form = $("form[name=form]")
+			var formVo = $("form[name=formVo]");
+	
+			$("#btnSave").on("click", function() {
+				if(seq.val() == "0" || seq.val() == "") {
+					form.attr("action", goUrlInst).submit();
+				} else {
+					form.attr("action", goUrlUpdt).submit();
+				}
+			});
+			
+			$("#btnUelete").on("click", function(){
+				$(".modal-title").text("확 인");
+				$(".modal-body").text("해당 데이터를 Uelete 삭제하시겠습니까 ?");
+				$("#btnModalUelete").show();
+				$("#btnModalDelete").hide();
+				$("#modalConfirm").modal("show");
+			});
+			
+			$("#btnDelete").on("click", function(){
+				$(".modal-title").text("확 인");
+				$(".modal-body").text("해당 데이터를 Delete 삭제하시겠습니까 ?");
+				$("#btnModalUelete").hide();
+				$("#btnModalDelete").show();
+				$("#modalConfirm").modal("show");
+			});
+			
+			$("#btnModalUelete").on("click", function(){
+				$("#modalConfirm").modal("hide");
+				form.attr("action", goUrlUele).submit();
+			});
+			
+			$("#btnModalDelete").on("click", function(){
+				$("#modalConfirm").modal("hide");
+				form.attr("action", goUrlDele).submit();
+			});
+			
+			$("#btnList").on("click", function(){
+				form.attr("action", goUrlList).submit();
+			});
+			
+			if(document.getElementById("memberAd").checked) {
+	        	document.getElementById("memberAd_hidden").disabled = true;
+	        }
+    	  $.datepicker.setDefaults({
+    	        dateFormat: 'yy-mm-dd',
+    	        prevText: '이전 달',
+    	        nextText: '다음 달',
+    	        monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+    	        monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+    	        dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+    	        dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+    	        dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+    	        showMonthAfterYear: true,
+    	        yearSuffix: '년'
+    	    });
+    	    $(function() {
+    	        $("#datepicker1").datepicker();
+    	    });
+	
+		</script>
+
+	</body>
 </html>

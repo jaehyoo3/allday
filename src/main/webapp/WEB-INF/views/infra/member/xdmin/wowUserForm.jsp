@@ -10,144 +10,98 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>관리자 페이지</title>
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-		<link href="/resources/Images/xdminUserForm.css" rel="stylesheet">
-		<style type="text/css">
-
- 	
-	.input-file-button{
-		padding: 4px 25px;
-		background-color:#FF6600;
-		border-radius: 4px;
-		color: white;
-		cursor: pointer;
-	}	
-</style>
+		<link href="/resources/Images/css/code.css" rel="stylesheet">
 	</head>
-	
 	<body>
-		<form name="form" id="form" method="post">
-		
+		<form name='form' method="post">
+		<%@include file="../../../infra/includeV1/xdminSetting.jsp" %>
 		<%@include file="memberVo.jsp"%>
-		
-			<input type="checkbox" id="menu-toggle"/>
-			<label for="menu-toggle" class="menu-icon"><i class="fa fa-bars"></i></label>
-			<div class="content-container">
-			<div id='haeder'></div>
-			<div class="navbar">
-				<a href="#" id="logo"> <img src="../img/logo2.png" height="60"
-					onClick="location.href='./wowMain.html'">
-				</a>
-			</div>
-			<div id='content'>
-			<h3>회원관리</h3>
-			<c:forEach items="${listUploaded}" var="listUploaded" varStatus="statusUploaded">
-	<c:out value="${listUploaded.type }"/>
-</c:forEach>
-		    <div class="row mt-sm-4 ">
-		        <div class="col-sm-12 text-center">
-		<c:choose>
-			<c:when test="${fn:length(listUploaded) eq 0 }">
-				<img id="imgProfile" src="/resources/xdmin/image/default_100_100.png" class="rounded-circle mx-auto d-block" width="100" height="100">
-			</c:when>
-			<c:otherwise>
-				<c:forEach items="${listUploaded}" var="listUploaded" varStatus="statusUploaded">
-					<c:if test="${listUploaded.type eq '1' }">
-						<img id="imgProfile" src="<c:out value="${listUploaded.path }"/><c:out value="${listUploaded.uuidName }"/>" class="rounded-circle mx-auto d-block" width="100" height="100">
-					</c:if>
-				</c:forEach>
-			</c:otherwise>
-		</c:choose>
-		<%-- 
-		<c:forEach items="${listUploaded}" var="listUploaded" varStatus="statusUploaded">
-			<c:choose>
-				<c:when test="${not empty listUploaded.type && listUploaded.type eq 1 }">
-					<img id="imgProfile" src="<c:out value="${Constants.UPLOAD_PATH_PREFIX_FOR_VIEW }"/><c:out value="${listUploaded.uuidName }"/>" class="rounded-circle mx-auto d-block" width="100" height="100">
-				</c:when>
-				<c:when test="${not empty listUploaded.type }">
-					<!-- empty -->1<c:out value="${listUploaded.type }"/>
-				</c:when>
-				<c:otherwise>
-					
-				</c:otherwise>
-			</c:choose>
-		</c:forEach>        
-		 --%>            
-					<label for="ifmmUploadedProfileImage" class="form-label input-file-button"><b>+</b></label>
-		 			<input class="form-control form-control-sm" id="ifmmUploadedProfileImage" name="ifmmUploadedProfileImage" type="file" multiple="multiple" style="display: none;" onChange="upload('ifmmUploadedProfileImage', 0, 1, 1, 0, 0, 3);">
-		        </div>
-		    </div>
-				<lable>CODE</lable>
-				<input type='text' class='form-control' name='memberSeq' id='memberSeq' value="<c:out value="${item.memberSeq}"/>" disabled>
-				<lable>사용여부</label>
-				<input type='text' class='form-control' name='memberDelNy' id='memberDelNy' value="<c:out value="${item.memberDelNy}"/>" disabled>
-				<lable>이름</lable>
-				<input class="form-control" type="text" name='memberName' value="<c:out value="${item.memberName }"/>">
-				<label>비밀번호</label>
-				<input class="form-control" type="password" name='memberPW' value="<c:out value="${item.memberPW }"/>">
-				닉네임<input class="form-control" type="text" name='memberNick' value="<c:out value="${item.memberNick }"/>">
-				ID:<input class="form-control" type="text" id='memberID' name='memberID' value="<c:out value="${item.memberID }"/>">
-				생년월일<div class="input-group"><input type='text' class='form-control' value='2022'>
-				<input type='text' class='form-control' value='07'>
-				<input type='text' class='form-control' value='10'>
-				</div>
-				등급	
-				<select class="form-select" name="memberGrade">
-					<option>사용</option>
-					<option value='1' <c:if test="${item.memberGrade eq 1 }">selected</c:if>>브론즈</option>
-					<option value='2' <c:if test="${item.memberGrade eq 2 }">selected</c:if>>실버</option>
-					<option value='3' <c:if test="${item.memberGrade eq 3 }">selected</c:if>>골드</option>
-					<option value='4' <c:if test="${item.memberGrade eq 4 }">selected</c:if>>다이아몬드</option>
-				</select>
-				<label>전화번호</label>
-				<div class="input-group flex-nowrap">
-				<select class="form-select w-20" >
-					<option selected>SKT</option>
-					<option>KT</option>
-					<option>LG U+</option>
-				</select>
-				<input class="form-control" type="text" name='memberMobile' value="<c:out value="${item.memberMobile }"/>" >
-				</div>
-				Email
-				<div class="input-group flex-nowrap">
-				<input class="form-control" type="text" name='memberEmail' value="<c:out value="${item.memberEmail }"/>">
-				<select class="form-select">
-				<option selected>gmail.com</option>
-				<option>naver.com</option>
-				<option>daum.net</option>
-				</select>
-				</div>
-				<lable>성별</lable>
-				<select class="form-select" name="memberGender">
-					<option>사용</option>
-					<option value='1' <c:if test="${item.memberGender eq 1 }">selected</c:if>>남자</option>
-					<option value='2' <c:if test="${item.memberGender eq 2 }">selected</c:if>>여자</option>
-					<option value='3' <c:if test="${item.memberGender eq 3 }">selected</c:if>>기타</option>
-				</select>
-					<label>주소(기본배송지)</label>		
-				<div class="input-group flex-nowrap" style="width:40%">	
-					<input class="form-control" type="text" value="14759">
-					<button class="btn text-white fw-bold" type="button" style="background-color:rgb(44, 62, 80);">검색하기</button>
-				</div>
-				<input class="form-control" type="text">
-				<input class="form-control" type="text">
-				<br>
-				<div class="d-flex mb-1">
-					<div class="p-1"><button type="button" class="btn btn-secondary" name="btnList" id="btnList" ><i class="fa-solid fa-list"></i></button></div>
-					<div class="p-1  ms-auto"><button type="button" class="btn btn-danger" name='btnUelete' id="btnUelete"><i class="fa-solid fa-x"></i></button></div>
-					<div class="p-1"><button type="button" class="btn btn-danger" name='btnDelete' id="btnDelete"><i class="fa-solid fa-trash"></i></button></div>
-					<div class="p-1"><button type="button" class="btn btn-success" id="btnSave"><i class="fa-solid fa-bookmark"></i></button></div>
+			<div class="main-content">
+				<h1><i class="fa-regular fa-file"></i> Member</h1>
+				<div class='form-box'>
+					<p style="padding-bottom:30px; padding-top:10px;">No. <c:out value="${item.memberSeq }" /></p>
+					<p>* 이름</p>
+					<input type="text" name="memberName" id="memberName" value="<c:out value="${item.memberName }"/>" placeholder="한글">
+					<p>* 아이디</p>
+					<input type="text" name="memberID" id="memberID" value="<c:out value="${item.memberID }"/>" placeholder="한글,숫자">
+					<p>* 닉네임</p>
+					<input type="text" name= "memberNick" id="memberNick" value="<c:out value="${item.memberNick }"/>" placeholder="한글, 영문(대소문자),숫자">
+					<p>* 생년월일</p>
+					<input type="text" name= "memberDob" id='datepicker1' value="<c:out value="${item.memberDob }"/>" placeholder="한글, 영문(대소문자),숫자">
+					<p>전화번호</p>
+					<input type="text" name= "memberMobile" id="memberMobile" value="<c:out value="${item.memberMobile }"/>" placeholder="한글, 영문(대소문자),숫자">			
+					<p>이메일</p>
+					<input type="text" name= "memberEmail" id="memberEmail" value="<c:out value="${item.memberEmail }"/>" placeholder="한글, 영문(대소문자),숫자">
+					<p>현재 포인트</p>
+					<input type="text" name= "memberPoint" id="memberPoint" value="<c:out value="${item.memberPoint }"/>" placeholder="숫자">
+					<p>성별</p>
+					<ul>
+						<li>
+							<input name="memberGender" type="radio" id="man" value="1" <c:if test="${item.memberGender eq 1 }">checked</c:if>>
+							<label for="man">남자</label>
+						</li>
+						<li>
+							<input name="memberGender" id="girl" type="radio" value="2" <c:if test="${item.memberGender eq 2 }">checked</c:if>>
+							<label for="girl">여자</label>
+						</li>
+					</ul>
+					<p>등급</p>
+					<p style='font-size:6px; color:#e0e0e0;'>(설정하지 않을경우 기본값으로 설정됩니다.)</p>
+					<select id="memberGrade" name="memberGrade">
+						<option value='' <c:if test="${empty item.memberGrade}">selected</c:if>>설정하기</option>
+						<option value='1' <c:if test="${item.memberGrade eq 1 }">selected</c:if>>브론즈</option>
+						<option value='2' <c:if test="${item.memberGrade eq 2 }">selected</c:if>>실버</option>
+						<option value='3' <c:if test="${item.memberGrade eq 3 }">selected</c:if>>골드</option>
+						<option value='4' <c:if test="${item.memberGrade eq 4 }">selected</c:if>>다이아몬드</option>
+					</select>
+					<p>계정 삭제 여부</p>
+					<p style='font-size:6px; color:#e0e0e0;'>(설정하지 않을경우 기본값으로 설정됩니다.)</p>
+					<select id="memberDelNy" name="memberDelNy">
+						<option value='' <c:if test="${empty item.memberDelNy}">selected</c:if>>설정하기</option>
+						<option value='0' <c:if test="${item.memberDelNy eq 0 }">selected</c:if>>사용하지않기</option>
+						<option value='1' <c:if test="${item.memberDelNy eq 1 }">selected</c:if>>사용하기</option>
+					</select>
+					<ul>
+						<li>
+						<span>등록일: </span>
+							<input type=text value="<fmt:formatDate value="${item.memberRegdate }" pattern="yyyy-MM-dd hh:mm:ss"/>" readonly>
+						</li>
+						<li>
+						<span>수정일: </span>
+							<input type=text value="<fmt:formatDate value="${item.memberUpdate }" pattern="yyyy-MM-dd hh:mm:ss"/>" readonly>	
+						</li>
+					</ul>
+					<p>주소</p>
+					<div class='addr-box'>
+						<input type="text" id="postcode" value="<c:out value="${item.zipcode}" />" style="width:20%;"><button onclick="DaumPostcode()" style="width:20%;">검색</button>
+						<input type="text" id="address" value="<c:out value="${item.addr1 }" />">
+						<input type="text" id="detailAddres" value="<c:out value="${item.addr2 }" />">
+					</div>
+					<input type="checkbox" value='1' id="memberAd" name='memberAd' <c:if test="${item.memberAd eq 1 }">checked</c:if>>
+					<input type="hidden" name="memberAd" value='0' id="memberAd_hidden"/>
+					<span>이메일/혜택 소식 수신 여부</span>
+					</div>
+					<div class='btn-box'>
+						<button style='background-color:#ab000d;'>DELETE</button>
+						<button style='background-color:#ab000d;'>UELETE</button>
+						<button id="btnSave">INSERT</button>
+						<button id="btnList">LdIST</button>
 				</div>
 			</div>
-			
-				<%@include file="../../../infra/includeV1/modals.jsp"%>
 		</form>
 		<form name="formVo" id="formVo" method="post">
 			<%@include file="memberVo.jsp"%>	
 		</form>
-		<script src="https://kit.fontawesome.com/a1961b2393.js"crossorigin="anonymous"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
- 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-		<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+		<script src="https://kit.fontawesome.com/a1961b2393.js" crossorigin="anonymous"></script>
+		
+		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+		<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3d9122ea8fc388f07cd56d7692121430&libraries=services"></script>
+		
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+		<link rel="stylesheet" href="/resources/demos/style.css">
+		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 		
 		<script type="text/javascript">
 		    var goUrlList = "/xdmin/memberList"; 			/* #-> */
@@ -156,7 +110,7 @@
 			var goUrlUele = "/xdmin/memberUele";				/* #-> */
 			var goUrlDele = "/xdmin/memberDele";				/* #-> */
 			
-			var seq = $("input:text[name=memberSeq]");				/* #-> */
+			var seq = $("input:hidden[name=memberSeq]");				/* #-> */
 			var form = $("form[name=form]")
 			var formVo = $("form[name=formVo]");
 	
@@ -195,74 +149,78 @@
 			});
 			
 			$("#btnList").on("click", function(){
-				formVo.attr("action", goUrlList).submit();
+				form.attr("action", goUrlList).submit();
 			});
 			
-		upload = function(objName, seq, allowedMaxTotalFileNumber, allowedExtdiv, allowedEachFileSize, allowedTotalFileSize, uiType) {
-//		objName 과 seq 는 jsp 내에서 유일 하여야 함.
-//		memberProfileImage: 1
-//		memberImage: 2
-//		memberFile : 3
+			if(document.getElementById("memberAd").checked) {
+	        	document.getElementById("memberAd_hidden").disabled = true;
+	        }
+	        
+		    function DaumPostcode() {
+		        new daum.Postcode({
+		            oncomplete: function(data) {
+		                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 		
-		var totalFileSize = 0;
-		var obj = $("#" + objName +"")[0].files;	
-		var fileCount = obj.length;
+		                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+		                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+		                var addr = ''; // 주소 변수
+		                var extraAddr = ''; // 참고항목 변수
 		
-		allowedMaxTotalFileNumber = allowedMaxTotalFileNumber == 0 ? MAX_TOTAL_FILE_NUMBER : allowedMaxTotalFileNumber;
-		allowedEachFileSize = allowedEachFileSize == 0 ? MAX_EACH_FILE_SIZE : allowedEachFileSize;
-		allowedTotalFileSize = allowedTotalFileSize == 0 ? MAX_TOTAL_FILE_SIZE : allowedTotalFileSize;
+		                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+		                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+		                    addr = data.roadAddress;
+		                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+		                    addr = data.jibunAddress;
+		                }
 		
-		if(checkUploadedTotalFileNumber(obj, allowedMaxTotalFileNumber, fileCount) == false) { return false; }
-		
-		for (var i = 0 ; i < fileCount ; i++) {
-			if(checkUploadedExt($("#" + objName +"")[0].files[i].name, seq, allowedExtdiv) == false) { return false; }
-			if(checkUploadedEachFileSize($("#" + objName +"")[0].files[i], seq, allowedEachFileSize) == false) { return false; }
-			totalFileSize += $("#" + objName +"")[0].files[i].size;
-		}
-		if(checkUploadedTotalFileSize(seq, totalFileSize, allowedTotalFileSize) == false) { return false; }
-		
-		if (uiType == 1) {
-			$("#ulFile" + seq).children().remove();
-			
-			for (var i = 0 ; i < fileCount ; i++) {
-				addUploadLi(seq, i, $("#" + objName +"")[0].files[i].name);
-			}
-		} else if(uiType == 2) {
-			$("#ulFile" + seq).children().remove();
-			
-			for (var i = 0 ; i < fileCount ; i++) {
-				addUploadLi(seq, i, $("#" + objName +"")[0].files[i].name);
-			}
-		} else if (uiType == 3) {
-			var fileReader = new FileReader();
-			 fileReader.readAsDataURL($("#" + objName +"")[0].files[0]);
-			
-			 fileReader.onload = function () {
-				 $("#imgProfile").attr("src", fileReader.result);		/* #-> */
-			 }		
-		} else {
-			return false;
-		}
-		return false;
-	}
-	
-	
-	addUploadLi = function (seq, index, name){
-		
-		var ul_list = $("#ulFile0");
-		
-		li = '<li id="li_'+seq+'_'+index+'" class="list-group-item d-flex justify-content-between align-items-center">';
-		li = li + name;
-		li = li + '<span class="badge bg-danger rounded-pill" onClick="delLi('+ seq +','+ index +')"><i class="fa-solid fa-x" style="cursor: pointer;"></i></span>';
-		li = li + '</li>';
-		
-		$("#ulFile"+seq).append(li);
-	}
-	
-	
-	delLi = function(seq, index) {
-		$("#li_"+seq+"_"+index).remove();
-	}
+		                // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+		                if(data.userSelectedType === 'R'){
+		                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+		                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+		                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+		                        extraAddr += data.bname;
+		                    }
+		                    // 건물명이 있고, 공동주택일 경우 추가한다.
+		                    if(data.buildingName !== '' && data.apartment === 'Y'){
+		                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+		                    }
+		                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+		                    if(extraAddr !== ''){
+		                        addr = '' + addr + ' (' + extraAddr + ')';
+		                    }
+		                    // 조합된 참고항목을 해당 필드에 넣는다.
+		              		}
+
+			            geocoder.addressSearch(data.address, function(results, status) {
+			            		
+			                // 정상적으로 검색이 완료됐으면
+				                if (status === daum.maps.services.Status.OK) {
+					                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+					                document.getElementById('postcode').value = data.zonecode;
+					                document.getElementById('address').value = addr;
+					                document.getElementById('detailAddres').focus();
+				                    document.getElementById("result_x").value = results[0].x;
+				                    document.getElementById("result_y").value = results[0].y;
+			                	}
+			           	 })
+		            }
+		        }).open();
+		    }
+    	  $.datepicker.setDefaults({
+    	        dateFormat: 'yy-mm-dd',
+    	        prevText: '이전 달',
+    	        nextText: '다음 달',
+    	        monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+    	        monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+    	        dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+    	        dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+    	        dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+    	        showMonthAfterYear: true,
+    	        yearSuffix: '년'
+    	    });
+    	    $(function() {
+    	        $("#datepicker1").datepicker();
+    	    });
 	
 		</script>
 

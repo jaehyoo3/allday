@@ -84,18 +84,7 @@
 				<span>연락처</span>
 				<div class="row">
 					<div class="col">
-						<select class="form-select" name="memberMobile">
-							<option value="1">010</option>
-							<option value="2">011</option>
-							<option value="3">012</option>
-							<option value="4">070</option>
-						</select>
-					</div>
-					<div class="col">
-						<input type="text" maxlength="4" class="form-control mb-2">
-					</div>
-					<div class="col">
-						<input type="text" maxlength="4" class="form-control mb-2">
+						<input type="text" name="memberMobile" maxlength="13" class="form-control mb-2">
 					</div>
 				</div>
 				<div>
@@ -153,7 +142,7 @@
 		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 		<script>
-
+		
 		//주소-좌표 변환 객체를 생성
 		var geocoder = new daum.maps.services.Geocoder();
     	var engnum = RegExp(/^[a-zA-Z0-9]{4,12}$/)

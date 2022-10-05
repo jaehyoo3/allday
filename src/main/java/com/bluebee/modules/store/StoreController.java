@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.bluebee.modules.member.Member;
 import com.bluebee.modules.xdmincode.XdminCode;
 
 @Controller
@@ -75,6 +76,14 @@ public class StoreController {
 			model.addAttribute("list", list);
 			
 			return "infra/store/storeOuter";
+		}
+		
+		@RequestMapping(value = "productView")
+		public String Prodcut(Model model, StoreVo vo) throws Exception {
+			Store item = service.selectOne(vo);
+			model.addAttribute("item", item);
+			
+			return "infra/store/storeProduct";
 		}
 		
 		@RequestMapping(value = "product")

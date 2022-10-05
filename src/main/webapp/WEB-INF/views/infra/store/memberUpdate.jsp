@@ -35,9 +35,10 @@
 								<input type='text' name='file2' id='file2' style='display:none;'> 
 								<br>
 								<input class="form-control" type="text" value="<c:out value="${sessId}"/>" readonly>
-								<input class="form-control" type="password" placeholder="기존 비밀번호 입력">
+<!-- 								<input class="form-control" type="password" placeholder="기존 비밀번호 입력">
 								<input type="password" class="form-control" placeholder="비밀번호를 변경 하는 경우 입력 하세요">
-								<input type="password" class="form-control" placeholder=" 비밀번호 확인">
+								<input type="password" class="form-control" placeholder=" 비밀번호 확인"> -->
+								<button class='btn'>비밀번호 변경하기</button>
 								<br>
 								<br>
 								<lable>이름</lable>
@@ -46,16 +47,16 @@
 								<lable>성별</lable>
 								<div class="d-flex mb-1">
 									<div class="p-1">
-										<input class="form-check-input" name="gender" type="radio" id="man">
+										<input class="form-check-input" name="gender" type="radio" id="man" <c:if test="${item.memberGender eq 1 }">checked</c:if>>
 										<label for="man">남자</label>
 									</div>
 									<div class="p-1 mx-auto">
-										<input class="form-check-input" name="gender" id="girl" type="radio">
+										<input class="form-check-input" name="gender" id="girl" type="radio"<c:if test="${item.memberGender eq 2 }">checked</c:if>>
 										<label for="girl">여자</label>
 									</div>
 								</div><br>
 								<lable>연락처</lable>
-								<input class="form-control" type="text" value="<c:out value="${item.mobile }" disabled readonly>
+								<input class="form-control" type="text" value="<c:out value="${item.memberMobile}"/>" readonly>
 								<br>
 								<lable>이메일</lable>
 								<div class="input-group flex-nowrap">
@@ -70,24 +71,22 @@
 								<br>
 								<label>주소</label>		
 								<div class="input-group flex-nowrap" style="width:40%">	
-									<input class="form-control" type="text" value="14759">
+									<input class="form-control" type="text" value="<c:out value="${item.zipcode }" />">
 									<button class="btn text-white fw-bold" type="button" style="background-color:rgb(44, 62, 80);">검색하기</button>
 								</div>
-								<input class="form-control" type="text" value="인천광역시 부평구 어디로 999번길 10(부평동, 동아아파트)">
-								<input class="form-control" type="text" value="999동 9999호">	
+								<input class="form-control" type="text" value="<c:out value="${item.addr1 }" />">
+								<input class="form-control" type="text" value="<c:out value="${item.addr2 }" />">	
 								<br>
 								<label>생년월일</label>	
 								<div class="input-group flex-nowrap" >
-									<input class="form-control" type="text" value="1997" style="text-align:center;" disabled readonly>
-									<input class="form-control" type="text" value="08" style="text-align:center;" disabled readonly>
-									<input class="form-control" type="text" value="18" style="text-align:center;" disabled readonly>
+									<input class="form-control" type="text" value="<c:out value="${item.memberDob }"/>" style="text-align:center;" disabled readonly>
 								</div>
 								<br>
 								<label>이메일/혜택 소식 수신 여부</label>
 								<div class="form-check">
-								  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-								  <label class="form-check-label" for="flexCheckDefault">E-Mail 수신 동의
-								  </label>
+								  <input class="form-check-input" type="checkbox" value='1' id="memberAd" name='memberAd' <c:if test="${item.memberAd eq 1 }">checked</c:if>>
+								<input type="hidden" name="memberAd" value='0' id="memberAd_hidden"/>
+								  <label class="form-check-label" for="flexCheckDefault">E-Mail 수신 동의</label>
 								</div>		
 							</div>
 						</div>
@@ -104,6 +103,10 @@
 		</form>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 		<script src="https://kit.fontawesome.com/a1961b2393.js" crossorigin="anonymous"></script>
-
+		<script type="text/javascript">
+			          if(document.getElementById("memberAd").checked) {
+	        	    document.getElementById("memberAd_hidden").disabled = true;
+	        	}
+	    </script>
 	</body>
 </html>

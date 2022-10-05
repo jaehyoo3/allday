@@ -29,8 +29,6 @@ public class MemberController {
 		List<Member> list = service.selectList(vo);
 		model.addAttribute("list", list);
 		
-		System.out.println("dd:"+vo.getRowNumToShow());
-		
 		return "infra/member/xdmin/wowUser";
 	}
 	

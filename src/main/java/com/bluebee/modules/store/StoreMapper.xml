@@ -38,7 +38,7 @@
     	where 1=1
 			and a.productSeq = #{productSeq}
 	</select>
-	
+		
 	<select id="selectOneCount" resultType="Integer">
 		SELECT COUNT(*)
 		<include refid="basic" />

@@ -31,6 +31,7 @@
 		,memberAd
 		,memberGrade
 		,memberRegdate
+		,memberPoint
 		)
 		values(
 		#{memberID}
@@ -45,6 +46,7 @@
 		,#{memberAd}
 		,1
 		,now()
+		,#{memberPoint}
 		)
 		<selectKey resultType="String" keyProperty="memberSeq" order="AFTER"> 
 			select last_insert_id()
@@ -69,6 +71,7 @@
 			,memberDelNy = 1
 			,memberGrade = #{memberGrade}
 			,memberGender = #{memberGender} 
+			,memberPoint = #{memberPoint}
 		where
 			memberSeq = #{memberSeq}
 	</update>
@@ -149,9 +152,11 @@
 	<select id="selectOne" resultMap="resultMapObj">
 		SELECT
 			a.*
+			,b.*
 		from member a
+		left join memberAddr b on a.memberSeq = b.memberSeq
 		WHERE 1=1
-		AND memberSeq = #{memberSeq}
+		AND a.memberSeq = #{memberSeq}
 	</select>
 	
 	<select id="selectOneIdCheck" resultType="Integer">
