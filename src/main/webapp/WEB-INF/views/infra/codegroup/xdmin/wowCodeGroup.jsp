@@ -66,9 +66,9 @@
 										</c:when>
 										<c:otherwise>
 											<c:forEach items="${list}" var="list" varStatus="status">
-												<tr>
+												<tr onclick="javascript:goForm(<c:out value="${list.codeGroupSeq }"/>)" style="cursor:hand">
 													<td><input type='checkbox'></td>
-													<td><a href="javascript:goForm(<c:out value="${list.codeGroupSeq }"/>)" class="text-decoration-none"><c:out value="${list.codeGroupSeq }"/></a></td>
+													<td><c:out value="${list.codeGroupSeq }"/></td>
 													<td><c:out value="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + status.index) }"/></td>
 													<td><c:out value="${list.codeGroupOrder }"/></td>
 													<td><c:out value="${list.codeGroupName }"/></td>

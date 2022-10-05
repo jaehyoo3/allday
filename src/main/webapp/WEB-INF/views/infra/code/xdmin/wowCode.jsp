@@ -67,13 +67,13 @@
 									</c:when>
 									<c:otherwise>
 										<c:forEach items="${list}" var="list" varStatus="status">
-											<tr>
+											<tr onclick="javascript:goForm(<c:out value="${list.codeSeq }"/>)" style="cursor:hand">
 												<td><input type='checkbox'></td>
 												<td><c:out value="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + status.index) }"/></td>
 												<td><c:out value="${list.cGroupSeq }"/></td>
 												<td><c:out value="${list.codeGroupName }"/></td>
 												<td><c:out value="${list.codeSeq }"/></td>
-												<td><a href="javascript:goForm(<c:out value="${list.codeSeq }"/>)" class="text-decoration-none"><c:out value="${list.codeName }"/></a></td>
+												<td><c:out value="${list.codeName }"/></td>
 												<td><c:out value="${list.codeNameEng }"/></td>
 												<td><c:out value="${list.codeOrder }"/></td>
 												<td><c:out value="${list.codeUseNY }"/></td>
