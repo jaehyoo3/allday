@@ -5,8 +5,8 @@ public class MemberVo extends BaseVo{
 
 	private String memberSeq;
 	private Integer memberAd;
-
 	
+
 	public Integer getMemberAd() {
 		return memberAd;
 	}

@@ -20,6 +20,7 @@ public class Member {
 	private Integer defaultNy;
 	private String  reciver;
 	private String zipcode;
+
 	public String getAddrSeq() {
 		return addrSeq;
 	}

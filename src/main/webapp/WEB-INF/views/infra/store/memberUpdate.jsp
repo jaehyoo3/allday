@@ -34,8 +34,11 @@
 								</div>
 								<input type='text' name='file2' id='file2' style='display:none;'> 
 								<br>
+								아이디
 								<input class="form-control" type="text" value="<c:out value="${sessId}"/>" readonly>
-<!-- 								<input class="form-control" type="password" placeholder="기존 비밀번호 입력">
+								닉네임
+								<input class="form-control" type="text" value="<c:out value="${item.memberNick}"/>" readonly>
+<!-- 							<input class="form-control" type="password" placeholder="기존 비밀번호 입력">
 								<input type="password" class="form-control" placeholder="비밀번호를 변경 하는 경우 입력 하세요">
 								<input type="password" class="form-control" placeholder=" 비밀번호 확인"> -->
 								<button class='btn'>비밀번호 변경하기</button>
@@ -103,10 +106,20 @@
 		</form>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 		<script src="https://kit.fontawesome.com/a1961b2393.js" crossorigin="anonymous"></script>
+	    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 		<script type="text/javascript">
-			          if(document.getElementById("memberAd").checked) {
-	        	    document.getElementById("memberAd_hidden").disabled = true;
-	        	}
-	    </script>
+		var goUrlView = "/memberView";
+		var form = $("form[name=form]");
+		var seq = $("input:hidden[name=memberSeq]");
+		
+        if(document.getElementById("memberAd").checked) {
+    	    document.getElementById("memberAd_hidden").disabled = true;
+    	    
+		goForm = function(keyValue) {
+	    	/* if(keyValue != 0) seq.val(btoa(keyValue)); */
+	    	seq.val(keyValue);
+			form.attr("action", goUrlView).submit();
+		}
+		</script>
 	</body>
 </html>

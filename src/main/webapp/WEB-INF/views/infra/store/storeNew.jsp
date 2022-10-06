@@ -15,7 +15,7 @@
 	</head>
 	
 	<body>
-		<form>
+		<form name='form' method="post">
 			<!-- navMenu s  -->
 				<%@include file="../../infra/includeV1/Menu.jsp"%>
 			<!-- navMenu e --> 
@@ -28,9 +28,10 @@
 				</div>
 			</div>
 			<div class="products">
+			<input type='hidden' name="productSeq">
 				<c:forEach items="${list}" var="list" varStatus="status">
 					<c:if test="${list.productNew eq 1}">
-						<a>
+						<a href="javascript:goForm(<c:out value="${list.productSeq }"/>)">
 							<img src="/resources/Images/img/knit.jpg"><br>
 							<span><c:out value="${list.productName}"/></span> <span class='new'>New</span>
 							<p class="price">￦<fmt:formatNumber value="${list.productPrice}" pattern="##,###" /></p>
@@ -44,6 +45,17 @@
 		</form>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 		<script src="https://kit.fontawesome.com/a1961b2393.js" crossorigin="anonymous"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script type="text/javascript">
+		var goUrlView = "/productView";
+		var form = $("form[name=form]");
+		var seq = $("input:hidden[name=productSeq]");
 
+		goForm = function(keyValue) {
+	    	/* if(keyValue != 0) seq.val(btoa(keyValue)); */
+	    	seq.val(keyValue);
+			form.attr("action", goUrlView).submit();
+		}
+		</script>
 	</body>
 </html>

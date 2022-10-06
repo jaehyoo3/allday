@@ -17,6 +17,7 @@
 		<!--  codeGroup Vo s -->
 			<%@include file="codeGroupVo.jsp"%>
 		<!--  codeGroup Vo e -->
+		<%@include file="../../../infra/includeV1/modals.jsp" %>
 		<%@include file="../../../infra/includeV1/xdminSetting.jsp" %>
 			<div class="main-content">
 				<h1><i class="fa-regular fa-file"></i> CodeGroup</h1>
@@ -50,8 +51,8 @@
 							<input type=text value="<fmt:formatDate value="${item.codeGroupUpdate }" pattern="yyyy-MM-dd hh:mm:ss"/>" readonly>	
 						</li>
 					</ul>
-					<button style='background-color:#ab000d; float:left;'>DELETE</button>
-					<button style='background-color:#ab000d; float:left;'>UELETE</button>
+					<button id='btnDelete' style='background-color:#ab000d; float:left;'>DELETE</button>
+					<button id='btnUelete' style='background-color:#ab000d; float:left;'>UELETE</button>
 					<button id="btnSave" style='float:right;'>INSERT</button>
 					<button id="btnList" style='float:right;'>LIST</button>
 				</div>
@@ -89,10 +90,6 @@
 			});
 			
 			$("#btnUelete").on("click", function(){
-				$(".modal-title").text("확 인");
-				$(".modal-body").text("해당 데이터를 Uelete 삭제하시겠습니까 ?");
-				$("#btnModalUelete").show();
-				$("#btnModalDelete").hide();
 				$("#modalConfirm").modal("show");
 			});
 			
