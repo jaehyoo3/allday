@@ -32,7 +32,7 @@
 			</div>
 			<div class="navbar">
 		        <a href="#" id="logo">
-		             <img src="/resources/Images/img/logo2.png" height="60" onClick="location.href='/'">
+		             <img src="/resources/Images/img/logo2.png" height="60" onClick="location.href='main'">
 		        </a>
 		        <ul id="menu">
 		            <li><a href="#" onClick="location.href='storeNew'"><b>New</b></a></li>

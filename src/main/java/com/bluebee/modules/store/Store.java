@@ -14,7 +14,29 @@ public class Store {
 	private Integer num;
 	private Integer detailSeq;
 	private String product_Seq;
+	private String colorName;
+	private Integer colorSeq;
 	
+	private String sizeName;
+	
+	public String getSizeName() {
+		return sizeName;
+	}
+	public void setSizeName(String sizeName) {
+		this.sizeName = sizeName;
+	}
+	public String getColorName() {
+		return colorName;
+	}
+	public void setColorName(String colorName) {
+		this.colorName = colorName;
+	}
+	public Integer getColorSeq() {
+		return colorSeq;
+	}
+	public void setColorSeq(Integer colorSeq) {
+		this.colorSeq = colorSeq;
+	}
 	public String getProduct_Seq() {
 		return product_Seq;
 	}

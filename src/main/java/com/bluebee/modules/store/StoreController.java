@@ -30,11 +30,12 @@ public class StoreController {
 		public String ProductForm(Model model, @ModelAttribute("vo") StoreVo vo) throws Exception {
 			return "infra/product/xdmin/productForm";
 		}
-		
-	
-	
+		@RequestMapping(value = "")
+		public String AdminUser() {
+			return "infra/main";
+		}
 	/*  User  */
-		@RequestMapping(value = "/")
+		@RequestMapping(value = "/main")
 		public String StoreMain() {
 			return "infra/store/storeMain";
 		}
@@ -81,12 +82,13 @@ public class StoreController {
 		@RequestMapping(value = "productView")
 		public String Prodcut(Model model, StoreVo vo) throws Exception {
 			
-			List<Store> list = service.selectList(vo);
-			model.addAttribute("list", list);
-			
+			List<Store> colorlist = service.colorList(vo);
+			List<Store> sizelist = service.sizeList(vo);
 			Store item = service.selectOne(vo);
-			model.addAttribute("item", item);
 			
+			model.addAttribute("item", item);
+			model.addAttribute("clist", colorlist);
+			model.addAttribute("slist", sizelist);
 			return "infra/store/storeProduct";
 		}
 		

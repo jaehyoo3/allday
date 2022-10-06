@@ -20,6 +20,11 @@
 				<h1><i class="fa-regular fa-file"></i> Member</h1>
 				<div class='form-box'>
 					<p style="padding-bottom:30px; padding-top:10px;">No. <c:out value="${item.memberSeq }" /></p>
+					<p>프로필사진</p>
+					<div class='img-box'>
+					</div>
+					<label for="fileUplod">등록하기</label>
+					<input type="file" id="fileUplod" style="display: none;">
 					<p>* 이름</p>
 					<input type="text" name="memberName" id="memberName" value="<c:out value="${item.memberName }"/>" placeholder="한글">
 					<p>* 아이디</p>

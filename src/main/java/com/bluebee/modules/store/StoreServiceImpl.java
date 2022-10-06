@@ -7,8 +7,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class StoreServiceImpl implements StoreService {
-	
-
 
 	@Autowired
 	StoreDao dao;
@@ -27,6 +25,18 @@ public class StoreServiceImpl implements StoreService {
 	public int selectOneCount(StoreVo vo) throws Exception {
 		// TODO Auto-generated method stub
 		return dao.selectOneCount(vo);
+	}
+
+	@Override
+	public List<Store> colorList(StoreVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.colorList(vo);
+	}
+
+	@Override
+	public List<Store> sizeList(StoreVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.sizeList(vo);
 	}
 
 	

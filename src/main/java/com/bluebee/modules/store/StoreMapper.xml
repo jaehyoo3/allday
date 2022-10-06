@@ -18,8 +18,46 @@
 	    		,a.productBest
 	    		,a.productRegDate
 	    		,a.productUpDate
-	    		,b.*
 		<include refid='basic' />
+    </select>
+    
+    <select id="colorList" resultMap="resultMapObj">
+    	select 
+    		a.color_colorseq
+    		,c.colorName
+    	from 
+    		productDetail a
+    	join 
+    		product b
+    	on 
+    		a.product_Seq = b.productSeq 
+    	join
+    		Color c
+    	on
+    		a.Color_colorseq = c.colorSeq
+    	where 1=1
+			AND b.productSeq = #{productSeq}
+			group by c.colorName  		
+    </select>
+    
+     <select id="sizeList" resultMap="resultMapObj">
+    	select 
+    		a.detailSeq
+    		,c.sizeName
+    		,a.num
+    	from 
+    		productDetail a
+    	join 
+    		product b
+    	on 
+    		a.product_Seq = b.productSeq 
+    	join
+    		Size c
+    	on
+    		a.Size_Size= c.Size
+    	where 1=1
+			AND b.productSeq = #{productSeq}
+		order by detailSeq asc
     </select>
     
 	<select id="selectOne" resultMap="resultMapObj">
@@ -36,6 +74,7 @@
     		product a
     	where 1=1
 			and a.productSeq = #{productSeq}
+		
 	</select>
 		
 	<select id="selectOneCount" resultType="Integer">
@@ -45,7 +84,6 @@
     <sql id='basic'>
 		FROM 
 			product a
-		left join productDetail b on a.productSeq = b.product_Seq
 		WHERE 1=1
    	</sql>
 </mapper>

@@ -20,7 +20,7 @@ public class StoreDao {
 	public List<Store> selectList(StoreVo vo){ return sqlSession.selectList(namespace + ".selectList", vo); }
 	public Store selectOne(StoreVo vo) { return sqlSession.selectOne(namespace+ ".selectOne", vo); }
 	public int selectOneCount(StoreVo vo) { return sqlSession.selectOne(namespace + ".selectOneCount", vo); }
-
-
+	public List<Store> colorList(StoreVo vo){ return sqlSession.selectList(namespace + ".colorList", vo); }
+	public List<Store> sizeList(StoreVo vo){ return sqlSession.selectList(namespace + ".sizeList", vo); }
 	
 }

@@ -31,29 +31,26 @@
 						<c:forEach items="${listCodeType}" var="listCode" varStatus="statusGender">
 							<c:if test="${item.productType eq listCode.codeOrder}"><c:out value="${listCode.codeName}"/></c:if>
 						</c:forEach>
-					
 					</div>
 					<div>
-					<div class='price'><fmt:formatNumber value="${item.productPrice}" pattern="##,###" /></div>
+					<div class='price'>￦<fmt:formatNumber value="${item.productPrice}" pattern="##,###" /></div>
 					<hr>
 					<div class='express'>배송방법: 택배</div>
 					<br>
 					<p style="font-size:12px; font-weight:bold;">색상 *</p>
-					<label for="red">
-						  <input class="product_color" data-color-hex="red" type="radio" name="color"/>
-					</label>
-					<label for="blue">
-						<input class="product_color" data-color-hex="blue" type="radio" name="color"/>
-					</label>
-					<label for="green">
-						<input class="product_color" data-color-hex="green" type="radio" name="color"/>
-					</label>
+					
+					<c:forEach items="${clist}" var="list" varStatus="status">
+						<label for="<c:out value="${list.colorName}" />">
+							<input class="product_color" data-color-hex="<c:out value="${list.colorName}" />" type="radio" name="color"/>
+						</label>
+					</c:forEach>
+		
 					<br>
 					<p style="font-size:12px; font-weight:bold;">사이즈 *</p>
 					
 					<select class="form-select" aria-label="Default select example">
-					<c:forEach items="${list}" var="list" varStatus="status">
-						<option><c:out value="${list.color_colorseq}" />|<c:out value="${list.size_size}" />| <c:out value="${list.num}" /> </option>
+					<c:forEach items="${slist}" var="list" varStatus="status">
+						<option> <c:out value="${list.sizeName}" /> |수량: <c:out value="${list.num}" /> </option>
 					</c:forEach>
 					</select>
 					<br>
@@ -214,8 +211,8 @@
 		               
 		       });
 		});
-		
 
+		
 		</script>
 	</body>
 </html>
