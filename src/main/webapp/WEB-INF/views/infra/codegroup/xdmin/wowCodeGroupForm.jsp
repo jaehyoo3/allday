@@ -13,12 +13,14 @@
 		<link href="/resources/Images/css/code.css" rel="stylesheet">
 	</head>
 	<body>
-		<form name='form'>
+		<form name='form' method='post'>
+		
 		<!--  codeGroup Vo s -->
 			<%@include file="codeGroupVo.jsp"%>
 		<!--  codeGroup Vo e -->
-		<%@include file="../../../infra/includeV1/modals.jsp" %>
+
 		<%@include file="../../../infra/includeV1/xdminSetting.jsp" %>
+		<%@include file="../../../infra/includeV1/modals.jsp" %>
 			<div class="main-content">
 				<h1><i class="fa-regular fa-file"></i> CodeGroup</h1>
 				<div class='form-box'>
@@ -52,9 +54,10 @@
 						</li>
 					</ul>
 					<button id='btnDelete' style='background-color:#ab000d; float:left;'>DELETE</button>
-					<button id='btnUelete' style='background-color:#ab000d; float:left;'>UELETE</button>
+					<button id='btnUelete'style='background-color:#ab000d; float:left;'>UELETE</button>
 					<button id="btnSave" style='float:right;'>INSERT</button>
 					<button id="btnList" style='float:right;'>LIST</button>
+					
 				</div>
 			</div>
 		</form>
@@ -90,6 +93,10 @@
 			});
 			
 			$("#btnUelete").on("click", function(){
+				$(".modal-title").text("확 인");
+				$(".modal-body").text("해당 데이터를 Delete 삭제하시겠습니까 ?");
+				$("#btnModalUelete").hide();
+				$("#btnModalDelete").show();
 				$("#modalConfirm").modal("show");
 			});
 			
@@ -115,6 +122,8 @@
 				form.attr("action", goUrlList).submit();
 			});
 			
+						
 		</script>
+		
   </body>
 </html>

@@ -50,11 +50,11 @@
 					</label>
 					<br>
 					<p style="font-size:12px; font-weight:bold;">사이즈 *</p>
+					
 					<select class="form-select" aria-label="Default select example">
-					  <option selected>사이즈(필수)</option>
-					  <option value="1">S (90)</option>
-					  <option value="2">M (95)</option>
-					  <option value="3">L (100)</option>
+					<c:forEach items="${list}" var="list" varStatus="status">
+						<option><c:out value="${list.color_colorseq}" />|<c:out value="${list.size_size}" />| <c:out value="${list.num}" /> </option>
+					</c:forEach>
 					</select>
 					<br>
 					<div class="row">

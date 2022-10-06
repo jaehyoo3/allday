@@ -22,6 +22,7 @@ public class MemberDao {
 	public int signup(Member dto) { return sqlSession.insert(namespace+".signup", dto); }
 	public int selectOneCount(MemberVo vo) { return sqlSession.selectOne(namespace+".selectOneCount", vo); }
 	public int selectOneIdCheck(Member dto) { return sqlSession.selectOne(namespace+".selectOneIdCheck", dto); }
+	public int selectOnePwCheck(Member dto) { return sqlSession.selectOne(namespace+".selectOnePwCheck", dto); }
 	public int selectOneNickCheck(Member dto) { return sqlSession.selectOne(namespace+".selectOneNickCheck", dto); }
 	public int update(Member dto) { return sqlSession.update(namespace+".update", dto); }
 	public int uelete(Member dto) { return sqlSession.update(namespace+".uelete", dto); }

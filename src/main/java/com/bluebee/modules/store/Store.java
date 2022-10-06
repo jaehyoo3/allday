@@ -9,7 +9,18 @@ public class Store {
 	private Integer productNew;
 	private String productRegDate;
 	private String productModDate;
+	private Integer color_colorseq;
+	private Integer size_size;
+	private Integer num;
+	private Integer detailSeq;
+	private String product_Seq;
 	
+	public String getProduct_Seq() {
+		return product_Seq;
+	}
+	public void setProduct_Seq(String product_Seq) {
+		this.product_Seq = product_Seq;
+	}
 	public Integer getProductBest() {
 		return productBest;
 	}
@@ -57,6 +68,30 @@ public class Store {
 	}
 	public void setProductModDate(String productModDate) {
 		this.productModDate = productModDate;
+	}
+	public Integer getColor_colorseq() {
+		return color_colorseq;
+	}
+	public void setColor_colorseq(Integer color_colorseq) {
+		this.color_colorseq = color_colorseq;
+	}
+	public Integer getSize_size() {
+		return size_size;
+	}
+	public void setSize_size(Integer size_size) {
+		this.size_size = size_size;
+	}
+	public Integer getNum() {
+		return num;
+	}
+	public void setNum(Integer num) {
+		this.num = num;
+	}
+	public Integer getDetailSeq() {
+		return detailSeq;
+	}
+	public void setDetailSeq(Integer detailSeq) {
+		this.detailSeq = detailSeq;
 	}
 
 

@@ -11,8 +11,8 @@
 		<meta charset='uTF-8'> 
 		<meta name ='viewport' content='width=device-width, initial-scaLe=1.0'>
 		<title>BLUEBEE</title>
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-		<link href="/resources/Images/memberUpdateCss.css" rel="stylesheet">
+   		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+		<link href="/resources/Images/css/memberUpdateCss.css" rel="stylesheet">
 	</head>
 	
 	<body>
@@ -34,15 +34,33 @@
 								</div>
 								<input type='text' name='file2' id='file2' style='display:none;'> 
 								<br>
-								아이디
+								<lable>아이디</lable>
 								<input class="form-control" type="text" value="<c:out value="${sessId}"/>" readonly>
-								닉네임
+								<lable>닉네임</lable>
 								<input class="form-control" type="text" value="<c:out value="${item.memberNick}"/>" readonly>
 <!-- 							<input class="form-control" type="password" placeholder="기존 비밀번호 입력">
 								<input type="password" class="form-control" placeholder="비밀번호를 변경 하는 경우 입력 하세요">
 								<input type="password" class="form-control" placeholder=" 비밀번호 확인"> -->
-								<button class='btn'>비밀번호 변경하기</button>
 								<br>
+								<button type="button" id='pwChange' class='btn btn-primary'>비밀번호 변경</button>
+								
+								<div class="modal fade" id="modalConfirm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								  <div class="modal-dialog">
+								    <div class="modal-content">
+								      <div class="modal-header">
+								        <h1 class="modal-title fs-5" id="exampleModalLabel">비밀번호 변경</h1>
+								        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+								      </div>
+								      <div class="modal-body">
+								        비밀번호 확인 <input type="text" class='form-control'>
+								      </div>
+								      <div class="modal-footer">
+								        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+								        <button type="button" class="btn btn-primary">Save changes</button>
+								      </div>
+								    </div>
+								  </div>
+								</div>
 								<br>
 								<lable>이름</lable>
 								<input class="form-control" type="text" value="<c:out value="${item.memberName}" />" disabled readonly>
@@ -104,9 +122,10 @@
 				<div class='copyright'>© 2022. Bluebee all rights reserved.</div>
 			</div>
 		</form>
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 		<script src="https://kit.fontawesome.com/a1961b2393.js" crossorigin="anonymous"></script>
 	    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	    
 		<script type="text/javascript">
 		var goUrlView = "/memberView";
 		var form = $("form[name=form]");
@@ -114,12 +133,13 @@
 		
         if(document.getElementById("memberAd").checked) {
     	    document.getElementById("memberAd_hidden").disabled = true;
+    	}
     	    
 		goForm = function(keyValue) {
 	    	/* if(keyValue != 0) seq.val(btoa(keyValue)); */
 	    	seq.val(keyValue);
 			form.attr("action", goUrlView).submit();
-		}
+		}		
 		</script>
 	</body>
 </html>

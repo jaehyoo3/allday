@@ -172,8 +172,8 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/memberView")
-	public String userView(@ModelAttribute("vo") MemberVo vo, Model model) throws Exception { 		
-		
+	public String userView(@ModelAttribute("vo") MemberVo vo, Model model, Member dto) throws Exception { 		
+				
 		Member item = service.selectOne(vo);
 		model.addAttribute("item", item);
 		

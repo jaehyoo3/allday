@@ -80,6 +80,10 @@ public class StoreController {
 		
 		@RequestMapping(value = "productView")
 		public String Prodcut(Model model, StoreVo vo) throws Exception {
+			
+			List<Store> list = service.selectList(vo);
+			model.addAttribute("list", list);
+			
 			Store item = service.selectOne(vo);
 			model.addAttribute("item", item);
 			

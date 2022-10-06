@@ -82,10 +82,10 @@
 					<span>이메일/혜택 소식 수신 여부</span>
 					</div>
 					<div class='btn-box'>
-						<button style='background-color:#ab000d;'>DELETE</button>
+						<button  onclick="modal" style='background-color:#ab000d;'>DELETE</button>
 						<button style='background-color:#ab000d;'>UELETE</button>
 						<button id="btnSave">INSERT</button>
-						<button id="btnList">LdIST</button>
+						<button id="btnList">LIST</button>
 				</div>
 			</div>
 		</form>

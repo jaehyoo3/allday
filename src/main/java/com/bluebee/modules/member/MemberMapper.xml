@@ -168,6 +168,15 @@
 				memberID = #{memberID}
 		</select>
 		
+		<select id="selectOnePwCheck" resultType="Integer">
+			SELECT 
+				COUNT(*)
+			from 
+				member
+			WHERE
+				memberPW = #{memberPW}
+		</select>
+		
 		<select id="selectOneNickCheck" resultType="Integer">
 			SELECT 
 				COUNT(*)

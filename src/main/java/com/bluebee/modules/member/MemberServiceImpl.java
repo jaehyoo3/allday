@@ -75,6 +75,12 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		return dao.selectOneNickCheck(dto);
 	}
+
+	@Override
+	public int selectOnePwCheck(Member dto) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.selectOnePwCheck(dto);
+	}
 	
 	
 

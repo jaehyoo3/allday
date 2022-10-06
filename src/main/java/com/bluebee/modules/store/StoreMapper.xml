@@ -9,7 +9,6 @@
     <resultMap id="resultMapObj" type="com.bluebee.modules.store.Store"></resultMap>
     
     <select id="selectList" resultMap="resultMapObj">
-   		<include refid="Base.selectListUpper" />
 	    	select
 	    		a.productSeq
 	    		,a.productName
@@ -19,8 +18,8 @@
 	    		,a.productBest
 	    		,a.productRegDate
 	    		,a.productUpDate
+	    		,b.*
 		<include refid='basic' />
-		<include refid='Base.selectListLower' />
     </select>
     
 	<select id="selectOne" resultMap="resultMapObj">
@@ -46,6 +45,7 @@
     <sql id='basic'>
 		FROM 
 			product a
+		left join productDetail b on a.productSeq = b.product_Seq
 		WHERE 1=1
    	</sql>
 </mapper>

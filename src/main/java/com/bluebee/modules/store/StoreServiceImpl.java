@@ -28,6 +28,7 @@ public class StoreServiceImpl implements StoreService {
 		// TODO Auto-generated method stub
 		return dao.selectOneCount(vo);
 	}
+
 	
 	
 }
