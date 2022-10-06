@@ -24,7 +24,7 @@
 					<div class='img-box'>
 					</div>
 					<label for="fileUplod">등록하기</label>
-					<input type="file" id="fileUplod" style="display: none;">
+					<input type="file" id="fileUplod" style="display: none;" multiple>
 					<p>* 이름</p>
 					<input type="text" name="memberName" id="memberName" value="<c:out value="${item.memberName }"/>" placeholder="한글">
 					<p>* 아이디</p>

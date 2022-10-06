@@ -23,8 +23,10 @@
     
     <select id="colorList" resultMap="resultMapObj">
     	select 
-    		a.color_colorseq
+    		a.Color_colorSeq
+    		,a.detailSeq
     		,c.colorName
+    		,c.colorSeq
     	from 
     		productDetail a
     	join 

@@ -41,16 +41,16 @@
 					
 					<c:forEach items="${clist}" var="list" varStatus="status">
 						<label for="<c:out value="${list.colorName}" />">
-							<input class="product_color" data-color-hex="<c:out value="${list.colorName}" />" type="radio" name="color"/>
+							<input class="product_color" data-color-hex="<c:out value="${list.colorName}" />" type="radio" value="<c:out value="${list.colorSeq}" />" name="color"/>
 						</label>
 					</c:forEach>
-		
+					<button type="button" onclick="test()">radio button 선택(체크)된 객체 값(value) 가져오기</button>
 					<br>
 					<p style="font-size:12px; font-weight:bold;">사이즈 *</p>
 					
 					<select class="form-select" aria-label="Default select example">
 					<c:forEach items="${slist}" var="list" varStatus="status">
-						<option> <c:out value="${list.sizeName}" /> |수량: <c:out value="${list.num}" /> </option>
+						<c:if test="${colorSeq eq color_colorSeq }"><option> <c:out value="${list.sizeName}" /> |수량: <c:out value="${list.num}" /> </option></c:if>
 					</c:forEach>
 					</select>
 					<br>
@@ -211,7 +211,10 @@
 		               
 		       });
 		});
-
+		 function test() {
+			   var obj_value = $("input:radio[name='color']:checked").val();
+	    	alert(obj_value);
+		}
 		
 		</script>
 	</body>
