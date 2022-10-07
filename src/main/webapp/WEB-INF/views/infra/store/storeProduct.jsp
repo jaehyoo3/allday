@@ -41,18 +41,21 @@
 					
 					<c:forEach items="${clist}" var="list" varStatus="status">
 						<label for="<c:out value="${list.colorName}" />">
-							<input class="product_color" data-color-hex="<c:out value="${list.colorName}" />" type="radio" value="<c:out value="${list.colorSeq}" />" name="color"/>
+							<input class="product_color" data-color-hex="<c:out value="${list.colorName}" />" type="radio" value="<c:out value="${list.color_colorseq}" />" name="color"/>
 						</label>
 					</c:forEach>
-					<button type="button" onclick="test()">radio button 선택(체크)된 객체 값(value) 가져오기</button>
 					<br>
 					<p style="font-size:12px; font-weight:bold;">사이즈 *</p>
-					
-					<select class="form-select" aria-label="Default select example">
-					<c:forEach items="${slist}" var="list" varStatus="status">
-						<c:if test="${colorSeq eq color_colorSeq }"><option> <c:out value="${list.sizeName}" /> |수량: <c:out value="${list.num}" /> </option></c:if>
+				    <select name="sel_size" id="sel_blank" class="form-select size">
+				        <option value="">색상을 선택해주세요</option>
+				    </select>
+				    <c:forEach items="${slist}" var="list" varStatus="status">
+						<select class="form-select size" id="<c:out value="${list.color_colorseq}" />" name="sel_size">
+							<c:forEach items="${slist}" var="lllist" varStatus="status">
+								<c:if test="${list.color_colorseq eq lllist.color_colorseq }"><option value="<c:out value="${lllist.detailSeq}" />"><c:out value="${lllist.sizeName}" /> | 재고: <c:out value="${lllist.num}" /> </option></c:if>
+							</c:forEach>
+						</select>
 					</c:forEach>
-					</select>
 					<br>
 					<div class="row">
 				 		<div class="col">
@@ -211,10 +214,17 @@
 		               
 		       });
 		});
-		 function test() {
-			   var obj_value = $("input:radio[name='color']:checked").val();
-	    	alert(obj_value);
-		}
+		
+		$(function(){
+		    $(".size").hide(); // select class가 size 전부 안보이게
+		    $("#sel_blank").show(); // 선택해주세요 셀렉트는 보이게
+		    
+		    $("input[name='color']").change(function(){ // 라디오 버튼 클릭 시
+		        var chk = $("input[name='color']:checked").val(); // 라디오 버튼 선택 값
+		        $(".size").hide(); // 클릭할 때마다 셀렉트박스 숨기고
+		        $("#"+chk).show(); // 라디오버튼에 선택 된 값 id 만 보이게
+		    });
+		});
 		
 		</script>
 	</body>

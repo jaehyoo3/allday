@@ -47,6 +47,7 @@
     		a.detailSeq
     		,c.sizeName
     		,a.num
+    		,a.Color_colorSeq
     	from 
     		productDetail a
     	join 
