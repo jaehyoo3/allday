@@ -14,9 +14,45 @@
 	
 	<body>
 		<form name="form">
-			<!-- navMenu s  -->
-				<%@include file="../../infra/includeV1/Menu.jsp"%>
-			<!-- navMenu e --> 
+			<div id='header'>
+				<div class='menu'>
+					<ul class='ul'>
+						<c:choose>
+							<c:when test="${empty sessSeq}">
+								<li class='b'><div class="vr"></li>
+								<li class='b'><a href="basket" onClick="location.href='basket'"><i class="fa-solid fa-bag-shopping"></i></a></li>
+								<li class='b'><a href="modify"><i class="fa-solid fa-user"></i></a></li>
+								<li class='b'><a href="login"><i class="fa-solid fa-right-to-bracket"></i></a></li>
+								<li class='b'><div class="vr"></li>
+								<li class='b'><a href="#">고객센터</a></li>
+							</c:when>
+							<c:otherwise>
+								<li class='b'><div class="vr"></li>
+								<li class='b'><a href="basket" onClick="location.href='basket'"><i class="fa-solid fa-bag-shopping"></i></a></li>
+								<li class='b'><a href="modify"><i class="fa-solid fa-user"></i></a></li>
+								<li class='b'><div class="vr"></li>
+								<li class='b'><a href="#">고객센터</a></li>
+								<li class='b'> "<c:out value="${sessNick}"/>" 님 환영합니다 <a href="#" id='btnLogout'><i class="fa-solid fa-x" style='font-size: 2px; vertical-align: 2px;'></i></a>
+								</li>
+							</c:otherwise>
+						</c:choose>	
+					</ul>
+				</div>
+			</div>
+			<div class="navbar">
+		        <a href="#" id="logo">
+		             <img src="/resources/Images/img/logo2.png" height="60" onClick="location.href='main'">
+		        </a>
+		        <ul id="menu">
+		            <li><a href="#" onClick="location.href='storeNew'"><b>New</b></a></li>
+		            <li><a href="#" onClick="location.href='storeBest'"><b>Best</b></a></li>
+		            <li><a href="#"onClick="location.href='storeOuter'"><b>Outer</b></a></li>
+		            <li><a href="#"onClick="location.href='storeTop'"><b>Top</b></a></li>
+		            <li><a href="#"onClick="location.href='storePants'"><b>Pants</b></a></li>
+		            <li><a href="#"><b><div class="vr"></b></a></li>
+		            <li><a href="#"><b><i class="fa-brands fa-instagram fa-xl"></i></b></a></li>
+		        </ul>
+	  		</div>
 			
 			<div id='content'>
 				<div class="d-flex justify-content-center">
@@ -40,13 +76,13 @@
 							<h3>There is no data!</h3>
 					</c:when>
 					<c:otherwise>
-					<c:forEach items="${list}" var="list" varStatus="status">
-							<a href="javascript:goForm(<c:out value="${list.productSeq }"/>)">
-								<img src="/resources/Images/img/knit.jpg"><br>
-								<span><c:out value="${fn:substring(list.productName,0,12)}"/></span>
-								<p class="price">￦<fmt:formatNumber value="${list.productPrice}" pattern="##,###" /></p>
-							</a> 
-					</c:forEach>
+						<c:forEach items="${list}" var="list" varStatus="status">
+								<a href="javascript:goForm(<c:out value="${list.productSeq }"/>)">
+									<img src="/resources/Images/img/knit.jpg"><br>
+									<span><c:out value="${fn:substring(list.productName,0,12)}"/></span>
+									<p class="price">￦<fmt:formatNumber value="${list.productPrice}" pattern="##,###" /></p>
+								</a> 
+						</c:forEach>
 					</c:otherwise>
 				</c:choose>
 			</div>
