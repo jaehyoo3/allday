@@ -39,6 +39,10 @@ public class StoreController {
 		public String StoreMain() {
 			return "infra/store/storeMain";
 		}
+		@RequestMapping(value = "/search")
+		public String Storesearch() {
+			return "infra/store/storeSearch";
+		}
 		@RequestMapping(value = "login")
 		public String Login() {
 			return "infra/store/memberLogin";
