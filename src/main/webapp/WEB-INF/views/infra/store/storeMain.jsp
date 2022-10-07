@@ -13,7 +13,7 @@
 	</head>
 	
 	<body>
-		<form name='form'>
+		<form name='form' method="post">
 			<!-- navMenu s  -->
 				<%@include file="../../infra/includeV1/Menu.jsp"%>
 			<!-- navMenu e --> 

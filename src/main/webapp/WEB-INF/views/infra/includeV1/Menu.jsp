@@ -7,7 +7,8 @@
 					<ul class='ul'>
 						<li class='b'>
 							<div class="search-box">
-					    		<button type="button" class="btn-search" id="btnSearch"><i class="fas fa-search"></i></button>
+					    		<button type="button" class="btn-search"><i class="fas fa-search"></i></button>
+					    		<button type="button" id='btnSearch'>dd</button>
 					   			<input type="text" class="input-search"  id="shValue" name="shValue"  placeholder="Search">
 					  		</div>
 						</li>

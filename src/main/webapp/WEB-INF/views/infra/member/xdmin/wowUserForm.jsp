@@ -24,11 +24,14 @@
 					<div class='img-box'>
 					</div>
 				<!-- 	<label for="fileUplod">등록하기</label> -->
-					<input type="file" id="img" name="img" multiple>
+					<input type="file"  id="img" name="upLoadFile" multiple> <!-- onchange="checks(this);" -->
 					<br>
 					<!-- <label for="fileUplod2">등록하기2</label> -->
-					<input type="file" id="img2" name="img2">
+					<input type="file" id="img2" name="upLoadFile2">
 					<br>
+<!-- 					<ul id="ulFile2">
+					<li>dd</li>
+					</ul> -->
 					<input type="button" onClick="checks();" value="dd">
 					<p>* 이름</p>
 					<input type="text" name="memberName" id="memberName" value="<c:out value="${item.memberName }"/>" placeholder="한글">
@@ -233,24 +236,41 @@
     	    });
     	    
     	    function checks() {
-     	    	var obj = document.getElementById("img").files;
+    	    	/* obj = obj.files */
+     	    	var obj = document.getElementById("img").files; 
 				var obj2 = document.querySelector("#img2").files;
 				var kbtoMb = (1024 * 10);
 				var maxTotalFileNumber = 5;
-				var totalSize = 0;
+				var totalSize = 0;		
+				var extArray1 = new Array();
+				extArray1 = ["jpg","gif","png","jpeg","bmp","tif"];
 				
 				if(obj.length > maxTotalFileNumber) { alert("전체 파일 갯수는 " + maxTotalFileNumber + "개 까지만 허용됩니다."); return false; } 
 				
 				for(var i=0; i<obj.length; i++) {
-					totalSize += obj[i].size;
-					alert("전체사이즈: " + totalSize);
+					for(var j=0; j<extArray1.length; j++) {
+ 						var ext = obj[i].name.split('.').pop().toLowerCase();
+ 						if(extArray1.indexOf(ext) == -1) { alert(ext + "허용된 확장자가 아닙니다."); return false; }; 
 					
-					if(obj[i].size > kbtoMb * 50) { alert(obj[i].name + "사이즈 초과"); return false; }
-					if(totalSize > kbtoMb * 500) { alert("전체사이즈 초과"); return false; }
-				
+					}
+					totalSize += obj[i].size;
+									
+					if(obj[i].size > kbtoMb * 50) { alert(obj[i].size + "사이즈 초과"); return false; }				
 					alert(obj[i].name + " | "+ obj[i].size + " / 성공");
 				}
+					if(totalSize > kbtoMb * 500) { alert("전체사이즈 초과"); return false; }
+				
 			}
+    	    
+    	   function checkUploadedExt(objName, seq, div) {
+    	    	var ext = objName.split('.').pop().toLowerCase();
+    	    	
+    	    	if(extArray.indexOf(ext) == -1) {
+    	    		alert("허용된 확장자가 아닙니다.");
+//    	    		$("#file"+seq).val("");
+    	    		return false;
+    	    	}
+    	    }
 		</script>
 
 	</body>
