@@ -1,11 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 			<div id='header'>
+				<select class='form-select' id="shType" name="shType" style="display:none;">
+					<option value="0" <c:if test="${vo.shType eq 0}">selected</c:if>>All</option>
+				</select>
 				<div class='menu'>
 					<ul class='ul'>
 						<li class='b'>
 							<div class="search-box">
-					    		<a href="#"><button class="btn-search"><i class="fas fa-search"></i></button></a>
-					   			<input type="text" class="input-search" placeholder="Search">
+					    		<button type="button" class="btn-search" id="btnSearch"><i class="fas fa-search"></i></button>
+					   			<input type="text" class="input-search"  id="shValue" name="shValue"  placeholder="Search">
 					  		</div>
 						</li>
 						<c:choose>
@@ -44,32 +47,3 @@
 		            <li><a href="#"><b><i class="fa-brands fa-instagram fa-xl"></i></b></a></li>
 		        </ul>
 	  		</div>
-	  	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-		<script src="https://kit.fontawesome.com/a1961b2393.js" crossorigin="anonymous"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-		<link rel="stylesheet" href="/resources/demos/style.css">
-		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	  	<script>
-		$("#btnLogout").on("click", function(){
-			$.ajax({
-				async: true 
-				,cache: false
-				,type: "post"
-				,url: "/member/logoutProc"
-				,data: {}
-				,success: function(response) {
-					if(response.rt == "success") {
-						location.href = '/';
-					} else {
-						// by pass
-					}
-				}
-				,error : function(jqXHR, textStatus, errorThrown){
-					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
-				}
-			});
-		});
-		</script>
-	  		

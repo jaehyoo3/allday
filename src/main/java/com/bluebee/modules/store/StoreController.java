@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.bluebee.modules.member.Member;
+import com.bluebee.modules.xdmincg.XdminCG;
 import com.bluebee.modules.xdmincode.XdminCode;
 
 @Controller
@@ -36,13 +37,20 @@ public class StoreController {
 		}
 	/*  User  */
 		@RequestMapping(value = "/main")
-		public String StoreMain() {
+		public String StoreMain(Model model, StoreVo vo) throws Exception {
+			List<Store> list = service.selectList(vo);
+			model.addAttribute("list", list);
+			
 			return "infra/store/storeMain";
 		}
+		
 		@RequestMapping(value = "/search")
-		public String Storesearch() {
+		public String StoreSearch(Model model, StoreVo vo) throws Exception {
+			List<Store> list = service.selectList(vo);
+			model.addAttribute("list", list);
 			return "infra/store/storeSearch";
 		}
+		
 		@RequestMapping(value = "login")
 		public String Login() {
 			return "infra/store/memberLogin";

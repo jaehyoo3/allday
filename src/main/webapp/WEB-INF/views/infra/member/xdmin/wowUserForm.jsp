@@ -1,4 +1,4 @@
-<!<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" trimDirectiveWhitespaces="true"%>
+<!<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -23,8 +23,13 @@
 					<p>프로필사진</p>
 					<div class='img-box'>
 					</div>
-					<label for="fileUplod">등록하기</label>
-					<input type="file" id="fileUplod" style="display: none;" multiple>
+				<!-- 	<label for="fileUplod">등록하기</label> -->
+					<input type="file" id="img" name="img" multiple>
+					<br>
+					<!-- <label for="fileUplod2">등록하기2</label> -->
+					<input type="file" id="img2" name="img2">
+					<br>
+					<input type="button" onClick="checks();" value="dd">
 					<p>* 이름</p>
 					<input type="text" name="memberName" id="memberName" value="<c:out value="${item.memberName }"/>" placeholder="한글">
 					<p>* 아이디</p>
@@ -104,7 +109,6 @@
 		<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3d9122ea8fc388f07cd56d7692121430&libraries=services"></script>
 		
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-		<link rel="stylesheet" href="/resources/demos/style.css">
 		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 		
@@ -114,6 +118,7 @@
 			var goUrlUpdt = "/xdmin/memberUpdt";				/* #-> */
 			var goUrlUele = "/xdmin/memberUele";				/* #-> */
 			var goUrlDele = "/xdmin/memberDele";				/* #-> */
+			
 			
 			var seq = $("input:hidden[name=memberSeq]");				/* #-> */
 			var form = $("form[name=form]")
@@ -226,7 +231,26 @@
     	    $(function() {
     	        $("#datepicker1").datepicker();
     	    });
-	
+    	    
+    	    function checks() {
+     	    	var obj = document.getElementById("img").files;
+				var obj2 = document.querySelector("#img2").files;
+				var kbtoMb = (1024 * 10);
+				var maxTotalFileNumber = 5;
+				var totalSize = 0;
+				
+				if(obj.length > maxTotalFileNumber) { alert("전체 파일 갯수는 " + maxTotalFileNumber + "개 까지만 허용됩니다."); return false; } 
+				
+				for(var i=0; i<obj.length; i++) {
+					totalSize += obj[i].size;
+					alert("전체사이즈: " + totalSize);
+					
+					if(obj[i].size > kbtoMb * 50) { alert(obj[i].name + "사이즈 초과"); return false; }
+					if(totalSize > kbtoMb * 500) { alert("전체사이즈 초과"); return false; }
+				
+					alert(obj[i].name + " | "+ obj[i].size + " / 성공");
+				}
+			}
 		</script>
 
 	</body>

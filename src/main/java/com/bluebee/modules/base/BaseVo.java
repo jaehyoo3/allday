@@ -9,6 +9,7 @@ public class BaseVo {
 	private int pageNumToShow = Constants.PAGE_NUM_TO_SHOW;
 	
 	private String shValue;
+	private String shType;
 	private Integer shOption;
 	private Integer shDelNy;
 	private Integer shDate;
@@ -64,6 +65,13 @@ public class BaseVo {
 	}
 	public void setShDate(Integer shDate) {
 		this.shDate = shDate;
+	}
+	
+	public String getShType() {
+		return shType;
+	}
+	public void setShType(String shType) {
+		this.shType = shType;
 	}
 	public String getShstartDate() {
 		return shstartDate;

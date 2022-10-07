@@ -77,7 +77,7 @@
 					,data : { "memberID" : $("#memberID").val(), "memberPW" : $("#memberPW").val()}
 					,success: function(response) {
 						if(response.rt == "success") {
-							location.href = "/";
+							location.href = "/main";
 						} else {
 							alert("회원없음");
 						}
