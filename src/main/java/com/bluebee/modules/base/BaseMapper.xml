@@ -14,4 +14,29 @@
 		limit #{rowNumToShow} offset #{startRnumForMysql}
 	</sql>
 	
+	<insert id="insertUploaded">
+	INSERT INTO ${tableName} (
+		type
+		,idefaultNy
+		,sort
+		,path
+		,originalName
+		,uuidName
+		,ext
+		,size
+		,idelNy
+		,pseq
+	) values (
+		#{type}
+		,#{idefaultNy}
+		,#{sort}
+		,#{path}
+		,#{originalName}
+		,#{uuidName}
+		,#{ext}
+		,#{size}
+		,0
+		,#{pseq}
+	)
+	</insert>
 </mapper>

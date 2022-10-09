@@ -2,6 +2,9 @@ package com.bluebee.modules.member;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
+
 public class Member {
 	private String memberSeq;
 	private String memberID;
@@ -20,7 +23,115 @@ public class Member {
 	private Integer defaultNy;
 	private String  reciver;
 	private String zipcode;
+	private String seq;
+	// image
+	private Integer type;
+	private Integer idefaultNy;
+	private Integer sort;
+	private String path;
+	private String originalName;
+	private String uuidName;
+	private String ext;
+	private long size;
+	private MultipartFile[] UploadedProfileImage;
+	private MultipartFile[] UploadedImage;
+	private MultipartFile[] UploadedFile;
+	private Integer idelNy;
+	private String pseq;
+	private String tableName;
+	
+	public String getTableName() {
+		return tableName;
+	}
+	public void setTableName(String tableName) {
+		this.tableName = tableName;
+	}
+	public String getPseq() {
+		return pseq;
+	}
+	public void setPseq(String pseq) {
+		this.pseq = pseq;
+	}
+	public MultipartFile[] getUploadedProfileImage() {
+		return UploadedProfileImage;
+	}
+	public void setUploadedProfileImage(MultipartFile[] uploadedProfileImage) {
+		UploadedProfileImage = uploadedProfileImage;
+	}
+	public MultipartFile[] getUploadedImage() {
+		return UploadedImage;
+	}
+	public void setUploadedImage(MultipartFile[] uploadedImage) {
+		UploadedImage = uploadedImage;
+	}
+	public MultipartFile[] getUploadedFile() {
+		return UploadedFile;
+	}
+	public void setUploadedFile(MultipartFile[] uploadedFile) {
+		UploadedFile = uploadedFile;
+	}
+	public long getSize() {
+		return size;
+	}
+	public void setSize(long size) {
+		this.size = size;
+	}
+	
+	public String getSeq() {
+		return seq;
+	}
+	public void setSeq(String seq) {
+		this.seq = seq;
+	}
+	public Integer getType() {
+		return type;
+	}
+	public void setType(Integer type) {
+		this.type = type;
+	}
+	public Integer getIdefaultNy() {
+		return idefaultNy;
+	}
+	public void setIdefaultNy(Integer idefaultNy) {
+		this.idefaultNy = idefaultNy;
+	}
+	public Integer getSort() {
+		return sort;
+	}
+	public void setSort(Integer sort) {
+		this.sort = sort;
+	}
+	public String getPath() {
+		return path;
+	}
+	public void setPath(String path) {
+		this.path = path;
+	}
+	public String getOriginalName() {
+		return originalName;
+	}
+	public void setOriginalName(String originalName) {
+		this.originalName = originalName;
+	}
+	public String getUuidName() {
+		return uuidName;
+	}
+	public void setUuidName(String uuidName) {
+		this.uuidName = uuidName;
+	}
+	public String getExt() {
+		return ext;
+	}
+	public void setExt(String ext) {
+		this.ext = ext;
+	}
 
+	public Integer getIdelNy() {
+		return idelNy;
+	}
+	public void setIdelNy(Integer idelNy) {
+		this.idelNy = idelNy;
+	}
 	public String getAddrSeq() {
 		return addrSeq;
 	}
@@ -153,5 +264,6 @@ public class Member {
 	public void setMemberPoint(Integer memberPoint) {
 		this.memberPoint = memberPoint;
 	}
+
 	
 }

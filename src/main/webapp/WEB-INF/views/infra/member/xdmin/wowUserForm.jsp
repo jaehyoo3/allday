@@ -24,8 +24,8 @@
 					<div class='img-box'>
 					</div>
 				<!-- 	<label for="fileUplod">등록하기</label> -->
-					<input type="file"  id="img" name="upLoadFile" multiple> <!-- onchange="checks(this);" -->
-					<br>
+<!-- 					<input type="file"  id="img" name="UploadedFile" multiple> onchange="checks(this);"
+					<br> -->
 					<!-- <label for="fileUplod2">등록하기2</label> -->
 					<input type="file" id="img2" name="upLoadFile2">
 					<br>

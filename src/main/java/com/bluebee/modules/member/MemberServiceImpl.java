@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.bluebee.modules.util.UtilSecurity;
+import com.bluebee.modules.util.UtilUpload;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -23,8 +25,31 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int insert(Member dto) throws Exception { 
-		return dao.insert(dto);
-	}
+		try {
+    	for(MultipartFile multipartFile : dto.getUploadedImage() ) {
+    		
+    		int j = 0;
+    		if(!multipartFile.isEmpty()) {
+    		
+    			String pathModule = this.getClass().getSimpleName().toString().toLowerCase().replace("serviceimpl", "");		
+    			UtilUpload.upload(multipartFile, pathModule, dto);
+    			
+	    		dto.setTableName("MemberUploaded");
+	    		dto.setType(1);
+	    		dto.setDefaultNy(0);
+	    		dto.setSort(j + 1);
+	    		dto.setPseq(dto.getMemberSeq());
+	    		
+	    		dao.insert(dto);
+				dao.insertUploaded(dto);
+				j++;
+    		}
+    	}
+	 	return 1;
+	    } catch (Exception e) {
+	        throw new Exception();
+	    }
+}
 
 	@Override
 	public Member selectOne(MemberVo vo) throws Exception { return dao.selectOne(vo); }
@@ -35,6 +60,7 @@ public class MemberServiceImpl implements MemberService {
 			 dto.setMemberPW(UtilSecurity.encryptSha256(dto.getMemberPW())); 
 		 	dao.signup(dto);
 		 	dao.memberaddr(dto);
+		
 	 	return 1;
 		    } catch (Exception e) {
 		        throw new Exception();
@@ -81,7 +107,7 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		return dao.selectOnePwCheck(dto);
 	}
-	
-	
+
+
 
 }
