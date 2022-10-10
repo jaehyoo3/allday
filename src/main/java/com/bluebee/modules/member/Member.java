@@ -33,9 +33,13 @@ public class Member {
 	private String uuidName;
 	private String ext;
 	private long size;
-	private MultipartFile[] UploadedProfileImage;
-	private MultipartFile[] UploadedImage;
-	private MultipartFile[] UploadedFile;
+	private MultipartFile[] uploadedImage;
+	public MultipartFile[] getUploadedImage() {
+		return uploadedImage;
+	}
+	public void setUploadedImage(MultipartFile[] uploadedImage) {
+		this.uploadedImage = uploadedImage;
+	}
 	private Integer idelNy;
 	private String pseq;
 	private String tableName;
@@ -52,24 +56,7 @@ public class Member {
 	public void setPseq(String pseq) {
 		this.pseq = pseq;
 	}
-	public MultipartFile[] getUploadedProfileImage() {
-		return UploadedProfileImage;
-	}
-	public void setUploadedProfileImage(MultipartFile[] uploadedProfileImage) {
-		UploadedProfileImage = uploadedProfileImage;
-	}
-	public MultipartFile[] getUploadedImage() {
-		return UploadedImage;
-	}
-	public void setUploadedImage(MultipartFile[] uploadedImage) {
-		UploadedImage = uploadedImage;
-	}
-	public MultipartFile[] getUploadedFile() {
-		return UploadedFile;
-	}
-	public void setUploadedFile(MultipartFile[] uploadedFile) {
-		UploadedFile = uploadedFile;
-	}
+
 	public long getSize() {
 		return size;
 	}

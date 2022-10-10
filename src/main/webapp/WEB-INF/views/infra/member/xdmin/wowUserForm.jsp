@@ -13,7 +13,7 @@
 		<link href="/resources/Images/css/code.css" rel="stylesheet">
 	</head>
 	<body>
-		<form name='form' method="post">
+		<form name='form' method="post" enctype="multipart/form-data">
 		<%@include file="../../../infra/includeV1/xdminSetting.jsp" %>
 		<%@include file="memberVo.jsp"%>
 			<div class="main-content">
@@ -24,10 +24,10 @@
 					<div class='img-box'>
 					</div>
 				<!-- 	<label for="fileUplod">등록하기</label> -->
-<!-- 					<input type="file"  id="img" name="UploadedFile" multiple> onchange="checks(this);"
-					<br> -->
+					<input type="file" id="uploadedImage" name="uploadedImage" multiple="multiple"> <!-- onchange="checks(this);" -->
+					<br>
 					<!-- <label for="fileUplod2">등록하기2</label> -->
-					<input type="file" id="img2" name="upLoadFile2">
+					<!-- <input type="file" id="img2" name="upLoadFile2"> -->
 					<br>
 <!-- 					<ul id="ulFile2">
 					<li>dd</li>

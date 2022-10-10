@@ -81,7 +81,7 @@ public class XdminCGController {
 		
 		@RequestMapping(value = "codegroupUele")
 		public String codeGroupUele(XdminCG dto) throws Exception {
-			int result = service.uelete(dto);
+			service.uelete(dto);
 			
 			return "redirect:/xdmin/codegroup";
 		}

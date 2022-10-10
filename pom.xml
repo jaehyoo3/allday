@@ -151,6 +151,14 @@
 		</dependency>
 		<!-- @Resource in DAO: multi db connection : e 2022.02.13 -->
 		
+		<!-- fileupload s 2022.03.30 -->
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.4</version>
+		</dependency>
+		<!-- fileupload e 2022.03.30 -->
+		
 		<!-- mysql s 2022.02.25 -->
 		<dependency>
 			<groupId>mysql</groupId>

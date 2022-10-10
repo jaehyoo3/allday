@@ -26,26 +26,29 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int insert(Member dto) throws Exception { 
 		try {
-    	for(MultipartFile multipartFile : dto.getUploadedImage() ) {
-    		
-    		int j = 0;
-    		if(!multipartFile.isEmpty()) {
-    		
-    			String pathModule = this.getClass().getSimpleName().toString().toLowerCase().replace("serviceimpl", "");		
-    			UtilUpload.upload(multipartFile, pathModule, dto);
-    			
-	    		dto.setTableName("MemberUploaded");
-	    		dto.setType(1);
-	    		dto.setDefaultNy(0);
-	    		dto.setSort(j + 1);
-	    		dto.setPseq(dto.getMemberSeq());
+    		dao.insert(dto);
+    		System.out.println("Dd33d");
+        int j = 0;
+        System.out.println("Ddd11");
+        System.out.println(dto.getUploadedImage());
+	    	for(MultipartFile multipartFile : dto.getUploadedImage() ) {
+	    		System.out.println("Ddd");
+	    		if(!multipartFile.isEmpty()) {
 	    		
-	    		dao.insert(dto);
-				dao.insertUploaded(dto);
-				j++;
-    		}
-    	}
-	 	return 1;
+	    			String pathModule = this.getClass().getSimpleName().toString().toLowerCase().replace("serviceimpl", "");		
+	    			UtilUpload.upload(multipartFile, pathModule, dto);
+	    			
+		    		dto.setTableName("memberUploaded");
+		    		dto.setType(2);
+		    		dto.setIdefaultNy(j == 0 ? 1 : 0);
+		    		dto.setSort(j + 1);
+		    		dto.setPseq(dto.getMemberSeq());
+	
+					dao.insertUploaded(dto);
+					j++;
+	    		}
+			}
+	 		return 1;
 	    } catch (Exception e) {
 	        throw new Exception();
 	    }
