@@ -8,4 +8,6 @@ public interface StoreService {
 	public int selectOneCount(StoreVo vo) throws Exception;
 	public List<Store> colorList(StoreVo vo) throws Exception;
 	public List<Store> sizeList(StoreVo vo) throws Exception;
+	public int insert(Store dto) throws Exception;
+	public int update(Store dto) throws Exception;
 }

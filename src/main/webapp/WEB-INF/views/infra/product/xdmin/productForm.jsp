@@ -13,20 +13,26 @@
 		<link href="/resources/Images/css/code.css" rel="stylesheet">
 	</head>
 	<body>
-		<form name='form' method="post">
+		<form name='form' method="post" enctype="multipart/form-data">
 		<%@include file="../../../infra/includeV1/xdminSetting.jsp" %>
+			<%@include file="productVo.jsp"%>	
 			<div class="main-content">
 				<h1><i class="fa-regular fa-file"></i> Product</h1>
 				<div class='form-box'>
 					<p style="padding-bottom:30px; padding-top:10px;">No. <c:out value="${item.productSeq }" /></p>
+					<p>상품사진</p>
+					<div class='img-box'>
+						<img src='dd'>
+						<input type="file" id="uploadedImage" name="uploadedImage" multiple="multiple">
+					</div>
 					<p>* 상품이름</p>
 					<input type="text" name="productName" id="productName" value="<c:out value="${item.productName }" />" placeholder="한글">
 					<p>상품 타입</p>
 					<select id="productType" name="productType">
-						<option value='0'>설정하기</option>
-						<option value='1'>상의</option>
-						<option value='2'>바지</option>
-						<option value='3'>아우터</option>
+						<option value='0' <c:if test="${empty item.productType}">selected</c:if>>설정하기</option>
+						<option value='1' <c:if test="${item.productType eq 1 }">selected</c:if>>상의</option>
+						<option value='2' <c:if test="${item.productType eq 2 }">selected</c:if>>바지</option>
+						<option value='3' <c:if test="${item.productType eq 3 }">selected</c:if>>아우터</option>
 					</select>
 					<p>* 가격</p>
 					<input type="text" name="productPrice" id="productPrice" value="<c:out value="${item.productPrice }" />" placeholder="한글,숫자">
@@ -38,43 +44,43 @@
 					<input type="text" placeholder="한글, 영문(대소문자),숫자">			
 					<h4>상품정보 제공공시</h4>
 					<p>종류</p>
-					<input type="text">
+					<input type="text" id="productType" name="productType" value="<c:out value="${item.productType}" />">
 					<p>소재</p>
-					<input type="text">
+					<input type="text" id="informationType" name="informationType" value="<c:out value="${item.informationType}" />">
 					<p>색상</p>
-					<input type="text">
+					<input type="text" id="informationColor" name="informationColor" value="<c:out value="${item.informationColor}" />">
 					<p>크기</p>
-					<input type="text">
+					<input type="text" id="informationSize" name="informationSize" value="<c:out value="${item.informationSize}" />">
 					<p>제조사</p>
-					<input type="text">
+					<input type="text" id="informationCompany" name="informationCompany" value="<c:out value="${item.informationCompany}" />">
 					<p>제조국</p>
-					<input type="text">
+					<input type="text" id="informationCountry" name="informationCountry" value="<c:out value="${item.informationCountry}" />">
 					<p>취급시 주의사항</p>
-					<input type="text">
+					<input type="text" id="informationWarning" name="informationWarning" value="<c:out value="${item.informationWarning}" />">
 					<p>품질보증기준</p>
-					<input type="text">
+					<input type="text" id="informationQuality" name="informationQuality" value="<c:out value="${item.informationQuality}" />">
 					<p>A/S책임자·전화번호</p>
-					<input type="text">
+					<input type="text" id="informationAS" name="informationAS" value="<c:out value="${item.informationAS}" />">
 					<p>상품 삭제 여부</p>
 					<p style='font-size:6px; color:#e0e0e0;'>(설정하지 않을경우 기본값으로 설정됩니다.)</p>
-					<select id="" name="">
-						<option value=''>설정하기</option>
-						<option value='0'>사용하지않기</option>
-						<option value='1'>사용하기</option>
+					<select id="productDelNy" name="productDelNy">
+						<option value='' <c:if test="${empty item.productDelNy}">selected</c:if>>설정하기</option>
+						<option value='0' <c:if test="${item.productDelNy eq 0 }">selected</c:if>>사용하기</option>
+						<option value='1' <c:if test="${item.productDelNy eq 1 }">selected</c:if>>사용하지않기</option>
 					</select>
 					<p>BEST</p>
 					<p style='font-size:6px; color:#e0e0e0;'>(설정하지 않을경우 기본값으로 설정됩니다.)</p>
-					<select>
-						<option value=''>설정하기</option>
-						<option value='0'>사용하지않기</option>
-						<option value='1'>사용하기</option>
+					<select id="productBest" name="productBest">
+						<option value='' <c:if test="${empty item.productBest}">selected</c:if>>설정하기</option>
+						<option value='0' <c:if test="${item.productBest eq 0 }">selected</c:if>>사용하기</option>
+						<option value='1' <c:if test="${item.productBest eq 1 }">selected</c:if>>사용하지않기</option>
 					</select>
 					<p>NEW</p>
 					<p style='font-size:6px; color:#e0e0e0;'>(설정하지 않을경우 기본값으로 설정됩니다.)</p>
-					<select>
-						<option value=''>설정하기</option>
-						<option value='0'>사용하지않기</option>
-						<option value='1'>사용하기</option>
+					<select id="productNew" name="productNew">
+						<option value='' <c:if test="${empty item.productNew}">selected</c:if>>설정하기</option>
+						<option value='0' <c:if test="${item.productNew eq 0 }">selected</c:if>>사용하기</option>
+						<option value='1' <c:if test="${item.productNew eq 1 }">selected</c:if>>사용하지않기</option>
 					</select> 
 					<ul>
 						<li>
@@ -92,7 +98,7 @@
 						<button style='background-color:#ab000d;'>DELETE</button>
 						<button style='background-color:#ab000d;'>UELETE</button>
 						<button id="btnSave">INSERT</button>
-						<button id="btnList">LdIST</button>
+						<button id="btnList">LIST</button>
 					</div>
 				</div>
 			</form>
@@ -108,13 +114,13 @@
 		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 		
 		<script type="text/javascript">
-		    var goUrlList = "/xdmin/memberList"; 			/* #-> */
-			var goUrlInst = "/xdmin/memberInst"; 			/* #-> */
-			var goUrlUpdt = "/xdmin/memberUpdt";				/* #-> */
-			var goUrlUele = "/xdmin/memberUele";				/* #-> */
-			var goUrlDele = "/xdmin/memberDele";				/* #-> */
+		    var goUrlList = "productList"; 			/* #-> */
+			var goUrlInst = "productInst"; 			/* #-> */
+			var goUrlUpdt = "productUpdt";				/* #-> */
+			var goUrlUele = "productUele";				/* #-> */
+			var goUrlDele = "productDele";				/* #-> */
 			
-			var seq = $("input:hidden[name=memberSeq]");				/* #-> */
+			var seq = $("input:hidden[name=productSeq]");				/* #-> */
 			var form = $("form[name=form]")
 			var formVo = $("form[name=formVo]");
 	

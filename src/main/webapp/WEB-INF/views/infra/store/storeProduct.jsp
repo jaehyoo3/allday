@@ -101,39 +101,39 @@
 			  <tbody>
 			    <tr>
 			      <th >종류</th>
-			      <td style="width:80%;">.</td>
+			      <td style="width:80%;"><c:out value="${item.productType}" /></td>
 			    </tr>
 			    <tr>
 			      <th>소재</th>
-			      <td>.</td>
+			      <td><c:out value="${item.informationType}" /></td>
 			    </tr>
 			    <tr>
 			      <th scope="row">색상</th>
-			      <td>.</td>
+			      <td><c:out value="${item.informationColor}" /></td>
 			    </tr>
 			        <tr>
 			      <th scope="row">크기</th>
-			      <td>.</td>
+			      <td><c:out value="${item.informationSize}" /></td>
 			    </tr>
 			        <tr>
 			      <th scope="row">제조사</th>
-			      <td>.</td>
+			      <td><c:out value="${item.informationCompany}" /></td>
 			    </tr>
 			       <tr>
 			      <th scope="row">제조국</th>
-			      <td>.</td>
+			      <td><c:out value="${item.informationCountry}" /></td>
 			    </tr>
 			        <tr>
 			      <th scope="row">취급시 주의사항</th>
-			      <td>.</td>
+			      <td><c:out value="${item.informationWarning }" /></td>
 			    </tr>
 			        <tr>
 			      <th scope="row">품질보증기준</th>
-			      <td>.</td>
+			      <td><c:out value="${item.informationQuality}" /></td>
 			    </tr>
 			        <tr>
 			      <th scope="row">A/S책임자·전화번호</th>
-			      <td>.</td>
+			      <td><c:out value="${item.informationAS}" /></td>
 			    </tr>
 			  </tbody>
 			  </table>

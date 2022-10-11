@@ -8,7 +8,6 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-
 @Repository
 public class StoreDao {
 	@Inject
@@ -22,5 +21,8 @@ public class StoreDao {
 	public int selectOneCount(StoreVo vo) { return sqlSession.selectOne(namespace + ".selectOneCount", vo); }
 	public List<Store> colorList(StoreVo vo){ return sqlSession.selectList(namespace + ".colorList", vo); }
 	public List<Store> sizeList(StoreVo vo){ return sqlSession.selectList(namespace + ".sizeList", vo); }
-	
+	public int insert(Store dto) { return sqlSession.insert(namespace +".insert", dto); }
+	public int update(Store dto) { return sqlSession.update(namespace +".update", dto); }
+	public int insertUploaded(Store dto) { return sqlSession.insert("Base" + ".insertUploaded", dto); }
+
 }

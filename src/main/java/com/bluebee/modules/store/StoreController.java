@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class StoreController {
@@ -37,13 +37,25 @@ public class StoreController {
 		public String ProductForm(Model model, @ModelAttribute("vo") StoreVo vo) throws Exception {
 			List<Store> list = service.selectList(vo);
 			model.addAttribute("list", list);
+			
 			return "infra/product/xdmin/productForm";
 		}
 		@RequestMapping(value = "")
 		public String AdminUser() {
 			return "infra/main";
 		}
-		
+		@RequestMapping(value = "xdmin/productInst")
+		public String productInst(@ModelAttribute("vo") StoreVo vo, Store dto, RedirectAttributes redirectAttributes) throws Exception {
+			service.insert(dto);
+			
+			return "redirect:/xdmin/productList";
+		}
+		@RequestMapping(value = "xdmin/productUpdt")
+		public String productUpdt(@ModelAttribute("vo") StoreVo vo, Store dto, RedirectAttributes redirectAttributes) throws Exception {
+			service.update(dto);
+			
+			return "redirect:/xdmin/productList";
+		}
 	/*  User  */
 		@RequestMapping(value = "/main")
 		public String StoreMain(Model model, StoreVo vo) throws Exception {

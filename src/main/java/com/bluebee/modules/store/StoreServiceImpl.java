@@ -4,6 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.bluebee.modules.util.UtilUpload;
 
 @Service
 public class StoreServiceImpl implements StoreService {
@@ -23,22 +26,48 @@ public class StoreServiceImpl implements StoreService {
 
 	@Override
 	public int selectOneCount(StoreVo vo) throws Exception {
-		// TODO Auto-generated method stub
 		return dao.selectOneCount(vo);
 	}
 
 	@Override
 	public List<Store> colorList(StoreVo vo) throws Exception {
-		// TODO Auto-generated method stub
 		return dao.colorList(vo);
 	}
 
 	@Override
 	public List<Store> sizeList(StoreVo vo) throws Exception {
-		// TODO Auto-generated method stub
 		return dao.sizeList(vo);
 	}
 
+	@Override
+	public int insert(Store dto) throws Exception {
+		try {
+    		dao.insert(dto);
+        int j = 0;      
+	    	for(MultipartFile multipartFile : dto.getUploadedImage() ) {
+	    		if(!multipartFile.isEmpty()) {
+	    		
+	    			String pathModule = this.getClass().getSimpleName().toString().toLowerCase().replace("serviceimpl", "");		
+	    			UtilUpload.upload(multipartFile, pathModule, dto);
+	    			
+		    		dto.setTableName("productUploaded");
+		    		dto.setType(1);
+		    		dto.setIdefaultNy(j == 0 ? 1 : 0);
+		    		dto.setSort(j + 1);
+		    		dto.setPseq(dto.getProductSeq());
 	
-	
+					dao.insertUploaded(dto);
+					j++;
+	    		}
+			}
+	 		return 1;
+	    } catch (Exception e) {
+	        throw new Exception();
+	  }
+	}
+
+	@Override
+	public int update(Store dto) throws Exception {
+		return dao.update(dto);
+	}
 }

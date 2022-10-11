@@ -1,11 +1,10 @@
 package com.bluebee.modules.member;
 
 import java.util.Date;
+import com.bluebee.modules.base.Base;
 
-import org.springframework.web.multipart.MultipartFile;
 
-
-public class Member {
+public class Member extends Base {
 	private String memberSeq;
 	private String memberID;
 	private String memberPW;
@@ -24,100 +23,12 @@ public class Member {
 	private String  reciver;
 	private String zipcode;
 	private String seq;
-	// image
-	private Integer type;
-	private Integer idefaultNy;
-	private Integer sort;
-	private String path;
-	private String originalName;
-	private String uuidName;
-	private String ext;
-	private long size;
-	private MultipartFile[] uploadedImage;
-	public MultipartFile[] getUploadedImage() {
-		return uploadedImage;
-	}
-	public void setUploadedImage(MultipartFile[] uploadedImage) {
-		this.uploadedImage = uploadedImage;
-	}
-	private Integer idelNy;
-	private String pseq;
-	private String tableName;
-	
-	public String getTableName() {
-		return tableName;
-	}
-	public void setTableName(String tableName) {
-		this.tableName = tableName;
-	}
-	public String getPseq() {
-		return pseq;
-	}
-	public void setPseq(String pseq) {
-		this.pseq = pseq;
-	}
-
-	public long getSize() {
-		return size;
-	}
-	public void setSize(long size) {
-		this.size = size;
-	}
-	
+	// image	
 	public String getSeq() {
 		return seq;
 	}
 	public void setSeq(String seq) {
 		this.seq = seq;
-	}
-	public Integer getType() {
-		return type;
-	}
-	public void setType(Integer type) {
-		this.type = type;
-	}
-	public Integer getIdefaultNy() {
-		return idefaultNy;
-	}
-	public void setIdefaultNy(Integer idefaultNy) {
-		this.idefaultNy = idefaultNy;
-	}
-	public Integer getSort() {
-		return sort;
-	}
-	public void setSort(Integer sort) {
-		this.sort = sort;
-	}
-	public String getPath() {
-		return path;
-	}
-	public void setPath(String path) {
-		this.path = path;
-	}
-	public String getOriginalName() {
-		return originalName;
-	}
-	public void setOriginalName(String originalName) {
-		this.originalName = originalName;
-	}
-	public String getUuidName() {
-		return uuidName;
-	}
-	public void setUuidName(String uuidName) {
-		this.uuidName = uuidName;
-	}
-	public String getExt() {
-		return ext;
-	}
-	public void setExt(String ext) {
-		this.ext = ext;
-	}
-
-	public Integer getIdelNy() {
-		return idelNy;
-	}
-	public void setIdelNy(Integer idelNy) {
-		this.idelNy = idelNy;
 	}
 	public String getAddrSeq() {
 		return addrSeq;

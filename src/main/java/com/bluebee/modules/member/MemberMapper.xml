@@ -217,7 +217,7 @@
     			and a.memberID = #{memberID}
     			<if test="memberPW != null and !memberPW.equals('')">and a.memberPW = #{memberPW}</if>
     	</select>
-    	
+<!--     	
 	<insert id="insertUploaded">
 		INSERT INTO ${tableName} (
 			type
@@ -242,5 +242,5 @@
 			,0
 			,#{pseq}
 		)
-	</insert>
+	</insert> -->
 </mapper>		

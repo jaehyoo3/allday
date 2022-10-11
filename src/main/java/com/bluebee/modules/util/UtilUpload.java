@@ -5,12 +5,13 @@ import java.util.UUID;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.bluebee.modules.base.Base;
 import com.bluebee.modules.constants.Constants;
-import com.bluebee.modules.member.Member;
+
 
 public class UtilUpload {
 
-	public static void upload (MultipartFile multipartFile, String className, Member dto) throws Exception {
+	public static void upload (MultipartFile multipartFile, String className, Base dto) throws Exception {
 		String fileName = multipartFile.getOriginalFilename();
 		String ext = fileName.substring(fileName.lastIndexOf(".") + 1);
 		String uuid = UUID.randomUUID().toString();

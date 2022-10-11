@@ -20,7 +20,67 @@
 	    		,a.productUpDate
 		<include refid='basic' />
     </select>
+    <insert id="insert">
+    	insert into product(
+    		productName
+    		,productType
+    		,productPrice
+    		,productNew
+    		,productBest
+    		,productRegDate
+    		,informationType
+    		,informationColor
+    		,informationSize
+    		,informationCompany
+    		,informationWarning
+    		,informationCountry
+    		,informationQuality
+    		,informationAS
+    		,productDelNy
+    		)
+    		VALUES(
+    		 #{productName}
+    		,#{productType}
+    		,#{productPrice}
+    		,#{productNew}
+    		,#{productBest}
+    		,#{productRegDate}
+    		,#{informationType}
+    		,#{informationColor}
+    		,#{informationSize}
+    		,#{informationCompany}
+    		,#{informationWaring}
+    		,#{informationCountry}
+    		,#{informationQuality}
+    		,#{informationAS}
+    		,#{productDelNy}
+    		)
+		<selectKey resultType="String" keyProperty="productSeq" order="AFTER"> 
+			select last_insert_id()
+		</selectKey>
+    </insert>
+    <update id="update">
+    	update product
+    	set
+    	    productName = #{productName}
+    		,productType = #{productType}
+    		,productPrice = #{productPrice}
+    		,productNew = #{productNew}
+    		,productBest = #{productBest}
+    		,productRegDate = #{productRegDate}
+    		,informationType = #{informationType}
+    		,informationColor = #{informationColor}
+    		,informationSize = #{informationSize}
+    		,informationCompany = #{informationCompany}
+    		,informationCountry = #{informationCountry}
+    		,informationWarning = #{informationWarning}
+    		,informationQuality = #{informationQuality}
+    		,informationAS = #{informationAS}
+    		,productDelNy = #{productDelNy}
+    		where
+			productSeq = #{productSeq}
     
+    </update>
     <select id="colorList" resultMap="resultMapObj">
     	select 
     		a.Color_colorSeq
@@ -73,11 +133,19 @@
     		,a.productBest
     		,a.productRegDate
     		,a.productUpDate
+    		,a.informationType
+    		,a.informationColor
+    		,a.informationSize
+    		,a.informationWarning
+    		,a.informationCompany
+    		,a.informationCountry
+    		,a.informationQuality
+    		,a.informationAS
+    		,a.productDelNy
     	from
     		product a 
     	where 1=1
 			and a.productSeq = #{productSeq}
-		
 	</select>
 		
 	<select id="selectOneCount" resultType="Integer">

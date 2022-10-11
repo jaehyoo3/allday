@@ -1,6 +1,8 @@
 package com.bluebee.modules.store;
 
-public class Store {
+import com.bluebee.modules.base.Base;
+
+public class Store extends Base {
 	private String productSeq;
 	private String productName;
 	private Integer productType;
@@ -16,9 +18,72 @@ public class Store {
 	private String product_Seq;
 	private String colorName;
 	private Integer colorSeq;
-	
 	private String sizeName;
+	private String informationType;
+	private String informationColor;
+	private String informationSize;
+	private String informationCompany;
+	private String informationCountry;
+	private String informationWarning;
+	private String informationQuality;
+	private String informationAS;
+	private Integer productDelNy;
 	
+	
+	public String getInformationAS() {
+		return informationAS;
+	}
+	public void setInformationAS(String informationAS) {
+		this.informationAS = informationAS;
+	}
+	public String getInformationType() {
+		return informationType;
+	}
+	public void setInformationType(String informationType) {
+		this.informationType = informationType;
+	}
+	public String getInformationColor() {
+		return informationColor;
+	}
+	public void setInformationColor(String informationColor) {
+		this.informationColor = informationColor;
+	}
+	public String getInformationSize() {
+		return informationSize;
+	}
+	public void setInformationSize(String informationSize) {
+		this.informationSize = informationSize;
+	}
+	public String getInformationCompany() {
+		return informationCompany;
+	}
+	public void setInformationCompany(String informationCompany) {
+		this.informationCompany = informationCompany;
+	}
+	public String getInformationCountry() {
+		return informationCountry;
+	}
+	public void setInformationCountry(String informationCountry) {
+		this.informationCountry = informationCountry;
+	}
+	public String getInformationWarning() {
+		return informationWarning;
+	}
+	public void setInformationWarning(String informationWarning) {
+		this.informationWarning = informationWarning;
+	}
+	public String getInformationQuality() {
+		return informationQuality;
+	}
+	public void setInformationQuality(String informationQuality) {
+		this.informationQuality = informationQuality;
+	}
+	public Integer getProductDelNy() {
+		return productDelNy;
+	}
+	public void setProductDelNy(Integer productDelNy) {
+		this.productDelNy = productDelNy;
+	}
 	public String getSizeName() {
 		return sizeName;
 	}
