@@ -33,7 +33,6 @@
 				<c:if test="${list.productBest eq 1}">
 					<a href="javascript:goForm(<c:out value="${list.productSeq }"/>)">
 						<img src="<c:out value="${list.path}"/><c:out value="${list.uuidName}"/>"><br>
-						<img src="/resources/Images/img/knit.jpg"><br>
 						<span><c:out value="${list.productName}"/></span> <span class='best'>Best</span>
 						<p class="price">￦<fmt:formatNumber value="${list.productPrice}" pattern="##,###" /></p>
 					</a> 
