@@ -1,4 +1,4 @@
-<!<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" trimDirectiveWhitespaces="true"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -13,7 +13,7 @@
 		<link href="/resources/Images/css/code.css" rel="stylesheet">
 	</head>
 	<body>
-		<form name='form' method="post" enctype="multipart/form-data">
+		<form name="form" method="post" enctype="multipart/form-data">
 		<%@include file="../../../infra/includeV1/xdminSetting.jsp" %>
 			<%@include file="productVo.jsp"%>	
 			<div class="main-content">
@@ -22,9 +22,8 @@
 					<p style="padding-bottom:30px; padding-top:10px;">No. <c:out value="${item.productSeq }" /></p>
 					<p>상품사진</p>
 					<div class='img-box'>
-						<img src='dd'>
 						<input type="file" id="uploadedImage" name="uploadedImage" multiple="multiple">
-					</div>
+					</div> 
 					<p>* 상품이름</p>
 					<input type="text" name="productName" id="productName" value="<c:out value="${item.productName }" />" placeholder="한글">
 					<p>상품 타입</p>

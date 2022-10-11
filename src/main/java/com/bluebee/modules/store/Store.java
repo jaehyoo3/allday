@@ -1,5 +1,4 @@
 package com.bluebee.modules.store;
-
 import com.bluebee.modules.base.Base;
 
 public class Store extends Base {
@@ -25,10 +24,15 @@ public class Store extends Base {
 	private String informationCompany;
 	private String informationCountry;
 	private String informationWarning;
+	public String getInformationWarning() {
+		return informationWarning;
+	}
+	public void setInformationWarning(String informationWarning) {
+		this.informationWarning = informationWarning;
+	}
 	private String informationQuality;
 	private String informationAS;
 	private Integer productDelNy;
-	
 	
 	public String getInformationAS() {
 		return informationAS;
@@ -66,12 +70,7 @@ public class Store extends Base {
 	public void setInformationCountry(String informationCountry) {
 		this.informationCountry = informationCountry;
 	}
-	public String getInformationWarning() {
-		return informationWarning;
-	}
-	public void setInformationWarning(String informationWarning) {
-		this.informationWarning = informationWarning;
-	}
+
 	public String getInformationQuality() {
 		return informationQuality;
 	}

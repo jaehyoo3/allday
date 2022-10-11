@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.bluebee.modules.member.Member;
 import com.bluebee.modules.util.UtilUpload;
 
 @Service
@@ -40,10 +41,13 @@ public class StoreServiceImpl implements StoreService {
 	}
 
 	@Override
-	public int insert(Store dto) throws Exception {
+	public int insert(Store dto) throws Exception { 
 		try {
     		dao.insert(dto);
-        int j = 0;      
+    		System.out.println("Ddd");
+    		System.out.println(dto.getUploadedImage());
+    		System.out.println("ㅋㅌㅊㅋㅌㅊ");
+        int j = 0;
 	    	for(MultipartFile multipartFile : dto.getUploadedImage() ) {
 	    		if(!multipartFile.isEmpty()) {
 	    		
@@ -64,7 +68,8 @@ public class StoreServiceImpl implements StoreService {
 	    } catch (Exception e) {
 	        throw new Exception();
 	  }
-	}
+}
+
 
 	@Override
 	public int update(Store dto) throws Exception {

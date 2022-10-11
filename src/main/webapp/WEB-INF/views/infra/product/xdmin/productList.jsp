@@ -171,7 +171,7 @@
 		  		  });    
 				var form = $("form[name=form]")
 				var seq = $("input:hidden[name=productSeq]");
-				var goUrlView = "productView";
+				var goUrlView = "productForm";
 				
 				goList = function(thisPage) {
 					$("input:hidden[name=thisPage]").val(thisPage);

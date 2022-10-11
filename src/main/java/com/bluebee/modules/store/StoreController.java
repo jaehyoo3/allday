@@ -45,9 +45,10 @@ public class StoreController {
 			return "infra/main";
 		}
 		@RequestMapping(value = "xdmin/productInst")
-		public String productInst(@ModelAttribute("vo") StoreVo vo, Store dto, RedirectAttributes redirectAttributes) throws Exception {
+		public String productInst(Store dto) throws Exception {
+			System.out.println(dto.getUploadedImage());
 			service.insert(dto);
-			
+
 			return "redirect:/xdmin/productList";
 		}
 		@RequestMapping(value = "xdmin/productUpdt")

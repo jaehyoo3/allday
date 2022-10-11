@@ -12,11 +12,17 @@ public class Base {
 	private String ext;
 	private long size;
 	private MultipartFile[] uploadedImage;
-
+	private MultipartFile[] uploadedImage2;
 	private Integer idelNy;
 	private String pseq;
 	private String tableName;
 	
+	public MultipartFile[] getUploadedImage2() {
+		return uploadedImage2;
+	}
+	public void setUploadedImage2(MultipartFile[] uploadedImage2) {
+		this.uploadedImage2 = uploadedImage2;
+	}
 	public Integer getType() {
 		return type;
 	}

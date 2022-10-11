@@ -49,7 +49,7 @@
     		,#{informationColor}
     		,#{informationSize}
     		,#{informationCompany}
-    		,#{informationWaring}
+    		,#{informationWarning}
     		,#{informationCountry}
     		,#{informationQuality}
     		,#{informationAS}
