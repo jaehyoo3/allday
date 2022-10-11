@@ -16,10 +16,10 @@
 	</head>
 	<body>
 		<form name='form' method="post">
-		
 			<jsp:useBean id="XdminCodeServiceImpl" class="com.bluebee.modules.xdmincode.XdminCodeServiceImpl"/>
-			<c:set var="listProductType" value="${XdminCodeServiceImpl.selectListCachedCode('9')}"/>
+			
 			<%@include file="../../../infra/includeV1/xdminSetting.jsp" %>
+			<input type="hidden" name="productSeq">
 			<div class="main-content">
 			<h1><i class="fa-solid fa-cart-shopping"></i> Product</h1>
 				<div class="serach-box">
@@ -119,7 +119,7 @@
 				 		</span>
 					</div>
 					<div class='button-box'>
-						<button class='plusbtn'><i class="fa-sharp fa-solid fa-cart-plus"></i></button>
+						<button class='plusbtn' id="btnForm"><i class="fa-sharp fa-solid fa-cart-plus"></i></button>
 						<button class='minusbtn'><i class="fa-solid fa-cart-flatbed-suitcase"></i></button>
 					</div>					
 				</p>
@@ -170,7 +170,8 @@
 		            });
 		  		  });    
 				var form = $("form[name=form]")
-				var seq = $("input:hidden[name=memberSeq]");
+				var seq = $("input:hidden[name=productSeq]");
+				var goUrlView = "productView";
 				
 				goList = function(thisPage) {
 					$("input:hidden[name=thisPage]").val(thisPage);

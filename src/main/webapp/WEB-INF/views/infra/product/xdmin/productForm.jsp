@@ -16,19 +16,26 @@
 		<form name='form' method="post">
 		<%@include file="../../../infra/includeV1/xdminSetting.jsp" %>
 			<div class="main-content">
-				<h1><i class="fa-regular fa-file"></i> Member</h1>
+				<h1><i class="fa-regular fa-file"></i> Product</h1>
 				<div class='form-box'>
 					<p style="padding-bottom:30px; padding-top:10px;">No. <c:out value="${item.productSeq }" /></p>
 					<p>* 상품이름</p>
-					<input type="text" name="memberName" id="memberName" placeholder="한글">
+					<input type="text" name="productName" id="productName" value="<c:out value="${item.productName }" />" placeholder="한글">
+					<p>상품 타입</p>
+					<select id="productType" name="productType">
+						<option value='0'>설정하기</option>
+						<option value='1'>상의</option>
+						<option value='2'>바지</option>
+						<option value='3'>아우터</option>
+					</select>
 					<p>* 가격</p>
-					<input type="text" name="memberID" id="memberID" placeholder="한글,숫자">
+					<input type="text" name="productPrice" id="productPrice" value="<c:out value="${item.productPrice }" />" placeholder="한글,숫자">
 					<p>* 사이즈 - 컬러 - 갯수</p>
 					<input type="text" name= "memberNick" id="memberNick"  placeholder="한글, 영문(대소문자),숫자" style="width:19%;"> - <input type="text" style="width:19%;"> - <input type="text" style="width:19%;">
 					<p>* 상품 상세이미지</p>
-					<input type="text" name= "memberDob" id='datepicker1'  placeholder="한글, 영문(대소문자),숫자">
+					<input type="text" placeholder="한글, 영문(대소문자),숫자">
 					<p>* 상품 대표이미지</p>
-					<input type="text" name= "memberMobile" id="memberMobile" placeholder="한글, 영문(대소문자),숫자">			
+					<input type="text" placeholder="한글, 영문(대소문자),숫자">			
 					<h4>상품정보 제공공시</h4>
 					<p>종류</p>
 					<input type="text">
@@ -50,31 +57,45 @@
 					<input type="text">
 					<p>상품 삭제 여부</p>
 					<p style='font-size:6px; color:#e0e0e0;'>(설정하지 않을경우 기본값으로 설정됩니다.)</p>
-					<select id="memberDelNy" name="memberDelNy">
+					<select id="" name="">
 						<option value=''>설정하기</option>
 						<option value='0'>사용하지않기</option>
 						<option value='1'>사용하기</option>
 					</select>
-						<ul>
-							<li>
-							<span>등록일: </span>
-								<input type=text readonly>
-							</li>
-							<li>
-							<span>수정일: </span>
-								<input type=text readonly>	
-							</li>
-						</ul>
-						<button> 리뷰창 열기</button>
+					<p>BEST</p>
+					<p style='font-size:6px; color:#e0e0e0;'>(설정하지 않을경우 기본값으로 설정됩니다.)</p>
+					<select>
+						<option value=''>설정하기</option>
+						<option value='0'>사용하지않기</option>
+						<option value='1'>사용하기</option>
+					</select>
+					<p>NEW</p>
+					<p style='font-size:6px; color:#e0e0e0;'>(설정하지 않을경우 기본값으로 설정됩니다.)</p>
+					<select>
+						<option value=''>설정하기</option>
+						<option value='0'>사용하지않기</option>
+						<option value='1'>사용하기</option>
+					</select> 
+					<ul>
+						<li>
+						<span>등록일: </span>
+							<input type=text readonly>
+						</li>
+						<li>
+						<span>수정일: </span>
+							<input type=text readonly>	
+						</li>
+					</ul>
+					<button> 리뷰창 열기</button>
 					</div>
 					<div class='btn-box'>
 						<button style='background-color:#ab000d;'>DELETE</button>
 						<button style='background-color:#ab000d;'>UELETE</button>
 						<button id="btnSave">INSERT</button>
 						<button id="btnList">LdIST</button>
+					</div>
 				</div>
-			</div>
-		</form>
+			</form>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 		<script src="https://kit.fontawesome.com/a1961b2393.js" crossorigin="anonymous"></script>
 		

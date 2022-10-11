@@ -24,14 +24,26 @@ public class StoreController {
 			return "infra/product/xdmin/productList";
 		}
 		
+		@RequestMapping(value = "xdmin/productView")
+		
+		public String ProductView(Model model, @ModelAttribute("vo") StoreVo vo) throws Exception {
+			Store item = service.selectOne(vo);
+			model.addAttribute("item", item);
+			
+			return "infra/product/xdmin/productForm";
+		}
+		
 		@RequestMapping(value = "xdmin/productForm")
 		public String ProductForm(Model model, @ModelAttribute("vo") StoreVo vo) throws Exception {
+			List<Store> list = service.selectList(vo);
+			model.addAttribute("list", list);
 			return "infra/product/xdmin/productForm";
 		}
 		@RequestMapping(value = "")
 		public String AdminUser() {
 			return "infra/main";
 		}
+		
 	/*  User  */
 		@RequestMapping(value = "/main")
 		public String StoreMain(Model model, StoreVo vo) throws Exception {
@@ -98,6 +110,7 @@ public class StoreController {
 			model.addAttribute("item", item);
 			model.addAttribute("clist", colorlist);
 			model.addAttribute("slist", sizelist);
+			
 			return "infra/store/storeProduct";
 		}
 		

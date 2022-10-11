@@ -74,7 +74,7 @@
     		,a.productRegDate
     		,a.productUpDate
     	from
-    		product a
+    		product a 
     	where 1=1
 			and a.productSeq = #{productSeq}
 		
