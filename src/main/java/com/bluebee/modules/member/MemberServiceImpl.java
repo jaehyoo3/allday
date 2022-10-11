@@ -27,15 +27,12 @@ public class MemberServiceImpl implements MemberService {
 	public int insert(Member dto) throws Exception { 
 		try {
     		dao.insert(dto);
-    		System.out.println("Ddd");
-    		System.out.println(dto.getUploadedImage());
-    		System.out.println("ㅋㅌㅊㅋㅌㅊ");
         int j = 0;
 	    	for(MultipartFile multipartFile : dto.getUploadedImage() ) {
 	    		if(!multipartFile.isEmpty()) {
 	    		
 	    			String pathModule = this.getClass().getSimpleName().toString().toLowerCase().replace("serviceimpl", "");		
-	    			UtilUpload.upload(multipartFile, pathModule, dto);
+	    			UtilUpload.upload(multipartFile, pathModule, dto, 0);
 	    			
 		    		dto.setTableName("productUploaded");
 		    		dto.setType(1);

@@ -44,18 +44,16 @@ public class StoreServiceImpl implements StoreService {
 	public int insert(Store dto) throws Exception { 
 		try {
     		dao.insert(dto);
-    		System.out.println("Ddd");
-    		System.out.println(dto.getUploadedImage());
-    		System.out.println("ㅋㅌㅊㅋㅌㅊ");
         int j = 0;
 	    	for(MultipartFile multipartFile : dto.getUploadedImage() ) {
 	    		if(!multipartFile.isEmpty()) {
 	    		
-	    			String pathModule = this.getClass().getSimpleName().toString().toLowerCase().replace("serviceimpl", "");		
-	    			UtilUpload.upload(multipartFile, pathModule, dto);
+	    			String pathModule = this.getClass().getSimpleName().toString().toLowerCase().replace("serviceimpl", "");	
+	    			Integer type = dto.getProductType();
+	    			UtilUpload.upload(multipartFile, pathModule, dto, type);
 	    			
 		    		dto.setTableName("productUploaded");
-		    		dto.setType(1);
+		    		dto.setType(dto.getProductType());
 		    		dto.setIdefaultNy(j == 0 ? 1 : 0);
 		    		dto.setSort(j + 1);
 		    		dto.setPseq(dto.getProductSeq());
@@ -69,7 +67,6 @@ public class StoreServiceImpl implements StoreService {
 	        throw new Exception();
 	  }
 }
-
 
 	@Override
 	public int update(Store dto) throws Exception {

@@ -16,7 +16,7 @@ public class Base {
 	private Integer idelNy;
 	private String pseq;
 	private String tableName;
-	
+
 	public MultipartFile[] getUploadedImage2() {
 		return uploadedImage2;
 	}
