@@ -22,13 +22,13 @@ public class UtilUpload {
 		String pathForView;
 		
 		if(className.equals("store")) {
-			path = Constants.UPLOAD_PATH_PREFIX + "/product/" + type;
+			path = Constants.UPLOAD_PATH_PREFIX + "/product/" + type + "/";
 		} else {
 			path = Constants.UPLOAD_PATH_PREFIX + "/" + pathModule + "/" + pathDate + "/";
 		}
 		
 		if(className.equals("store")) {
-			pathForView = Constants.UPLOAD_PATH_PREFIX_FOR_VIEW + "/product/" + type;
+			pathForView = Constants.UPLOAD_PATH_PREFIX_FOR_VIEW + "/product/" + type + "/";
 		} else {
 			pathForView = Constants.UPLOAD_PATH_PREFIX_FOR_VIEW + "/" + pathModule + "/" + pathDate + "/";
 		}

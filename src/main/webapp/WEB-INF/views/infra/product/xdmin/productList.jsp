@@ -166,12 +166,11 @@
 		                     // 시작일(startDate)의 선택할수있는 최대 날짜(maxDate)를 선택한 시작일로 지정
 		                     $("#startDate").datepicker( "option", "maxDate", selectedDate );
 		                 }
-		
 		            });
 		  		  });    
 				var form = $("form[name=form]")
 				var seq = $("input:hidden[name=productSeq]");
-				var goUrlView = "productForm";
+				var goUrlView = "productView";
 				
 				goList = function(thisPage) {
 					$("input:hidden[name=thisPage]").val(thisPage);

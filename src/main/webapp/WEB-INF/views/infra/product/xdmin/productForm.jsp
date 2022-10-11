@@ -71,15 +71,15 @@
 					<p style='font-size:6px; color:#e0e0e0;'>(설정하지 않을경우 기본값으로 설정됩니다.)</p>
 					<select id="productBest" name="productBest">
 						<option value='' <c:if test="${empty item.productBest}">selected</c:if>>설정하기</option>
-						<option value='0' <c:if test="${item.productBest eq 0 }">selected</c:if>>사용하기</option>
-						<option value='1' <c:if test="${item.productBest eq 1 }">selected</c:if>>사용하지않기</option>
+						<option value='0' <c:if test="${item.productBest eq 1 }">selected</c:if>>사용하기</option>
+						<option value='1' <c:if test="${item.productBest eq 0 }">selected</c:if>>사용하지않기</option>
 					</select>
 					<p>NEW</p>
 					<p style='font-size:6px; color:#e0e0e0;'>(설정하지 않을경우 기본값으로 설정됩니다.)</p>
 					<select id="productNew" name="productNew">
 						<option value='' <c:if test="${empty item.productNew}">selected</c:if>>설정하기</option>
-						<option value='0' <c:if test="${item.productNew eq 0 }">selected</c:if>>사용하기</option>
-						<option value='1' <c:if test="${item.productNew eq 1 }">selected</c:if>>사용하지않기</option>
+						<option value='0' <c:if test="${item.productNew eq 1 }">selected</c:if>>사용하기</option>
+						<option value='1' <c:if test="${item.productNew eq 0 }">selected</c:if>>사용하지않기</option>
 					</select> 
 					<ul>
 						<li>
