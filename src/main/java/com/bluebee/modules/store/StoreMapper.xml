@@ -60,6 +60,23 @@
 			select last_insert_id()
 		</selectKey>
     </insert>
+    <insert id="detailinsert">
+    	insert into productDetail(
+    		product_Seq
+    		,color_colorseq
+    		,size_size
+    		,num
+    	)
+    	VALUES(
+    		#{productSeq}
+    		,#{color_colorseq}
+    		,#{size_size}
+    		,#{num}
+    	)
+	    <selectKey resultType="String" keyProperty="detailSeq" order="AFTER"> 
+			select last_insert_id()
+		</selectKey>
+    </insert>
     <update id="update">
     	update product
     	set
@@ -124,6 +141,18 @@
 		order by detailSeq asc
     </select>
     
+   <select id="cL" resultMap="resultMapObj">
+    	select 
+    		colorSeq
+        	,colorName
+    	from Color
+    </select>
+    <select id="sL" resultMap="resultMapObj">
+    	select 
+    		Size
+        	,sizeName
+    	from Size
+    </select>
 	<select id="selectOne" resultMap="resultMapObj">
 		SELECT
     		a.productSeq
@@ -143,8 +172,12 @@
     		,a.informationQuality
     		,a.informationAS
     		,a.productDelNy
+    		,b.*
     	from
-    		product a 
+    		product a 		
+    	left join
+			productUploaded b
+		on a.productSeq = b.pseq
     	where 1=1
 			and a.productSeq = #{productSeq}
 	</select>

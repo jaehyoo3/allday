@@ -20,10 +20,6 @@
 				<h1><i class="fa-regular fa-file"></i> Product</h1>
 				<div class='form-box'>
 					<p style="padding-bottom:30px; padding-top:10px;">No. <c:out value="${item.productSeq }" /></p>
-					<p>상품사진</p>
-					<div class='img-box'>
-						<input type="file" id="uploadedImage" name="uploadedImage" multiple="multiple">
-					</div> 
 					<p>* 상품이름</p>
 					<input type="text" name="productName" id="productName" value="<c:out value="${item.productName }" />" placeholder="한글">
 					<p>상품 타입</p>
@@ -36,11 +32,24 @@
 					<p>* 가격</p>
 					<input type="text" name="productPrice" id="productPrice" value="<c:out value="${item.productPrice }" />" placeholder="한글,숫자">
 					<p>* 사이즈 - 컬러 - 갯수</p>
-					<input type="text" name= "memberNick" id="memberNick"  placeholder="한글, 영문(대소문자),숫자" style="width:19%;"> - <input type="text" style="width:19%;"> - <input type="text" style="width:19%;">
-					<p>* 상품 상세이미지</p>
-					<input type="text" placeholder="한글, 영문(대소문자),숫자">
-					<p>* 상품 대표이미지</p>
-					<input type="text" placeholder="한글, 영문(대소문자),숫자">			
+					<select name="size_size" id="size_size"  placeholder="한글, 영문(대소문자),숫자" style="width:19%;"> 
+						<c:forEach items="${slist}" var="list" varStatus="status">
+							<option value="<c:out value="${list.size}" />"><c:out value="${list.size}" /> / <c:out value="${list.sizeName}" /></option>
+						</c:forEach>
+					</select>
+					- <select name="color_colorSeq" id="color_colorSeq"  placeholder="한글, 영문(대소문자),숫자" style="width:19%;"> 
+						<c:forEach items="${clist}" var="list" varStatus="status">
+							<option value="<c:out value="${list.colorSeq}" />"><c:out value="${list.colorSeq}" />/<c:out value="${list.colorName}" /></option>
+						</c:forEach>
+					</select> -
+					 <input type="text" id="num" name="num" style="width:19%;">
+					<p>* 상품 이미지</p>
+					<input type="text" value="<c:out value="${item.originalName }" />" style="width:50%;">
+					<label for="uploadedImage">업로드</label>
+					<input type="file" name="uploadedImage" id="uploadedImage" multiple>
+					<p>* 상품 상세정보</p>
+					<div class="file-list"><label for="uploadedImage2" style="float:right; background-color:white;color:black;">+</label></div>
+					<input type="file" name="uploadedImage2" id="uploadedImage2" onchange="addFile(this);" style="display:none;" multiple />
 					<h4>상품정보 제공공시</h4>
 					<p>종류</p>
 					<input type="text" id="productType" name="productType" value="<c:out value="${item.productType}" />">
@@ -179,8 +188,73 @@
     	    $(function() {
     	        $("#datepicker1").datepicker();
     	    });
-	
-		</script>
+    	    var fileNo = 0;
+    	    var filesArr = new Array();
 
+    	    /* 첨부파일 추가 */
+    	    function addFile(obj){
+    	        var maxFileCnt = 5;   // 첨부파일 최대 개수
+    	        var attFileCnt = document.querySelectorAll('.filebox').length;    // 기존 추가된 첨부파일 개수
+    	        var remainFileCnt = maxFileCnt - attFileCnt;    // 추가로 첨부가능한 개수
+    	        var curFileCnt = obj.files.length;  // 현재 선택된 첨부파일 개수
+
+    	        // 첨부파일 개수 확인
+    	        if (curFileCnt > remainFileCnt) {
+    	            alert("첨부파일은 최대 " + maxFileCnt + "개 까지 첨부 가능합니다.");
+    	        }
+
+    	        for (var i = 0; i < Math.min(curFileCnt, remainFileCnt); i++) {
+    	            const file = obj.files[i];
+    	            // 첨부파일 검증
+    	            if (validation(file)) {
+    	                // 파일 배열에 담기
+    	                var reader = new FileReader();
+    	                reader.onload = function () {
+    	                    filesArr.push(file);
+    	                };
+    	                reader.readAsDataURL(file)
+
+    	                // 목록 추가
+    	                let htmlData = '';
+    	                htmlData += '<div id="file' + fileNo + '" class="filebox">';
+    	                htmlData += '<p class="name">' + file.name + '</p>';
+    	                htmlData += '<a class="delete" onclick="deleteFile(' + fileNo + ');"><i class="far fa-minus-square"></i></a>';
+    	                htmlData += '</div>';
+    	                $('.file-list').append(htmlData);
+    	                fileNo++;
+    	            } else {
+    	                continue;
+    	            }
+    	        }
+    	        // 초기화
+    	        document.querySelector("input:file[name=uploadedImage2]").value = "";
+    	    }
+
+    	    /* 첨부파일 검증 */
+    	    function validation(obj){
+    	        const fileTypes = ['application/pdf', 'image/gif', 'image/jpeg', 'image/png', 'image/bmp', 'image/tif', 'application/haansofthwp', 'application/x-hwp'];
+    	        if (obj.name.length > 100) {
+    	            alert("파일명이 100자 이상인 파일은 제외되었습니다.");
+    	            return false;
+    	        } else if (obj.size > (100 * 1024 * 1024)) {
+    	            alert("최대 파일 용량인 100MB를 초과한 파일은 제외되었습니다.");
+    	            return false;
+    	        } else if (obj.name.lastIndexOf('.') == -1) {
+    	            alert("확장자가 없는 파일은 제외되었습니다.");
+    	            return false;
+    	        } else if (!fileTypes.includes(obj.type)) {
+    	            alert("첨부가 불가능한 파일은 제외되었습니다.");
+    	            return false;
+    	        } else {
+    	            return true;
+    	        }
+    	    }
+
+    	    /* 첨부파일 삭제 */
+    	    function deleteFile(num) {
+    	        document.querySelector("#file" + num).remove();
+    	        filesArr[num].is_delete = true;
+    	    }
+    	    </script>
 	</body>
 </html>

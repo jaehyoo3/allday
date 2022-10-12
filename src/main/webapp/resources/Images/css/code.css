@@ -221,8 +221,27 @@
 			  background: #62757f;
 			  border-radius: 0;
 			  width: 10%;
-			  margin-bottom: 5px;
 			  color: #FFFFFF;
+			  height: 25px;
 			  font-size: 14px;
 			  cursor:pointer;
+			}
+			.form-box .file-list {
+				width: 60%;
+				margin: auto;
+			    height: 200px;
+			    overflow: auto;
+			    border:1px solid #E0E0E0;
+			    text-align:center;
+			}
+			.form-box .file-list .filebox p {
+			    font-size: 14px;
+			    padding-top: 10px;
+			    margin: 0;
+			    display: inline-block;
+			    text-align:center;
+			}
+			.form-box .file-list .filebox .delete i{
+			    color: #ff5353;
+			    margin-left: 5px;
 			}

@@ -10,4 +10,6 @@ public interface StoreService {
 	public List<Store> sizeList(StoreVo vo) throws Exception;
 	public int insert(Store dto) throws Exception;
 	public int update(Store dto) throws Exception;
+	public List<Store> cL(StoreVo vo) throws Exception;
+	public List<Store> sL(StoreVo vo) throws Exception;
 }

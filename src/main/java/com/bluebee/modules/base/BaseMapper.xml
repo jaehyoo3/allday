@@ -26,6 +26,7 @@
 		,size
 		,idelNy
 		,pseq
+		,article
 	) values (
 		#{type}
 		,#{idefaultNy}
@@ -37,6 +38,7 @@
 		,#{size}
 		,0
 		,#{pseq}
+		,#{article}
 	)
 	</insert>
 </mapper>

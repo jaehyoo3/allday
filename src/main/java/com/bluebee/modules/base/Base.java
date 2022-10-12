@@ -16,7 +16,14 @@ public class Base {
 	private Integer idelNy;
 	private String pseq;
 	private String tableName;
+	private Integer article;
 
+	public Integer getArticle() {
+		return article;
+	}
+	public void setArticle(Integer article) {
+		this.article = article;
+	}
 	public MultipartFile[] getUploadedImage2() {
 		return uploadedImage2;
 	}

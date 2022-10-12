@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.bluebee.modules.member.Member;
 import com.bluebee.modules.util.UtilUpload;
 
 @Service
@@ -43,13 +42,13 @@ public class StoreServiceImpl implements StoreService {
 	@Override
 	public int insert(Store dto) throws Exception { 
 		try {
-    		dao.insert(dto);
-        int j = 0;
+    		dao.insert(dto);	    	
+    		int j = 0;
 	    	for(MultipartFile multipartFile : dto.getUploadedImage() ) {
 	    		if(!multipartFile.isEmpty()) {
 	    		
 	    			String pathModule = this.getClass().getSimpleName().toString().toLowerCase().replace("serviceimpl", "");	
-	    			Integer type = dto.getProductType();
+	    			Integer type = Integer.valueOf(dto.getProductSeq());
 	    			UtilUpload.upload(multipartFile, pathModule, dto, type);
 	    			
 		    		dto.setTableName("productUploaded");
@@ -62,6 +61,27 @@ public class StoreServiceImpl implements StoreService {
 					j++;
 	    		}
 			}
+    		j = 0;
+	    	for(MultipartFile multipartFile : dto.getUploadedImage2() ) {
+	    		if(!multipartFile.isEmpty()) {
+	    		
+	    			String pathModule = this.getClass().getSimpleName().toString().toLowerCase().replace("serviceimpl", "");	
+	    			Integer type = Integer.valueOf(dto.getProductSeq());
+	    			UtilUpload.upload(multipartFile, pathModule, dto, type);
+	    			
+		    		dto.setTableName("productDetailUploaded");
+		    		dto.setType(dto.getProductType());
+		    		dto.setIdefaultNy(j == 0 ? 1 : 0);
+		    		dto.setSort(j + 1);
+		    		dto.setPseq(dto.getProductSeq());
+		    		dto.setArticle(1);
+	
+					dao.insertUploaded(dto);
+					j++;
+	    		}
+			}
+	    	
+	    	dao.detailinsert(dto);
 	 		return 1;
 	    } catch (Exception e) {
 	        throw new Exception();
@@ -72,4 +92,17 @@ public class StoreServiceImpl implements StoreService {
 	public int update(Store dto) throws Exception {
 		return dao.update(dto);
 	}
+
+	@Override
+	public List<Store> cL(StoreVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.cL(vo);
+	}
+
+	@Override
+	public List<Store> sL(StoreVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.sL(vo);
+	}
+	
 }

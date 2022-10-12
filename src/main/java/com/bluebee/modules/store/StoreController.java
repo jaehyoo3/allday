@@ -30,6 +30,11 @@ public class StoreController {
 			Store item = service.selectOne(vo);
 			model.addAttribute("item", item);
 			
+			List<Store> cl = service.cL(vo);
+			List<Store> sl = service.sL(vo);
+
+			model.addAttribute("clist", cl);
+			model.addAttribute("slist", sl);
 			return "infra/product/xdmin/productForm";
 		}
 		
@@ -37,6 +42,12 @@ public class StoreController {
 		public String ProductForm(Model model, @ModelAttribute("vo") StoreVo vo) throws Exception {
 			List<Store> list = service.selectList(vo);
 			model.addAttribute("list", list);
+			
+			List<Store> cl = service.cL(vo);
+			List<Store> sl = service.sL(vo);
+
+			model.addAttribute("clist", cl);
+			model.addAttribute("slist", sl);
 			
 			return "infra/product/xdmin/productForm";
 		}
@@ -46,9 +57,7 @@ public class StoreController {
 		}
 		@RequestMapping(value = "xdmin/productInst")
 		public String productInst(Store dto) throws Exception {
-			System.out.println(dto.getUploadedImage());
 			service.insert(dto);
-
 			return "redirect:/xdmin/productList";
 		}
 		@RequestMapping(value = "xdmin/productUpdt")
