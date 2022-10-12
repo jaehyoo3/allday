@@ -44,7 +44,6 @@ public class MemberController {
 	@RequestMapping(value = "/xdmin/memberInst")
 	public String memberInst(@ModelAttribute("vo") MemberVo vo, Member dto, RedirectAttributes redirectAttributes) throws Exception {
 		service.insert(dto);
-		
 		vo.setMemberSeq(dto.getMemberSeq());
 		redirectAttributes.addFlashAttribute("vo", vo);
 		

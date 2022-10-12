@@ -24,7 +24,7 @@ public class StoreDao {
 	public int insert(Store dto) { return sqlSession.insert(namespace +".insert", dto); }
 	public int update(Store dto) { return sqlSession.update(namespace +".update", dto); }
 	public int insertUploaded(Store dto) { return sqlSession.insert("Base" + ".insertUploaded", dto); }
-	public int detailinsert(Store dto) { return sqlSession.insert(namespace+".detailinsert", dto); }
+	public int detailinsert(Store dto) { return sqlSession.insert(namespace + ".detailinsert", dto); }	
 	public List<Store> cL(StoreVo vo){ return sqlSession.selectList(namespace + ".cL", vo); }
 	public List<Store> sL(StoreVo vo){ return sqlSession.selectList(namespace + ".sL", vo); }
 }

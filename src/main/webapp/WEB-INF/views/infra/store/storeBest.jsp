@@ -15,7 +15,7 @@
 	</head>
 	
 	<body>
-		<form name='form' method="post">
+		<form name='form' method="get">
 			<!-- navMenu s  -->
 				<%@include file="../../infra/includeV1/Menu.jsp"%>
 			<!-- navMenu e --> 
@@ -30,12 +30,12 @@
 			<div class="products">
 			<input type='hidden' name="productSeq">
 			<c:forEach items="${list}" var="list" varStatus="status">
-				<c:if test="${list.productBest eq 1}">
+				<c:if test="${list.productBest eq 1 and list.article eq 0 and list.idefaultNy eq 1}">
 					<a href="javascript:goForm(<c:out value="${list.productSeq }"/>)">
 						<img src="<c:out value="${list.path}"/><c:out value="${list.uuidName}"/>"><br>
 						<span><c:out value="${list.productName}"/></span> <span class='best'>Best</span>
 						<p class="price">￦<fmt:formatNumber value="${list.productPrice}" pattern="##,###" /></p>
-					</a> 
+					</a>
 				</c:if>
 			</c:forEach>
 			<!-- 	<a href="#" onClick="location.href='product'"> 

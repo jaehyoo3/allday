@@ -18,7 +18,16 @@
 	    		,a.productBest
 	    		,a.productRegDate
 	    		,a.productUpDate
-	    		,b.*
+	    		,b.seq
+	    		,b.type
+	    		,b.idefaultNy
+	    		,b.sort
+	    		,b.path
+	    		,b.originalName
+	    		,b.uuidName
+	    		,b.ext
+	    		,b.idelNy
+	    		,b.article
 		<include refid='basic' />
     </select>
     <insert id="insert">
@@ -45,7 +54,7 @@
     		,#{productPrice}
     		,#{productNew}
     		,#{productBest}
-    		,#{productRegDate}
+    		,now()
     		,#{informationType}
     		,#{informationColor}
     		,#{informationSize}
@@ -60,6 +69,7 @@
 			select last_insert_id()
 		</selectKey>
     </insert>
+    
     <insert id="detailinsert">
     	insert into productDetail(
     		product_Seq
@@ -77,6 +87,7 @@
 			select last_insert_id()
 		</selectKey>
     </insert>
+    
     <update id="update">
     	update product
     	set
@@ -172,12 +183,8 @@
     		,a.informationQuality
     		,a.informationAS
     		,a.productDelNy
-    		,b.*
     	from
     		product a 		
-    	left join
-			productUploaded b
-		on a.productSeq = b.pseq
     	where 1=1
 			and a.productSeq = #{productSeq}
 	</select>

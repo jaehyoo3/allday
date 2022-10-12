@@ -13,8 +13,7 @@ public class Store extends Base {
 	private Integer color_colorseq;
 	private Integer size_size;
 	private Integer num;
-	private Integer detailSeq;
-	private String product_Seq;
+	private String detailSeq;
 	private String colorName;
 	private Integer colorSeq;
 	private String sizeName;
@@ -24,6 +23,14 @@ public class Store extends Base {
 	private String informationCompany;
 	private String informationCountry;
 	private String informationWarning;
+	private String product_Seq;
+	
+	public String getProduct_Seq() {
+		return product_Seq;
+	}
+	public void setProduct_Seq(String product_Seq) {
+		this.product_Seq = product_Seq;
+	}
 	public String getInformationWarning() {
 		return informationWarning;
 	}
@@ -101,12 +108,6 @@ public class Store extends Base {
 	public void setColorSeq(Integer colorSeq) {
 		this.colorSeq = colorSeq;
 	}
-	public String getProduct_Seq() {
-		return product_Seq;
-	}
-	public void setProduct_Seq(String product_Seq) {
-		this.product_Seq = product_Seq;
-	}
 	public Integer getProductBest() {
 		return productBest;
 	}
@@ -173,10 +174,10 @@ public class Store extends Base {
 	public void setNum(Integer num) {
 		this.num = num;
 	}
-	public Integer getDetailSeq() {
+	public String getDetailSeq() {
 		return detailSeq;
 	}
-	public void setDetailSeq(Integer detailSeq) {
+	public void setDetailSeq(String detailSeq) {
 		this.detailSeq = detailSeq;
 	}
 

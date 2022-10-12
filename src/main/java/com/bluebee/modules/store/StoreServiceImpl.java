@@ -42,7 +42,8 @@ public class StoreServiceImpl implements StoreService {
 	@Override
 	public int insert(Store dto) throws Exception { 
 		try {
-    		dao.insert(dto);	    	
+    		dao.insert(dto);	
+    		dao.detailinsert(dto);
     		int j = 0;
 	    	for(MultipartFile multipartFile : dto.getUploadedImage() ) {
 	    		if(!multipartFile.isEmpty()) {
@@ -56,7 +57,8 @@ public class StoreServiceImpl implements StoreService {
 		    		dto.setIdefaultNy(j == 0 ? 1 : 0);
 		    		dto.setSort(j + 1);
 		    		dto.setPseq(dto.getProductSeq());
-	
+		    		dto.setArticle(0);
+		    		
 					dao.insertUploaded(dto);
 					j++;
 	    		}
@@ -80,8 +82,7 @@ public class StoreServiceImpl implements StoreService {
 					j++;
 	    		}
 			}
-	    	
-	    	dao.detailinsert(dto);
+			
 	 		return 1;
 	    } catch (Exception e) {
 	        throw new Exception();

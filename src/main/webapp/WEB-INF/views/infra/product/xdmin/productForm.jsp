@@ -31,20 +31,23 @@
 					</select>
 					<p>* 가격</p>
 					<input type="text" name="productPrice" id="productPrice" value="<c:out value="${item.productPrice }" />" placeholder="한글,숫자">
-					<p>* 사이즈 - 컬러 - 갯수</p>
+					<p>* 사이즈 - 컬러 - 갯수</p> 
+					<div class="buttons">
 					<select name="size_size" id="size_size"  placeholder="한글, 영문(대소문자),숫자" style="width:19%;"> 
 						<c:forEach items="${slist}" var="list" varStatus="status">
 							<option value="<c:out value="${list.size}" />"><c:out value="${list.size}" /> / <c:out value="${list.sizeName}" /></option>
 						</c:forEach>
 					</select>
-					- <select name="color_colorSeq" id="color_colorSeq"  placeholder="한글, 영문(대소문자),숫자" style="width:19%;"> 
+					- <select name="color_colorseq" id="color_colorseq"  placeholder="한글, 영문(대소문자),숫자" style="width:19%;"> 
 						<c:forEach items="${clist}" var="list" varStatus="status">
 							<option value="<c:out value="${list.colorSeq}" />"><c:out value="${list.colorSeq}" />/<c:out value="${list.colorName}" /></option>
 						</c:forEach>
 					</select> -
-					 <input type="text" id="num" name="num" style="width:19%;">
+					 <input type="text" id="num" name="num" style="width:19%;">            
+			        	<input type="text" name="txt"> <input type="button" class="btnAdd" value="Add">        
+			        </div> 
 					<p>* 상품 이미지</p>
-					<input type="text" value="<c:out value="${item.originalName }" />" style="width:50%;">
+					<input type="text" value="<c:out value="${item.originalName }" />" style="width:10%;">
 					<label for="uploadedImage">업로드</label>
 					<input type="file" name="uploadedImage" id="uploadedImage" multiple>
 					<p>* 상품 상세정보</p>
@@ -117,7 +120,6 @@
 		<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3d9122ea8fc388f07cd56d7692121430&libraries=services"></script>
 		
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-		<link rel="stylesheet" href="/resources/demos/style.css">
 		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 		
@@ -169,10 +171,7 @@
 			$("#btnList").on("click", function(){
 				form.attr("action", goUrlList).submit();
 			});
-			
-			if(document.getElementById("memberAd").checked) {
-	        	document.getElementById("memberAd_hidden").disabled = true;
-	        }
+
     	  $.datepicker.setDefaults({
     	        dateFormat: 'yy-mm-dd',
     	        prevText: '이전 달',
@@ -255,6 +254,18 @@
     	        document.querySelector("#file" + num).remove();
     	        filesArr[num].is_delete = true;
     	    }
+    	     $(document).ready (function () {                
+    	            $('.btnAdd').click (function () {                                        
+    	                $('.buttons').append (                        
+    	                    '<input type="text" name="txt"> <input type="button" class="btnRemove" value="Remove"><br>'                    
+    	                ); // end append                            
+    	                $('.btnRemove').on('click', function () { 
+    	                    $(this).prev().remove (); // remove the textbox
+    	                    $(this).next ().remove (); // remove the <br>
+    	                    $(this).remove (); // remove the button
+    	                });
+    	            }); // end click                                            
+    	        }); // end ready     
     	    </script>
 	</body>
 </html>

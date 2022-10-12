@@ -127,8 +127,10 @@ public class StoreController {
 			
 			List<Store> colorlist = service.colorList(vo);
 			List<Store> sizelist = service.sizeList(vo);
+			List<Store> list = service.selectList(vo);
 			Store item = service.selectOne(vo);
 			
+			model.addAttribute("list", list);
 			model.addAttribute("item", item);
 			model.addAttribute("clist", colorlist);
 			model.addAttribute("slist", sizelist);
