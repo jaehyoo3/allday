@@ -17,7 +17,8 @@
 	<body>
 		<form name='form' method="post">
 			<jsp:useBean id="XdminCodeServiceImpl" class="com.bluebee.modules.xdmincode.XdminCodeServiceImpl"/>
-			
+			<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage}" default="1"/>">
+			<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>">
 			<%@include file="../../../infra/includeV1/xdminSetting.jsp" %>
 			<input type="hidden" name="productSeq">
 			<div class="main-content">
@@ -83,10 +84,11 @@
 					<span>
 						<span class='pagination1'>Rows per page:</span>
 						<div class="select-style">
-							<select name="rowNumToShow">
-								<option value=10 <c:if test="${vo.rowNumToShow == 10}">selected</c:if>>10</option>
-								<option value=30 <c:if test="${vo.rowNumToShow == 30}">selected</c:if>>30</option>
-								<option value=50 <c:if test="${vo.rowNumToShow == 50}">selected</c:if>>50</option>
+							<select id= "changeRowNum" name="changeRowNum">
+								<option value=10 <c:if test="${vo.rowNumToShow eq 10}">selected</c:if>>10</option>
+								<option value=30 <c:if test="${vo.rowNumToShow eq 30}">selected</c:if>>30</option>
+								<option value=50 <c:if test="${vo.rowNumToShow eq 50}">selected</c:if>>50</option>
+								<option value="<c:out value="${vo.totalRows}" />" <c:if test="${vo.rowNumToShow eq vo.totalRows}">selected</c:if>>ALL</option>
 							</select>
 						</div>
 						<span class='pagination1'>
@@ -170,6 +172,7 @@
 		  		  });    
 				var form = $("form[name=form]")
 				var seq = $("input:hidden[name=productSeq]");
+				var goUrlList = "productList"; 			/* #-> */
 				var goUrlView = "productView";
 				
 				goList = function(thisPage) {
@@ -180,7 +183,12 @@
 				$('#btnForm').on("click", function() {
 					goForm(0);                
 				});
-	
+				
+				$("#changeRowNum").on("change", function(){
+					$("input:hidden[name=rowNumToShow]").val($("#changeRowNum option:selected").val());
+					form.attr("action", goUrlList).submit();
+				}); 
+				
 				goForm = function(keyValue) {
 			    	/* if(keyValue != 0) seq.val(btoa(keyValue)); */
 			    	seq.val(keyValue);

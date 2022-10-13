@@ -30,22 +30,24 @@
 						<option value='3' <c:if test="${item.productType eq 3 }">selected</c:if>>아우터</option>
 					</select>
 					<p>* 가격</p>
-					<input type="text" name="productPrice" id="productPrice" value="<c:out value="${item.productPrice }" />" placeholder="한글,숫자">
+					<input type="text" name="productPrice" id="productPrice" value="<c:out value="${item.productPrice }" />" placeholder="숫자">
 					<p>* 사이즈 - 컬러 - 갯수</p> 
 					<div class="buttons">
-					<select name="size_size" id="size_size"  placeholder="한글, 영문(대소문자),숫자" style="width:19%;"> 
+					<select name="size_sizearr" id="size_sizearr0"  placeholder="한글, 영문(대소문자),숫자" style="width:19%;"> 
 						<c:forEach items="${slist}" var="list" varStatus="status">
 							<option value="<c:out value="${list.size}" />"><c:out value="${list.size}" /> / <c:out value="${list.sizeName}" /></option>
 						</c:forEach>
 					</select>
-					- <select name="color_colorseq" id="color_colorseq"  placeholder="한글, 영문(대소문자),숫자" style="width:19%;"> 
+					- <select name="color_colorseqarr" id="color_colorseqarr0"  placeholder="한글, 영문(대소문자),숫자" style="width:19%;"> 
 						<c:forEach items="${clist}" var="list" varStatus="status">
 							<option value="<c:out value="${list.colorSeq}" />"><c:out value="${list.colorSeq}" />/<c:out value="${list.colorName}" /></option>
 						</c:forEach>
 					</select> -
-					 <input type="text" id="num" name="num" style="width:19%;">            
-			        	<input type="text" name="txt"> <input type="button" class="btnAdd" value="Add">        
+					 	<input type="text" name="numarr1" id="numarr0" style="width:19%;">
+					 	<input type="text" name="numarr1" id="numarr1" style="width:19%;">
+			      		<input type="button" class="btnAdd" value="Add">        
 			        </div> 
+			        
 					<p>* 상품 이미지</p>
 					<input type="text" value="<c:out value="${item.originalName }" />" style="width:10%;">
 					<label for="uploadedImage">업로드</label>
@@ -257,7 +259,7 @@
     	     $(document).ready (function () {                
     	            $('.btnAdd').click (function () {                                        
     	                $('.buttons').append (                        
-    	                    '<input type="text" name="txt"> <input type="button" class="btnRemove" value="Remove"><br>'                    
+    	                    '<br> <input type="text" id="color_colorseq" name="color_colorseq" style="width:19%;"> <input type="text" id="size_size" name="size_size" style="width:19%;"> <input type="text" id="num" name="num" style="width:19%;">  <input type="button" class="btnRemove" value="Remove">'                    
     	                ); // end append                            
     	                $('.btnRemove').on('click', function () { 
     	                    $(this).prev().remove (); // remove the textbox

@@ -9,6 +9,7 @@
     <resultMap id="resultMapObj" type="com.bluebee.modules.store.Store"></resultMap>
     
     <select id="selectList" resultMap="resultMapObj">
+    <include refid="Base.selectListUpper"/>
 	    	select
 	    		a.productSeq
 	    		,a.productName
@@ -29,7 +30,9 @@
 	    		,b.idelNy
 	    		,b.article
 		<include refid='basic' />
+		<include refid='Base.selectListLower'/>
     </select>
+    
     <insert id="insert">
     	insert into product(
     		productName

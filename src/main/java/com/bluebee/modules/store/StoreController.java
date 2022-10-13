@@ -1,6 +1,8 @@
 package com.bluebee.modules.store;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -56,7 +58,8 @@ public class StoreController {
 			return "infra/main";
 		}
 		@RequestMapping(value = "xdmin/productInst")
-		public String productInst(Store dto) throws Exception {
+		public String productInst(HttpServletRequest request, Store dto) throws Exception {        
+	        
 			service.insert(dto);
 			return "redirect:/xdmin/productList";
 		}

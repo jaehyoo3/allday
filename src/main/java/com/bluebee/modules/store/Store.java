@@ -10,6 +10,9 @@ public class Store extends Base {
 	private Integer productNew;
 	private String productRegDate;
 	private String productModDate;
+	private Integer[] color_colorseqarr;
+	private Integer[] size_sizearr;
+	private Integer[] numarr;
 	private Integer color_colorseq;
 	private Integer size_size;
 	private Integer num;
@@ -156,6 +159,30 @@ public class Store extends Base {
 	public void setProductModDate(String productModDate) {
 		this.productModDate = productModDate;
 	}
+	public String getDetailSeq() {
+		return detailSeq;
+	}
+	public void setDetailSeq(String detailSeq) {
+		this.detailSeq = detailSeq;
+	}
+	public Integer[] getColor_colorseqarr() {
+		return color_colorseqarr;
+	}
+	public void setColor_colorseqarr(Integer[] color_colorseqarr) {
+		this.color_colorseqarr = color_colorseqarr;
+	}
+	public Integer[] getSize_sizearr() {
+		return size_sizearr;
+	}
+	public void setSize_sizearr(Integer[] size_sizearr) {
+		this.size_sizearr = size_sizearr;
+	}
+	public Integer[] getNumarr() {
+		return numarr;
+	}
+	public void setNumarr(Integer[] numarr) {
+		this.numarr = numarr;
+	}
 	public Integer getColor_colorseq() {
 		return color_colorseq;
 	}
@@ -174,12 +201,8 @@ public class Store extends Base {
 	public void setNum(Integer num) {
 		this.num = num;
 	}
-	public String getDetailSeq() {
-		return detailSeq;
-	}
-	public void setDetailSeq(String detailSeq) {
-		this.detailSeq = detailSeq;
-	}
+
+
 
 
 }

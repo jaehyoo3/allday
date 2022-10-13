@@ -43,7 +43,15 @@ public class StoreServiceImpl implements StoreService {
 	public int insert(Store dto) throws Exception { 
 		try {
     		dao.insert(dto);	
-    		dao.detailinsert(dto);
+			for(int i = 0 ; i < dto.getNumarr().length ; i++) {
+				if(!dto.getNumarr()[i].equals(null)) {	 
+					dto.setColor_colorseq(dto.getColor_colorseqarr()[i]);
+					dto.setNum(dto.getNumarr()[i]);
+					dto.setSize_size(dto.getSize_sizearr()[i]);
+					dao.detailinsert(dto);
+				}
+			}
+			
     		int j = 0;
 	    	for(MultipartFile multipartFile : dto.getUploadedImage() ) {
 	    		if(!multipartFile.isEmpty()) {
