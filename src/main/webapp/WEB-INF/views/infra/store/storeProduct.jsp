@@ -184,18 +184,41 @@
 			</div>
 			<div id='review'>
 				<h3>구매평</h3>
-					<div class="d-flex bd-highlight mb-3">
-						<div class="me-auto p-2 bd-highlight">
-					 		<input type="checkbox" id='photoreview'>
-							<label for='photoreview'>포토리뷰만 보기</label>
-						</div>
-						 <div class="p-2 bd-highlight">
-					 	<button type="btn">구매평 작성</button>
-					 	</div>
+				<div class="d-flex bd-highlight mb-3">
+					<div class="me-auto p-2 bd-highlight">
+				 		<input type="checkbox" id='photoreview'>
+						<label for='photoreview'>포토리뷰만 보기</label>
 					</div>
-					<hr>
-					<center><span> 작성된 내용이 없습니다.</span></center>
+					 <div class="p-2 bd-highlight">
+				 	<button type="btn">구매평 작성</button>
+				 	</div>
+				</div>
 				<hr>
+					<div class="comment" style="margin: 0">
+					<ul>
+						<li style="width:80%">강우림(sdfsdfsd12)</li>
+						<li style="width:10%;">★★★★★</li>
+						<li>2022-10-14</li>
+					</ul>
+					<ul>
+						<li style="width:25%; height:300px;"><img src="../img/knit.jpg" style="width:100%; height:100%;"></li>
+						<li style="width:70%; height:300px; vertical-align:middle;" >sdfsdf</li>
+					</ul>
+					</div>
+				<hr>
+				<ul>
+					<p class="star_rating">
+						<a href="#" class="on">★</a>
+						<a href="#" class="on">★</a>
+						<a href="#" class="on">★</a>
+						<a href="#">★</a>
+						<a href="#">★</a>
+					</p>
+				</ul>
+				<ul>
+					<li style="width:80%;"><textarea style="width:100%;">sadas</textarea></li>
+					<li style="width:10%;"><button>등록</button></li>
+				</ul>
 			</div>
 			<br>
 			<div id='footer'>
@@ -206,6 +229,12 @@
 		<script src="https://kit.fontawesome.com/a1961b2393.js" crossorigin="anonymous"></script>
 		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 		<script type="text/javascript">
+		$( ".star_rating a" ).click(function() {    
+			 $(this).parent().children("a").removeClass("on");     
+			$(this).addClass("on").prevAll("a").addClass("on");     
+			return false;
+			});
+
 
 		function showHide(id){
 		     var objId = document.getElementById(id);

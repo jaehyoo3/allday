@@ -146,9 +146,6 @@
 					</div>
 			</div>
 			<div id='poster'></div>
-			<div id='footer'>
-				<div class='copyright'>© 2022. Bluebee all rights reserved.</div>
-			</div>
 			<!-- footer s  -->
 				<%@include file="../../infra/includeV1/footer.jsp"%>
 			<!-- footer e --> 
