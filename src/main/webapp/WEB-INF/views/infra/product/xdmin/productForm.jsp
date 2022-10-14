@@ -16,7 +16,7 @@
 		<form name="form" method="post" enctype="multipart/form-data">
 		<%@include file="../../../infra/includeV1/xdminSetting.jsp" %>
 			<%@include file="productVo.jsp"%>	
-			<div class="main-content">
+	 		<div class="main-content">
 				<h1><i class="fa-regular fa-file"></i> Product</h1>
 				<div class='form-box'>
 					<p style="padding-bottom:30px; padding-top:10px;">No. <c:out value="${item.productSeq }" /></p>
@@ -33,18 +33,17 @@
 					<input type="text" name="productPrice" id="productPrice" value="<c:out value="${item.productPrice }" />" placeholder="숫자">
 					<p>* 사이즈 - 컬러 - 갯수</p> 
 					<div class="buttons">
-					<select name="size_sizearr[0]" id="size_sizearr0"  placeholder="한글, 영문(대소문자),숫자" style="width:19%;"> 
-						<c:forEach items="${slist}" var="list" varStatus="status">
-							<option value="<c:out value="${list.size}" />"><c:out value="${list.size}" /> / <c:out value="${list.sizeName}" /></option>
-						</c:forEach>
-					</select>
-					- <select name="color_colorseqarr[0]" id="color_colorseqarr0"  placeholder="한글, 영문(대소문자),숫자" style="width:19%;"> 
-						<c:forEach items="${clist}" var="list" varStatus="status">
-							<option value="<c:out value="${list.colorSeq}" />"><c:out value="${list.colorSeq}" />/<c:out value="${list.colorName}" /></option>
-						</c:forEach>
-					</select> -
-					 	<input type="text" name="numarr[0]" id="numarr0" style="width:19%;">
-
+							<select name="size_sizearr[0]" id="1list.size_sizearr0"  placeholder="한글, 영문(대소문자),숫자" style="width:19%;"> 
+								<c:forEach items="${slist}" var="list" varStatus="status">
+									<option value="<c:out value="${list.size}" />"><c:out value="${list.size}" /> / <c:out value="${list.sizeName}" /></option>
+								</c:forEach>
+							</select>
+							- <select name="color_colorseqarr[0]" id="color_colorseqarr0"  placeholder="한글, 영문(대소문자),숫자" style="width:19%;"> 
+								<c:forEach items="${clist}" var="list" varStatus="status">
+									<option value="<c:out value="${list.colorSeq}" />"><c:out value="${list.colorSeq}" />/<c:out value="${list.colorName}" /></option>
+								</c:forEach>
+							</select> -
+						 	<input type="text" name="numarr[0]" id="numarr0" style="width:19%;">
 			      		<input type="button" class="btnAdd" value="Add">        
 			        </div> 
 			        

@@ -24,11 +24,13 @@
 			<c:set var="listCodeType" value="${XdminCodeServiceImpl.selectListCachedCode('9')}"/>
 			<p>Home > Top</p>
 				<div class="productimg">
-				<c:forEach items="${list}" var="list" varStatus="status">
-					<c:if test="${list.idefaultNy eq 1}">
-						<img src='<c:out value="${list.path}"/><c:out value="${list.uuidName}"/>' style="width:80%;">
-					</c:if>
-				</c:forEach>
+					<c:forEach items="${list}" var="list" varStatus="status">
+						<c:if test ="${list.productSeq eq item.productSeq}">
+							<c:if test="${list.idefaultNy eq 1}">
+								<img src='<c:out value="${list.path}"/><c:out value="${list.uuidName}"/>' style="width:80%; height: 50%;">
+							</c:if>
+						</c:if>	
+					</c:forEach>
 				</div>
 				<div class="productbuy">
 					<div class='title'><c:out value="${item.productName }"/> | 
@@ -86,19 +88,18 @@
 					<br>
 					</div>
 				<div class="imagee">
-				
 					<c:forEach items="${imglist}" var="list" varStatus="status">
-						<c:if test="${list.article eq 1}">
-							<c:choose>
-								<c:when test="${list.sort eq 1}">
-									<img src='<c:out value="${list.path}"/><c:out value="${list.uuidName}"/>' style="width:100%;">
-								</c:when>
-								<c:otherwise>
-									<div id="id_test_div" style="display:none;">
-										<img src='<c:out value="${list.path}"/><c:out value="${list.uuidName}"/>' style="width:100%;">
-									</div>
-								</c:otherwise>
-							</c:choose>
+						<c:if test="${list.article eq 1 and list.productSeq eq item.productSeq}">
+							<c:if test="${list.sort eq 1}"> 
+								<img src='<c:out value="${list.path}"/><c:out value="${list.uuidName}"/>' style="width:100%;"> 
+							</c:if>
+							<div id="id_test_div" style="display:none;">
+								<c:forEach items="${imglist}" var="list2" varStatus="status">
+									<c:if test="${list2.sort ne 1 and list2.productSeq eq item.productSeq}">
+										<img src='<c:out value="${list2.path}"/><c:out value="${list2.uuidName}"/>' style="width:100%;"> 
+									</c:if>
+								</c:forEach>
+							</div>
 						</c:if>
 					</c:forEach>
 						<!-- <div id="id_test_div" style="display:none;"> -->
@@ -115,7 +116,7 @@
 			  </thead>
 			  <tbody>
 			    <tr>
-			      <th >종류</th>
+			      <th>종류</th>
 			      <td style="width:80%;"><c:out value="${item.productType}" /></td>
 			    </tr>
 			    <tr>
@@ -182,18 +183,18 @@
 			
 			</div>
 			<div id='review'>
-			<h3>구매평</h3>
-				<div class="d-flex bd-highlight mb-3">
-					<div class="me-auto p-2 bd-highlight">
-				 		<input type="checkbox" id='photoreview'>
-						<label for='photoreview'>포토리뷰만 보기</label>
+				<h3>구매평</h3>
+					<div class="d-flex bd-highlight mb-3">
+						<div class="me-auto p-2 bd-highlight">
+					 		<input type="checkbox" id='photoreview'>
+							<label for='photoreview'>포토리뷰만 보기</label>
+						</div>
+						 <div class="p-2 bd-highlight">
+					 	<button type="btn">구매평 작성</button>
+					 	</div>
 					</div>
-					 <div class="p-2 bd-highlight">
-				 	<button type="btn">구매평 작성</button>
-				 	</div>
-				</div>
-				<hr>
-				<center><span> 작성된 내용이 없습니다.</span></center>
+					<hr>
+					<center><span> 작성된 내용이 없습니다.</span></center>
 				<hr>
 			</div>
 			<br>
