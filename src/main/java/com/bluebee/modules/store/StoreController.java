@@ -130,14 +130,11 @@ public class StoreController {
 			
 			List<Store> colorlist = service.colorList(vo);
 			List<Store> sizelist = service.sizeList(vo);
-			List<Store> list = service.selectList(vo);
 			Store item = service.selectOne(vo);
+			List<Store> list = service.selectList(vo);
+			List<Store> imglist = service.selectDetailImg(vo);
 			
-			model.addAttribute("list", list);
-			model.addAttribute("item", item);
-			model.addAttribute("clist", colorlist);
-			model.addAttribute("slist", sizelist);
-			
+			model.addAttribute("list", list).addAttribute("item", item).addAttribute("clist", colorlist).addAttribute("slist", sizelist).addAttribute("imglist", imglist);
 			return "infra/store/storeProduct";
 		}
 		

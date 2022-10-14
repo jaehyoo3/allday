@@ -24,7 +24,11 @@
 			<c:set var="listCodeType" value="${XdminCodeServiceImpl.selectListCachedCode('9')}"/>
 			<p>Home > Top</p>
 				<div class="productimg">
-					<img src='/resources/Images/img/knit.jpg' style="width:80%;">
+				<c:forEach items="${list}" var="list" varStatus="status">
+					<c:if test="${list.idefaultNy eq 1}">
+						<img src='<c:out value="${list.path}"/><c:out value="${list.uuidName}"/>' style="width:80%;">
+					</c:if>
+				</c:forEach>
 				</div>
 				<div class="productbuy">
 					<div class='title'><c:out value="${item.productName }"/> | 
@@ -82,11 +86,22 @@
 					<br>
 					</div>
 				<div class="imagee">
-					<img src='/resources/Images/img/01.jpg' style='width:100%'>
-					<div id="id_test_div" style="display:none;">
-	   					<img src='/resources/Images/img/02.jpg' style='width:100%'>
-						<img src='/resources/Images/img/03.jpg' style='width:100%'>
-					</div>
+				
+					<c:forEach items="${imglist}" var="list" varStatus="status">
+						<c:if test="${list.article eq 1}">
+							<c:choose>
+								<c:when test="${list.sort eq 1}">
+									<img src='<c:out value="${list.path}"/><c:out value="${list.uuidName}"/>' style="width:100%;">
+								</c:when>
+								<c:otherwise>
+									<div id="id_test_div" style="display:none;">
+										<img src='<c:out value="${list.path}"/><c:out value="${list.uuidName}"/>' style="width:100%;">
+									</div>
+								</c:otherwise>
+							</c:choose>
+						</c:if>
+					</c:forEach>
+						<!-- <div id="id_test_div" style="display:none;"> -->
 					<span style="cursor:pointer;" onclick="showHide('id_test_div');"> 
 						<a class="myButton"id="subscriberBtn" onclick='change()'>상품정보 더보기 ▽</a>
 					</span>				

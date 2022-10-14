@@ -19,18 +19,20 @@
 	    		,a.productBest
 	    		,a.productRegDate
 	    		,a.productUpDate
-	    		,b.seq
-	    		,b.type
-	    		,b.idefaultNy
-	    		,b.sort
-	    		,b.path
-	    		,b.originalName
-	    		,b.uuidName
-	    		,b.ext
-	    		,b.idelNy
-	    		,b.article
+				,b.*
 		<include refid='basic' />
 		<include refid='Base.selectListLower'/>
+    </select>
+    <select id="selectDetailImg" resultMap="resultMapObj">
+    	select 
+    		a.*
+    		,b.*
+    	from 
+    		product a
+    	left join
+    		productDetailUploaded b
+    	on a.productSeq = b.pseq
+    	order by b.sort ASC
     </select>
     
     <insert id="insert">
@@ -187,7 +189,7 @@
     		,a.informationAS
     		,a.productDelNy
     	from
-    		product a 		
+    		product a		
     	where 1=1
 			and a.productSeq = #{productSeq}
 	</select>
@@ -196,6 +198,7 @@
 		SELECT COUNT(*)
 		<include refid="basic" />
 	</select>
+	
     <sql id='basic'>
 		FROM 
 			product a

@@ -17,6 +17,7 @@ public class StoreDao {
 	private static String namespace = "com.bluebee.modules.store.StoreMapper";
 	
 	public List<Store> selectList(StoreVo vo){ return sqlSession.selectList(namespace + ".selectList", vo); }
+	public List<Store> selectDetailImg(StoreVo vo){ return sqlSession.selectList(namespace + ".selectDetailImg", vo); }
 	public Store selectOne(StoreVo vo) { return sqlSession.selectOne(namespace+ ".selectOne", vo); }
 	public int selectOneCount(StoreVo vo) { return sqlSession.selectOne(namespace + ".selectOneCount", vo); }
 	public List<Store> colorList(StoreVo vo){ return sqlSession.selectList(namespace + ".colorList", vo); }

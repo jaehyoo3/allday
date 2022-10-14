@@ -113,5 +113,11 @@ public class StoreServiceImpl implements StoreService {
 		// TODO Auto-generated method stub
 		return dao.sL(vo);
 	}
+
+	@Override
+	public List<Store> selectDetailImg(StoreVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.selectDetailImg(vo);
+	}
 	
 }

@@ -33,18 +33,18 @@
 					<input type="text" name="productPrice" id="productPrice" value="<c:out value="${item.productPrice }" />" placeholder="숫자">
 					<p>* 사이즈 - 컬러 - 갯수</p> 
 					<div class="buttons">
-					<select name="size_sizearr" id="size_sizearr0"  placeholder="한글, 영문(대소문자),숫자" style="width:19%;"> 
+					<select name="size_sizearr[0]" id="size_sizearr0"  placeholder="한글, 영문(대소문자),숫자" style="width:19%;"> 
 						<c:forEach items="${slist}" var="list" varStatus="status">
 							<option value="<c:out value="${list.size}" />"><c:out value="${list.size}" /> / <c:out value="${list.sizeName}" /></option>
 						</c:forEach>
 					</select>
-					- <select name="color_colorseqarr" id="color_colorseqarr0"  placeholder="한글, 영문(대소문자),숫자" style="width:19%;"> 
+					- <select name="color_colorseqarr[0]" id="color_colorseqarr0"  placeholder="한글, 영문(대소문자),숫자" style="width:19%;"> 
 						<c:forEach items="${clist}" var="list" varStatus="status">
 							<option value="<c:out value="${list.colorSeq}" />"><c:out value="${list.colorSeq}" />/<c:out value="${list.colorName}" /></option>
 						</c:forEach>
 					</select> -
-					 	<input type="text" name="numarr1" id="numarr0" style="width:19%;">
-					 	<input type="text" name="numarr1" id="numarr1" style="width:19%;">
+					 	<input type="text" name="numarr[0]" id="numarr0" style="width:19%;">
+
 			      		<input type="button" class="btnAdd" value="Add">        
 			        </div> 
 			        
@@ -85,15 +85,15 @@
 					<p style='font-size:6px; color:#e0e0e0;'>(설정하지 않을경우 기본값으로 설정됩니다.)</p>
 					<select id="productBest" name="productBest">
 						<option value='' <c:if test="${empty item.productBest}">selected</c:if>>설정하기</option>
-						<option value='0' <c:if test="${item.productBest eq 1 }">selected</c:if>>사용하기</option>
-						<option value='1' <c:if test="${item.productBest eq 0 }">selected</c:if>>사용하지않기</option>
+						<option value='1' <c:if test="${item.productBest eq 1 }">selected</c:if>>사용하기</option>
+						<option value='0' <c:if test="${item.productBest eq 0 }">selected</c:if>>사용하지않기</option>
 					</select>
 					<p>NEW</p>
 					<p style='font-size:6px; color:#e0e0e0;'>(설정하지 않을경우 기본값으로 설정됩니다.)</p>
 					<select id="productNew" name="productNew">
 						<option value='' <c:if test="${empty item.productNew}">selected</c:if>>설정하기</option>
-						<option value='0' <c:if test="${item.productNew eq 1 }">selected</c:if>>사용하기</option>
-						<option value='1' <c:if test="${item.productNew eq 0 }">selected</c:if>>사용하지않기</option>
+						<option value='1' <c:if test="${item.productNew eq 1 }">selected</c:if>>사용하기</option>
+						<option value='0' <c:if test="${item.productNew eq 0 }">selected</c:if>>사용하지않기</option>
 					</select> 
 					<ul>
 						<li>
@@ -256,11 +256,11 @@
     	        document.querySelector("#file" + num).remove();
     	        filesArr[num].is_delete = true;
     	    }
-    	     $(document).ready (function () {                
-    	            $('.btnAdd').click (function () {                                        
-    	                $('.buttons').append (                        
-    	                    '<br> <input type="text" id="color_colorseq" name="color_colorseq" style="width:19%;"> <input type="text" id="size_size" name="size_size" style="width:19%;"> <input type="text" id="num" name="num" style="width:19%;">  <input type="button" class="btnRemove" value="Remove">'                    
-    	                ); // end append                            
+    	     $(document).ready (function () { 
+    	    	 var countnum = 1;
+    	            $('.btnAdd').click (function () {
+    	                $('.buttons').append ("<br> <input type='text' id='color_colorseq' name='color_colorseqarr[" + countnum + "]' style='width:19%;'> <input type='text' id='size_size' name='size_sizearr[" + countnum + "]' style='width:19%;''> <input type='text' id='num' name='numarr[" + countnum + "]' style='width:19%;''>  <input type='button' class='btnRemove' value='Remove'>"); // end append  
+    	                countnum++;
     	                $('.btnRemove').on('click', function () { 
     	                    $(this).prev().remove (); // remove the textbox
     	                    $(this).next ().remove (); // remove the <br>

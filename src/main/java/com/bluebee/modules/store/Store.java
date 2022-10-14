@@ -12,7 +12,7 @@ public class Store extends Base {
 	private String productModDate;
 	private Integer[] color_colorseqarr;
 	private Integer[] size_sizearr;
-	private Integer[] numarr;
+	private Integer numarr[];
 	private Integer color_colorseq;
 	private Integer size_size;
 	private Integer num;
@@ -177,6 +177,7 @@ public class Store extends Base {
 	public void setSize_sizearr(Integer[] size_sizearr) {
 		this.size_sizearr = size_sizearr;
 	}
+
 	public Integer[] getNumarr() {
 		return numarr;
 	}
