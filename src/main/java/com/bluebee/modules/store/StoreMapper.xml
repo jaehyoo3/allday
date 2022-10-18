@@ -20,6 +20,7 @@
 	    		,a.productRegDate
 	    		,a.productUpDate
 				,b.*
+				,c.*
 		<include refid='basic' />
 		<include refid='Base.selectListLower'/>
     </select>
@@ -84,8 +85,10 @@
 			count(*)
 		from wishList
 		where 1=1
-		and product_Seq = #{productSeq}
+		and
+			product_Seq = #{productSeq} 
 	</select>
+	
     <!-- wish e -->
     <insert id="insert">
     	insert into product(
@@ -261,6 +264,9 @@
 		left join
 			productUploaded b
 		on a.productSeq = b.pseq
+		left join
+			wishList c
+		on a.productSeq = c.product_Seq
 		WHERE 1=1
 		<choose>
 				<when test="shType == 0">AND a.productName LIKE CONCAT('%',#{shValue},'%') </when>

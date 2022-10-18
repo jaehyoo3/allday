@@ -137,12 +137,5 @@ public class StoreServiceImpl implements StoreService {
 		// TODO Auto-generated method stub
 		return dao.wish(dto);
 	}
-
-	@Override
-	public List<Store> wishCount(StoreVo vo) throws Exception {
-
-		return dao.wishCount(vo);
-	}
-	
 	
 }

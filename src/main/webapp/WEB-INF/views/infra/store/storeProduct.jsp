@@ -71,7 +71,7 @@
 							<button type="button" class="btn btn-outline-dark fw-bold col-12" style="height: 50px;">장바구니</button>
 						</div>
 						<div class="col">
-							<button type="button" class="btn btn-outline-dark fw-bold col-12" style="height: 50px;" id="wishInst" <c:if test="${item.wishListDelNy eq 1}">disabled </c:if>>${count}12 ♡</button>
+							<button type="button" class="btn btn-outline-dark fw-bold col-12" style="height: 50px;" id="wishInst" <c:if test="${item.wishListDelNy eq 1}">disabled </c:if>><c:out value="${fn:length(count)}" /> ♡</button>
 						</div>
 					</div>
 					</div>

@@ -132,12 +132,10 @@ public class StoreController {
 			List<Store> sizelist = service.sizeList(vo);
 			List<Store> reviewList = service.reviewList(vo);
 			Store item = service.selectOne(vo);
+			
 			List<Store> list = service.selectList(vo);
 			List<Store> imglist = service.selectDetailImg(vo);
 			model.addAttribute("reviewList", reviewList);
-
-			List<Store> count = service.wishCount(vo);
-			model.addAttribute("count", count);
 			
 			model.addAttribute("list", list).addAttribute("item", item).addAttribute("clist", colorlist).addAttribute("slist", sizelist).addAttribute("imglist", imglist);
 			return "infra/store/storeProduct";
