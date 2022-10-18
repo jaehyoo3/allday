@@ -1,4 +1,6 @@
 package com.bluebee.modules.store;
+import java.util.Date;
+
 import com.bluebee.modules.base.Base;
 
 public class Store extends Base {
@@ -27,7 +29,64 @@ public class Store extends Base {
 	private String informationCountry;
 	private String informationWarning;
 	private String product_Seq;
+	private String reViewSeq;
+	private String member_memberSeq;
+	private Integer Score;
+	private String Content;
+	private Integer reviewDelNy;
+	private Date reviewRegDate;
+	private Integer wishListDelNy;
+	private String wishSeq;
 	
+	
+	public String getWishSeq() {
+		return wishSeq;
+	}
+	public void setWishSeq(String wishSeq) {
+		this.wishSeq = wishSeq;
+	}
+	public Integer getWishListDelNy() {
+		return wishListDelNy;
+	}
+	public void setWishListDelNy(Integer wishListDelNy) {
+		this.wishListDelNy = wishListDelNy;
+	}
+	public void setReViewSeq(String reViewSeq) {
+		this.reViewSeq = reViewSeq;
+	}
+	public String getReViewSeq() {
+		return reViewSeq;
+	}
+	public String getMember_memberSeq() {
+		return member_memberSeq;
+	}
+	public void setMember_memberSeq(String member_memberSeq) {
+		this.member_memberSeq = member_memberSeq;
+	}
+	public Integer getScore() {
+		return Score;
+	}
+	public void setScore(Integer score) {
+		Score = score;
+	}
+	public String getContent() {
+		return Content;
+	}
+	public void setContent(String content) {
+		Content = content;
+	}
+	public Integer getReviewDelNy() {
+		return reviewDelNy;
+	}
+	public void setReviewDelNy(Integer reviewDelNy) {
+		this.reviewDelNy = reviewDelNy;
+	}
+	public Date getReviewRegDate() {
+		return reviewRegDate;
+	}
+	public void setReviewRegDate(Date reviewRegDate) {
+		this.reviewRegDate = reviewRegDate;
+	}
 	public String getProduct_Seq() {
 		return product_Seq;
 	}

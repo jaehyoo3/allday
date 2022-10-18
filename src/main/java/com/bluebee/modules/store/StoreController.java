@@ -126,16 +126,33 @@ public class StoreController {
 		}
 		
 		@RequestMapping(value = "productView")
-		public String Prodcut(Model model, StoreVo vo) throws Exception {
+		public String Prodcut(Model model, @ModelAttribute("vo") StoreVo vo) throws Exception {
 			
 			List<Store> colorlist = service.colorList(vo);
 			List<Store> sizelist = service.sizeList(vo);
+			List<Store> reviewList = service.reviewList(vo);
 			Store item = service.selectOne(vo);
 			List<Store> list = service.selectList(vo);
 			List<Store> imglist = service.selectDetailImg(vo);
+			model.addAttribute("reviewList", reviewList);
+
+			List<Store> count = service.wishCount(vo);
+			model.addAttribute("count", count);
 			
 			model.addAttribute("list", list).addAttribute("item", item).addAttribute("clist", colorlist).addAttribute("slist", sizelist).addAttribute("imglist", imglist);
 			return "infra/store/storeProduct";
+		}
+		
+		@RequestMapping(value = "reviewInst")
+		public String reviewInst(Store dto) throws Exception {        
+			service.reviewInsert(dto);
+			return "redirect:/productView?&ProductSeq=" + dto.getProduct_Seq();
+		}
+		
+		@RequestMapping(value = "wishInst")
+		public String WishInst(Store dto) throws Exception {        
+			service.wish(dto);
+			return "redirect:/productView?&ProductSeq=" + dto.getProduct_Seq();
 		}
 		
 		@RequestMapping(value = "product")

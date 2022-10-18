@@ -13,4 +13,8 @@ public interface StoreService {
 	public int update(Store dto) throws Exception;
 	public List<Store> cL(StoreVo vo) throws Exception;
 	public List<Store> sL(StoreVo vo) throws Exception;
+	public List<Store> reviewList(StoreVo vo) throws Exception;
+	public int reviewInsert(Store dto) throws Exception;
+	public int wish(Store dto) throws Exception;
+	public List<Store> wishCount(StoreVo vo) throws Exception;
 }

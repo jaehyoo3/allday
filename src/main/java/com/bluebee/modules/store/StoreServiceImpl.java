@@ -119,5 +119,30 @@ public class StoreServiceImpl implements StoreService {
 		// TODO Auto-generated method stub
 		return dao.selectDetailImg(vo);
 	}
+
+	@Override
+	public List<Store> reviewList(StoreVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.reviewList(vo);
+	}
+
+	@Override
+	public int reviewInsert(Store dto) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.reviewInsert(dto);
+	}
+
+	@Override
+	public int wish(Store dto) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.wish(dto);
+	}
+
+	@Override
+	public List<Store> wishCount(StoreVo vo) throws Exception {
+
+		return dao.wishCount(vo);
+	}
+	
 	
 }

@@ -34,7 +34,59 @@
     	on a.productSeq = b.pseq
     	order by b.sort ASC
     </select>
+    <!-- 리뷰s -->
+    <insert id="reviewInsert">
+    	insert into reView(
+    	member_memberSeq
+    	,product_Seq
+    	,Score
+    	,Content
+    	,reviewDelNy
+    	,reviewRegDate
+    	) values (
+    	#{member_memberSeq}
+    	,#{product_Seq}
+    	,#{Score}
+    	,#{Content}
+    	,0
+    	,now()
+    	)
+    	<selectKey resultType="String" keyProperty="reViewSeq" order="AFTER"> 
+			select last_insert_id()
+		</selectKey>
+    </insert>
+    <select id="reviewList" resultMap="resultMapObj">
+    	select
+    		*
+    	from reView
+    	where 1=1
+    		and product_Seq = #{productSeq}
+    </select>
+    <!-- 리뷰e -->
+    <!-- wish s -->
+    <insert id="wish">
+    	insert into wishList(
+    	member_memberSeq
+    	,product_Seq
+    	,wishListDelNy
+    	) values (
+    	#{member_memberSeq}
+    	,#{product_Seq}
+    	,1
+    	)	
+     	<selectKey resultType="String" keyProperty="wishSeq" order="AFTER"> 
+			select last_insert_id()
+		</selectKey>
+    </insert>
     
+	<select id="wishCount" resultType="Integer">
+		SELECT
+			count(*)
+		from wishList
+		where 1=1
+		and product_Seq = #{productSeq}
+	</select>
+    <!-- wish e -->
     <insert id="insert">
     	insert into product(
     		productName
@@ -189,7 +241,11 @@
     		,a.informationAS
     		,a.productDelNy
     	from
-    		product a		
+    		product a
+    	left join
+    		wishList b
+    	on 
+    		a.productSeq = b.product_Seq
     	where 1=1
 			and a.productSeq = #{productSeq}
 	</select>

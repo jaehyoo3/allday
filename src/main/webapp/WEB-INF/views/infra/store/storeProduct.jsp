@@ -15,7 +15,7 @@
 	</head>
 	
 	<body>
-		<form>
+		<form name="form">
 			<!-- navMenu s  -->
 				<%@include file="../../infra/includeV1/Menu.jsp"%>
 			<!-- navMenu e --> 
@@ -71,7 +71,7 @@
 							<button type="button" class="btn btn-outline-dark fw-bold col-12" style="height: 50px;">장바구니</button>
 						</div>
 						<div class="col">
-							<button type="button" class="btn btn-outline-dark fw-bold col-12" style="height: 50px;">♡</button>
+							<button type="button" class="btn btn-outline-dark fw-bold col-12" style="height: 50px;" id="wishInst" <c:if test="${item.wishListDelNy eq 1}">disabled </c:if>>${count}12 ♡</button>
 						</div>
 					</div>
 					</div>
@@ -195,30 +195,33 @@
 				</div>
 				<hr>
 					<div class="comment" style="margin: 0">
-					<ul>
-						<li style="width:80%">강우림(sdfsdfsd12)</li>
-						<li style="width:10%;">★★★★★</li>
-						<li>2022-10-14</li>
-					</ul>
-					<ul>
-						<li style="width:25%; height:300px;"><img src="../img/knit.jpg" style="width:100%; height:100%;"></li>
-						<li style="width:70%; height:300px; vertical-align:middle;" >sdfsdf</li>
-					</ul>
+<%-- 						<c:forEach items="${reviewList}" var="list" varStatus="status">
+						<ul>
+							<li style="width:80%">강우림(sdfsdfsd12)</li>
+							<li style="width:10%;">★★★★★</li>
+							<li><c:out value="${list.reviewRegDate }" /></li>
+						</ul>
+						<ul>
+							<li style="width:25%; height:300px;"><img src="../img/knit.jpg" style="width:100%; height:100%;"></li>
+							<li style="width:70%; height:300px;"><c:out value="${list.content }" /></li>
+						</ul>
+						</c:forEach> --%>
 					</div>
 				<hr>
 				<ul>
-					<p class="star_rating">
-						<a href="#" class="on">★</a>
-						<a href="#" class="on">★</a>
-						<a href="#" class="on">★</a>
-						<a href="#">★</a>
-						<a href="#">★</a>
-					</p>
+				<span class="text-bold">별점을 선택해주세요</span>
+					<input type="radio" name="Score" value="5" id="rate1"><label for="rate1">★</label>
+					<input type="radio" name="Score" value="4" id="rate2"><label for="rate2">★</label>
+					<input type="radio" name="Score" value="3" id="rate3"><label for="rate3">★</label>
+					<input type="radio" name="Score" value="2" id="rate4"><label for="rate4">★</label>
+					<input type="radio" name="Score" value="1" id="rate5"><label for="rate5">★</label>
 				</ul>
 				<ul>
-					<li style="width:80%;"><textarea style="width:100%;">sadas</textarea></li>
-					<li style="width:10%;"><button>등록</button></li>
+					<li style="width:80%;"><textarea name="content" style="width:100%;">asd</textarea></li>
+					<li style="width:10%;"><button id="reviewInst">등록</button></li>
 				</ul>
+				<input type="hidden" name="member_memberSeq" value="<c:out value="${sessSeq }" />">
+				<input type="hidden" name="product_Seq" value="<c:out value="${item.productSeq }" />">
 			</div>
 			<br>
 			<div id='footer'>
@@ -229,13 +232,20 @@
 		<script src="https://kit.fontawesome.com/a1961b2393.js" crossorigin="anonymous"></script>
 		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 		<script type="text/javascript">
-		$( ".star_rating a" ).click(function() {    
-			 $(this).parent().children("a").removeClass("on");     
-			$(this).addClass("on").prevAll("a").addClass("on");     
-			return false;
+		
+		var reviewInst = "reviewInst";
+		var wishInst ="wishInst";
+		var form = $("form[name=form]")
+		
+		$("#reviewInst").on("click", function(){
+				form.attr("action", reviewInst).submit();
 			});
-
-
+		
+		$("#wishInst").on("click", function(){
+			alert("wishList ADD!")
+			form.attr("action", wishInst).submit();
+		});
+			
 		function showHide(id){
 		     var objId = document.getElementById(id);
 		     if(objId.style.display=="block"){

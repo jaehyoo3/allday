@@ -243,13 +243,20 @@
 			  transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
 			} .menu a:hover {
 				opacity: 0.5;
-			} .star_rating {font-size:0; letter-spacing:-4px;
+			}#review input[type=radio]{
+   			 display: none;
 			}
-			.star_rating a {font-size:22px;
-			letter-spacing:0;
-			display:inline-block;
-			margin-left:5px;
-			color:#ccc;
-			text-decoration:none;
+			#review label{
+			    font-size: 3em;
+			    color: transparent;
+			    text-shadow: 0 0 0 #f0f0f0;
 			}
-			.star_rating a:first-child {margin-left:0;}.star_rating a.on {color:#777;}
+			#review label:hover{
+			    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+			}
+			#review label:hover ~ label{
+			    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+			}
+			#review input[type=radio]:checked ~ label{
+			    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+			}
