@@ -92,16 +92,16 @@
 				<div class="imagee">
 					<c:forEach items="${detailImgList}" var="list" varStatus="status">
 						<c:if test="${list.article eq 1 and list.sort eq 1}">
-								<img src='<c:out value="${list.path}"/><c:out value="${list.uuidName}"/>' style="width:100%;"> 
+							<img src='<c:out value="${list.path}"/><c:out value="${list.uuidName}"/>' style="width:100%;"> 
 						</c:if>
 					</c:forEach>
-					<c:forEach items="${detailImgList}" var="list" varStatus="status">
-						<c:if test="${list.article eq 1 and list.sort ne 1}">
-							<div id="id_test_div" style="display:none;">
+					<div id="id_test_div" style="display:none;">
+						<c:forEach items="${detailImgList}" var="list" varStatus="status">
+							<c:if test="${list.article eq 1 and list.sort ne 1}">
 								<img src='<c:out value="${list.path}"/><c:out value="${list.uuidName}"/>' style="width:100%;">
-							</div>
-						</c:if>
-					</c:forEach>
+							</c:if>
+						</c:forEach>
+					</div>
 						<!-- <div id="id_test_div" style="display:none;"> -->
 					<span style="cursor:pointer;" onclick="showHide('id_test_div');"> 
 						<a class="myButton"id="subscriberBtn" onclick='change()'>상품정보 더보기 ▽</a>
