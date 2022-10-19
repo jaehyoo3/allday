@@ -193,6 +193,8 @@
     		a.Size
     		,a.SizeName
     		,b.Size_Size
+    		,b.num
+    		,b.color_colorSeq
     	FROM
     		Size a
     	LEFT JOIN
@@ -201,8 +203,7 @@
     		a.Size = b.Size_Size
     	WHERE 1=1
     		AND b.product_Seq = #{productSeq}
-    	GROUP BY
-    		a.SizeName
+    		AND b.Size_Size = a.Size
 	</select>
 	<!--  상품 사이즈 리스트E -->
 	

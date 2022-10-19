@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
+	<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -57,24 +57,13 @@
 				    </select>
 				    <c:forEach items="${ColorList}" var="list" varStatus="status">
 					    <select class="form-select size" id="<c:out value="${list.colorSeq}" />">
-					    	<c:forEach items="${SizeList}" var="SizeList" varStatus="Status">
-					    		<c:if test="${list.Color eq SizeList.size_size}">
-					        		<option><c:out value="${SizeList.sizeName }"/></option>
-					        	</c:if>
-					        </c:forEach>
+					    		<c:forEach items="${SizeList}" var="SizeList" varStatus="Status">
+					    			<c:if test="${list.colorSeq eq  SizeList.color_colorseq}">
+					    				<option><c:out value="${SizeList.sizeName}"/> | <c:out value="${SizeList.num}"/></option>
+					        		</c:if>
+					        	</c:forEach>
 					    </select>
 					</c:forEach>
-<%-- 	 			    <c:forEach items="${slist}" var="list" varStatus="status">
-						<select class="form-select size" name="sel_size" id="<c:out value="${list.color_colorseq}" />">
-							<c:forEach items="${slist}" var="lllist" varStatus="status">
-								<c:if test="${list.color_colorseq eq lllist.color_colorseq }">
-									<option value="<c:out value="${lllist.detailSeq}" />">
-										<c:out value="${lllist.sizeName}" /> | 재고: <c:out value="${lllist.num}" /> | seq: <c:out value="${lllist.detailSeq}"/>
-									</option>
-								</c:if>
-							</c:forEach>
-						</select>
-					</c:forEach> - --%>
 					<br>
 					<div class="row">
 				 		<div class="col">
@@ -101,17 +90,15 @@
 					<br>
 					</div>
 				<div class="imagee">
-					<c:forEach items="${imglist}" var="list" varStatus="status">
-						<c:if test="${list.article eq 1 and list.productSeq eq item.productSeq}">
-							<c:if test="${list.sort eq 1}"> 
+					<c:forEach items="${detailImgList}" var="list" varStatus="status">
+						<c:if test="${list.article eq 1 and list.sort eq 1}">
 								<img src='<c:out value="${list.path}"/><c:out value="${list.uuidName}"/>' style="width:100%;"> 
-							</c:if>
+						</c:if>
+					</c:forEach>
+					<c:forEach items="${detailImgList}" var="list" varStatus="status">
+						<c:if test="${list.article eq 1 and list.sort ne 1}">
 							<div id="id_test_div" style="display:none;">
-								<c:forEach items="${imglist}" var="list2" varStatus="status">
-									<c:if test="${list2.sort ne 1 and list2.productSeq eq item.productSeq}">
-										<img src='<c:out value="${list2.path}"/><c:out value="${list2.uuidName}"/>' style="width:100%;"> 
-									</c:if>
-								</c:forEach>
+								<img src='<c:out value="${list.path}"/><c:out value="${list.uuidName}"/>' style="width:100%;">
 							</div>
 						</c:if>
 					</c:forEach>
