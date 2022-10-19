@@ -11,6 +11,7 @@ public class Base {
 	private String uuidName;
 	private String ext;
 	private long size;
+	private long size;22
 	private MultipartFile[] uploadedImage;
 	private MultipartFile[] uploadedImage2;
 	private Integer idelNy;
