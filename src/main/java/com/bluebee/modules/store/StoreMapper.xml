@@ -19,6 +19,7 @@
 	    		,a.productBest
 	    		,a.productRegDate
 	    		,a.productUpDate
+	    		,b.*
 		<include refid='basic' />
 		<include refid='Base.selectListLower'/>
     </select>
@@ -249,6 +250,10 @@
     <sql id='basic'>
 		FROM 
 			product a
+		LEFT JOIN
+			productUploaded b
+		ON
+			a.productSeq = b.pseq
 		WHERE 1=1
 		<choose>
 				<when test="shType == 0">AND a.productName LIKE CONCAT('%',#{shValue},'%') </when>

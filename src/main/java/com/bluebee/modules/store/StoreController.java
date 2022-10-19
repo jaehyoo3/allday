@@ -103,6 +103,9 @@ public class StoreController {
 			List<Store> list = service.selectList(vo);
 			model.addAttribute("list", list);
 			
+			List<Store> mainImg = service.mainImg(vo);
+			model.addAttribute("mainImgList", mainImg);
+			
 			return "infra/store/storeBest";
 		}
 		@RequestMapping(value = "storeTop")
