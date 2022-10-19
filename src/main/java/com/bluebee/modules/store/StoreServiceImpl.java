@@ -30,16 +30,6 @@ public class StoreServiceImpl implements StoreService {
 	}
 
 	@Override
-	public List<Store> colorList(StoreVo vo) throws Exception {
-		return dao.colorList(vo);
-	}
-
-	@Override
-	public List<Store> sizeList(StoreVo vo) throws Exception {
-		return dao.sizeList(vo);
-	}
-
-	@Override
 	public int insert(Store dto) throws Exception { 
 		try {
     		dao.insert(dto);	
@@ -114,28 +104,27 @@ public class StoreServiceImpl implements StoreService {
 		return dao.sL(vo);
 	}
 
-	@Override
-	public List<Store> selectDetailImg(StoreVo vo) throws Exception {
-		// TODO Auto-generated method stub
-		return dao.selectDetailImg(vo);
-	}
-
-	@Override
-	public List<Store> reviewList(StoreVo vo) throws Exception {
-		// TODO Auto-generated method stub
-		return dao.reviewList(vo);
-	}
 
 	@Override
 	public int reviewInsert(Store dto) throws Exception {
-		// TODO Auto-generated method stub
 		return dao.reviewInsert(dto);
 	}
 
 	@Override
-	public int wish(Store dto) throws Exception {
-		// TODO Auto-generated method stub
-		return dao.wish(dto);
+	public List<Store> reviewList(StoreVo vo) throws Exception {
+		return dao.reviewList(vo);
 	}
+
+	@Override
+	public List<Store> productColor(StoreVo vo) throws Exception { return dao.productColor(vo);}
+	@Override
+	public List<Store> productSize(StoreVo vo) throws Exception { return dao.productSize(vo); }
+	@Override
+	public List<Store> mainImg(StoreVo vo) throws Exception { return dao.mainImg(vo); }
+	@Override
+	public List<Store> detailImg(StoreVo vo) throws Exception { return dao.detailImg(vo); }
+
+	
+	
 	
 }

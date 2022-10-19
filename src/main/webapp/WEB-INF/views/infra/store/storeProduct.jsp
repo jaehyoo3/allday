@@ -15,27 +15,28 @@
 	</head>
 	
 	<body>
-		<form name="form">
+		<form name="form" action="storeBuy">
 			<!-- navMenu s  -->
 				<%@include file="../../infra/includeV1/Menu.jsp"%>
 			<!-- navMenu e --> 
+			<%@include file="productVo.jsp"%>
 			<div id='content'>
 			<jsp:useBean id="XdminCodeServiceImpl" class="com.bluebee.modules.xdmincode.XdminCodeServiceImpl"/>
 			<c:set var="listCodeType" value="${XdminCodeServiceImpl.selectListCachedCode('9')}"/>
 			<p>Home > Top</p>
 				<div class="productimg">
-					<c:forEach items="${list}" var="list" varStatus="status">
-						<c:if test ="${list.productSeq eq item.productSeq}">
+					<c:forEach items="${mainImgList}" var="list" varStatus="status">
 							<c:if test="${list.idefaultNy eq 1}">
 								<img src='<c:out value="${list.path}"/><c:out value="${list.uuidName}"/>' style="width:80%; height: 50%;">
 							</c:if>
-						</c:if>	
 					</c:forEach>
 				</div>
 				<div class="productbuy">
 					<div class='title'><c:out value="${item.productName }"/> | 
 						<c:forEach items="${listCodeType}" var="listCode" varStatus="statusGender">
-							<c:if test="${item.productType eq listCode.codeOrder}"><c:out value="${listCode.codeName}"/></c:if>
+							<c:if test="${item.productType eq listCode.codeOrder}">
+								<c:out value="${listCode.codeName}"/>
+							</c:if>
 						</c:forEach>
 					</div>
 					<div>
@@ -44,28 +45,40 @@
 					<div class='express'>배송방법: 택배</div>
 					<br>
 					<p style="font-size:12px; font-weight:bold;">색상 *</p>
-					
-					<c:forEach items="${clist}" var="list" varStatus="status">
+					<c:forEach items="${ColorList}" var="list" varStatus="status">
 						<label for="<c:out value="${list.colorName}" />">
-							<input class="product_color" data-color-hex="<c:out value="${list.colorName}" />" type="radio" value="<c:out value="${list.color_colorseq}" />" name="color"/>
+							<input class="product_color" data-color-hex="<c:out value="${list.colorName}" />" type="radio" value="<c:out value="${list.colorSeq}" />" name="color"/>
 						</label>
 					</c:forEach>
 					<br>
 					<p style="font-size:12px; font-weight:bold;">사이즈 *</p>
-				    <select name="sel_size" id="sel_blank" class="form-select size">
+				    <select id="sel_blank" class="form-select size">
 				        <option value="">색상을 선택해주세요</option>
 				    </select>
-				    <c:forEach items="${slist}" var="list" varStatus="status">
-						<select class="form-select size" id="<c:out value="${list.color_colorseq}" />" name="sel_size">
+				    <c:forEach items="${ColorList}" var="list" varStatus="status">
+					    <select class="form-select size" id="<c:out value="${list.colorSeq}" />">
+					    	<c:forEach items="${SizeList}" var="SizeList" varStatus="Status">
+					    		<c:if test="${list.Color eq SizeList.size_size}">
+					        		<option><c:out value="${SizeList.sizeName }"/></option>
+					        	</c:if>
+					        </c:forEach>
+					    </select>
+					</c:forEach>
+<%-- 	 			    <c:forEach items="${slist}" var="list" varStatus="status">
+						<select class="form-select size" name="sel_size" id="<c:out value="${list.color_colorseq}" />">
 							<c:forEach items="${slist}" var="lllist" varStatus="status">
-								<c:if test="${list.color_colorseq eq lllist.color_colorseq }"><option value="<c:out value="${lllist.detailSeq}" />"><c:out value="${lllist.sizeName}" /> | 재고: <c:out value="${lllist.num}" /> </option></c:if>
+								<c:if test="${list.color_colorseq eq lllist.color_colorseq }">
+									<option value="<c:out value="${lllist.detailSeq}" />">
+										<c:out value="${lllist.sizeName}" /> | 재고: <c:out value="${lllist.num}" /> | seq: <c:out value="${lllist.detailSeq}"/>
+									</option>
+								</c:if>
 							</c:forEach>
 						</select>
-					</c:forEach>
+					</c:forEach> - --%>
 					<br>
 					<div class="row">
 				 		<div class="col">
-							<button type="button" class="btn text-white fw-bold col-12" style="background-color:#2c3e50; height: 50px;" onClick="location.href='storeBuy'">구매하기</button>
+							<button type="button" id="productBuy" class="btn text-white fw-bold col-12" style="background-color:#2c3e50; height: 50px;">구매하기</button>
 						</div>
 						<div class="col">
 							<button type="button" class="btn btn-outline-dark fw-bold col-12" style="height: 50px;">장바구니</button>
@@ -115,10 +128,6 @@
 			    </tr>
 			  </thead>
 			  <tbody>
-			    <tr>
-			      <th>종류</th>
-			      <td style="width:80%;"><c:out value="${item.productType}" /></td>
-			    </tr>
 			    <tr>
 			      <th>소재</th>
 			      <td><c:out value="${item.informationType}" /></td>
@@ -220,8 +229,6 @@
 					<li style="width:80%;"><textarea name="content" style="width:100%;">asd</textarea></li>
 					<li style="width:10%;"><button id="reviewInst">등록</button></li>
 				</ul>
-				<input type="hidden" name="member_memberSeq" value="<c:out value="${sessSeq }" />">
-				<input type="hidden" name="product_Seq" value="<c:out value="${item.productSeq }" />">
 			</div>
 			<br>
 			<div id='footer'>
@@ -234,12 +241,13 @@
 		<script type="text/javascript">
 		
 		var reviewInst = "reviewInst";
+		var productBuy = 'storeBuy';
 		var wishInst ="wishInst";
 		var form = $("form[name=form]")
 		
-		$("#reviewInst").on("click", function(){
-				form.attr("action", reviewInst).submit();
-			});
+		$("#productBuy").on("click", function(){
+			form.attr("action", productBuy).submit();
+		});
 		
 		$("#wishInst").on("click", function(){
 			alert("wishList ADD!")

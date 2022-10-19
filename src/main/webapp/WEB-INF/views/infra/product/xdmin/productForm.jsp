@@ -55,8 +55,6 @@
 					<div class="file-list"><label for="uploadedImage2" style="float:right; background-color:white;color:black;">+</label></div>
 					<input type="file" name="uploadedImage2" id="uploadedImage2" onchange="addFile(this);" style="display:none;" multiple />
 					<h4>상품정보 제공공시</h4>
-					<p>종류</p>
-					<input type="text" id="productType" name="productType" value="<c:out value="${item.productType}" />">
 					<p>소재</p>
 					<input type="text" id="informationType" name="informationType" value="<c:out value="${item.informationType}" />">
 					<p>색상</p>

@@ -19,22 +19,10 @@
 	    		,a.productBest
 	    		,a.productRegDate
 	    		,a.productUpDate
-				,b.*
-				,c.*
 		<include refid='basic' />
 		<include refid='Base.selectListLower'/>
     </select>
-    <select id="selectDetailImg" resultMap="resultMapObj">
-    	select 
-    		a.*
-    		,b.*
-    	from 
-    		product a
-    	left join
-    		productDetailUploaded b
-    	on a.productSeq = b.pseq
-    	order by b.sort ASC
-    </select>
+
     <!-- 리뷰s -->
     <insert id="reviewInsert">
     	insert into reView(
@@ -64,32 +52,7 @@
     		and product_Seq = #{productSeq}
     </select>
     <!-- 리뷰e -->
-    <!-- wish s -->
-    <insert id="wish">
-    	insert into wishList(
-    	member_memberSeq
-    	,product_Seq
-    	,wishListDelNy
-    	) values (
-    	#{member_memberSeq}
-    	,#{product_Seq}
-    	,1
-    	)	
-     	<selectKey resultType="String" keyProperty="wishSeq" order="AFTER"> 
-			select last_insert_id()
-		</selectKey>
-    </insert>
     
-	<select id="wishCount" resultType="Integer">
-		SELECT
-			count(*)
-		from wishList
-		where 1=1
-		and
-			product_Seq = #{productSeq} 
-	</select>
-	
-    <!-- wish e -->
     <insert id="insert">
     	insert into product(
     		productName
@@ -168,50 +131,81 @@
     		,productDelNy = #{productDelNy}
     		where
 			productSeq = #{productSeq}
-    
     </update>
-    <select id="colorList" resultMap="resultMapObj">
-    	select 
-    		a.Color_colorSeq
-    		,a.detailSeq
-    		,c.colorName
-    		,c.colorSeq
-    	from 
-    		productDetail a
-    	join 
-    		product b
-    	on 
-    		a.product_Seq = b.productSeq 
-    	join
-    		Color c
-    	on
-    		a.Color_colorseq = c.colorSeq
-    	where 1=1
-			AND b.productSeq = #{productSeq}
-			group by c.colorName  		
-    </select>
     
-     <select id="sizeList" resultMap="resultMapObj">
-    	select 
-    		a.detailSeq
-    		,c.sizeName
-    		,a.num
-    		,a.Color_colorSeq
+	<!-- 상품 메인 이미지 s -->
+	<select id="mainImg" resultMap="resultMapObj">
+    	select
+    		a.*
+    		,b.*
     	from 
-    		productDetail a
-    	join 
-    		product b
+    		product a
+    	left join
+    		productUploaded b
     	on 
-    		a.product_Seq = b.productSeq 
-    	join
-    		Size c
-    	on
-    		a.Size_Size= c.Size
-    	where 1=1
-			AND b.productSeq = #{productSeq}
-		order by detailSeq asc
+    		a.productSeq = b.pseq
+    	WHERE
+    		a.productSeq = #{productSeq}
+    	ORDER BY 
+    		b.sort ASC
     </select>
+    <!-- 상품 메인 이미지 e -->
     
+    <!-- 상품 상세 이미지 s -->
+    	<select id="detailImg" resultMap="resultMapObj">
+    	select 
+    		a.*
+    		,b.*
+    	from 
+    		product a
+    	left join
+    		productDetailUploaded b
+    	on 
+    		a.productSeq = b.pseq
+    	where 
+    		a.productSeq = #{productSeq}
+    	order by 
+    		b.sort ASC
+    </select>
+    <!-- 상품 메인 이미지 e -->
+    
+    <!-- 상품 컬러 리스트S -->
+    <select id="productColor" resultMap="resultMapObj">
+    	SELECT
+    		a.colorName
+    		,a.colorSeq
+    	FROM
+    		Color a
+    	LEFT JOIN
+    		productDetail b
+    	ON
+    		a.colorSeq = b.Color_colorSeq
+    	WHERE 1=1
+    		AND b.product_Seq = #{productSeq}
+    	GROUP BY
+    		a.colorName
+	</select>
+	<!--  상품 컬러 리스트E -->
+	
+	<!-- 상품 사이즈 리스트S -->
+    <select id="productSize" resultMap="resultMapObj">
+    	SELECT
+    		a.Size
+    		,a.SizeName
+    		,b.Size_Size
+    	FROM
+    		Size a
+    	LEFT JOIN
+    		productDetail b
+    	ON
+    		a.Size = b.Size_Size
+    	WHERE 1=1
+    		AND b.product_Seq = #{productSeq}
+    	GROUP BY
+    		a.SizeName
+	</select>
+	<!--  상품 사이즈 리스트E -->
+	
    <select id="cL" resultMap="resultMapObj">
     	select 
     		colorSeq
@@ -225,32 +219,25 @@
     	from Size
     </select>
 	<select id="selectOne" resultMap="resultMapObj">
-		SELECT
-    		a.productSeq
-    		,a.productName
-    		,a.productType
-    		,a.productPrice
-    		,a.productNew
-    		,a.productBest
-    		,a.productRegDate
-    		,a.productUpDate
-    		,a.informationType
-    		,a.informationColor
-    		,a.informationSize
-    		,a.informationWarning
-    		,a.informationCompany
-    		,a.informationCountry
-    		,a.informationQuality
-    		,a.informationAS
-    		,a.productDelNy
-    	from
-    		product a
-    	left join
-    		wishList b
-    	on 
-    		a.productSeq = b.product_Seq
-    	where 1=1
-			and a.productSeq = #{productSeq}
+    	select
+    		productSeq
+    		,productName
+    		,productPrice
+    		,productType
+    		,productNew
+    		,productBest
+    		,informationColor
+    		,informationSize
+    		,informationWarning
+    		,informationCompany
+    		,informationCountry
+    		,informationQuality
+    		,informationAS
+    		,productDelNy
+    	from 
+    		product 
+		where
+			productSeq = #{productSeq}
 	</select>
 		
 	<select id="selectOneCount" resultType="Integer">
@@ -261,12 +248,6 @@
     <sql id='basic'>
 		FROM 
 			product a
-		left join
-			productUploaded b
-		on a.productSeq = b.pseq
-		left join
-			wishList c
-		on a.productSeq = c.product_Seq
 		WHERE 1=1
 		<choose>
 				<when test="shType == 0">AND a.productName LIKE CONCAT('%',#{shValue},'%') </when>

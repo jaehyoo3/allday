@@ -15,7 +15,7 @@
 	</head>
 	
 	<body>
-		<form>
+		<form name="form">
 		<!-- navMenu s  -->
 			<%@include file="../../infra/includeV1/Menu.jsp"%>
 		<!-- navMenu e --> 
@@ -29,9 +29,9 @@
 							<div class='boxx1'>
 								<img src='/resources/Images/img/knit.jpg'>
 								<div class='productt'>
-									<span>WOODIE T-SHIRT</span> <div class="vr"></div> <span>TOP</span>
-									<p>M-95</p>
-									<p>￦49,000</p>
+									<span><c:out value="${vo.productName }" /></span> <div class="vr"></div> <span><c:out value="${vo.productType }" /></span>
+									<p><c:out value="${vo.sel_size }" />
+									<p>￦<c:out value="${vo.productPrice }" /></p>
 								</div>
 							</div>
 							<h4>배송비 무료</h4>
@@ -42,7 +42,7 @@
 						<div class='orders'>
 							<div class="d-flex mb-1">
 								<div class="p-2 align-self-center me-auto"><span>상품가격</span></div>
-								<div class="p-2 align-self-center"><span>￦49,000</span></div>
+								<div class="p-2 align-self-center"><span>￦<c:out value="${vo.productPrice }" /></span></div>
 							</div>
 							<div class="d-flex mb-1">
 								<div class="p-2 align-self-center me-auto"><span>배송비</span></div>

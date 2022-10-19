@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.bluebee.modules.member.Member;
+
 @Controller
 public class StoreController {
 	@Autowired
@@ -127,39 +129,51 @@ public class StoreController {
 		
 		@RequestMapping(value = "productView")
 		public String Prodcut(Model model, @ModelAttribute("vo") StoreVo vo) throws Exception {
-			
-			List<Store> colorlist = service.colorList(vo);
-			List<Store> sizelist = service.sizeList(vo);
-			List<Store> reviewList = service.reviewList(vo);
 			Store item = service.selectOne(vo);
+			model.addAttribute("item", item);
 			
-			List<Store> list = service.selectList(vo);
-			List<Store> imglist = service.selectDetailImg(vo);
-			model.addAttribute("reviewList", reviewList);
+			List<Store> ColorList = service.productColor(vo);
+			model.addAttribute("ColorList", ColorList);
 			
-			model.addAttribute("list", list).addAttribute("item", item).addAttribute("clist", colorlist).addAttribute("slist", sizelist).addAttribute("imglist", imglist);
+			List<Store> SizeList = service.productSize(vo);
+			model.addAttribute("SizeList", SizeList);
+			
+			List<Store> mainImgList = service.mainImg(vo);
+			model.addAttribute("mainImgList", mainImgList);
+			
+			List<Store> detailImgList = service.detailImg(vo);
+			model.addAttribute("detailImgList", detailImgList);
+			
 			return "infra/store/storeProduct";
 		}
+		/*
+		 * @RequestMapping(value = "reviewInst") public String reviewInst(Store dto)
+		 * throws Exception { service.reviewInsert(dto); return
+		 * "redirect:/productView?&ProductSeq=" + dto.getProduct_Seq(); }
+		 */
 		
-		@RequestMapping(value = "reviewInst")
-		public String reviewInst(Store dto) throws Exception {        
-			service.reviewInsert(dto);
-			return "redirect:/productView?&ProductSeq=" + dto.getProduct_Seq();
-		}
-		
-		@RequestMapping(value = "wishInst")
-		public String WishInst(Store dto) throws Exception {        
-			service.wish(dto);
-			return "redirect:/productView?&ProductSeq=" + dto.getProduct_Seq();
-		}
-		
+		/*
+		 * @RequestMapping(value = "wishInst") public String WishInst(Store dto) throws
+		 * Exception { service.wish(dto); return "redirect:/productView?&ProductSeq=" +
+		 * dto.getProduct_Seq(); }
+		 */
 		@RequestMapping(value = "product")
 		public String Product() {
 			return "infra/store/storeProduct";
 		}
+		
 		@RequestMapping(value = "storeBuy")
-		public String StoreBuy() {
+		public String StoreBuy(Model model, @ModelAttribute("vo") StoreVo vo) throws Exception {
+			
+			Store item = service.selectOne(vo);
+			model.addAttribute("item", item);
+			
 			return "infra/store/storeBuy";
+		}
+		@RequestMapping(value = "storeInst")
+		public String StoreBuyInst(Model model, @ModelAttribute("vo") StoreVo vo, Store dto) throws Exception {
+			
+			return "infra/store/storeBuysuccess";
 		}
 		@RequestMapping(value = "storeBuySuccess")
 		public String StoreBuySuccess() {
