@@ -15,7 +15,7 @@
 	</head>
 	
 	<body>
-		<form name="form" action="storeBuy">
+		<form name="form" action="storeBuy" method="post">
 			<!-- navMenu s  -->
 				<%@include file="../../infra/includeV1/Menu.jsp"%>
 			<!-- navMenu e --> 

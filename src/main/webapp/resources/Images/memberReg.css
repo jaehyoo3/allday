@@ -72,8 +72,8 @@
 			} .img_hover { 
 				overflow: hidden; 
 			} .box {
-				width: 150px;
-				height: 150px; 
+				width: 50%;
+				height: 50%; 
 				border-radius: 70%;
 				overflow: hidden;
 			} .profile {

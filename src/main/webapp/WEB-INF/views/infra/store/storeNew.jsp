@@ -32,7 +32,7 @@
 				<c:forEach items="${list}" var="list" varStatus="status">
 					<c:if test="${list.productNew eq 1}">
 						<a href="javascript:goForm(<c:out value="${list.productSeq }"/>)">
-							<img src="/resources/Images/img/knit.jpg"><br>
+							<img src="<c:out value="${list.path}"/><c:out value="${list.uuidName}"/>"><br>
 							<span><c:out value="${list.productName}"/></span> <span class='new'>New</span>
 							<p class="price">￦<fmt:formatNumber value="${list.productPrice}" pattern="##,###" /></p>
 						</a> 

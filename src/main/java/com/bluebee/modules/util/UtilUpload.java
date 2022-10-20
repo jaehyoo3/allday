@@ -32,9 +32,7 @@ public class UtilUpload {
 		} else {
 			pathForView = Constants.UPLOAD_PATH_PREFIX_FOR_VIEW + "/" + pathModule + "/" + pathDate + "/";
 		}
-		 
 		createPath(path);
-		  
 		multipartFile.transferTo(new File(path + uuidFileName));
 		
 		dto.setPath(pathForView);

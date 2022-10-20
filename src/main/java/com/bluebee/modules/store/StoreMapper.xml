@@ -62,7 +62,7 @@
     		,productNew
     		,productBest
     		,productRegDate
-    		,informationType
+    		<!-- ,informationType -->
     		,informationColor
     		,informationSize
     		,informationCompany
@@ -79,7 +79,7 @@
     		,#{productNew}
     		,#{productBest}
     		,now()
-    		,#{informationType}
+    		<!-- ,#{informationType} -->
     		,#{informationColor}
     		,#{informationSize}
     		,#{informationCompany}

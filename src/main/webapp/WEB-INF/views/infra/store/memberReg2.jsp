@@ -13,7 +13,7 @@
 	</head>
 	
 	<body>
-		<form method="post" action="signUp" onsubmit="return checks()" autocomplete="off" enctype="multipart/form-data">
+		<form method="post" action="signUp" onsubmit="return checks()" autocomplete="off">
 		<input type="hidden" id="checkIdNy" name="checkIdNy"> 
 		<input type="hidden" id="checkNickNy" name="checkNickNy">
 			<!-- navMenu s  -->
@@ -27,11 +27,6 @@
 					</div>	
 				</div>
 				<hr>
-				<center>
-					<div id="box" style="background: #BDBDBD;"></div>
-					<input type="file" id="uploadedImage" name="uploadedImage" onchange="setThumbnail(event);">
-					<br>
-				</center>
 				<!-- ID -->
 				<span>아이디</span><span style="font-size:12px; color:#e0e0e0">(필수)</span>
 				<input type="text" class="form-control mb-1" id="memberID" name="memberID" placeholder="아이디">
@@ -415,17 +410,6 @@
 			$("#emailDomain").change(function(){
 				email();	
 			});
-		      function setThumbnail(event) {
-		          var reader = new FileReader();
-
-		          reader.onload = function(event) {
-		            var img = document.createElement("img");
-		            img.setAttribute("src", event.target.result);
-		            document.querySelector("div#box").appendChild(img);
-		          };
-
-		          reader.readAsDataURL(event.target.files[0]);
-		        }
 		</script>
 	</body>
 </html>

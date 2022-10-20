@@ -256,7 +256,7 @@
     	     $(document).ready (function () { 
     	    	 var countnum = 1;
     	            $('.btnAdd').click (function () {
-    	                $('.buttons').append ("<br> <input type='text' id='color_colorseq' name='color_colorseqarr[" + countnum + "]' style='width:19%;'> <input type='text' id='size_size' name='size_sizearr[" + countnum + "]' style='width:19%;''> <input type='text' id='num' name='numarr[" + countnum + "]' style='width:19%;''>  <input type='button' class='btnRemove' value='Remove'>"); // end append  
+    	                $('.buttons').append ("<br><input type='text' id='size_size' name='size_sizearr[" + countnum + "]' style='width:19%;''> <input type='text' id='color_colorseq' name='color_colorseqarr[" + countnum + "]' style='width:19%;'> <input type='text' id='num' name='numarr[" + countnum + "]' style='width:19%;''>  <input type='button' class='btnRemove' value='Remove'>"); // end append  
     	                countnum++;
     	                $('.btnRemove').on('click', function () { 
     	                    $(this).prev().remove (); // remove the textbox

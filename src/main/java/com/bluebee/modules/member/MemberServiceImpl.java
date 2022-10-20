@@ -59,23 +59,6 @@ public class MemberServiceImpl implements MemberService {
 			 dto.setMemberPW(UtilSecurity.encryptSha256(dto.getMemberPW())); 
 		 	dao.signup(dto);
 		 	dao.memberaddr(dto);
-	        int j = 0;
-		    	for(MultipartFile multipartFile : dto.getUploadedImage() ) {
-		    		if(!multipartFile.isEmpty()) {
-		    		
-		    			String pathModule = this.getClass().getSimpleName().toString().toLowerCase().replace("serviceimpl", "");		
-		    			UtilUpload.upload(multipartFile, pathModule, dto, 0);
-		    			
-			    		dto.setTableName("memberUploaded");
-			    		dto.setType(1);
-			    		dto.setIdefaultNy(j == 0 ? 1 : 0);
-			    		dto.setSort(j + 1);
-			    		dto.setPseq(dto.getMemberSeq());
-		
-						dao.insertUploaded(dto);
-						j++;
-		    		}
-				}
 	 	return 1;
 		    } catch (Exception e) {
 		        throw new Exception();
