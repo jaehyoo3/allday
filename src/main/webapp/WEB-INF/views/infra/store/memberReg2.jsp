@@ -13,7 +13,7 @@
 	</head>
 	
 	<body>
-		<form method="post" action="signUp" onsubmit="return checks()" autocomplete="off">
+		<form method="post" action="signUp" onsubmit="return checks()" autocomplete="off" enctype="multipart/form-data">
 		<input type="hidden" id="checkIdNy" name="checkIdNy"> 
 		<input type="hidden" id="checkNickNy" name="checkNickNy">
 			<!-- navMenu s  -->
@@ -28,11 +28,8 @@
 				</div>
 				<hr>
 				<center>
-					<input type=file name='fileup1' accept='image/*' style='display: none;'>
-					<div class="box" style="background: #BDBDBD;">
-						<img class="profile" src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png' name='find' id='find' border='0' onclick='document.all.fileup1.click(); document.all.fileup2.value=document.all.fileup1.value' style="cursor:pointer;">
-					</div>
-					<input type='text' name='file2' id='file2' style='display:none;'> 
+					<div id="box" style="background: #BDBDBD;"></div>
+					<input type="file" id="uploadedImage" name="uploadedImage" onchange="setThumbnail(event);">
 					<br>
 				</center>
 				<!-- ID -->
@@ -68,19 +65,20 @@
 					</div>
 				</div>
 				<span>이메일</span>
+
 				<div class="row">
 					<div class="col">
-						<input type="text" class="form-control mb-2" id="memberEmail" name="memberEmail" placeholder="이메일">
+						<input type="text" class="form-control mb-2" id="emailID" name="emailFront" placeholder="이메일">
 					</div>
 					<div class="col">
-     					<select class="form-select">
+     					<select class="form-select" id="emailDomain">
 							<option selected>주소</option>
-							<option value="1">naver.com</option>
-							<option value="2">gmail.com</option>
-							<option value="3">daum.net</option>
-							<option value="4">기타</option>
+							<option value="naver.com">naver.com</option>
+							<option value="gmail.com">gmail.com</option>
+							<option value="daum.net">daum.net</option>
 						</select>
 					</div>
+				<input type="hidden" id="email" name="">
 				<span>연락처</span>
 				<div class="row">
 					<div class="col">
@@ -403,6 +401,31 @@
 		        	return false; 
 				}
 		    }
+		    function email() {
+				const email = $("#emailID").val();
+				const address = $("#emailDomain").val();
+				if(email != "" && address != "") {
+					$("#email").val(email + "@" + address);
+				}
+			};
+			$("#emailID").blur(function(){
+				email();	
+			});
+			
+			$("#emailDomain").change(function(){
+				email();	
+			});
+		      function setThumbnail(event) {
+		          var reader = new FileReader();
+
+		          reader.onload = function(event) {
+		            var img = document.createElement("img");
+		            img.setAttribute("src", event.target.result);
+		            document.querySelector("div#box").appendChild(img);
+		          };
+
+		          reader.readAsDataURL(event.target.files[0]);
+		        }
 		</script>
 	</body>
 </html>
