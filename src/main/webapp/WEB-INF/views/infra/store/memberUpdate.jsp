@@ -28,18 +28,14 @@
 						<br>
 						<div class='boxx shadow p-3 mb-5 bg-body rounded'>
 							<div class='boxupdate'>
-								<input type=file name='fileup1' accept='image/*' style='display: none;'>
-								<div class="box" style="background: #BDBDBD;">
-									<img class="profile" src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png' name='find' id='find' border='0' onclick='document.all.fileup1.click(); document.all.fileup2.value=document.all.fileup1.value' style="cursor:pointer;">
-								</div>
-								<input type='text' name='file2' id='file2' style='display:none;'> 
-								<br>
 								<lable>아이디</lable>
-								<input class="form-control" type="text" value="<c:out value="${sessId}"/>" readonly>
+								<input class="form-control" type="text" name="memberID" value="<c:out value="${sessId}"/>" readonly>
 								<lable>닉네임</lable>
-								<input class="form-control" type="text" value="<c:out value="${item.memberNick}"/>" readonly>
-<!-- 							<input class="form-control" type="password" placeholder="기존 비밀번호 입력">
-								<input type="password" class="form-control" placeholder="비밀번호를 변경 하는 경우 입력 하세요">
+								<input class="form-control" type="text" name="memberNick" value="<c:out value="${item.memberNick}"/>" readonly>
+								<label>등급</label>
+								<input class="form-control" type="text" name="memberGrade" value="<c:out value="${item.memberGrade}"/>" readonly>
+ 								<input class="form-control" type="hidden" name="memberPW" value="<c:out value="${item.memberPW}"/>" placeholder="기존 비밀번호 입력" >
+<!--								<input type="password" class="form-control" placeholder="비밀번호를 변경 하는 경우 입력 하세요">
 								<input type="password" class="form-control" placeholder=" 비밀번호 확인"> -->
 								<br>
 								<button type="button" id='pwChange' class='btn btn-primary'>비밀번호 변경</button>
@@ -63,31 +59,25 @@
 								</div>
 								<br>
 								<lable>이름</lable>
-								<input class="form-control" type="text" value="<c:out value="${item.memberName}" />" disabled readonly>
+								<input class="form-control" type="text" name="memberName" value="<c:out value="${item.memberName}" />"readonly>
 								<br>
 								<lable>성별</lable>
 								<div class="d-flex mb-1">
 									<div class="p-1">
-										<input class="form-check-input" name="gender" type="radio" id="man" <c:if test="${item.memberGender eq 1 }">checked</c:if>>
+										<input class="form-check-input" name="memberGender" type="radio" id="man" value='1' <c:if test="${item.memberGender eq 1 }">checked</c:if>>
 										<label for="man">남자</label>
 									</div>
 									<div class="p-1 mx-auto">
-										<input class="form-check-input" name="gender" id="girl" type="radio"<c:if test="${item.memberGender eq 2 }">checked</c:if>>
+										<input class="form-check-input" name="memberGender" id="girl" value='2' type="radio"<c:if test="${item.memberGender eq 2 }">checked</c:if>>
 										<label for="girl">여자</label>
 									</div>
 								</div><br>
 								<lable>연락처</lable>
-								<input class="form-control" type="text" value="<c:out value="${item.memberMobile}"/>" readonly>
+								<input class="form-control" type="text" name="memberMobile" value="<c:out value="${item.memberMobile}"/>" readonly>
 								<br>
 								<lable>이메일</lable>
 								<div class="input-group flex-nowrap">
-									<input class="form-control w-50" type="text" value="wowdmin123">
-									<span class="input-group-text" id="addon-wrapping">@</span>
-									<select class="form-select w-50">
-									  <option selected>naver.com</option>
-									  <option value="1">daum.net</option>
-									  <option value="2">gmail.com</option>
-									</select>
+									<input class="form-control" type="text" name="memberEmail" value="<c:out value="${item.memberEmail}"/>">
 								</div>
 								<br>
 								<label>주소</label>		
@@ -100,9 +90,11 @@
 								<br>
 								<label>생년월일</label>	
 								<div class="input-group flex-nowrap" >
-									<input class="form-control" type="text" value="<c:out value="${item.memberDob }"/>" style="text-align:center;" disabled readonly>
+									<input class="form-control" type="text" name="memberDob" value="<c:out value="${item.memberDob }"/>" style="text-align:center;" readonly>
 								</div>
 								<br>
+								<label>포인트</label>
+								<input class="form-control" type="text" name="memberPoint" value="<c:out value="${item.memberPoint}"/>">
 								<label>이메일/혜택 소식 수신 여부</label>
 								<div class="form-check">
 								  <input class="form-check-input" type="checkbox" value='1' id="memberAd" name='memberAd' <c:if test="${item.memberAd eq 1 }">checked</c:if>>
@@ -113,7 +105,7 @@
 						</div>
 						<br>
 						<button class="btn text-white fw-bold" type="button" style="background-color:rgb(127, 127, 127); width:15%;">취소</button>
-						<button class="btn text-white fw-bold" type="button" style="background-color:rgb(44, 62, 80); width:15%;">수정하기</button>
+						<button class="btn text-white fw-bold" type="button" id="btnUpdt" style="background-color:rgb(44, 62, 80); width:15%;">수정하기</button>
 					</div>
 					
 				</div>
@@ -128,9 +120,14 @@
 	    
 		<script type="text/javascript">
 		var goUrlView = "/memberView";
+		var goUrlUpdt = "/memberUpdt";
 		var form = $("form[name=form]");
 		var seq = $("input:hidden[name=memberSeq]");
 		
+		$("#btnUpdt").on("click", function(){
+			form.attr("action", goUrlUpdt).submit();
+		});
+			
         if(document.getElementById("memberAd").checked) {
     	    document.getElementById("memberAd_hidden").disabled = true;
     	}
@@ -139,7 +136,8 @@
 	    	/* if(keyValue != 0) seq.val(btoa(keyValue)); */
 	    	seq.val(keyValue);
 			form.attr("action", goUrlView).submit();
-		}		
+		}
+
 		</script>
 	</body>
 </html>

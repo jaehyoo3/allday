@@ -4,7 +4,9 @@ package com.bluebee.modules.member;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -180,5 +182,13 @@ public class MemberController {
 		return "infra/store/memberUpdate"; 
 	}
 	
+	@RequestMapping(value = "/memberUpdt")
+	public String userUpdate(MemberVo vo, Model model, Member dto, RedirectAttributes redirectAttributes) throws Exception { 		
+		service.update(dto);		
+		vo.setMemberSeq(dto.getMemberSeq());
+		redirectAttributes.addFlashAttribute("vo", vo);
+		
+		return "redirect:/memberView"; 
+	}
 	
 }

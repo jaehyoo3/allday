@@ -8,5 +8,5 @@
 		<li><a href="javascript:goForm(<c:out value="${sessSeq }"/>)">개인정보수정</a></li>
 		<li><a href="#">회원탈퇴</a></li>
 	</ul>
-	<input type="hidden" name="memberSeq">
+	<input type="hidden" name="memberSeq" value="<c:out value="${sessSeq }"/>">
 </div>

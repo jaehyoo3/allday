@@ -73,7 +73,7 @@
 							<option value="daum.net">daum.net</option>
 						</select>
 					</div>
-				<input type="hidden" id="email" name="">
+				<input type="hidden" id="email" name="memberEmail">
 				<span>연락처</span>
 				<div class="row">
 					<div class="col">

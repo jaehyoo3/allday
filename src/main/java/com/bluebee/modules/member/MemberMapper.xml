@@ -70,6 +70,7 @@
 			,memberGrade = #{memberGrade}
 			,memberGender = #{memberGender} 
 			,memberPoint = #{memberPoint}
+			,memberAd = #{memberAd}
 		where
 			memberSeq = #{memberSeq}
 	</update>
