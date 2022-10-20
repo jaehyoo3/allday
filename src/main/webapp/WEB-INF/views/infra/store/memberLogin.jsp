@@ -39,7 +39,7 @@
 				</div>
 				<br>
 				<div class="d-grid gap-2">
-					<button type="button" class="btn text-white fw-bold" id='btnLogin' onkeyup="enterkey()" name='btnLogin' style="background-color:rgb(44, 62, 80);">로그인</button>
+					<button type="button" class="btn text-white fw-bold" id='btnLogin' name='btnLogin' style="background-color:rgb(44, 62, 80);">로그인</button>
 				</div>
 				<br>
 				<div class="hr-sect"> 또는 </div>
@@ -67,8 +67,7 @@
 		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 		<script>
-			$("#btnLogin").on("click", function(){
-				
+		function loginAjax(){
 				$.ajax({
 					async: true 
 					,cache: false
@@ -86,13 +85,16 @@
 						alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
 					}
 				});
-			});
+			}
 
+			$("#btnLogin").on("click", function(){
+				loginAjax();
+			});
 			function enterkey() {
-		        if (window.event.keyCode == 13) {
-		             $("#btnLogin").click();
-		        }
-		}
+				if(window.event.keyCode == 13) {
+			       	loginAjax();
+			     }
+			}
 		</script>
 	</body>
 	

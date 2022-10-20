@@ -7,16 +7,36 @@ public class StoreVo extends BaseVo{
 	private String productType;
 	private String productName;
 	private String colorName;
-	private String sel_size;
-	public String getSel_size() {
-		return sel_size;
-	}
-
-	public void setSel_size(String sel_size) {
-		this.sel_size = sel_size;
-	}
-
+	private String Size;
 	private Integer productPrice;
+	private String path;
+	private String uuidName;
+	
+	public String getSize() {
+		return Size;
+	}
+	public void setSize(String size) {
+		Size = size;
+	}
+	public String getPath() {
+		return path;
+	}
+
+	public void setPath(String path) {
+		this.path = path;
+	}
+
+	public String getUuidName() {
+		return uuidName;
+	}
+
+	public void setUuidName(String uuidName) {
+		this.uuidName = uuidName;
+	}
+
+
+
+
 	private String detailSeq;
 
 	public String getDetailSeq() {

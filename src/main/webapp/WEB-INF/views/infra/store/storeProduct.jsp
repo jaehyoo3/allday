@@ -28,6 +28,8 @@
 					<c:forEach items="${mainImgList}" var="list" varStatus="status">
 							<c:if test="${list.idefaultNy eq 1}">
 								<img src='<c:out value="${list.path}"/><c:out value="${list.uuidName}"/>' style="width:80%; height: 50%;">
+								<input type="hidden" name="path" value="<c:out value="${list.path}"/>">
+								<input type="hidden" name="uuidName" value="<c:out value="${list.uuidName}"/>">
 							</c:if>
 					</c:forEach>
 				</div>
@@ -36,11 +38,13 @@
 						<c:forEach items="${listCodeType}" var="listCode" varStatus="statusGender">
 							<c:if test="${item.productType eq listCode.codeOrder}">
 								<c:out value="${listCode.codeName}"/>
+								<input type="hidden" name="productType" value="<c:out value="${listCode.codeName}"/>">
 							</c:if>
 						</c:forEach>
 					</div>
 					<div>
 					<div class='price'>￦<fmt:formatNumber value="${item.productPrice}" pattern="##,###" /></div>
+					<input type="hidden" name="productPrice" value="<c:out value="${item.productPrice}"/>">
 					<hr>
 					<div class='express'>배송방법: 택배</div>
 					<br>
@@ -53,18 +57,21 @@
 					<br>
 					<p style="font-size:12px; font-weight:bold;">사이즈 *</p>
 				    <select id="sel_blank" class="form-select size">
-				        <option value="">색상을 선택해주세요</option>
+				        <option>색상을 선택해주세요</option>
 				    </select>
+				    
 				    <c:forEach items="${ColorList}" var="list" varStatus="status">
-					    <select class="form-select size" id="<c:out value="${list.colorSeq}" />">
-					    		<c:forEach items="${SizeList}" var="SizeList" varStatus="Status">
-					    			<c:if test="${list.colorSeq eq  SizeList.color_colorseq}">
-					    				<option><c:out value="${SizeList.sizeName}"/> | <c:out value="${SizeList.num}"/></option>
-					        		</c:if>
-					        	</c:forEach>
+					    <select class="size form-select"  onchange="showValue(this)" id="<c:out value="${list.colorSeq}" />">
+					    <option>사이즈를 선택해주세요</option>
+				    		<c:forEach items="${SizeList}" var="SizeList" varStatus="Status">
+				    			<c:if test="${list.colorSeq eq SizeList.color_colorseq}">
+				    				<option value="${SizeList.detailSeq}"><c:out value="${SizeList.sizeName}"/></option>
+				        		</c:if>
+				        	</c:forEach>
 					    </select>
 					</c:forEach>
 					<br>
+					<input type='hidden' id='qwer' name="size">
 					<div class="row">
 				 		<div class="col">
 							<button type="button" id="productBuy" class="btn text-white fw-bold col-12" style="background-color:#2c3e50; height: 50px;">구매하기</button>
@@ -226,7 +233,6 @@
 		<script src="https://kit.fontawesome.com/a1961b2393.js" crossorigin="anonymous"></script>
 		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 		<script type="text/javascript">
-		
 		var reviewInst = "reviewInst";
 		var productBuy = 'storeBuy';
 		var wishInst ="wishInst";
@@ -275,7 +281,11 @@
 		        $("#"+chk).show(); // 라디오버튼에 선택 된 값 id 만 보이게
 		    });
 		});
-		
+		const showValue = (target) => {
+			  const value = target.value;
+			  
+			  document.getElementById("qwer").value = value;
+			}		
 		</script>
 	</body>
 </html>

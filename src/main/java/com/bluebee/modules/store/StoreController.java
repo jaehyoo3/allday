@@ -149,11 +149,14 @@ public class StoreController {
 			
 			return "infra/store/storeProduct";
 		}
-		/*
-		 * @RequestMapping(value = "reviewInst") public String reviewInst(Store dto)
-		 * throws Exception { service.reviewInsert(dto); return
-		 * "redirect:/productView?&ProductSeq=" + dto.getProduct_Seq(); }
-		 */
+		
+		  @RequestMapping(value = "reviewInst") 
+		  public String reviewInst(Store dto) throws Exception { 
+			  service.reviewInsert(dto); 
+		  
+			  return "redirect:/productView?&ProductSeq=" + dto.getProduct_Seq(); 
+		  }
+		 
 		
 		/*
 		 * @RequestMapping(value = "wishInst") public String WishInst(Store dto) throws
@@ -175,7 +178,7 @@ public class StoreController {
 		}
 		@RequestMapping(value = "storeInst")
 		public String StoreBuyInst(Model model, @ModelAttribute("vo") StoreVo vo, Store dto) throws Exception {
-			
+			service.buyOrder(dto);
 			return "infra/store/storeBuysuccess";
 		}
 		@RequestMapping(value = "storeBuySuccess")

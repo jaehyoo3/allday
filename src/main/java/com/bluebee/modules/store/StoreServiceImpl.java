@@ -123,6 +123,8 @@ public class StoreServiceImpl implements StoreService {
 	public List<Store> mainImg(StoreVo vo) throws Exception { return dao.mainImg(vo); }
 	@Override
 	public List<Store> detailImg(StoreVo vo) throws Exception { return dao.detailImg(vo); }
+	@Override
+	public int buyOrder(Store dto) throws Exception { return dao.buyOrder(dto); }
 
 	
 	

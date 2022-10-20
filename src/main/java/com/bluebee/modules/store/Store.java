@@ -37,18 +37,17 @@ public class Store extends Base {
 	private Date reviewRegDate;
 	private Integer wishListDelNy;
 	private String wishSeq;
-	private String productOrderSeq;
 	private String productDetail_detailSeq;
 	private String purChase;
 	private Integer price;
 	private String memberAddr_addrSeq;
-	private String productOrder_productOrderSeq;
-	
-	public String getProductOrderSeq() {
-		return productOrderSeq;
+	private Integer payment;
+
+	public Integer getPayment() {
+		return payment;
 	}
-	public void setProductOrderSeq(String productOrderSeq) {
-		this.productOrderSeq = productOrderSeq;
+	public void setPayment(Integer payment) {
+		this.payment = payment;
 	}
 	public String getProductDetail_detailSeq() {
 		return productDetail_detailSeq;
@@ -73,12 +72,6 @@ public class Store extends Base {
 	}
 	public void setMemberAddr_addrSeq(String memberAddr_addrSeq) {
 		this.memberAddr_addrSeq = memberAddr_addrSeq;
-	}
-	public String getProductOrder_productOrderSeq() {
-		return productOrder_productOrderSeq;
-	}
-	public void setProductOrder_productOrderSeq(String productOrder_productOrderSeq) {
-		this.productOrder_productOrderSeq = productOrder_productOrderSeq;
 	}
 	public String getWishSeq() {
 		return wishSeq;

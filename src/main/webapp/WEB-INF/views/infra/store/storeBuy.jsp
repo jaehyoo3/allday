@@ -15,10 +15,11 @@
 	</head>
 	
 	<body>
-		<form name="form">
+		<form name="form" action="storeInst">
 		<!-- navMenu s  -->
 			<%@include file="../../infra/includeV1/Menu.jsp"%>
 		<!-- navMenu e --> 
+		<input type="hidden" name="productSeq" value="<c:out value="${vo.productSeq}"/>">
 			<div id='content'>
 				<div class='buy'>
 					<h3>결제하기</h3>
@@ -27,10 +28,11 @@
 						<h4>주문상품정보</h4>
 						<div class='infor'>
 							<div class='boxx1'>
-								<img src='/resources/Images/img/knit.jpg'>
+								<img src="<c:out value="${vo.path}"/><c:out value="${vo.uuidName}"/>">
 								<div class='productt'>
-									<span><c:out value="${vo.productName }" /></span> <div class="vr"></div> <span><c:out value="${vo.productType }" /></span>
-									<p><c:out value="${vo.sel_size }" />
+									<span><c:out value="${vo.productName }" /></span> <div class="vr"></div> <span><c:out value="${vo.productType}" /></span>
+									<p><c:out value="${vo.size}" />
+									<input type="hidden" name="productDetail_detailSeq" value="<c:out value="${vo.size}" />">
 									<p>￦<c:out value="${vo.productPrice }" /></p>
 								</div>
 							</div>
@@ -60,7 +62,8 @@
 							<hr>
 							<div class="d-flex">
 								<h4 class='me-auto'>총 주문금액</h4>
-								<h4>￦49,000</h4>
+								<h4><c:out value="${vo.productPrice }" /></h4>
+								<input type="hidden" name="price" value="<c:out value="${vo.productPrice}" />">
 							</div>
 						</div>
 					</div>
@@ -86,20 +89,20 @@
 						<div class='userr'>
 						<div class="d-flex flex-row mb-1">
 							<div class="form-check me-4">
-							  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+							  <input class="form-check-input" type="radio" name="payment" id="flexRadioDefault1" value="1">
 							  <label class="form-check-label" for="flexRadioDefault1">
 							    신용카드
 							  </label>
 							</div>
 							<div class="form-check">
-							  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+							  <input class="form-check-input" type="radio" name="payment" id="flexRadioDefault2" value="2">
 							  <label class="form-check-label" for="flexRadioDefault2">
 							    무통장입금
 							  </label>
 							</div>
 						</div>
 						<div class="form-check">
-						  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3" checked>
+						  <input class="form-check-input" type="radio" name="payment" id="flexRadioDefault3" value="3">
 						  <label class="form-check-label" for="flexRadioDefault3">
 						    가상계좌
 						  </label>
@@ -141,7 +144,7 @@
 					</div>
 					<div class='a3'>
 					<div class="d-grid gap-2 col-12">
-						<button type="button" class="btn text-white fw-bold" style="background-color:rgb(44, 62, 80);"onClick="location.href='storeBuySuccess'">결제하기</button>
+						<button type="submit" class="btn text-white fw-bold" style="background-color:rgb(44, 62, 80);"onClick="location.href='storeBuySuccess'">결제하기</button>
 					</div>
 					</div>
 				</div>

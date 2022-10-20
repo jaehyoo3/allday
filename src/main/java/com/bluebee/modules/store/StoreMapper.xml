@@ -175,6 +175,7 @@
     	SELECT
     		a.colorName
     		,a.colorSeq
+    		,b.detailSeq
     	FROM
     		Color a
     	LEFT JOIN
@@ -196,6 +197,7 @@
     		,b.Size_Size
     		,b.num
     		,b.color_colorSeq
+    		,b.detailSeq
     	FROM
     		Size a
     	LEFT JOIN
@@ -208,6 +210,23 @@
 	</select>
 	<!--  상품 사이즈 리스트E -->
 	
+	<!--  상품 구매 S -->
+	<insert id="buyOrder">
+		insert into purChase_Product(
+			price
+			,memberAddr_addrSeq
+			,productDetail_detailSeq
+			,payment
+		) VALUES(
+			#{price}
+			,7
+			,#{productDetail_detailSeq}
+			,#{payment}
+		)
+		<selectKey resultType="String" keyProperty="purChase" order="AFTER"> 
+			select last_insert_id()
+		</selectKey>
+	</insert>
    <select id="cL" resultMap="resultMapObj">
     	select 
     		colorSeq
