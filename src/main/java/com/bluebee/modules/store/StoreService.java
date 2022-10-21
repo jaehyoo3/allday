@@ -19,5 +19,6 @@ public interface StoreService {
 	public List<Store> mainImg(StoreVo vo) throws Exception;
 	public List<Store> detailImg(StoreVo vo) throws Exception;
 	public int buyOrder(Store dto) throws Exception;
+	public Store buyOneList(StoreVo vo) throws Exception;
 	
 }

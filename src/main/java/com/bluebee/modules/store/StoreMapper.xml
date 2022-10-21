@@ -219,7 +219,7 @@
 			,payment
 		) VALUES(
 			#{price}
-			,7
+			,#{memberAddr_addeSeq}
 			,#{productDetail_detailSeq}
 			,#{payment}
 		)
@@ -227,6 +227,26 @@
 			select last_insert_id()
 		</selectKey>
 	</insert>
+	
+	<select id="buyOneList" resultMap="resultMapObj">
+		select
+			a.memberMobile
+			,a.memberEmail
+			,b.defaultNY
+			,b.reciver
+			,b.zipCode
+			,b.addr1
+			,b.addr2
+		FROM
+			member a
+		LEFT JOIN
+			memberAddr b
+		ON
+			a.memberSeq = b.memberSeq
+		WHERE 1=1
+			 AND a.memberSeq = #{memberSeq}
+	</select>
+	<!--  상품 구매 E -->
    <select id="cL" resultMap="resultMapObj">
     	select 
     		colorSeq

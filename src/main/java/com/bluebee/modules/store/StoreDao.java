@@ -34,4 +34,6 @@ public class StoreDao {
 	public List<Store> productColor(StoreVo vo){ return sqlSession.selectList(namespace + ".productColor", vo); }
 	public List<Store> productSize(StoreVo vo){ return sqlSession.selectList(namespace + ".productSize", vo); }
 	public int buyOrder(Store dto) { return sqlSession.insert(namespace+".buyOrder", dto); }
+	public Store buyOneList(StoreVo vo) { return sqlSession.selectOne(namespace+".buyOneList", vo); }
+	
 }

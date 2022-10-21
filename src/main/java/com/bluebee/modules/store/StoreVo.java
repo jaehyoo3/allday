@@ -11,7 +11,14 @@ public class StoreVo extends BaseVo{
 	private Integer productPrice;
 	private String path;
 	private String uuidName;
+	private String memberSeq;
 	
+	public String getMemberSeq() {
+		return memberSeq;
+	}
+	public void setMemberSeq(String memberSeq) {
+		this.memberSeq = memberSeq;
+	}
 	public String getSize() {
 		return Size;
 	}

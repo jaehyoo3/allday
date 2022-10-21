@@ -169,7 +169,7 @@ public class StoreController {
 		@RequestMapping(value = "storeBuy")
 		public String StoreBuy(Model model, @ModelAttribute("vo") StoreVo vo) throws Exception {
 			
-			Store item = service.selectOne(vo);
+			Store item = service.buyOneList(vo);
 			model.addAttribute("item", item);
 			
 			return "infra/store/storeBuy";

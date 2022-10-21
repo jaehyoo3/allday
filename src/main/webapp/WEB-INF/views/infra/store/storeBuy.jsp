@@ -20,6 +20,7 @@
 			<%@include file="../../infra/includeV1/Menu.jsp"%>
 		<!-- navMenu e --> 
 		<input type="hidden" name="productSeq" value="<c:out value="${vo.productSeq}"/>">
+		<input type="hidden" name="memberSeq" value="<c:out value="${sessSeq}" />">
 			<div id='content'>
 				<div class='buy'>
 					<h3>결제하기</h3>
@@ -71,16 +72,16 @@
 						<h4>주문자정보</h4>
 						<div class='userr'>
 						    <div class="row">
-						        <div class="col-md-3"><h5>홍길동</h5></div>
+						        <div class="col-md-3"><h5><c:out value="${sessName}" /></h5></div>
 						    </div>
 						    <div class="row">
-						        <div class="col-md-9"><span>010-4556-6282<br></span></div>
+						        <div class="col-md-9"><span><c:out value="${item.memberMobile}" /><br></span></div>
 						        <div class="col">
 						        	<button type="button" class="btn btn-secondary btn-sm">수정</button>
 						        </div>
 						    </div>
 						    <div class="row">
-						        <div class="col-md-3"><span>troup@naver.com</span></div>
+						        <div class="col-md-3"><span><c:out value="${item.memberEmail}" /></span></div>
 						    </div>
 						</div>
 					</div>
@@ -121,19 +122,19 @@
 							 <div class="p-1"><button type="button" class="btn btn-secondary btn-sm">주소검색</button></div>
 						</div>
 						<div class="d-flex flex-row mb-2">
-							<div class="p-1"><input class="form-control" type="text" placeholder="수령인"></div>
-							<div class="p-1"><input class="form-control" type="text" placeholder="연락처"></div>
+							<div class="p-1"><input class="form-control" type="text" placeholder="수령인"> <c:out value="${item.reciver}" /></div>
+							<div class="p-1"><input class="form-control" type="text" placeholder="연락처"><c:out value="${item.memberMobile}" /></div>
 						</div>
 						<div class="d-flex flex-row align-self-center">
 							<div class="p-1"><input class="form-control" type="text" placeholder="우편번호"></div>
 							<div class="p-1"><button type="button" class="btn btn-secondary btn-sm">주소찾기</button></div>
 						</div>
-						<div class="p-1"><input class="form-control" type="text" placeholder="주소"></div>
-						<div class="p-1"><input class="form-control" type="text" placeholder="상세주소"></div>
-						<div class="p-1">
+						<div class="p-1"><input class="form-control" type="text" placeholder="주소"><c:out value="${item.addr1}" /></div>
+						<div class="p-1"><input class="form-control" type="text" placeholder="상세주소"><c:out value="${item.addr2}" /></div>
+<!-- 					<div class="p-1">
 							<input class="form-check-input mb-3" type="checkbox" value="" id="buyorder">
 							<label class="form-check-label" for="buyorder">배송지 목록에 추가</label>
-						</div>
+						</div> -->
 						<h5>배송메모</h5>
 						<select class="form-select mb-1">
 						  <option selected>배송 메모를 선택 해주세요</option>

@@ -126,6 +126,11 @@ public class StoreServiceImpl implements StoreService {
 	@Override
 	public int buyOrder(Store dto) throws Exception { return dao.buyOrder(dto); }
 
+	@Override
+	public Store buyOneList(StoreVo vo) throws Exception {
+		return dao.buyOneList(vo);
+	}
+
 	
 	
 	
