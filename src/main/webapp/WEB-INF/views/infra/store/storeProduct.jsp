@@ -15,7 +15,7 @@
 	</head>
 	
 	<body>
-		<form name="form" action="storeBuy" method="post">
+		<form name="form">
 			<!-- navMenu s  -->
 				<%@include file="../../infra/includeV1/Menu.jsp"%>
 			<!-- navMenu e --> 
@@ -23,6 +23,9 @@
 			<div id='content'>
 			<jsp:useBean id="XdminCodeServiceImpl" class="com.bluebee.modules.xdmincode.XdminCodeServiceImpl"/>
 			<c:set var="listCodeType" value="${XdminCodeServiceImpl.selectListCachedCode('9')}"/>
+			<input type="hidden" id="memberSeq" name="memberSeq" value="<c:out value="${sessSeq}" />">
+			<input type="hidden" name="productSeq" id="productSeq" value="<c:out value="${item.productSeq}"/>">
+		
 			<p>Home > Top</p>
 				<div class="productimg">
 					<c:forEach items="${mainImgList}" var="list" varStatus="status">
@@ -197,43 +200,61 @@
 				 	</div>
 				</div>
 				<hr>
+				<c:forEach items="${reviewList}" var="reviewList" varStatus="status">
 					<div class="comment" style="margin: 0">
-<%-- 						<c:forEach items="${reviewList}" var="list" varStatus="status">
 						<ul>
-							<li style="width:80%">강우림(sdfsdfsd12)</li>
-							<li style="width:10%;">★★★★★</li>
-							<li><c:out value="${list.reviewRegDate }" /></li>
+							<li style="width:80%"><c:out value="${reviewList.member_memberSeq }" /></li>
+							<li style="width:10%;"><c:out value="${reviewList.score }" /></li>
+							<li><c:out value="${reviewList.reviewRegDate }" /></li>
 						</ul>
 						<ul>
 							<li style="width:25%; height:300px;"><img src="../img/knit.jpg" style="width:100%; height:100%;"></li>
-							<li style="width:70%; height:300px;"><c:out value="${list.content }" /></li>
+							<li style="width:70%; height:300px;"><c:out value="${reviewList.content }" /></li>
 						</ul>
-						</c:forEach> --%>
 					</div>
+				</c:forEach>
 				<hr>
 				<ul>
 				<span class="text-bold">별점을 선택해주세요</span>
-					<input type="radio" name="Score" value="5" id="rate1"><label for="rate1">★</label>
-					<input type="radio" name="Score" value="4" id="rate2"><label for="rate2">★</label>
+					<input type="radio" name="Score" value="5" id="Score"><label for="rate5">★</label>
+					<input type="radio" name="Score" value="4" id="rate4"><label for="rate4">★</label>
 					<input type="radio" name="Score" value="3" id="rate3"><label for="rate3">★</label>
-					<input type="radio" name="Score" value="2" id="rate4"><label for="rate4">★</label>
-					<input type="radio" name="Score" value="1" id="rate5"><label for="rate5">★</label>
+					<input type="radio" name="Score" value="2" id="rate2"><label for="rate2">★</label>
+					<input type="radio" name="Score" value="1" id="rate1"><label for="rate1">★</label>
 				</ul>
 				<ul>
-					<li style="width:80%;"><textarea name="content" style="width:100%;">asd</textarea></li>
-					<li style="width:10%;"><button id="reviewInst">등록</button></li>
-				</ul>
+					<li style="width:80%;"><textarea name="Content" id="Content" style="width:100%;"></textarea></li>
+					<li style="width:10%;"><button type="button" id="reviewInst">등록</button></li>
+				</ul> 
 			</div>
 			<br>
 			<div id='footer'>
 				<div class='copyright'>© 2022. Bluebee all rights reserved.</div>
 			</div>
 		</form>
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-		<script src="https://kit.fontawesome.com/a1961b2393.js" crossorigin="anonymous"></script>
-		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+		<!-- jsLink s  -->
+			<%@include file="../../infra/includeV1/jsLink.jsp"%>
+		<!-- jsLink e --> 
 		<script type="text/javascript">
-		var reviewInst = "reviewInst";
+		
+			$("#reviewInst").on("click", function(){
+	 			$.ajax({
+					type: "post"
+					,url: "/reviewProc"
+					,data: {"member_memberSeq" : $("#memberSeq").val(), "product_Seq" : $("#productSeq").val(), "Score" : 3, "Content" : $("#Content").val()} 
+					,success: function(response) {
+						alert("댓글 입력되었습니다.");
+						document.location.href = document.location.href;
+
+					}
+					,error : function(jqXHR, textStatus, errorThrown){
+						alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+					}
+				}); 
+			});
+		function reloadDivArea() {
+		    $('#review').load(location.href + ' #review');
+		}
 		var productBuy = 'storeBuy';
 		var wishInst ="wishInst";
 		var form = $("form[name=form]")
@@ -285,7 +306,7 @@
 			  const value = target.value;
 			  
 			  document.getElementById("qwer").value = value;
-			}		
+			}
 		</script>
 	</body>
 </html>

@@ -105,15 +105,11 @@ public class StoreServiceImpl implements StoreService {
 	}
 
 
-	@Override
-	public int reviewInsert(Store dto) throws Exception {
-		return dao.reviewInsert(dto);
-	}
-
-	@Override
-	public List<Store> reviewList(StoreVo vo) throws Exception {
-		return dao.reviewList(vo);
-	}
+	
+	  @Override public int reviewInsert(Store dto) throws Exception { return dao.reviewInsert(dto); }
+	  
+	  @Override public List<Store> reviewList(StoreVo vo) throws Exception { return dao.reviewList(vo); }
+	 
 
 	@Override
 	public List<Store> productColor(StoreVo vo) throws Exception { return dao.productColor(vo);}

@@ -25,7 +25,7 @@
     </select>
 
     <!-- 리뷰s -->
-    <insert id="reviewInsert">
+     <insert id="reviewInsert">
     	insert into reView(
     	member_memberSeq
     	,product_Seq
@@ -217,11 +217,13 @@
 			,memberAddr_addrSeq
 			,productDetail_detailSeq
 			,payment
+			,orderMemo
 		) VALUES(
 			#{price}
-			,#{memberAddr_addeSeq}
+			,#{memberAddr_addrSeq}
 			,#{productDetail_detailSeq}
 			,#{payment}
+			,#{orderMemo}
 		)
 		<selectKey resultType="String" keyProperty="purChase" order="AFTER"> 
 			select last_insert_id()
@@ -232,6 +234,7 @@
 		select
 			a.memberMobile
 			,a.memberEmail
+			,b.addrSeq
 			,b.defaultNY
 			,b.reciver
 			,b.zipCode
@@ -247,6 +250,24 @@
 			 AND a.memberSeq = #{memberSeq}
 	</select>
 	<!--  상품 구매 E -->
+	<!--  장바구니 S-->
+	<insert id="basketInsert">
+		insert into basKets(
+		member_memberSeq
+		,basketDelNy
+		,productDetail_detailSeq
+		) values(
+		#{member_memberSeq}
+		,#{basketDelNy}
+		,#{productDetail_detailSeq}
+		)
+		<selectKey resultType="String" keyProperty="basketSeq" order="AFTER"> 
+			select last_insert_id()
+		</selectKey>
+	</insert>
+	<select id="basketList" resultMap="resultMapObj">
+	</select>
+	<!-- 장바구니 E -->
    <select id="cL" resultMap="resultMapObj">
     	select 
     		colorSeq

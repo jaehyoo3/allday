@@ -17,7 +17,29 @@ public class Base {
 	private String pseq;
 	private String tableName;
 	private Integer article;
-
+	private String memberSeq;
+	private String memberEmail;
+	private Integer memberMobile;
+	private Integer memberPoint;
+	private String addrSeq;
+	private Integer defaultNy;
+	private String  reciver;
+	private String zipcode;
+	private String addr1;
+	private String addr2;
+	
+	public String getAddr1() {
+		return addr1;
+	}
+	public void setAddr1(String addr1) {
+		this.addr1 = addr1;
+	}
+	public String getAddr2() {
+		return addr2;
+	}
+	public void setAddr2(String addr2) {
+		this.addr2 = addr2;
+	}
 	public Integer getArticle() {
 		return article;
 	}
@@ -102,4 +124,54 @@ public class Base {
 	public void setTableName(String tableName) {
 		this.tableName = tableName;
 	}
+	public String getMemberSeq() {
+		return memberSeq;
+	}
+	public void setMemberSeq(String memberSeq) {
+		this.memberSeq = memberSeq;
+	}
+	public String getMemberEmail() {
+		return memberEmail;
+	}
+	public void setMemberEmail(String memberEmail) {
+		this.memberEmail = memberEmail;
+	}
+	public Integer getMemberMobile() {
+		return memberMobile;
+	}
+	public void setMemberMobile(Integer memberMobile) {
+		this.memberMobile = memberMobile;
+	}
+	public Integer getMemberPoint() {
+		return memberPoint;
+	}
+	public void setMemberPoint(Integer memberPoint) {
+		this.memberPoint = memberPoint;
+	}
+	public String getAddrSeq() {
+		return addrSeq;
+	}
+	public void setAddrSeq(String addrSeq) {
+		this.addrSeq = addrSeq;
+	}
+	public Integer getDefaultNy() {
+		return defaultNy;
+	}
+	public void setDefaultNy(Integer defaultNy) {
+		this.defaultNy = defaultNy;
+	}
+	public String getReciver() {
+		return reciver;
+	}
+	public void setReciver(String reciver) {
+		this.reciver = reciver;
+	}
+	public String getZipcode() {
+		return zipcode;
+	}
+	public void setZipcode(String zipcode) {
+		this.zipcode = zipcode;
+	}
+	
+	
 }

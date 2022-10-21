@@ -5,24 +5,18 @@ import com.bluebee.modules.base.Base;
 
 
 public class Member extends Base {
-	private String memberSeq;
 	private String memberID;
 	private String memberPW;
 	private String memberNick;
 	private String memberDob;
 	private Integer memberGender;
-	private String memberEmail;
-	private Integer memberMobile;
 	private Integer memberDelNy;
 	private Integer memberAd;
 	private Integer memberGrade;
 	private Integer memberPoint;
 	private String memberName;
-	private String addrSeq;
-	private Integer defaultNy;
-	private String  reciver;
-	private String zipcode;
 	private String seq;
+	
 	// image	
 	public String getSeq() {
 		return seq;
@@ -30,30 +24,7 @@ public class Member extends Base {
 	public void setSeq(String seq) {
 		this.seq = seq;
 	}
-	public String getAddrSeq() {
-		return addrSeq;
-	}
-	public void setAddrSeq(String addrSeq) {
-		this.addrSeq = addrSeq;
-	}
-	public Integer getDefaultNy() {
-		return defaultNy;
-	}
-	public void setDefaultNy(Integer defaultNy) {
-		this.defaultNy = defaultNy;
-	}
-	public String getReciver() {
-		return reciver;
-	}
-	public void setReciver(String reciver) {
-		this.reciver = reciver;
-	}
-	public String getZipcode() {
-		return zipcode;
-	}
-	public void setZipcode(String zipcode) {
-		this.zipcode = zipcode;
-	}
+
 	public String getAddr1() {
 		return addr1;
 	}
@@ -90,12 +61,6 @@ public class Member extends Base {
 	public void setMemberName(String memberName) {
 		this.memberName = memberName;
 	}
-	public String getMemberSeq() {
-		return memberSeq;
-	}
-	public void setMemberSeq(String memberSeq) {
-		this.memberSeq = memberSeq;
-	}
 	public String getMemberID() {
 		return memberID;
 	}
@@ -125,18 +90,6 @@ public class Member extends Base {
 	}
 	public void setMemberGender(Integer memberGender) {
 		this.memberGender = memberGender;
-	}
-	public String getMemberEmail() {
-		return memberEmail;
-	}
-	public void setMemberEmail(String memberEmail) {
-		this.memberEmail = memberEmail;
-	}
-	public Integer getMemberMobile() {
-		return memberMobile;
-	}
-	public void setMemberMobile(Integer memberMobile) {
-		this.memberMobile = memberMobile;
 	}
 	public Integer getMemberDelNy() {
 		return memberDelNy;

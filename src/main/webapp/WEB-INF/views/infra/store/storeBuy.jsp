@@ -20,7 +20,7 @@
 			<%@include file="../../infra/includeV1/Menu.jsp"%>
 		<!-- navMenu e --> 
 		<input type="hidden" name="productSeq" value="<c:out value="${vo.productSeq}"/>">
-		<input type="hidden" name="memberSeq" value="<c:out value="${sessSeq}" />">
+		<input type="hidden" name="memberAddr_addrSeq" value="<c:out value="${item.addrSeq}" />">
 			<div id='content'>
 				<div class='buy'>
 					<h3>결제하기</h3>
@@ -122,25 +122,25 @@
 							 <div class="p-1"><button type="button" class="btn btn-secondary btn-sm">주소검색</button></div>
 						</div>
 						<div class="d-flex flex-row mb-2">
-							<div class="p-1"><input class="form-control" type="text" placeholder="수령인"> <c:out value="${item.reciver}" /></div>
-							<div class="p-1"><input class="form-control" type="text" placeholder="연락처"><c:out value="${item.memberMobile}" /></div>
+							<div class="p-1"><input class="form-control" type="text" placeholder="수령인" value="<c:out value="${item.reciver}" />"></div>
+							<div class="p-1"><input class="form-control" type="text" placeholder="연락처" value="<c:out value="${item.memberMobile}" />"></div>
 						</div>
 						<div class="d-flex flex-row align-self-center">
-							<div class="p-1"><input class="form-control" type="text" placeholder="우편번호"></div>
+							<div class="p-1"><input class="form-control" type="text" placeholder="우편번호" value="<c:out value="${item.zipcode}" />"></div>
 							<div class="p-1"><button type="button" class="btn btn-secondary btn-sm">주소찾기</button></div>
 						</div>
-						<div class="p-1"><input class="form-control" type="text" placeholder="주소"><c:out value="${item.addr1}" /></div>
-						<div class="p-1"><input class="form-control" type="text" placeholder="상세주소"><c:out value="${item.addr2}" /></div>
+						<div class="p-1"><input class="form-control" type="text" placeholder="주소" value="<c:out value="${item.addr1}" />"></div>
+						<div class="p-1"><input class="form-control" type="text" placeholder="상세주소" value="<c:out value="${item.addr2}" />"></div>
 <!-- 					<div class="p-1">
 							<input class="form-check-input mb-3" type="checkbox" value="" id="buyorder">
 							<label class="form-check-label" for="buyorder">배송지 목록에 추가</label>
 						</div> -->
 						<h5>배송메모</h5>
-						<select class="form-select mb-1">
+						<select class="form-select mb-1" name="orderMemo">
 						  <option selected>배송 메모를 선택 해주세요</option>
-						  <option value="1">1</option>
-						  <option value="2">2</option>
-						  <option value="3">3</option>
+						  <option value="1">배송 전에 미리 연락 바랍니다.</option>
+						  <option value="2">부재시 경비실에 맡겨주세요.</option>
+						  <option value="3">부재시 전화나 문자를 남겨주세요.</option>
 						</select>
 					</div>
 					<div class='a3'>

@@ -34,7 +34,7 @@ public class Store extends Base {
 	private Integer Score;
 	private String Content;
 	private Integer reviewDelNy;
-	private Date reviewRegDate;
+	private String reviewRegDate;
 	private Integer wishListDelNy;
 	private String wishSeq;
 	private String productDetail_detailSeq;
@@ -42,7 +42,28 @@ public class Store extends Base {
 	private Integer price;
 	private String memberAddr_addrSeq;
 	private Integer payment;
-
+	private Integer orderMemo;
+	private String basketSeq;
+	private String basketDelNy;
+		
+	public String getBasketSeq() {
+		return basketSeq;
+	}
+	public void setBasketSeq(String basketSeq) {
+		this.basketSeq = basketSeq;
+	}
+	public String getBasketDelNy() {
+		return basketDelNy;
+	}
+	public void setBasketDelNy(String basketDelNy) {
+		this.basketDelNy = basketDelNy;
+	}
+	public Integer getOrderMemo() {
+		return orderMemo;
+	}
+	public void setOrderMemo(Integer orderMemo) {
+		this.orderMemo = orderMemo;
+	}
 	public Integer getPayment() {
 		return payment;
 	}
@@ -115,10 +136,11 @@ public class Store extends Base {
 	public void setReviewDelNy(Integer reviewDelNy) {
 		this.reviewDelNy = reviewDelNy;
 	}
-	public Date getReviewRegDate() {
+
+	public String getReviewRegDate() {
 		return reviewRegDate;
 	}
-	public void setReviewRegDate(Date reviewRegDate) {
+	public void setReviewRegDate(String reviewRegDate) {
 		this.reviewRegDate = reviewRegDate;
 	}
 	public String getProduct_Seq() {
