@@ -15,7 +15,7 @@
 	</head>
 	
 	<body>
-		<form name="form" action="storeInst">
+		<form name="form" action="storeInst" method="post">
 		<!-- navMenu s  -->
 			<%@include file="../../infra/includeV1/Menu.jsp"%>
 		<!-- navMenu e --> 
@@ -150,11 +150,12 @@
 					</div>
 				</div>
 			</div>
-			<div id='footer'>
-				<div class='copyright'>© 2022. Bluebee all rights reserved.</div>
-			</div>
+			<!-- footer s  -->
+				<%@include file="../../infra/includeV1/footer.jsp"%>
+			<!-- footer e --> 
 		</form>
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-		<script src="https://kit.fontawesome.com/a1961b2393.js" crossorigin="anonymous"></script>
+		<!-- jsLink s  -->
+			<%@include file="../../infra/includeV1/jsLink.jsp"%>
+		<!-- jsLink e --> 
 	</body>
 </html>

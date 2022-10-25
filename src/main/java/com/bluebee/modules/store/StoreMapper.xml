@@ -291,7 +291,7 @@
 		member_memberSeq = #{member_memberSeq}
 		,basketDelNy = #{basketDelNy}
 		,productDetail_detailSeq = #{productDetail_detailSeq}
-		,basketNum = #{basketNum}	
+		,basketNum = #{basketNum}
 	</update>
 	
 	<select id="basketCheck" resultType="Integer">

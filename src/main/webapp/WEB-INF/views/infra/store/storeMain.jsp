@@ -13,7 +13,7 @@
 	</head>
 	
 	<body>
-		<form name='form'>
+		<form name='form' method="post">
 			<!-- navMenu s  -->
 				<%@include file="../../infra/includeV1/Menu.jsp"%>
 			<!-- navMenu e --> 
@@ -25,6 +25,9 @@
 				    </div>
 				    <div class="carousel-item">
 				      <img src="/resources/Images/img/bg2.jpg" class="d-block w-100">
+				    </div>
+				    <div class="carousel-item">
+				      <img src="/resources/Images/img/bg3.jpg" class="d-block w-100">
 				    </div>
 				  </div>
 				  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">

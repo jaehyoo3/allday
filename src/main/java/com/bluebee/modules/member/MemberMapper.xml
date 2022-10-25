@@ -156,6 +156,7 @@
 			,g.uuidName
 			,g.path
 			,g.idefaultNy
+			,sum(a.price) as total
 		from 
 			purChase_Product a
 		left join

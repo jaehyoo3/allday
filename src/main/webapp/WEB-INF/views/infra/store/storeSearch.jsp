@@ -13,7 +13,7 @@
 	</head>
 	
 	<body>
-		<form name="form">
+		<form name="form" method="post">
 			<div id='header'>
 				<div class='menu'>
 					<ul class='ul'>

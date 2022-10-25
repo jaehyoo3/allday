@@ -1,4 +1,4 @@
-	<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -15,7 +15,7 @@
 	</head>
 	
 	<body>
-		<form name="form">
+		<form name="form" method="post">
 			<!-- navMenu s  -->
 				<%@include file="../../infra/includeV1/Menu.jsp"%>
 			<!-- navMenu e --> 
@@ -27,7 +27,7 @@
 			<input type="hidden" name="productSeq" id="productSeq" value="<c:out value="${item.productSeq}"/>">
 			<input type="hidden" name="productName" id="productName" value="<c:out value="${item.productName}"/>">
 		
-			<p>Home > Top</p>
+			<p>Home</p>
 				<div class="productimg">
 					<c:forEach items="${mainImgList}" var="list" varStatus="status">
 							<c:if test="${list.idefaultNy eq 1}">
@@ -89,7 +89,6 @@
 						</div>
 					</div>
 					</div>
-					<input type="text" id="basketNum" name="basketNum" value="1">
 				</div>
 			</div>
 			<div id='information'>
@@ -239,7 +238,8 @@
 			<%@include file="../../infra/includeV1/jsLink.jsp"%>
 		<!-- jsLink e --> 
 		<script type="text/javascript">
-		
+			
+			
 			$("#reviewInst").on("click", function(){
 	 			$.ajax({
 					type: "post"
@@ -255,38 +255,37 @@
 					}
 				}); 
 			});
-			
-/* 			$("#basketBtn").on("click", function(){
-				var bkNum = $("input[name='basketNum']").val();
+			var bkNum = 1;
+ 			$("#basketBtn").on("click", function(){
 	 			$.ajax({
-					async: true 
+					async: false 
 					,cache: false
 					,type: "post"
 					,url: "/basketProc"
-					,data: {"member_memberSeq" : $("#memberSeq").val(), "productDetail_detailSeq" : $("#detailSeq").val(), "basketDelNy" : 0, "basketNum" : bkNum} 
+					,data: {"member_memberSeq" : $("#memberSeq").val(), 
+						"productDetail_detailSeq" : $("#detailSeq").val(), 
+						"basketDelNy" : 0, 
+						"basketNum" : bkNum} 
 					,success: function(response) {
+						console.log(response);
 						if(response.rt == "success") {
-							alert("장바구니에 추가되었습니다.")
+							alert("추가완료")
 						} else {
-							 if(confirm("이미 같은 상품이 장바구니에 존재합니다. 수량을 추가하시겠습니까 ?")) {
-								 bkNum =+ 1;
+/* 							 if(confirm("이미 같은 상품이 장바구니에 존재합니다. 수량을 추가하시겠습니까 ?")) {
+								 var bkNum = bkNum + 1;
 								 alert("추가하였습니다")
+								 $(".data").
 							 } else {
 							 	alert('아니오를 누르셨습니다');
-							 }
+							 } */
+							 alert("이미 같은 상품이 존재함")
 							}
 					}
 					,error : function(jqXHR, textStatus, errorThrown){
 						alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
 					}
 				}); 
-			}); */
-			$("#basketBtn").on("click", function() {
-				var bkNum = 0;
-				bkNum = bkNum + $("input[name='basketNum']").val();
-				alert(bkNum)
-								
-			});
+			}); 
 		function reloadDivArea() {
 		    $('#review').load(location.href + ' #review');
 		}
