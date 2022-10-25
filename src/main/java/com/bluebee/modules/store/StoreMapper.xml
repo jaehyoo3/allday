@@ -274,17 +274,34 @@
 		member_memberSeq
 		,basketDelNy
 		,productDetail_detailSeq
+		,basketNum
 		) values(
 		#{member_memberSeq}
 		,#{basketDelNy}
 		,#{productDetail_detailSeq}
+		,#{basketNum}
 		)
 		<selectKey resultType="String" keyProperty="basketSeq" order="AFTER"> 
 			select last_insert_id()
 		</selectKey>
 	</insert>
+	<update id="basketUpdt">
+		update basKets
+		set
+		member_memberSeq = #{member_memberSeq}
+		,basketDelNy = #{basketDelNy}
+		,productDetail_detailSeq = #{productDetail_detailSeq}
+		,basketNum = #{basketNum}	
+	</update>
 	
-	<select id="basketList" resultMap="resultMapObj">
+	<select id="basketCheck" resultType="Integer">
+		select
+			COUNT(*)
+		from
+			basKets
+		where 1=1
+		and member_memberSeq = #{member_memberSeq}
+		and productDetail_detailSeq = #{productDetail_detailSeq}
 	</select>
 	<!-- 장바구니 E -->
    <select id="cL" resultMap="resultMapObj">

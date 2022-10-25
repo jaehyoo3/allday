@@ -36,6 +36,7 @@ public class MemberDao {
 	public int insertUploaded(Member dto) { return sqlSession.insert("Base" + ".insertUploaded", dto); }
 	
 	public List<Member> orderList(MemberVo vo){ return sqlSession.selectList(namespace + ".orderList", vo); }
+	public List<Member> basketList(MemberVo vo) { return sqlSession.selectList(namespace+".basketList", vo); }
 	
 
 }

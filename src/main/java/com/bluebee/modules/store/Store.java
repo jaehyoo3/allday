@@ -2,9 +2,6 @@ package com.bluebee.modules.store;
 import com.bluebee.modules.base.Base;
 
 public class Store extends Base {
-
-	private Integer productType;
-
 	private Integer productBest;
 	private Integer productNew;
 	private String productRegDate;
@@ -40,7 +37,8 @@ public class Store extends Base {
 	private Integer orderMemo;
 	private String basketSeq;
 	private String basketDelNy;
-		
+
+	
 	public String getBasketSeq() {
 		return basketSeq;
 	}
@@ -221,13 +219,6 @@ public class Store extends Base {
 	public void setProductNew(Integer productNew) {
 		this.productNew = productNew;
 	}
-	public Integer getProductType() {
-		return productType;
-	}
-	public void setProductType(Integer productType) {
-		this.productType = productType;
-	}
-
 	public String getProductRegDate() {
 		return productRegDate;
 	}

@@ -190,10 +190,6 @@ public class StoreController {
 		public String MemberUpdate() {
 			return "infra/store/memberUpdate";
 		}
-		@RequestMapping(value = "basket")
-		public String MemberBasket() {
-			return "infra/store/memberBasket";
-		}
 		@RequestMapping(value = "find")
 		public String MemberFind() {
 			return "infra/store/memberFind";
@@ -220,8 +216,15 @@ public class StoreController {
 		@RequestMapping(value = "/basketProc")
 		public Map<String, Object> basketProc(Store dto, HttpSession httpSession) throws Exception {
 			Map<String, Object> returnMap = new HashMap<String, Object>();
+			
+			int ckBasket = service.basketCheck(dto);
+			if(ckBasket == 1) {
+				service.basketUpdt(dto);
+				returnMap.put("rt", "fail");
+			} else {
 				service.basketInsert(dto);
 				returnMap.put("rt", "success");
+			}
 			return returnMap;
 		}
 		

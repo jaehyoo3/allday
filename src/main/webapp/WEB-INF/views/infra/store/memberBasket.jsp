@@ -14,10 +14,11 @@
 		<link href="/resources/Images/memberBasketCss.css" rel="stylesheet">
 	</head>
 	<body>
-		<form>
+		<form name="form">
 				<!-- navMenu s  -->
 				<%@include file="../../infra/includeV1/Menu.jsp"%>
-			<!-- navMenu e --> 
+			<!-- navMenu e -->
+			<input type="hidden" name="memberSeq" value="${sessSeq }" />"> 
 			<div id='content'>
 				<h4>장바구니</h4><br>
 				<table style="width:100%">
@@ -31,19 +32,22 @@
 						</tr>
 					</thead>
 					<tbody>
+					<c:forEach items="${list}" var="list" varStatus="status">
 						<tr>
 							<td><input type="checkbox"></td>
 							<td>
-								<div class='left'><img src='/resources/Images/img/knit.jpg' style="width:50%;"></div>
-								<div class='right'><p>이비자 코스트 시트론 레트로 네츄럴 메쉬 니트 | TOP</p>
-								<div class='option'>Green / Midium - 95</div></div>
+								<div class='left'><c:if test="${list.idefaultNy eq 1}">
+											<img src='<c:out value="${list.path}"/><c:out value="${list.uuidName}"/>' style="width:50%;">
+										</c:if></div>
+								<div class='right'><p><c:out value="${list.productName }" /> | <c:out value="${list.productType }"/></p>
+								<div class='option'><c:out value="${list.colorName }"/> / <c:out value="${list.sizeName }"/></div></div>
 							</td>
 							<td>
-								<p>1</p>
+								<p><c:out value="${list.basketNum }"/></p>
 								<button class='btn text-black btn-sm btn-outline-dark' style='background-color:white;'>옵션/수량변경</button>
 							</td>
 							<td>
-								<p class='bold'>￦49,000</p>
+								<p class='bold'>￦<c:out value="${list.productPrice }"/></p>
 									<button class='btn text-white fw-bold btn-sm' style='background-color:rgb(44, 62, 80);'>바로구매</button>
 							</td>
 							<td>
@@ -51,7 +55,8 @@
 								<p>택배</p>
 							</td>
 						</tr>
-						<tr>
+						</c:forEach>
+<!-- 						<tr>
 							<td><input type="checkbox"></td>
 							<td>
 								<div class='left'><img src='/resources/Images/img/knit.jpg' style="width:50%;"></div>
@@ -70,7 +75,7 @@
 								<p class='bold'>무료</p>
 								<p>택배</p>
 							</td>
-						</tr>
+						</tr> -->
 					</tbody>
 				</table>
 				<button class='btn text-black btn-sm btn-outline-dark' style='background-color:white;'>선택상품 삭제</button>
@@ -95,12 +100,16 @@
 					<button class='btn w-50 text-white fw-bold' style='background-color:rgb(44, 62, 80);'>주문하기</button>
 				</div>
 				</div>
-			<div id='footer'>
-				<div class='copyright'>© 2022. Bluebee all rights reserved.</div>
-			</div>
-
+			<!-- footer s  -->
+				<%@include file="../../infra/includeV1/footer.jsp"%>
+			<!-- footer e --> 
 		</form>
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-		<script src="https://kit.fontawesome.com/a1961b2393.js" crossorigin="anonymous"></script>
+		<!-- jsLink s  -->
+			<%@include file="../../infra/includeV1/jsLink.jsp"%>
+		<!-- jsLink e --> 
+		<script>
+				var form = $("form[name=form]");
+			var seq = $("input:hidden[name=memberSeq]");
+		</script>
 	</body>
 </html>

@@ -35,7 +35,25 @@ public class Base {
 	private String productName;
 	private Integer productPrice;
 	private String sizeName;
+	private Integer productType;
 	
+	
+	/* 장바구니 */
+	private Integer basketNum;
+	
+	public Integer getProductType() {
+		return productType;
+	}
+	public void setProductType(Integer productType) {
+		this.productType = productType;
+	}
+
+	public Integer getBasketNum() {
+		return basketNum;
+	}
+	public void setBasketNum(Integer basketNum) {
+		this.basketNum = basketNum;
+	}
 	public String getSizeName() {
 		return sizeName;
 	}

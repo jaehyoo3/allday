@@ -112,6 +112,12 @@ public class MemberServiceImpl implements MemberService {
 		return dao.orderList(vo);
 	}
 
+	@Override
+	public List<Member> basketList(MemberVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.basketList(vo);
+	}
+
 
 
 }

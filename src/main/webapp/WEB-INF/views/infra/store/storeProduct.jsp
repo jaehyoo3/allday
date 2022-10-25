@@ -89,6 +89,7 @@
 						</div>
 					</div>
 					</div>
+					<input type="text" id="basketNum" name="basketNum" value="1">
 				</div>
 			</div>
 			<div id='information'>
@@ -255,23 +256,36 @@
 				}); 
 			});
 			
-			$("#basketBtn").on("click", function(){
+/* 			$("#basketBtn").on("click", function(){
+				var bkNum = $("input[name='basketNum']").val();
 	 			$.ajax({
-					type: "post"
+					async: true 
+					,cache: false
+					,type: "post"
 					,url: "/basketProc"
-					,data: {"member_memberSeq" : $("#memberSeq").val(), "productDetail_detailSeq" : $("#detailSeq").val(), "basketDelNy" : 0} 
+					,data: {"member_memberSeq" : $("#memberSeq").val(), "productDetail_detailSeq" : $("#detailSeq").val(), "basketDelNy" : 0, "basketNum" : bkNum} 
 					,success: function(response) {
-						alert("장바구니에 추가되었습니다.");
-				        if (!confirm("장바구니로 가기")) {
-				        } else {
-				        	location.replace('/basket');
-				        }
-
+						if(response.rt == "success") {
+							alert("장바구니에 추가되었습니다.")
+						} else {
+							 if(confirm("이미 같은 상품이 장바구니에 존재합니다. 수량을 추가하시겠습니까 ?")) {
+								 bkNum =+ 1;
+								 alert("추가하였습니다")
+							 } else {
+							 	alert('아니오를 누르셨습니다');
+							 }
+							}
 					}
 					,error : function(jqXHR, textStatus, errorThrown){
 						alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
 					}
 				}); 
+			}); */
+			$("#basketBtn").on("click", function() {
+				var bkNum = 0;
+				bkNum = bkNum + $("input[name='basketNum']").val();
+				alert(bkNum)
+								
 			});
 		function reloadDivArea() {
 		    $('#review').load(location.href + ' #review');

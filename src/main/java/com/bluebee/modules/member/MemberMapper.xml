@@ -188,6 +188,43 @@
 	</select>
 	<!-- 주문조회 e -->
 	<!-- 장바구니 s -->
+	<select id="basketList" resultMap="resultMapObj">
+	select
+		c.productName
+		,c.productType
+		,d.colorName
+		,e.sizeName
+		,a.basketNum
+		,c.productPrice
+		,f.path
+		,f.uuidName
+		,f.idefaultNy
+	from
+		basKets a
+	left join
+		productDetail b
+	on
+		a.productDetail_detailSeq = b.detailSeq
+	left join
+		product c
+	on
+		c.productSeq = b.product_Seq
+	left join
+		Color d
+	on
+		b.color_colorSeq = d.colorSeq
+	left join
+		Size e
+	on
+		b.size_size = e.Size
+	left join
+		productUploaded f
+	on
+		c.productSeq = f.pseq
+	where
+		1=1
+		and a.member_memberSeq = #{memberSeq}
+	</select>
 	<!-- 장바구니 e -->
 	<select id="selectOne" resultMap="resultMapObj">
 		SELECT

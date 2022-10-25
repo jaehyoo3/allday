@@ -25,5 +25,7 @@ public interface StoreService {
 	
 	public int basketInsert(Store dto) throws Exception;
 	public Store detailList(StoreVo vo) throws Exception;
+	public int basketCheck(Store dto) throws Exception;
+	public int basketUpdt(Store dto) throws Exception;
 	
 }

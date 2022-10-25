@@ -198,4 +198,11 @@ public class MemberController {
 		
 		return "infra/store/memberMod";
 	}
+	@RequestMapping(value = "basket")
+	public String MemberBasket(Model model, MemberVo vo) throws Exception {
+		List<Member> list = service.basketList(vo);
+		model.addAttribute("list", list);
+		
+		return "infra/store/memberBasket";
+	}
 }

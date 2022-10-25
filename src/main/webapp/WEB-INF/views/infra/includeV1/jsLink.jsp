@@ -36,10 +36,15 @@
 			});
 			
 			var goOrderList = "/modify";
+			var goBasketList = "/basket";
 	    	    
 			goForm2 = function(keyValue) {
 		    	seq.val(keyValue);
 				form.attr("action", goOrderList).submit();
+			}
+			goForm3 = function(keyValue) {
+		    	seq.val(keyValue);
+				form.attr("action", goBasketList).submit();
 			}
 
 		</script>
