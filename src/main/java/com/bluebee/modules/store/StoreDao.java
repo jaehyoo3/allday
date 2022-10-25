@@ -27,8 +27,8 @@ public class StoreDao {
 	public List<Store> sL(StoreVo vo){ return sqlSession.selectList(namespace + ".sL", vo); }
 
 
-	  public List<Store> reviewList(StoreVo vo){ return sqlSession.selectList(namespace + ".reviewList", vo); }
-	  public int reviewInsert(Store dto) { return sqlSession.insert(namespace +".reviewInsert", dto); }
+	public List<Store> reviewList(StoreVo vo){ return sqlSession.selectList(namespace + ".reviewList", vo); }
+	public int reviewInsert(Store dto) { return sqlSession.insert(namespace +".reviewInsert", dto); }
 	 
 	public int wish(Store dto) { return sqlSession.insert(namespace +".wish", dto); }
 
@@ -38,5 +38,8 @@ public class StoreDao {
 	public List<Store> productSize(StoreVo vo){ return sqlSession.selectList(namespace + ".productSize", vo); }
 	public int buyOrder(Store dto) { return sqlSession.insert(namespace+".buyOrder", dto); }
 	public Store buyOneList(StoreVo vo) { return sqlSession.selectOne(namespace+".buyOneList", vo); }
+	
+	public int basketInsert(Store dto) { return sqlSession.insert(namespace+".basketInsert", dto); }
+	public Store detailList(StoreVo vo) { return sqlSession.selectOne(namespace+".detailList", vo); }
 	
 }

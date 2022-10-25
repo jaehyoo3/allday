@@ -43,7 +43,8 @@
 			} #content {
 				width: 100%;
 				background-color: rgba(243, 243, 243);
-				height: 1000px;
+				min-height: 1000px;
+				height: 100%;
 			}  .modify{
 				width: 80%;
 				margin:auto;
@@ -111,8 +112,10 @@
 				background-color:white;
 				margin: auto;
 				padding: 20px;
+				margin-bottom: 10px;
 			} .storeorder .storeimg {
 				width: 20%;
+				height: 30%;
 				float:left;
 			} .storeimg img {
 				width: 60%;

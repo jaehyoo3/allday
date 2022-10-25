@@ -1,13 +1,10 @@
 package com.bluebee.modules.store;
-import java.util.Date;
-
 import com.bluebee.modules.base.Base;
 
 public class Store extends Base {
-	private String productSeq;
-	private String productName;
+
 	private Integer productType;
-	private Integer productPrice;
+
 	private Integer productBest;
 	private Integer productNew;
 	private String productRegDate;
@@ -18,10 +15,8 @@ public class Store extends Base {
 	private Integer color_colorseq;
 	private Integer size_size;
 	private Integer num;
-	private String detailSeq;
-	private String colorName;
 	private Integer colorSeq;
-	private String sizeName;
+
 	private String informationType;
 	private String informationColor;
 	private String informationSize;
@@ -208,18 +203,6 @@ public class Store extends Base {
 	public void setProductDelNy(Integer productDelNy) {
 		this.productDelNy = productDelNy;
 	}
-	public String getSizeName() {
-		return sizeName;
-	}
-	public void setSizeName(String sizeName) {
-		this.sizeName = sizeName;
-	}
-	public String getColorName() {
-		return colorName;
-	}
-	public void setColorName(String colorName) {
-		this.colorName = colorName;
-	}
 	public Integer getColorSeq() {
 		return colorSeq;
 	}
@@ -238,30 +221,13 @@ public class Store extends Base {
 	public void setProductNew(Integer productNew) {
 		this.productNew = productNew;
 	}
-	public String getProductSeq() {
-		return productSeq;
-	}
-	public void setProductSeq(String productSeq) {
-		this.productSeq = productSeq;
-	}
-	public String getProductName() {
-		return productName;
-	}
-	public void setProductName(String productName) {
-		this.productName = productName;
-	}
 	public Integer getProductType() {
 		return productType;
 	}
 	public void setProductType(Integer productType) {
 		this.productType = productType;
 	}
-	public Integer getProductPrice() {
-		return productPrice;
-	}
-	public void setProductPrice(Integer productPrice) {
-		this.productPrice = productPrice;
-	}
+
 	public String getProductRegDate() {
 		return productRegDate;
 	}
@@ -273,12 +239,6 @@ public class Store extends Base {
 	}
 	public void setProductModDate(String productModDate) {
 		this.productModDate = productModDate;
-	}
-	public String getDetailSeq() {
-		return detailSeq;
-	}
-	public void setDetailSeq(String detailSeq) {
-		this.detailSeq = detailSeq;
 	}
 	public Integer[] getColor_colorseqarr() {
 		return color_colorseqarr;

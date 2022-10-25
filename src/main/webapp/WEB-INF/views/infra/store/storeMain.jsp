@@ -13,7 +13,7 @@
 	</head>
 	
 	<body>
-		<form name='form' method="post">
+		<form name='form'>
 			<!-- navMenu s  -->
 				<%@include file="../../infra/includeV1/Menu.jsp"%>
 			<!-- navMenu e --> 
@@ -153,6 +153,10 @@
 		<!-- jsLink s  -->
 			<%@include file="../../infra/includeV1/jsLink.jsp"%>
 		<!-- jsLink e --> 
+		<script>
+		var form = $("form[name=form]");
+		var seq = $("input:hidden[name=memberSeq]");
+		</script>
 	
 	</body>
 </html>

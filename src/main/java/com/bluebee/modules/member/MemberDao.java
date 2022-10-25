@@ -34,5 +34,8 @@ public class MemberDao {
 	public Member selectOneLogin(Member dto) { return sqlSession.selectOne(namespace+".selectOneLogin", dto); }
 	
 	public int insertUploaded(Member dto) { return sqlSession.insert("Base" + ".insertUploaded", dto); }
+	
+	public List<Member> orderList(MemberVo vo){ return sqlSession.selectList(namespace + ".orderList", vo); }
+	
 
 }

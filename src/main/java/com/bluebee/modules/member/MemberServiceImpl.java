@@ -106,6 +106,12 @@ public class MemberServiceImpl implements MemberService {
 		return dao.selectOnePwCheck(dto);
 	}
 
+	@Override
+	public List<Member> orderList(MemberVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.orderList(vo);
+	}
+
 
 
 }

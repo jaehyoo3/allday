@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.bluebee.modules.member.MemberVo;
+
 @Controller
 public class StoreController {
 	@Autowired
@@ -75,7 +77,7 @@ public class StoreController {
 		}
 	/*  User  */
 		@RequestMapping(value = "/main")
-		public String StoreMain(Model model, StoreVo vo) throws Exception {
+		public String StoreMain(@ModelAttribute("vo") StoreVo vo, Model model) throws Exception {
 			List<Store> list = service.selectList(vo);
 			model.addAttribute("list", list);
 			
@@ -154,20 +156,6 @@ public class StoreController {
 			
 			return "infra/store/storeProduct";
 		}
-		
-		/*
-		 * @RequestMapping(value = "reviewInst") public String reviewInst(Store dto)
-		 * throws Exception { service.reviewInsert(dto);
-		 * 
-		 * return "redirect:/productView?&ProductSeq=" + dto.getProduct_Seq(); }
-		 */
-		 
-		
-		/*
-		 * @RequestMapping(value = "wishInst") public String WishInst(Store dto) throws
-		 * Exception { service.wish(dto); return "redirect:/productView?&ProductSeq=" +
-		 * dto.getProduct_Seq(); }
-		 */
 		@RequestMapping(value = "product")
 		public String Product() {
 			return "infra/store/storeProduct";
@@ -178,6 +166,9 @@ public class StoreController {
 			
 			Store item = service.buyOneList(vo);
 			model.addAttribute("item", item);
+			
+			Store detail = service.detailList(vo);
+			model.addAttribute("detail",detail);
 			
 			return "infra/store/storeBuy";
 		}
@@ -190,10 +181,7 @@ public class StoreController {
 		public String StoreBuySuccess() {
 			return "infra/store/storeBuysuccess";
 		}
-		@RequestMapping(value = "modify")
-		public String MemberModify() {
-			return "infra/store/memberMod";
-		}
+
 		@RequestMapping(value = "wish")
 		public String MemberWish() {
 			return "infra/store/memberWish";
@@ -224,6 +212,15 @@ public class StoreController {
 		public Map<String, Object> reviewProc(Store dto, HttpSession httpSession) throws Exception {
 			Map<String, Object> returnMap = new HashMap<String, Object>();
 				service.reviewInsert(dto);
+				returnMap.put("rt", "success");
+			return returnMap;
+		}
+		
+		@ResponseBody
+		@RequestMapping(value = "/basketProc")
+		public Map<String, Object> basketProc(Store dto, HttpSession httpSession) throws Exception {
+			Map<String, Object> returnMap = new HashMap<String, Object>();
+				service.basketInsert(dto);
 				returnMap.put("rt", "success");
 			return returnMap;
 		}

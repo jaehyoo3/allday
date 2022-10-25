@@ -14,7 +14,7 @@
 		<link href="/resources/Images/memberMod.css" rel="stylesheet">
 	</head>
 	<body>
-		<form name="form" method="post">
+		<form name="form">
 			<!-- navMenu s  -->
 				<%@include file="../../infra/includeV1/Menu.jsp"%>
 			<!-- navMenu e --> 
@@ -39,29 +39,35 @@
 						</div>
 						<div class='listt'>
 							<h6>주문조회</h6>
-							<div class='storeorder'>
-							<a href='#'>
-								<div class='storeimg'><img src='/resources/Images/img/knit.jpg'> </div>
-								<div class='storeinfor'>
-									<span class='title'>LOGO TEE | TOP</span><br>
-									<span class='option'>01. RED</span><br>
-									<span class='price'>￦29,000</span>
+							<c:forEach items="${list}" var="list" varStatus="status">
+								<div class='storeorder'>
+								<a href='#'>
+									<div class='storeimg'>
+										<c:if test="${list.idefaultNy eq 1}">
+											<img src='<c:out value="${list.path}"/><c:out value="${list.uuidName}"/>'>
+										</c:if>
+									</div>
+									<div class='storeinfor'>
+										<span class='title'><c:out value="${list.productName}" /></span><br>
+										<span class='option'><c:out value="${list.colorName}" /> | <c:out value="${list.sizeName}" /></span><br>
+										<span class='price'>￦<c:out value="${list.price}" /></span>
+									</div>
+									<div class='situation'>
+									입금대기</div>
+									</a>
 								</div>
-								<div class='situation'>
-								입금대기</div>
-							</div>
-							</a>
+							</c:forEach>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div id='footer'>
-				<div class='copyright'>© 2022. Bluebee all rights reserved.</div>
-			</div>
+			<!-- footer s  -->
+				<%@include file="../../infra/includeV1/footer.jsp"%>
+			<!-- footer e --> 
 		</form>
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-		<script src="https://kit.fontawesome.com/a1961b2393.js" crossorigin="anonymous"></script>
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<!-- jsLink s  -->
+			<%@include file="../../infra/includeV1/jsLink.jsp"%>
+		<!-- jsLink e --> 
 		
 		<script type="text/javascript">
 		var goUrlView = "/memberView";

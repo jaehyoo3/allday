@@ -25,6 +25,7 @@
 			<c:set var="listCodeType" value="${XdminCodeServiceImpl.selectListCachedCode('9')}"/>
 			<input type="hidden" id="memberSeq" name="memberSeq" value="<c:out value="${sessSeq}" />">
 			<input type="hidden" name="productSeq" id="productSeq" value="<c:out value="${item.productSeq}"/>">
+			<input type="hidden" name="productName" id="productName" value="<c:out value="${item.productName}"/>">
 		
 			<p>Home > Top</p>
 				<div class="productimg">
@@ -37,7 +38,8 @@
 					</c:forEach>
 				</div>
 				<div class="productbuy">
-					<div class='title'><c:out value="${item.productName }"/> | 
+					<div class='title'>
+					<c:out value="${item.productName }"/> | 
 						<c:forEach items="${listCodeType}" var="listCode" varStatus="statusGender">
 							<c:if test="${item.productType eq listCode.codeOrder}">
 								<c:out value="${listCode.codeName}"/>
@@ -64,7 +66,7 @@
 				    </select>
 				    
 				    <c:forEach items="${ColorList}" var="list" varStatus="status">
-					    <select class="size form-select"  onchange="showValue(this)" id="<c:out value="${list.colorSeq}" />">
+					    <select class="size form-select" onchange="showValue(this)" id="<c:out value="${list.colorSeq}" />">
 					    <option>사이즈를 선택해주세요</option>
 				    		<c:forEach items="${SizeList}" var="SizeList" varStatus="Status">
 				    			<c:if test="${list.colorSeq eq SizeList.color_colorseq}">
@@ -74,13 +76,13 @@
 					    </select>
 					</c:forEach>
 					<br>
-					<input type='hidden' id='qwer' name="size">
+					<input type='hidden' id="detailSeq" name="detailSeq">
 					<div class="row">
 				 		<div class="col">
 							<button type="button" id="productBuy" class="btn text-white fw-bold col-12" style="background-color:#2c3e50; height: 50px;">구매하기</button>
 						</div>
 						<div class="col">
-							<button type="button" class="btn btn-outline-dark fw-bold col-12" style="height: 50px;">장바구니</button>
+							<button type="button" id="basketBtn" class="btn btn-outline-dark fw-bold col-12" style="height: 50px;">장바구니</button>
 						</div>
 						<div class="col">
 							<button type="button" class="btn btn-outline-dark fw-bold col-12" style="height: 50px;" id="wishInst" <c:if test="${item.wishListDelNy eq 1}">disabled </c:if>><c:out value="${fn:length(count)}" /> ♡</button>
@@ -252,6 +254,25 @@
 					}
 				}); 
 			});
+			
+			$("#basketBtn").on("click", function(){
+	 			$.ajax({
+					type: "post"
+					,url: "/basketProc"
+					,data: {"member_memberSeq" : $("#memberSeq").val(), "productDetail_detailSeq" : $("#detailSeq").val(), "basketDelNy" : 0} 
+					,success: function(response) {
+						alert("장바구니에 추가되었습니다.");
+				        if (!confirm("장바구니로 가기")) {
+				        } else {
+				        	location.replace('/basket');
+				        }
+
+					}
+					,error : function(jqXHR, textStatus, errorThrown){
+						alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+					}
+				}); 
+			});
 		function reloadDivArea() {
 		    $('#review').load(location.href + ' #review');
 		}
@@ -305,7 +326,7 @@
 		const showValue = (target) => {
 			  const value = target.value;
 			  
-			  document.getElementById("qwer").value = value;
+			  document.getElementById("detailSeq").value = value;
 			}
 		</script>
 	</body>

@@ -127,6 +127,19 @@ public class StoreServiceImpl implements StoreService {
 		return dao.buyOneList(vo);
 	}
 
+	@Override
+	public Store detailList(StoreVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.detailList(vo);
+	}
+
+	@Override
+	public int basketInsert(Store dto) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.basketInsert(dto);
+	}
+
+	
 	
 	
 	

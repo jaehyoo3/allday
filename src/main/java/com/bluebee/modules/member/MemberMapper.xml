@@ -145,9 +145,50 @@
 		<selectKey resultType="String" keyProperty="addrSeq" order="AFTER"> 
 			select last_insert_id()
 		</selectKey>
-
 	</insert>
-	
+	<!-- 주문조회 -->
+	<select id="orderList" resultMap="resultMapObj">
+		select
+			a.price
+			,c.colorName
+			,d.sizeName
+			,f.productName
+			,g.uuidName
+			,g.path
+			,g.idefaultNy
+		from 
+			purChase_Product a
+		left join
+			productDetail b
+		ON
+			a.productDetail_detailSeq = b.detailSeq
+		left join
+			Color c
+		ON
+			b.color_colorSeq = c.colorSeq
+		left join
+			Size d
+		ON
+			b.size_size = d.Size
+		left join
+			memberAddr e
+		On
+			a.memberAddr_addrSeq = e.addrSeq
+		left Join
+			product f
+		On
+			b.product_Seq =  f.productSeq
+		left join
+			productUploaded g
+		on
+			f.productSeq = g.pseq
+		where 
+			1=1
+			and e.memberSeq = #{memberSeq}
+	</select>
+	<!-- 주문조회 e -->
+	<!-- 장바구니 s -->
+	<!-- 장바구니 e -->
 	<select id="selectOne" resultMap="resultMapObj">
 		SELECT
 			a.*

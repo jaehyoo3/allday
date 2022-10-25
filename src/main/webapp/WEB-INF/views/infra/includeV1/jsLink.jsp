@@ -7,7 +7,7 @@
 		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 		
-		<script>
+		<script type="text/javascript">
 			$("#btnLogout").on("click", function(){
 				$.ajax({
 					async: true 
@@ -34,5 +34,12 @@
 			$("#btnSearch").on("click", function() {
 				 form.attr("action", goUrlList).submit();
 			});
+			
+			var goOrderList = "/modify";
+	    	    
+			goForm2 = function(keyValue) {
+		    	seq.val(keyValue);
+				form.attr("action", goOrderList).submit();
+			}
 
 		</script>

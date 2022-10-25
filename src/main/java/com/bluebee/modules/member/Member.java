@@ -16,7 +16,15 @@ public class Member extends Base {
 	private Integer memberPoint;
 	private String memberName;
 	private String seq;
+	private Integer price;
 	
+	
+	public Integer getPrice() {
+		return price;
+	}
+	public void setPrice(Integer price) {
+		this.price = price;
+	}
 	// image	
 	public String getSeq() {
 		return seq;

@@ -249,7 +249,25 @@
 		WHERE 1=1
 			 AND a.memberSeq = #{memberSeq}
 	</select>
+	<select id="detailList" resultMap="resultMapObj">
+		select
+			b.colorName
+			,c.SizeName
+		from 
+			productDetail a
+		left join
+			Color b
+		ON
+			a.color_colorSeq = b.colorSeq
+		left join
+			Size c
+		ON
+			a.size_size = c.Size
+		where 1=1
+			and detailSeq = #{detailSeq}
+	</select>
 	<!--  상품 구매 E -->
+	
 	<!--  장바구니 S-->
 	<insert id="basketInsert">
 		insert into basKets(
@@ -265,6 +283,7 @@
 			select last_insert_id()
 		</selectKey>
 	</insert>
+	
 	<select id="basketList" resultMap="resultMapObj">
 	</select>
 	<!-- 장바구니 E -->

@@ -28,6 +28,50 @@ public class Base {
 	private String addr1;
 	private String addr2;
 	
+	/* 상품 */
+	private String detailSeq;
+	private String colorName;
+	private String productSeq;
+	private String productName;
+	private Integer productPrice;
+	private String sizeName;
+	
+	public String getSizeName() {
+		return sizeName;
+	}
+	public void setSizeName(String sizeName) {
+		this.sizeName = sizeName;
+	}
+	public String getDetailSeq() {
+		return detailSeq;
+	}
+	public void setDetailSeq(String detailSeq) {
+		this.detailSeq = detailSeq;
+	}
+	public String getColorName() {
+		return colorName;
+	}
+	public void setColorName(String colorName) {
+		this.colorName = colorName;
+	}
+	public String getProductSeq() {
+		return productSeq;
+	}
+	public void setProductSeq(String productSeq) {
+		this.productSeq = productSeq;
+	}
+	public String getProductName() {
+		return productName;
+	}
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+	public Integer getProductPrice() {
+		return productPrice;
+	}
+	public void setProductPrice(Integer productPrice) {
+		this.productPrice = productPrice;
+	}
 	public String getAddr1() {
 		return addr1;
 	}

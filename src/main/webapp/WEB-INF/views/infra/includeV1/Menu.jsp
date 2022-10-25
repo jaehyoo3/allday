@@ -3,6 +3,7 @@
 				<select class='form-select' id="shType" name="shType" style="display:none;">
 					<option value="0" <c:if test="${vo.shType eq 0}">selected</c:if>>All</option>
 				</select>
+				<input type="hidden" name="memberSeq" value="<c:out value="${sessSeq }" />">
 				<div class='menu'>
 					<ul class='ul'>
 						<li class='b'>
@@ -24,7 +25,7 @@
 							<c:otherwise>
 								<li class='b'><div class="vr"></li>
 								<li class='b'><a href="basket" onClick="location.href='basket'"><i class="fa-solid fa-bag-shopping"></i></a></li>
-								<li class='b'><a href="modify"><i class="fa-solid fa-user"></i></a></li>
+								<li class='b'><a href="javascript:goForm2(<c:out value="${sessSeq }"/>)"><i class="fa-solid fa-user"></i></a></li>
 								<li class='b'><div class="vr"></li>
 								<li class='b'><a href="#">고객센터</a></li>
 								<li class='b'> "<c:out value="${sessNick}"/>" 님 환영합니다 <a href="#" id='btnLogout'><i class="fa-solid fa-x" style='font-size: 2px; vertical-align: 2px;'></i></a>
