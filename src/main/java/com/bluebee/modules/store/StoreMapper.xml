@@ -252,6 +252,20 @@
 		WHERE 1=1
 			 AND a.memberSeq = #{memberSeq}
 	</select>
+	<insert id="wishinst">
+	insert into wishList(
+		member_memberSeq
+		,product_Seq
+		,wishListDelNy
+		) values (
+		#{member_memberSeq}
+		,#{product_Seq}
+		,0
+		)
+		<selectKey resultType="String" keyProperty="wishSeq" order="AFTER"> 
+			select last_insert_id()
+		</selectKey>
+	</insert>
 	
 	<select id="detailList" resultMap="resultMapObj">
 		select
@@ -289,6 +303,7 @@
 			select last_insert_id()
 		</selectKey>
 	</insert>
+	
 	<update id="basketUpdt">
 		update basKets
 		set

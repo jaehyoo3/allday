@@ -193,6 +193,7 @@ public class MemberController {
 	
 	@RequestMapping(value = "modify")
 	public String MemberModify(Model model, MemberVo vo) throws Exception {
+		
 		List<Member> list = service.orderList(vo);
 		model.addAttribute("list", list);
 		

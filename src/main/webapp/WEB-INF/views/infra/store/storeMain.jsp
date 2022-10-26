@@ -21,13 +21,13 @@
 				<div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
 				  <div class="carousel-inner">
 				    <div class="carousel-item active">
-				      <img src="/resources/Images/img/bg1.jpg" class="d-block w-100">
+				      <a href="/productView?&productSeq=167"><img src="/resources/Images/img/bg1.jpg" class="d-block w-100"></a>
 				    </div>
 				    <div class="carousel-item">
-				      <img src="/resources/Images/img/bg2.jpg" class="d-block w-100">
+				      <a href="/productView?&productSeq=166"><img src="/resources/Images/img/bg2.jpg" class="d-block w-100"></a>
 				    </div>
 				    <div class="carousel-item">
-				      <img src="/resources/Images/img/bg3.jpg" class="d-block w-100">
+				      <a href="/productView?&productSeq=168"><img src="/resources/Images/img/bg3.jpg" class="d-block w-100"></a>
 				    </div>
 				  </div>
 				  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">

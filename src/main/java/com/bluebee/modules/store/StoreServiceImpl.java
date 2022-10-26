@@ -156,6 +156,12 @@ public class StoreServiceImpl implements StoreService {
 		return dao.buyCheck(dto);
 	}
 
+	@Override
+	public int wishinst(Store dto) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.wishinst(dto);
+	}
+
 	
 	
 	

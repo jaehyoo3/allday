@@ -157,5 +157,9 @@
 		<!-- jsLink s  -->
 			<%@include file="../../infra/includeV1/jsLink.jsp"%>
 		<!-- jsLink e --> 
+		<script>
+		var form = $("form[name=form]");
+		var seq = $("input:hidden[name=memberSeq]");
+		</script>
 	</body>
 </html>

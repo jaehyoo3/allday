@@ -93,8 +93,6 @@
 									<input class="form-control" type="text" name="memberDob" value="<c:out value="${item.memberDob }"/>" style="text-align:center;" readonly>
 								</div>
 								<br>
-								<label>포인트</label>
-								<input class="form-control" type="text" name="memberPoint" value="<c:out value="${item.memberPoint}"/>">
 								<label>이메일/혜택 소식 수신 여부</label>
 								<div class="form-check">
 								  <input class="form-check-input" type="checkbox" value='1' id="memberAd" name='memberAd' <c:if test="${item.memberAd eq 1 }">checked</c:if>>

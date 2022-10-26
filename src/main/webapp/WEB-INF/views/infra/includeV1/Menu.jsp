@@ -9,7 +9,7 @@
 						<li class='b'>
 							<div class="search-box">
 					    		<button type="button" class="btn-search"><i class="fas fa-search"></i></button>
-					    		<button type="button" id='btnSearch'>dd</button>
+					    		<button type="button" id='btnSearch'>ㅇㅇ</button>
 					   			<input type="text" class="input-search"  id="shValue" name="shValue"  placeholder="Search">
 					  		</div>
 						</li>
@@ -20,7 +20,6 @@
 								<li class='b'><a href="modify"><i class="fa-solid fa-user"></i></a></li>
 								<li class='b'><a href="login"><i class="fa-solid fa-right-to-bracket"></i></a></li>
 								<li class='b'><div class="vr"></li>
-								<li class='b'><a href="#">고객센터</a></li>
 							</c:when>
 							<c:otherwise>
 								<li class='b'><div class="vr"></li>

@@ -14,7 +14,7 @@
 		<link href="/resources/Images/memberMod.css" rel="stylesheet">
 	</head>
 	<body>
-		<form name="form">
+		<form name="form" method="post">
 			<!-- navMenu s  -->
 				<%@include file="../../infra/includeV1/Menu.jsp"%>
 			<!-- navMenu e --> 
@@ -38,7 +38,7 @@
 							</div>
 						</div>
 						<div class='listt'>
-							<h6>주문조회</h6>
+						<h6>주문조회</h6>
 							<c:forEach items="${list}" var="list" varStatus="status">
 								<div class='storeorder'>
 								<a href='#'>
@@ -53,7 +53,7 @@
 										<span class='price'>￦<c:out value="${list.price}" /></span>
 									</div>
 									<div class='situation'>
-									입금대기</div>
+									</div>
 									</a>
 								</div>
 							</c:forEach>

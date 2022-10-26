@@ -44,4 +44,6 @@ public class StoreDao {
 	public int basketCheck(Store dto) { return sqlSession.selectOne(namespace+".basketCheck", dto); }
 	public int basketUpdt(Store dto) { return sqlSession.update(namespace +".basketUpdt", dto); }
 	public int buyCheck(Store dto) { return sqlSession.selectOne(namespace+".buyCheck", dto); }
+	public int wishinst(Store dto) { return sqlSession.insert(namespace+".wishinst", dto); }
+	
 }

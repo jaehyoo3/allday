@@ -237,4 +237,12 @@ public class StoreController {
 			return returnMap;
 		}
 		
+		@ResponseBody
+		@RequestMapping(value = "/wishProc")
+		public Map<String, Object> wishProc(Store dto, HttpSession httpSession) throws Exception {
+			Map<String, Object> returnMap = new HashMap<String, Object>();
+			service.wishinst(dto);
+			returnMap.put("rt", "success");
+			return returnMap;
+		}
 }

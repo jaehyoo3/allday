@@ -84,7 +84,7 @@
 							<button type="button" id="basketBtn" class="btn btn-outline-dark fw-bold col-12" style="height: 50px;">장바구니</button>
 						</div>
 						<div class="col">
-							<button type="button" class="btn btn-outline-dark fw-bold col-12" style="height: 50px;" id="wishInst" <c:if test="${item.wishListDelNy eq 1}">disabled </c:if>><c:out value="${fn:length(count)}" /> ♡</button>
+							<button type="button" class="btn btn-outline-dark fw-bold col-12" style="height: 50px;" id="wishInst"> ♡</button>
 						</div>
 					</div>
 					</div>
@@ -262,6 +262,23 @@
 					}
 				}); 
 			});
+			
+			$("#wishInst").on("click", function(){
+	 			$.ajax({
+					async: true 
+					,cache: false
+					,type: "post"
+					,url: "/wishProc"
+					,data: {"member_memberSeq" : $("#memberSeq").val(), "product_Seq" : $("#productSeq").val()} 
+					,success: function(response) {
+						alert("위시리스트에 등록되었습니다.");
+					}
+					,error : function(jqXHR, textStatus, errorThrown){
+						alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+					}
+				}); 
+			});
+			
 			var bkNum = 1;
  			$("#basketBtn").on("click", function(){
 	 			$.ajax({
@@ -290,23 +307,15 @@
 					}
 				}); 
 			}); 
-		function reloadDivArea() {
-		    $('#review').load(location.href + ' #review');
-		}
 		var productBuy = 'storeBuy';
-		var wishInst ="wishInst";
+
 		var form = $("form[name=form]")
 
 		
 		$("#productBuy").on("click", function(){
 			form.attr("action", productBuy).submit();
 		});
-		
-		$("#wishInst").on("click", function(){
-			alert("wishList ADD!")
-			form.attr("action", wishInst).submit();
-		});
-			
+
 		function showHide(id){
 		     var objId = document.getElementById(id);
 		     if(objId.style.display=="block"){

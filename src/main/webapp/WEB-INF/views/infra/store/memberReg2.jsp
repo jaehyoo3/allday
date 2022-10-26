@@ -28,23 +28,23 @@
 				</div>
 				<hr>
 				<!-- ID -->
-				<span>아이디</span><span style="font-size:12px; color:#e0e0e0">(필수)</span>
+				<span>아이디</span><span style="font-size:12px; color:red">*</span>
 				<input type="text" class="form-control mb-1" id="memberID" name="memberID" placeholder="아이디">
 				<div class="invalid-feedback mb-2" id='idFeedback'></div>
 				
-				<span>비밀번호</span><span style="font-size:12px; color:#e0e0e0">(필수)</span>
+				<span>비밀번호</span><span style="font-size:12px; color:red">*</span>
 				<input type="password" class="form-control mb-1" id="memberPW" name='memberPW' placeholder="비밀번호">
 				<div class="invalid-feedback mb-2" id='pwFeedback'></div>
-				<span>비밀번호 확인</span><span style="font-size:12px; color:#e0e0e0">(필수)</span>
+				<span>비밀번호 확인</span><span style="font-size:12px; color:red">*</span>
 				<input type="password" class="form-control mb-2" id="memberPW2" name='memberPW2' placeholder="비밀번호 확인">
 				<label id="pw2Feedback"></label><br>
-				<span>닉네임</span><span style="font-size:12px; color:#e0e0e0">(필수)</span>
+				<span>닉네임</span><span style="font-size:12px; color:red">*</span>
 				<input type="text" class="form-control mb-2" id="memberNick" name="memberNick" placeholder="닉네임">
 				<div class="invalid-feedback mb-2" id='nickFeedback'></div>
-				<span>이름</span><span style="font-size:12px; color:#e0e0e0">(필수)</span>
+				<span>이름</span><span style="font-size:12px; color:red">*</span>
 				<input type="text" class="form-control mb-2" id="memberName" name="memberName" placeholder="이름">
 				<div class="invalid-feedback mb-2" id='nameFeedback'></div>
- 				<span>생년월일</span><span style="font-size:12px; color:#e0e0e0">(필수)</span>
+ 				<span>생년월일</span><span style="font-size:12px; color:red">*</span>
 				<div class="input-group flex-nowrap">
 						<input type="text" class="form-control mb-2" id='datepicker1' name="memberDob" style="width:200px;">
 				</div>
@@ -81,7 +81,7 @@
 					</div>
 				</div>
 				<div>
-					<span>주소</span><span style="font-size:12px; color:#e0e0e0">(필수)</span>
+					<span>주소</span><span style="font-size:12px; color:red">*</span>
 				</div>
 				<div class="d-flex mb-1">
 					<div class="p-0">
