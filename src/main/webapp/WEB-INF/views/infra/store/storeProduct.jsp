@@ -84,7 +84,7 @@
 							<button type="button" id="basketBtn" class="btn btn-outline-dark fw-bold col-12" style="height: 50px;">장바구니</button>
 						</div>
 						<div class="col">
-							<button type="button" class="btn btn-outline-dark fw-bold col-12" style="height: 50px;" id="wishInst"> ♡</button>
+							<button type="button" class="btn btn-outline-dark fw-bold col-12" style="height: 50px;" id="wishInst">♡ ${wishListCount}</button>
 						</div>
 					</div>
 					</div>
@@ -271,14 +271,19 @@
 					,url: "/wishProc"
 					,data: {"member_memberSeq" : $("#memberSeq").val(), "product_Seq" : $("#productSeq").val()} 
 					,success: function(response) {
-						alert("위시리스트에 등록되었습니다.");
+						if(response.rt == "success") {
+							alert("위시리스트에 등록되었습니다.");
+						} else if(response.rt == "update"){
+							alert("해제");
+						} else{
+							alert("오류");
+						}
 					}
 					,error : function(jqXHR, textStatus, errorThrown){
 						alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
 					}
 				}); 
 			});
-			
 			var bkNum = 1;
  			$("#basketBtn").on("click", function(){
 	 			$.ajax({

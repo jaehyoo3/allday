@@ -40,10 +40,6 @@ public class StoreVo extends BaseVo{
 	public void setUuidName(String uuidName) {
 		this.uuidName = uuidName;
 	}
-
-
-
-
 	private String detailSeq;
 
 	public String getDetailSeq() {

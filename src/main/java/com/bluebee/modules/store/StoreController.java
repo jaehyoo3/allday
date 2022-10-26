@@ -135,7 +135,7 @@ public class StoreController {
 		}
 		
 		@RequestMapping(value = "productView")
-		public String Prodcut(Model model, @ModelAttribute("vo") StoreVo vo) throws Exception {
+		public String Prodcut(Store dto, Model model, @ModelAttribute("vo") StoreVo vo) throws Exception {
 			Store item = service.selectOne(vo);
 			model.addAttribute("item", item);
 			
@@ -153,6 +153,9 @@ public class StoreController {
 			
 			List<Store> reviewList = service.reviewList(vo);
 			model.addAttribute("reviewList", reviewList);
+			
+			int wishListCount = service.wishListCount(dto);
+			model.addAttribute("wishListCount", wishListCount);
 			
 			return "infra/store/storeProduct";
 		}
@@ -241,8 +244,19 @@ public class StoreController {
 		@RequestMapping(value = "/wishProc")
 		public Map<String, Object> wishProc(Store dto, HttpSession httpSession) throws Exception {
 			Map<String, Object> returnMap = new HashMap<String, Object>();
-			service.wishinst(dto);
-			returnMap.put("rt", "success");
+			
+			int ckWish = service.wishListCheck(dto);
+			
+			if(ckWish == 0) {
+				service.wishinst(dto);
+				returnMap.put("rt", "success");
+			} else if(ckWish == 1) {
+				service.wishListUpdt(dto);
+				returnMap.put("rt", "update");
+			} else {
+				returnMap.put("rt", "fail");
+				
+			}
 			return returnMap;
 		}
 }

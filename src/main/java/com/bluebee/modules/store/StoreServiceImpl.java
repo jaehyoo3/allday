@@ -162,8 +162,23 @@ public class StoreServiceImpl implements StoreService {
 		return dao.wishinst(dto);
 	}
 
-	
-	
+	@Override
+	public int wishListCount(Store dto) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.wishListCount(dto);
+	}
+
+	@Override
+	public int wishListCheck(Store dto) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.wishListCheck(dto);
+	}
+
+	@Override
+	public int wishListUpdt(Store dto) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.wishListUpdt(dto);
+	}
 	
 	
 }

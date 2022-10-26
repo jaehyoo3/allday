@@ -137,6 +137,14 @@
 			productSeq = #{productSeq}
     </update>
     
+    <update id="wishListUpdt">
+    	update wishList
+    	set
+    	    wishListDelNy = 0
+    	where 1=1
+			and product_Seq = #{product_Seq}
+    </update>
+    
 	<!-- 상품 메인 이미지 s -->
 	<select id="mainImg" resultMap="resultMapObj">
     	select
@@ -260,13 +268,12 @@
 		) values (
 		#{member_memberSeq}
 		,#{product_Seq}
-		,0
+		,1
 		)
 		<selectKey resultType="String" keyProperty="wishSeq" order="AFTER"> 
 			select last_insert_id()
 		</selectKey>
 	</insert>
-	
 	<select id="detailList" resultMap="resultMapObj">
 		select
 			b.colorName
@@ -283,6 +290,25 @@
 			a.size_size = c.Size
 		where 1=1
 			and detailSeq = #{detailSeq}
+	</select>
+	<select id="wishListCount" resultType="Integer">
+		select
+			COUNT(*)
+		from
+			wishList
+		where 1=1
+			and product_Seq = #{productSeq}
+			and wishListDelNy = 1
+	</select>
+		<select id="wishListCheck" resultType="Integer">
+		select
+			COUNT(*)
+		from
+			wishList
+		where 1=1
+			and product_Seq = #{product_Seq}
+			and member_memberSeq = #{member_memberSeq}
+			and wishListDelNy = 1
 	</select>
 	<!--  상품 구매 E -->
 	
@@ -312,7 +338,6 @@
 		,productDetail_detailSeq = #{productDetail_detailSeq}
 		,basketNum = #{basketNum}
 	</update>
-	
 	<select id="basketCheck" resultType="Integer">
 		select
 			COUNT(*)
