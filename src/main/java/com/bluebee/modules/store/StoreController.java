@@ -205,10 +205,19 @@ public class StoreController {
 			
 		@ResponseBody
 		@RequestMapping(value = "/reviewProc")
-		public Map<String, Object> reviewProc(Store dto, HttpSession httpSession) throws Exception {
+		public Map<String, Object> reviewProc(StoreVo vo,Model model, Store dto, HttpSession httpSession) throws Exception {
 			Map<String, Object> returnMap = new HashMap<String, Object>();
+			int ckOrder = service.buyCheck(dto);
+			
+			if(ckOrder == 1) {
 				service.reviewInsert(dto);
 				returnMap.put("rt", "success");
+				List<Store> reviewList = service.reviewList(vo);
+				model.addAttribute("reviewList", reviewList);
+
+			} else {
+				returnMap.put("rt", "fail");
+			}			
 			return returnMap;
 		}
 		

@@ -15,7 +15,7 @@
 	</head>
 	
 	<body>
-		<form name="form" method="post">
+		<form name="form">
 			<!-- navMenu s  -->
 				<%@include file="../../infra/includeV1/Menu.jsp"%>
 			<!-- navMenu e --> 
@@ -26,7 +26,7 @@
 			<input type="hidden" id="memberSeq" name="memberSeq" value="<c:out value="${sessSeq}" />">
 			<input type="hidden" name="productSeq" id="productSeq" value="<c:out value="${item.productSeq}"/>">
 			<input type="hidden" name="productName" id="productName" value="<c:out value="${item.productName}"/>">
-		
+			<input type="hidden" name="product_Seq" value="<c:out value="${item.productSeq}"/>">
 			<p>Home</p>
 				<div class="productimg">
 					<c:forEach items="${mainImgList}" var="list" varStatus="status">
@@ -238,16 +238,24 @@
 			<%@include file="../../infra/includeV1/jsLink.jsp"%>
 		<!-- jsLink e --> 
 		<script type="text/javascript">
-			
-			
+		var form = $("form[name=form]");
+		var seq = $("input:hidden[name=memberSeq]");
+		
 			$("#reviewInst").on("click", function(){
 	 			$.ajax({
-					type: "post"
+					async: false 
+					,cache: false
+					,type: "post"
 					,url: "/reviewProc"
 					,data: {"member_memberSeq" : $("#memberSeq").val(), "product_Seq" : $("#productSeq").val(), "Score" : 3, "Content" : $("#Content").val()} 
 					,success: function(response) {
+						if(response.rt == "success") {
 						alert("댓글 입력되었습니다.");
-						document.location.href = document.location.href;
+						 $("#review").load(location.href+" #review>*",""); 
+						/* $("#review").load("productView?&productSeq="+pdseq+" #review");  */
+						} else {
+						alert("구매한 상품만 리뷰 작성이 가능합니다.")
+						}
 
 					}
 					,error : function(jqXHR, textStatus, errorThrown){
@@ -262,10 +270,7 @@
 					,cache: false
 					,type: "post"
 					,url: "/basketProc"
-					,data: {"member_memberSeq" : $("#memberSeq").val(), 
-						"productDetail_detailSeq" : $("#detailSeq").val(), 
-						"basketDelNy" : 0, 
-						"basketNum" : bkNum} 
+					,data: {"member_memberSeq" : $("#memberSeq").val(), "productDetail_detailSeq" : $("#detailSeq").val(), "basketDelNy" : 0, "basketNum" : bkNum} 
 					,success: function(response) {
 						console.log(response);
 						if(response.rt == "success") {
@@ -292,6 +297,7 @@
 		var productBuy = 'storeBuy';
 		var wishInst ="wishInst";
 		var form = $("form[name=form]")
+
 		
 		$("#productBuy").on("click", function(){
 			form.attr("action", productBuy).submit();

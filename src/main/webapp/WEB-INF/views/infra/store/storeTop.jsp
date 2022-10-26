@@ -15,7 +15,7 @@
 	</head>
 	
 	<body>
-		<form name='form' method='post'>
+		<form name='form'>
 			<!-- navMenu s  -->
 				<%@include file="../../infra/includeV1/Menu.jsp"%>
 			<!-- navMenu e --> 

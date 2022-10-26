@@ -43,4 +43,5 @@ public class StoreDao {
 	public Store detailList(StoreVo vo) { return sqlSession.selectOne(namespace+".detailList", vo); }
 	public int basketCheck(Store dto) { return sqlSession.selectOne(namespace+".basketCheck", dto); }
 	public int basketUpdt(Store dto) { return sqlSession.update(namespace +".basketUpdt", dto); }
+	public int buyCheck(Store dto) { return sqlSession.selectOne(namespace+".buyCheck", dto); }
 }

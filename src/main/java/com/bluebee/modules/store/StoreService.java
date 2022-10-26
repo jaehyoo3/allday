@@ -28,4 +28,6 @@ public interface StoreService {
 	public int basketCheck(Store dto) throws Exception;
 	public int basketUpdt(Store dto) throws Exception;
 	
+	public int buyCheck(Store dto) throws Exception;
+	
 }

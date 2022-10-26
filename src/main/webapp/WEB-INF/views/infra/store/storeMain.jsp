@@ -40,6 +40,7 @@
 				  </button>
 				</div>
 			</div>
+			
 			<div id='content'>
 				<span style="font-size: 40px; font-weight: bold; color:purple;">BB:PICK</span><br>
 				<p style="font-size: 24px;">이 달의 추천 제품</p>
