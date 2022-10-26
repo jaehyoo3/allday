@@ -359,6 +359,7 @@
 		and b.memberSeq = #{member_memberSeq}
 		and c.product_Seq = #{product_Seq}
 	</select>
+	
 	<select id="selectOneCount" resultType="Integer">
 		SELECT COUNT(*)
 		<include refid="basic" />

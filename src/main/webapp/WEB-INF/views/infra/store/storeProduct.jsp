@@ -26,7 +26,6 @@
 			<input type="hidden" id="memberSeq" name="memberSeq" value="<c:out value="${sessSeq}" />">
 			<input type="hidden" name="productSeq" id="productSeq" value="<c:out value="${item.productSeq}"/>">
 			<input type="hidden" name="productName" id="productName" value="<c:out value="${item.productName}"/>">
-			<input type="hidden" name="product_Seq" value="<c:out value="${item.productSeq}"/>">
 			<p>Home</p>
 				<div class="productimg">
 					<c:forEach items="${mainImgList}" var="list" varStatus="status">
@@ -240,6 +239,7 @@
 		<script type="text/javascript">
 		var form = $("form[name=form]");
 		var seq = $("input:hidden[name=memberSeq]");
+		var pdseq = document.getElementById('productSeq').value;
 		
 			$("#reviewInst").on("click", function(){
 	 			$.ajax({
@@ -251,10 +251,9 @@
 					,success: function(response) {
 						if(response.rt == "success") {
 						alert("댓글 입력되었습니다.");
-						 $("#review").load(location.href+" #review>*",""); 
-						/* $("#review").load("productView?&productSeq="+pdseq+" #review");  */
+						$("#review").load("productView?&productSeq="+pdseq+" #review>*");
 						} else {
-						alert("구매한 상품만 리뷰 작성이 가능합니다.")
+						alert("구매한 상품만 리뷰 작성이 가능합니다")
 						}
 
 					}

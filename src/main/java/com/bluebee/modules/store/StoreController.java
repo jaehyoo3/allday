@@ -214,7 +214,6 @@ public class StoreController {
 				returnMap.put("rt", "success");
 				List<Store> reviewList = service.reviewList(vo);
 				model.addAttribute("reviewList", reviewList);
-
 			} else {
 				returnMap.put("rt", "fail");
 			}			
@@ -230,6 +229,7 @@ public class StoreController {
 			if(ckBasket == 1) {
 				service.basketUpdt(dto);
 				returnMap.put("rt", "fail");
+				
 			} else {
 				service.basketInsert(dto);
 				returnMap.put("rt", "success");
