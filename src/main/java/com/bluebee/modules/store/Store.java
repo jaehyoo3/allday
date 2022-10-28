@@ -37,8 +37,15 @@ public class Store extends Base {
 	private Integer orderMemo;
 	private String basketSeq;
 	private String basketDelNy;
+	private Integer productWishCnt;
 
 	
+	public Integer getProductWishCnt() {
+		return productWishCnt;
+	}
+	public void setProductWishCnt(Integer productWishCnt) {
+		this.productWishCnt = productWishCnt;
+	}
 	public String getBasketSeq() {
 		return basketSeq;
 	}

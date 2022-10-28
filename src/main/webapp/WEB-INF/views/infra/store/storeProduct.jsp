@@ -84,7 +84,14 @@
 							<button type="button" id="basketBtn" class="btn btn-outline-dark fw-bold col-12" style="height: 50px;">장바구니</button>
 						</div>
 						<div class="col">
-							<button type="button" class="btn btn-outline-dark fw-bold col-12" style="height: 50px;" id="wishInst">♡ ${wishListCount}</button>
+							<c:choose>
+								<c:when test="${wishListCount eq 0}">
+									<button type="button" class="btn btn-outline-dark fw-bold col-12" style="height: 50px;" id="wishInst">♡ ${wishListCount}</button>
+								</c:when>
+								<c:otherwise>
+									<button type="button" class="btn btn-outline-dark fw-bold col-12" style="height: 50px;" id="wishInst">♥ ${wishListCount}</button>
+								</c:otherwise>
+							</c:choose>
 						</div>
 					</div>
 					</div>
@@ -273,8 +280,10 @@
 					,success: function(response) {
 						if(response.rt == "success") {
 							alert("위시리스트에 등록되었습니다.");
+							$('#wishInst').attr('class','btn btn-light');
 						} else if(response.rt == "update"){
 							alert("해제");
+							$('#wishInst').attr('class','btn btn-');
 						} else{
 							alert("오류");
 						}
@@ -284,6 +293,10 @@
 					}
 				}); 
 			});
+			
+			$(".like-click").click(function() {
+				if($(this).children('svg').attr('class') == "bi bi-suit-heart"){
+			}
 			var bkNum = 1;
  			$("#basketBtn").on("click", function(){
 	 			$.ajax({
