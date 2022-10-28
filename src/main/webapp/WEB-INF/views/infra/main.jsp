@@ -17,14 +17,14 @@
 				<rect id="rect-grad" class="rect-gradient" fill="none" stroke="url(#grad-orange)" stroke-linecap="square" stroke-width="4" stroke-miterlimit="30" width="100%" height="100%"></rect>
 			</svg>
 		</div>
-		<div class="canvas_img-wrapper" onClick="location.href='/xdmin/memberList'">
-			<img class="canvas_img" src="/resources/Images/img/admin.png" alt="">
+		<div class="canvas_img-wrapper" onClick="location.href='main'">
+			<img class="canvas_img" src="/resources/Images/img/logo2.png" alt="">
 		</div>
 		<div class="canvas_copy canvas_copy--left">
-			<span class="canvas_copy_subtitle">Management</span>
+			<span class="canvas_copy_subtitle">User</span>
 			<strong class="canvas_copy_title">Hello</strong>
-			<strong class="canvas_copy_title">Admin!</strong>
-			<span class="canvas_copy_details">User, Product, Code, CodeGroup...</span>
+			<strong class="canvas_copy_title">BLUEBEE!</strong>
+			<span class="canvas_copy_details">Enter the Shopping Mall</span>
 		</div>
 	</a>
 	<a href="#" class="canvas">
@@ -34,14 +34,15 @@
 				<rect id="rect-grad" class="rect-gradient" fill="none" stroke="url(#grad-orange)" stroke-linecap="square" stroke-width="4" stroke-miterlimit="30" width="100%" height="100%"></rect>
 			</svg>
 		</div>
-		<div class="canvas_img-wrapper" onClick="location.href='main'">
-			<img class="canvas_img" src="/resources/Images/img/logo2.png" alt="">
+		<div class="canvas_img-wrapper" onClick="location.href='/xdmin/memberList'">
+		<img class="canvas_img" src="/resources/Images/img/admin.png" alt="">
+			
 		</div>
 		<div class="canvas_copy">
-			<span class="canvas_copy_subtitle">User</span>
+			<span class="canvas_copy_subtitle">Management</span>
 			<strong class="canvas_copy_title">Hello</strong>
-			<strong class="canvas_copy_title">BLUEBEE!</strong>
-			<span class="canvas_copy_details">Enter the Shopping Mall</span>
+			<strong class="canvas_copy_title">Admin!</strong>
+			<span class="canvas_copy_details">User, Product, Code, CodeGroup...</span>
 		</div>
 	</a>
 </div>

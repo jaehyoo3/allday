@@ -293,10 +293,6 @@
 					}
 				}); 
 			});
-			
-			$(".like-click").click(function() {
-				if($(this).children('svg').attr('class') == "bi bi-suit-heart"){
-			}
 			var bkNum = 1;
  			$("#basketBtn").on("click", function(){
 	 			$.ajax({
@@ -350,7 +346,7 @@
 			    } else subs.innerText ='상품정보 더보기 ▽';
 		};
 		
-		$(document).ready( function() {
+		$(document).ready(function() {
 		       $(".product_color").each( function(index){
 		         var color = $(this).attr('data-color-hex');
 		         $(this).css('background',color);

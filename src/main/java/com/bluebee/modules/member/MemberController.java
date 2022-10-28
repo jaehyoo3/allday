@@ -83,14 +83,12 @@ public class MemberController {
 //	USER
 	@RequestMapping(value = "/reg1")
 	public String memberSignFirst(@ModelAttribute("vo") MemberVo vo, Model model) throws Exception {
-		Member item = service.selectOne(vo);
-		model.addAttribute("item", item);
+
 		return "infra/store/memberReg1"; 
 	}
 	@RequestMapping(value = "/reg2")
 	public String memberSignSecond(@ModelAttribute("vo") MemberVo vo, Model model) throws Exception {
-		Member item = service.selectOne(vo);
-		model.addAttribute("item", item);
+		
 		return "infra/store/memberReg2"; 
 	}
 	
@@ -201,6 +199,14 @@ public class MemberController {
 	}
 	@RequestMapping(value = "basket")
 	public String MemberBasket(Model model, MemberVo vo) throws Exception {
+		List<Member> list = service.basketList(vo);
+		model.addAttribute("list", list);
+		
+		return "infra/store/memberBasket";
+	}
+	
+	@RequestMapping(value = "orderbuy")
+	public String BasketBuy(Model model, MemberVo vo) throws Exception {
 		List<Member> list = service.basketList(vo);
 		model.addAttribute("list", list);
 		
