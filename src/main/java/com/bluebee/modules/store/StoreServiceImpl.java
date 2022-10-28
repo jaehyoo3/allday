@@ -179,6 +179,12 @@ public class StoreServiceImpl implements StoreService {
 		// TODO Auto-generated method stub
 		return dao.wishListUpdt(dto);
 	}
+
+	@Override
+	public List<Store> productList(StoreVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.productList(vo);
+	}
 	
 	
 }

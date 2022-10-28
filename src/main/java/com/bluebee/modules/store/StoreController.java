@@ -104,7 +104,7 @@ public class StoreController {
 		}
 		@RequestMapping(value = "storeBest")
 		public String StoreBest(Model model, StoreVo vo) throws Exception {
-			List<Store> list = service.selectList(vo);
+			List<Store> list = service.productList(vo);
 			model.addAttribute("list", list);
 			
 			List<Store> mainImg = service.mainImg(vo);
@@ -114,22 +114,29 @@ public class StoreController {
 		}
 		@RequestMapping(value = "storeTop")
 		public String StoreTop(Model model, StoreVo vo) throws Exception {
-			List<Store> list = service.selectList(vo);
+			List<Store> list = service.productList(vo);
 			model.addAttribute("list", list);
 			
+			List<Store> mainImg = service.mainImg(vo);
+			model.addAttribute("mainImgList", mainImg);
 			return "infra/store/storeTop";
 		}
 		@RequestMapping(value = "storePants")
 		public String StorePants(Model model, StoreVo vo) throws Exception {
-			List<Store> list = service.selectList(vo);
+			List<Store> list = service.productList(vo);
 			model.addAttribute("list", list);
 			
+			List<Store> mainImg = service.mainImg(vo);
+			model.addAttribute("mainImgList", mainImg);
 			return "infra/store/storePants";
 		}
 		@RequestMapping(value = "storeOuter")
 		public String StoreOuter(Model model, StoreVo vo) throws Exception {
-			List<Store> list = service.selectList(vo);
+			List<Store> list = service.productList(vo);
 			model.addAttribute("list", list);
+			
+			List<Store> mainImg = service.mainImg(vo);
+			model.addAttribute("mainImgList", mainImg);
 			
 			return "infra/store/storeOuter";
 		}

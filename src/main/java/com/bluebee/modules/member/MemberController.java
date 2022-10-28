@@ -83,11 +83,14 @@ public class MemberController {
 //	USER
 	@RequestMapping(value = "/reg1")
 	public String memberSignFirst(@ModelAttribute("vo") MemberVo vo, Model model) throws Exception {
-
+		Member item = service.selectOne(vo);
+		model.addAttribute("item", item);
 		return "infra/store/memberReg1"; 
 	}
 	@RequestMapping(value = "/reg2")
 	public String memberSignSecond(@ModelAttribute("vo") MemberVo vo, Model model) throws Exception {
+		Member item = service.selectOne(vo);
+		model.addAttribute("item", item);
 		
 		return "infra/store/memberReg2"; 
 	}

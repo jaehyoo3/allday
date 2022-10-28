@@ -88,7 +88,7 @@
 						<input type="text" id="postcode" class="form-control mb-2"  name='zipcode'readonly>
 					</div>
 					<div class="p-1">
-						<button type="button" class="btn text-white fw-bold" onclick="DaumPostcode()" style="background-color:rgb(44, 62, 80);">주소검색</button>
+						<button type="button" class="btn text-white fw-bold" style="background-color:rgb(44, 62, 80);">주소검색</button>
 					</div>
 				</div>
 				<div class="row">
@@ -111,7 +111,6 @@
 				</div>
 				<div class="d-grid gap-2 col-12">
 					<button type="submit" class="btn text-white fw-bold" style="background-color:rgb(44, 62, 80);">가입하기</button>
-					<input type="hidden" id="memberAd" value='<c:out value="${vo.memberAd}"/>' name='memberAd'>
 					</div>
 				</div>
 			</div>
@@ -119,78 +118,19 @@
 				<%@include file="../../infra/includeV1/footer.jsp"%>
 			<!-- footer e -->
 		</form>
-		
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+				
+	  	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 		<script src="https://kit.fontawesome.com/a1961b2393.js" crossorigin="anonymous"></script>
-
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-		<!--  카카오 지도s -->
-		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-		<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3d9122ea8fc388f07cd56d7692121430&libraries=services"></script>
-		<!--  카카오 지도e -->
-		
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-		<link rel="stylesheet" href="/resources/demos/style.css">
 		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-		<script>
 		
+		<script type="text/javascript">
 		//주소-좌표 변환 객체를 생성
-		var geocoder = new daum.maps.services.Geocoder();
     	var engnum = RegExp(/^[a-zA-Z0-9]{4,12}$/)
     	var getNick = RegExp(/^.{3,12}$/);
     	
-		    function DaumPostcode() {
-		        new daum.Postcode({
-		            oncomplete: function(data) {
-		                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-		
-		                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
-		                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-		                var addr = ''; // 주소 변수
-		                var extraAddr = ''; // 참고항목 변수
-		
-		                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-		                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-		                    addr = data.roadAddress;
-		                } else { // 사용자가 지번 주소를 선택했을 경우(J)
-		                    addr = data.jibunAddress;
-		                }
-		
-		                // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
-		                if(data.userSelectedType === 'R'){
-		                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
-		                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-		                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
-		                        extraAddr += data.bname;
-		                    }
-		                    // 건물명이 있고, 공동주택일 경우 추가한다.
-		                    if(data.buildingName !== '' && data.apartment === 'Y'){
-		                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-		                    }
-		                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-		                    if(extraAddr !== ''){
-		                        addr = '' + addr + ' (' + extraAddr + ')';
-		                    }
-		                    // 조합된 참고항목을 해당 필드에 넣는다.
-		              		}
-
-			            geocoder.addressSearch(data.address, function(results, status) {
-			            		
-			                // 정상적으로 검색이 완료됐으면
-				                if (status === daum.maps.services.Status.OK) {
-					                // 우편번호와 주소 정보를 해당 필드에 넣는다.
-					                document.getElementById('postcode').value = data.zonecode;
-					                document.getElementById('address').value = addr;
-					                document.getElementById('detailAddres').focus();
-				                    document.getElementById("result_x").value = results[0].x;
-				                    document.getElementById("result_y").value = results[0].y;
-			                	}
-			           	 })
-		            }
-		        }).open();
-		    }
     	  $.datepicker.setDefaults({
     	        dateFormat: 'yy-mm-dd',
     	        prevText: '이전 달',
@@ -267,12 +207,13 @@
 							document.getElementById("checkIdNy").value = 0;
 						}
 					}
-					,error : function(jqXHR, textStatus, errorThrown){
+					,error : function(jqXHR, textStatus, errorThrown) {
 						alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
 					} 
 				});
 				}
 			});
+			
 			$("#memberNick").on("focusout", function(){
 		        if($("#memberNick").val() == "") {
 		        	$("memberNick").removeClass('is-valid');
@@ -321,7 +262,6 @@
 							document.getElementById("nickFeedback").classList.remove('valid-feedback');
 							document.getElementById("nickFeedback").classList.add('invalid-feedback');
 							document.getElementById("nickFeedback").innerText = "이미 사용중인 닉네임 입니다";
-							
 							document.getElementById("checkNickNy").value = 0;
 						}
 					}
@@ -387,14 +327,14 @@
 		        	$("#datepicker1").text("생년월일을 입력해 주세요");
 		        	return false; 
 				}
-		        if($("#detailAddres").val() == "") { 
+/* 		        if($("#detailAddres").val() == "") { 
 		        	$("#postcode").addClass("is-invalid"); 
 		        	$("#address").addClass("is-invalid"); 
 		        	$("#detailAddres").addClass("is-invalid"); 
 		        	$("#address").focus();
 		        	$("#address").text("주소를 입력해 주세요");
 		        	return false; 
-				}
+				} */
 		    }
 		    function email() {
 				const email = $("#emailID").val();

@@ -15,6 +15,7 @@ public interface StoreService {
 	public List<Store> reviewList(StoreVo vo) throws Exception; 
 	public int reviewInsert(Store dto) throws Exception;
 	 
+	public List<Store> productList(StoreVo vo) throws Exception;
 	
 	public List<Store> productColor(StoreVo vo) throws Exception;
 	public List<Store> productSize(StoreVo vo) throws Exception;
