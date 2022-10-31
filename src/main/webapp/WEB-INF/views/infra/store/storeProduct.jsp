@@ -63,7 +63,6 @@
 				    <select id="sel_blank" class="form-select size">
 				        <option>색상을 선택해주세요</option>
 				    </select>
-				    
 				    <c:forEach items="${ColorList}" var="list" varStatus="status">
 					    <select class="size form-select" onchange="showValue(this)" id="<c:out value="${list.colorSeq}" />">
 					    <option>사이즈를 선택해주세요</option>
@@ -243,6 +242,7 @@
 		<!-- jsLink s  -->
 			<%@include file="../../infra/includeV1/jsLink.jsp"%>
 		<!-- jsLink e --> 
+		
 		<script type="text/javascript">
 		var form = $("form[name=form]");
 		var seq = $("input:hidden[name=memberSeq]");
@@ -272,7 +272,7 @@
 			
 			$("#wishInst").on("click", function(){
 	 			$.ajax({
-					async: true 
+					async: false
 					,cache: false
 					,type: "post"
 					,url: "/wishProc"
@@ -280,10 +280,10 @@
 					,success: function(response) {
 						if(response.rt == "success") {
 							alert("위시리스트에 등록되었습니다.");
-							$('#wishInst').attr('class','btn btn-light');
-						} else if(response.rt == "update"){
-							alert("해제");
-							$('#wishInst').attr('class','btn btn-');
+							$('#wishInst').text("♥ ")
+						} else if(response.rt == "delete"){
+							alert("위시리스트에 등록되었습니다.");
+							$('#wishInst').text('♡');
 						} else{
 							alert("오류");
 						}

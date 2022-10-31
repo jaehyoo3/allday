@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.bluebee.modules.member.MemberVo;
-
 @Controller
 public class StoreController {
 	@Autowired
@@ -182,6 +180,14 @@ public class StoreController {
 			
 			return "infra/store/storeBuy";
 		}
+		@RequestMapping(value = "totalBuy")
+		public String TotalBuy(Model model, @ModelAttribute("vo") StoreVo vo) throws Exception {
+			
+			List<Store> list = service.totalBuy(vo);
+			model.addAttribute("list", list);
+			
+			return "infra/store/storeBuy";
+		}
 		@RequestMapping(value = "storeInst")
 		public String StoreBuyInst(Model model, @ModelAttribute("vo") StoreVo vo, Store dto) throws Exception {
 			service.buyOrder(dto);
@@ -193,7 +199,11 @@ public class StoreController {
 		}
 
 		@RequestMapping(value = "wish")
-		public String MemberWish() {
+		public String MemberWish(Model model, @ModelAttribute("vo") StoreVo vo) throws Exception {
+			
+			List<Store> list = service.wishList(vo);
+			model.addAttribute("list", list);
+
 			return "infra/store/memberWish";
 		}
 		@RequestMapping(value = "update")
@@ -258,8 +268,8 @@ public class StoreController {
 				service.wishinst(dto);
 				returnMap.put("rt", "success");
 			} else if(ckWish == 1) {
-				service.wishListUpdt(dto);
-				returnMap.put("rt", "update");
+				service.wishListDele(dto);
+				returnMap.put("rt", "delete");
 			} else {
 				returnMap.put("rt", "fail");
 				

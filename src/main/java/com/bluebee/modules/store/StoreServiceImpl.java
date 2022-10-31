@@ -129,13 +129,11 @@ public class StoreServiceImpl implements StoreService {
 
 	@Override
 	public Store detailList(StoreVo vo) throws Exception {
-		// TODO Auto-generated method stub
 		return dao.detailList(vo);
 	}
 
 	@Override
 	public int basketInsert(Store dto) throws Exception {
-		// TODO Auto-generated method stub
 		return dao.basketInsert(dto);
 	}
 
@@ -146,44 +144,49 @@ public class StoreServiceImpl implements StoreService {
 
 	@Override
 	public int basketUpdt(Store dto) throws Exception {
-		// TODO Auto-generated method stub
 		return dao.basketUpdt(dto);
 	}
 
 	@Override
 	public int buyCheck(Store dto) throws Exception {
-		// TODO Auto-generated method stub
 		return dao.buyCheck(dto);
 	}
 
 	@Override
 	public int wishinst(Store dto) throws Exception {
-		// TODO Auto-generated method stub
 		return dao.wishinst(dto);
 	}
 
 	@Override
 	public int wishListCount(Store dto) throws Exception {
-		// TODO Auto-generated method stub
 		return dao.wishListCount(dto);
 	}
 
 	@Override
 	public int wishListCheck(Store dto) throws Exception {
-		// TODO Auto-generated method stub
 		return dao.wishListCheck(dto);
 	}
 
 	@Override
-	public int wishListUpdt(Store dto) throws Exception {
-		// TODO Auto-generated method stub
-		return dao.wishListUpdt(dto);
+	public int wishListDele(Store dto) throws Exception {
+		return dao.wishListDele(dto);
 	}
 
 	@Override
 	public List<Store> productList(StoreVo vo) throws Exception {
-		// TODO Auto-generated method stub
 		return dao.productList(vo);
+	}
+
+	@Override
+	public List<Store> wishList(StoreVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.wishList(vo);
+	}
+
+	@Override
+	public List<Store> totalBuy(StoreVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.totalBuy(vo);
 	}
 	
 	

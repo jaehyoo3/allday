@@ -40,22 +40,22 @@
 						<div class='listt'>
 						<h6>주문조회</h6>
 							<c:forEach items="${list}" var="list" varStatus="status">
-								<div class='storeorder'>
-								<a href='#'>
-									<div class='storeimg'>
-										<c:if test="${list.idefaultNy eq 1}">
-											<img src='<c:out value="${list.path}"/><c:out value="${list.uuidName}"/>'>
-										</c:if>
+									<div class='storeorder'>
+									<a href='#'>
+										<div class='storeimg'>
+											<c:if test="${list.idefaultNy eq 1}">
+												<img src='<c:out value="${list.path}"/><c:out value="${list.uuidName}"/>'>
+											</c:if>
+										</div>
+										<div class='storeinfor'>
+											<span class='title'><c:out value="${list.productName}" /></span><br>
+											<span class='option'><c:out value="${list.colorName}" /> | <c:out value="${list.sizeName}" /></span><br>
+											<span class='price'>￦<c:out value="${list.price}"/></span>
+										</div>
+										<div class='situation'>
+										</div>
+										</a>
 									</div>
-									<div class='storeinfor'>
-										<span class='title'><c:out value="${list.productName}" /></span><br>
-										<span class='option'><c:out value="${list.colorName}" /> | <c:out value="${list.sizeName}" /></span><br>
-										<span class='price'>￦<c:out value="${list.price}" /></span>
-									</div>
-									<div class='situation'>
-									</div>
-									</a>
-								</div>
 							</c:forEach>
 						</div>
 					</div>

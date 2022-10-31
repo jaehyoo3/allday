@@ -153,15 +153,7 @@
     		where
 			productSeq = #{productSeq}
     </update>
-    
-    <update id="wishListUpdt">
-    	update wishList
-    	set
-    	    wishListDelNy = 0
-    	where 1=1
-			and product_Seq = #{product_Seq}
-    </update>
-    
+
 	<!-- 상품 메인 이미지 s -->
 	<select id="mainImg" resultMap="resultMapObj">
     	select
@@ -246,12 +238,14 @@
 			,productDetail_detailSeq
 			,payment
 			,orderMemo
+			,orderDate
 		) VALUES(
 			#{price}
 			,#{memberAddr_addrSeq}
 			,#{productDetail_detailSeq}
 			,#{payment}
 			,#{orderMemo}
+			,now()
 		)
 		<selectKey resultType="String" keyProperty="purChase" order="AFTER"> 
 			select last_insert_id()
@@ -318,7 +312,6 @@
 			wishList
 		where 1=1
 			and product_Seq = #{productSeq}
-			and wishListDelNy = 1
 	</select>
 	
 	<select id="wishListCheck" resultType="Integer">
@@ -329,9 +322,74 @@
 		where 1=1
 			and product_Seq = #{product_Seq}
 			and member_memberSeq = #{member_memberSeq}
-			and wishListDelNy = 1
 	</select>
+	
+    <delete id="wishListDele">
+    	delete  from
+    		wishList
+    	where 1=1
+			and product_Seq = #{product_Seq}
+			and member_memberSeq = #{member_memberSeq}
+    </delete>
+    
+    <select id="wishList" resultMap="resultMapObj">
+    	select
+    		a.product_Seq
+    		,b.productName
+    		,b.productPrice
+    		,c.uuidName
+    		,c.path
+    	from
+    		wishList a
+    	left join
+    		product b
+    	on
+    		a.product_Seq = b.productSeq
+    	left join
+    		productUploaded c
+    	on
+    		c.pseq = a.product_Seq
+    	where 1=1
+    		and member_memberSeq = #{memberSeq}
+    </select>
 	<!--  상품 구매 E -->
+	<select id="totalBuy" resultMap="resultMapObj">
+	select
+		c.productName
+		,c.productType
+		,d.colorName
+		,e.sizeName
+		,a.basketNum
+		,c.productPrice
+		,f.path
+		,f.uuidName
+		,f.idefaultNy
+	from
+		basKets a
+	left join
+		productDetail b
+	on
+		a.productDetail_detailSeq = b.detailSeq
+	left join
+		product c
+	on
+		c.productSeq = b.product_Seq
+	left join
+		Color d
+	on
+		b.color_colorSeq = d.colorSeq
+	left join
+		Size e
+	on
+		b.size_size = e.Size
+	left join
+		productUploaded f
+	on
+		c.productSeq = f.pseq
+	where
+		1=1
+		and a.member_memberSeq = #{memberSeq}
+	</select>
 	
 	<!--  장바구니 S-->
 	<insert id="basketInsert">
@@ -368,6 +426,7 @@
 		and member_memberSeq = #{member_memberSeq}
 		and productDetail_detailSeq = #{productDetail_detailSeq}
 	</select>
+	
 	<!-- 장바구니 E -->
    <select id="cL" resultMap="resultMapObj">
     	select 

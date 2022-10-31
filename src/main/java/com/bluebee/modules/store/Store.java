@@ -1,4 +1,6 @@
 package com.bluebee.modules.store;
+import java.util.Date;
+
 import com.bluebee.modules.base.Base;
 
 public class Store extends Base {

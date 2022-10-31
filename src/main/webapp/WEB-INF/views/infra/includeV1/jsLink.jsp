@@ -29,15 +29,15 @@
 			});
 			
 			var goUrlList = "/search";
+			var goOrderList = "/modify";
+			var goBasketList = "/basket";
+			var goWishList = "/wish"
 			var form = $("form[name=form]");
 			
 			$("#btnSearch").on("click", function() {
 				 form.attr("action", goUrlList).submit();
 			});
 			
-			var goOrderList = "/modify";
-			var goBasketList = "/basket";
-	    	    
 			goForm2 = function(keyValue) {
 		    	seq.val(keyValue);
 				form.attr("action", goOrderList).submit();
@@ -46,5 +46,10 @@
 		    	seq.val(keyValue);
 				form.attr("action", goBasketList).submit();
 			}
+			goForm4 = function(keyValue) {
+		    	seq.val(keyValue);
+				form.attr("action", goWishList).submit();
+			}
+
 
 		</script>

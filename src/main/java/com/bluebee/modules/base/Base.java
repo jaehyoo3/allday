@@ -1,5 +1,7 @@
 package com.bluebee.modules.base;
 
+import java.util.Date;
+
 import org.springframework.web.multipart.MultipartFile;
 
 public class Base {
@@ -40,7 +42,14 @@ public class Base {
 	
 	/* 장바구니 */
 	private Integer basketNum;
+	private Date orderDate;
 	
+	public Date getOrderDate() {
+		return orderDate;
+	}
+	public void setOrderDate(Date orderDate) {
+		this.orderDate = orderDate;
+	}
 	public Integer getProductType() {
 		return productType;
 	}

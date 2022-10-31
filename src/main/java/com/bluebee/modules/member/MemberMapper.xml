@@ -157,6 +157,7 @@
 			,g.path
 			,g.idefaultNy
 			,e.memberSeq
+			,a.orderDate
 		from 
 			purChase_Product a
 		left join
@@ -186,6 +187,7 @@
 		where 
 			1=1
 			and e.memberSeq = #{memberSeq}
+				
 	</select>
 	<!-- 주문조회 e -->
 	<!-- 장바구니 s -->
@@ -226,6 +228,7 @@
 		1=1
 		and a.member_memberSeq = #{memberSeq}
 	</select>
+	
 	<!-- 장바구니 e -->
 	<select id="selectOne" resultMap="resultMapObj">
 		SELECT

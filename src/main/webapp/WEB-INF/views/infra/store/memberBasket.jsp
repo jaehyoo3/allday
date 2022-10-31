@@ -44,9 +44,9 @@
 								<div class='right'><p><c:out value="${list.productName }" /> | 
 								<c:forEach items="${listCodeType}" var="listCode" varStatus="statusGender">
 									<c:if test="${list.productType eq listCode.codeOrder}">
-									<c:out value="${listCode.codeName}"/>
-							</c:if>
-						</c:forEach>
+										<c:out value="${listCode.codeName}"/>
+									</c:if>
+								</c:forEach>
 								</p>
 								<div class='option'><c:out value="${list.colorName }"/> / <c:out value="${list.sizeName }"/></div></div>
 							</td>

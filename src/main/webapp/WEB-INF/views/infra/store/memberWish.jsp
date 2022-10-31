@@ -39,21 +39,23 @@
 						<div class='listt'>
 							<h6>위시리스트</h6>
 						<div class="products">
-							<a href="#" onClick="location.href='product'"> 
-								<img src="/resources/Images/img/knit.jpg"><br>
-								<span class='title'>이비자 코스트 시트론 레트로 네츄럴 메쉬 니트</span>
-								<p class="price">￦49,000</p>
-							</a> 
-							<a href="#" onClick="location.href='product'"> 
-								<img src="/resources/Images/img/knit.jpg"><br>
-								<span class='title'>이비자 코스트 시트론 레트로 네츄럴 메쉬 니트</span>
-								<p class="price">￦49,000</p>
-							</a> 
-							<a href="#" onClick="location.href='product'"> 
-								<img src="/resources/Images/img/knit.jpg"><br>
-								<span class='title'>이비자 코스트 시트론 레트로 네츄럴 메쉬 니트</span>
-								<p class="price">￦49,000</p>
-							</a> 
+							<c:forEach items="${list}" var="list" varStatus="status">
+								<a href="#" onClick="location.href='product'"> 
+									<img src='<c:out value="${list.path}"/><c:out value="${list.uuidName}"/>'><br>
+									<span class='title'><c:out value="${list.productName }" /></span>
+									<p class="price">￦<c:out value="${list.productPrice }" /></p>
+								</a> 
+							</c:forEach>
+<!-- 								<a href="#" onClick="location.href='product'"> 
+									<img src="/resources/Images/img/knit.jpg"><br>
+									<span class='title'>이비자 코스트 시트론 레트로 네츄럴 메쉬 니트</span>
+									<p class="price">￦49,000</p>
+								</a> 
+								<a href="#" onClick="location.href='product'"> 
+									<img src="/resources/Images/img/knit.jpg"><br>
+									<span class='title'>이비자 코스트 시트론 레트로 네츄럴 메쉬 니트</span>
+									<p class="price">￦49,000</p>
+								</a>  -->
 						</div>
 					</div>
 				</div>
