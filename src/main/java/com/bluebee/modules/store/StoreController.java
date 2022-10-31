@@ -186,7 +186,7 @@ public class StoreController {
 			List<Store> list = service.totalBuy(vo);
 			model.addAttribute("list", list);
 			
-			return "infra/store/storeBuy";
+			return "infra/store/totalBuy";
 		}
 		@RequestMapping(value = "storeInst")
 		public String StoreBuyInst(Model model, @ModelAttribute("vo") StoreVo vo, Store dto) throws Exception {

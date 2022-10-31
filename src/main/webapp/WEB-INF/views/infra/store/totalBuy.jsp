@@ -19,7 +19,7 @@
 		<!-- navMenu s  -->
 			<%@include file="../../infra/includeV1/Menu.jsp"%>
 		<!-- navMenu e --> 
-		<input type="hidden" name="memberAddr_addrSeq" value="<c:out value="${item.addrSeq}" />">
+		<input type="hidden" name="memberAddr_addrSeq" value=9">
 		<jsp:useBean id="XdminCodeServiceImpl" class="com.bluebee.modules.xdmincode.XdminCodeServiceImpl"/>
 		<c:set var="listCodeType" value="${XdminCodeServiceImpl.selectListCachedCode('9')}"/>
 			<div id='content'>
@@ -29,10 +29,11 @@
 					<div class='b1'>
 						<h4>주문상품정보</h4>
 						<div class='infor'>
+						<c:forEach items="${list}" var="list" varStatus="status">
 							<div class='boxx1'>
-							<c:forEach items="${list}" var="list" varStatus="status">
 								<c:if test="${list.idefaultNy eq 1}">
-								<img src="<c:out value="${list.path}"/><c:out value="${list.uuidName}"/>">
+									<img src="<c:out value="${list.path}"/><c:out value="${list.uuidName}"/>">
+								</c:if>
 								<div class='productt'>
 									<span><c:out value="${list.productName }" /></span> <div class="vr"></div>
 									<span>
@@ -42,19 +43,24 @@
 											</c:if>
 										</c:forEach>
 									</span>
-									<p><c:out value="${detail.sizeName}" /> / <c:out value="${detail.colorName}" />
-									<p>￦<c:out value="${vo.productPrice }" /></p>
+									<p><c:out value="${list.colorName }"/> / <c:out value="${list.sizeName }"/>
+									<p>￦<c:out value="${list.productPrice }" /></p>
 								</div>
 							</div>
+							</c:forEach>
 							<h4>배송비 무료</h4>
 						</div>
 					</div>
+					<c:set var="sum" value="0" />
+					<c:forEach items="${list}" var="list">
+						<c:set var="sum" value="${sum + list.productPrice}"/>
+					</c:forEach>
 					<div class='a1'>
 						<h4>주문요약</h4>
 						<div class='orders'>
 							<div class="d-flex mb-1">
 								<div class="p-2 align-self-center me-auto"><span>상품가격</span></div>
-								<div class="p-2 align-self-center"><span>￦<c:out value="${list.productPrice }" /></span></div>
+								<div class="p-2 align-self-center"><span>￦<c:out value="${sum}"/></span></div>
 							</div>
 							<div class="d-flex mb-1">
 								<div class="p-2 align-self-center me-auto"><span>배송비</span></div>
@@ -73,7 +79,7 @@
 							<div class="d-flex">
 								<h4 class='me-auto'>총 주문금액</h4>
 								<h4><c:out value="${vo.productPrice }" /></h4>
-								<input type="hidden" name="price" value="<c:out value="${vo.productPrice}" />">
+								<input type="hidden" name="price" value="<c:out value="${sum}"/>">
 							</div>
 						</div>
 					</div>
@@ -84,13 +90,13 @@
 						        <div class="col-md-3"><h5><c:out value="${sessName}" /></h5></div>
 						    </div>
 						    <div class="row">
-						        <div class="col-md-9"><span><c:out value="${item.memberMobile}" /><br></span></div>
+						        <div class="col-md-9"><span><br></span></div>
 						        <div class="col">
 						        	<button type="button" class="btn btn-secondary btn-sm">수정</button>
 						        </div>
 						    </div>
 						    <div class="row">
-						        <div class="col-md-3"><span><c:out value="${item.memberEmail}" /></span></div>
+						        <div class="col-md-3"><span></span></div>
 						    </div>
 						</div>
 					</div>
@@ -131,15 +137,15 @@
 							 <div class="p-1"><button type="button" class="btn btn-secondary btn-sm">주소검색</button></div>
 						</div>
 						<div class="d-flex flex-row mb-2">
-							<div class="p-1"><input class="form-control" type="text" placeholder="수령인" value="<c:out value="${item.reciver}" />"></div>
-							<div class="p-1"><input class="form-control" type="text" placeholder="연락처" value="<c:out value="${item.memberMobile}" />"></div>
+							<div class="p-1"><input class="form-control" type="text" placeholder="수령인"></div>
+							<div class="p-1"><input class="form-control" type="text" placeholder="연락처"></div>
 						</div>
 						<div class="d-flex flex-row align-self-center">
-							<div class="p-1"><input class="form-control" type="text" placeholder="우편번호" value="<c:out value="${item.zipcode}" />"></div>
+							<div class="p-1"><input class="form-control" type="text" placeholder="우편번호"></div>
 							<div class="p-1"><button type="button" class="btn btn-secondary btn-sm">주소찾기</button></div>
 						</div>
-						<div class="p-1"><input class="form-control" type="text" placeholder="주소" value="<c:out value="${item.addr1}" />"></div>
-						<div class="p-1"><input class="form-control" type="text" placeholder="상세주소" value="<c:out value="${item.addr2}" />"></div>
+						<div class="p-1"><input class="form-control" type="text" placeholder="주소"></div>
+						<div class="p-1"><input class="form-control" type="text" placeholder="상세주소" ></div>
 <!-- 					<div class="p-1">
 							<input class="form-check-input mb-3" type="checkbox" value="" id="buyorder">
 							<label class="form-check-label" for="buyorder">배송지 목록에 추가</label>

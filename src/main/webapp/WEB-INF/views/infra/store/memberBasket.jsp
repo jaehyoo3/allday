@@ -71,7 +71,7 @@
 				<br><br>
 				<c:set var="sum" value="0" />
 					<c:forEach items="${list}" var="list">
-					<c:set var="sum" value="${sum + list.productPrice}"/>
+						<c:set var="sum" value="${sum + list.productPrice}"/>
 					</c:forEach>
 				<div class='buytheway'>
 					<table style="width:100%">
