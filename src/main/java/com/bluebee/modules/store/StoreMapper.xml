@@ -364,6 +364,7 @@
 		,f.path
 		,f.uuidName
 		,f.idefaultNy
+		,b.detailSeq
 	from
 		basKets a
 	left join

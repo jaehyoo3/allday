@@ -25,7 +25,7 @@ public class Store extends Base {
 	private String product_Seq;
 	private String reViewSeq;
 	private String member_memberSeq;
-	private Integer Score;
+	private double Score;
 	private String Content;
 	private Integer reviewDelNy;
 	private String reviewRegDate;
@@ -120,10 +120,10 @@ public class Store extends Base {
 	public void setMember_memberSeq(String member_memberSeq) {
 		this.member_memberSeq = member_memberSeq;
 	}
-	public Integer getScore() {
+	public Double getScore() {
 		return Score;
 	}
-	public void setScore(Integer score) {
+	public void setScore(Double score) {
 		Score = score;
 	}
 	public String getContent() {

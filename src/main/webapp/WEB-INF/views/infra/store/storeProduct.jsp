@@ -196,7 +196,7 @@
 			
 			</div>
 			<div id='review'>
-				<h3>구매평</h3>
+				<h3>구매평 ${fn:length(reviewList)}</h3>
 				<div class="d-flex bd-highlight mb-3">
 					<div class="me-auto p-2 bd-highlight">
 				 		<input type="checkbox" id='photoreview'>
@@ -211,23 +211,41 @@
 					<div class="comment" style="margin: 0">
 						<ul>
 							<li style="width:80%"><c:out value="${reviewList.member_memberSeq }" /></li>
-							<li style="width:10%;"><c:out value="${reviewList.score }" /></li>
 							<li><c:out value="${reviewList.reviewRegDate }" /></li>
 						</ul>
 						<ul>
-							<li style="width:25%; height:300px;"><img src="../img/knit.jpg" style="width:100%; height:100%;"></li>
-							<li style="width:70%; height:300px;"><c:out value="${reviewList.content }" /></li>
+						<li style="width:10%;"><c:out value="${reviewList.score }" /></li>
+							<li style="width:70%;"><c:out value="${reviewList.content }" /></li>
 						</ul>
 					</div>
 				</c:forEach>
 				<hr>
 				<ul>
-				<span class="text-bold">별점을 선택해주세요</span>
-					<input type="radio" name="Score" value="5" id="Score"><label for="rate5">★</label>
-					<input type="radio" name="Score" value="4" id="rate4"><label for="rate4">★</label>
-					<input type="radio" name="Score" value="3" id="rate3"><label for="rate3">★</label>
-					<input type="radio" name="Score" value="2" id="rate2"><label for="rate2">★</label>
-					<input type="radio" name="Score" value="1" id="rate1"><label for="rate1">★</label>
+					<div class="starpoint_wrap">
+					  <div class="starpoint_box">
+					    <label for="starpoint_1" class="label_star" title="0.5"><span class="blind">0.5점</span></label>
+					    <label for="starpoint_2" class="label_star" title="1"><span class="blind">1점</span></label>
+					    <label for="starpoint_3" class="label_star" title="1.5"><span class="blind">1.5점</span></label>
+					    <label for="starpoint_4" class="label_star" title="2"><span class="blind">2점</span></label>
+					    <label for="starpoint_5" class="label_star" title="2.5"><span class="blind">2.5점</span></label>
+					    <label for="starpoint_6" class="label_star" title="3"><span class="blind">3점</span></label>
+					    <label for="starpoint_7" class="label_star" title="3.5"><span class="blind">3.5점</span></label>
+					    <label for="starpoint_8" class="label_star" title="4"><span class="blind">4점</span></label>
+					    <label for="starpoint_9" class="label_star" title="4.5"><span class="blind">4.5점</span></label>
+					    <label for="starpoint_10" class="label_star" title="5"><span class="blind">5점</span></label>
+					    <input type="radio" name="starpoint" id="starpoint_1" value="0.5" class="star_radio">
+					    <input type="radio" name="starpoint" id="starpoint_2" value="1.0" class="star_radio">
+					    <input type="radio" name="starpoint" id="starpoint_3" value="1.5" class="star_radio">
+					    <input type="radio" name="starpoint" id="starpoint_4" value="2.0" class="star_radio">
+					    <input type="radio" name="starpoint" id="starpoint_5" value="2.5" class="star_radio">
+					    <input type="radio" name="starpoint" id="starpoint_6" value="3.0" class="star_radio">
+					    <input type="radio" name="starpoint" id="starpoint_7" value="3.5" class="star_radio">
+					    <input type="radio" name="starpoint" id="starpoint_8" value="4.0" class="star_radio">
+					    <input type="radio" name="starpoint" id="starpoint_9" value="4.5" class="star_radio">
+					    <input type="radio" name="starpoint" id="starpoint_10" value="5.0" class="star_radio">
+					    <span class="starpoint_bg"></span>
+					  </div>
+					</div>
 				</ul>
 				<ul>
 					<li style="width:80%;"><textarea name="Content" id="Content" style="width:100%;"></textarea></li>
@@ -254,7 +272,7 @@
 					,cache: false
 					,type: "post"
 					,url: "/reviewProc"
-					,data: {"member_memberSeq" : $("#memberSeq").val(), "product_Seq" : $("#productSeq").val(), "Score" : 3, "Content" : $("#Content").val()} 
+					,data: {"member_memberSeq" : $("#memberSeq").val(), "product_Seq" : $("#productSeq").val(), "Score" : $("[name=starpoint]:checked").val(), "Content" : $("#Content").val()} 
 					,success: function(response) {
 						if(response.rt == "success") {
 						alert("댓글 입력되었습니다.");

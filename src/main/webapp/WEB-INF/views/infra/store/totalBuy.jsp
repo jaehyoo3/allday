@@ -19,7 +19,7 @@
 		<!-- navMenu s  -->
 			<%@include file="../../infra/includeV1/Menu.jsp"%>
 		<!-- navMenu e --> 
-		<input type="hidden" name="memberAddr_addrSeq" value=9">
+		<input type="hidden" name="memberAddr_addrSeq" value="9">
 		<jsp:useBean id="XdminCodeServiceImpl" class="com.bluebee.modules.xdmincode.XdminCodeServiceImpl"/>
 		<c:set var="listCodeType" value="${XdminCodeServiceImpl.selectListCachedCode('9')}"/>
 			<div id='content'>
@@ -35,7 +35,10 @@
 									<img src="<c:out value="${list.path}"/><c:out value="${list.uuidName}"/>">
 								</c:if>
 								<div class='productt'>
-									<span><c:out value="${list.productName }" /></span> <div class="vr"></div>
+									<span>
+										<c:out value="${list.productName }" />
+										<input type='hidden' name="productDetail_detailSeq" value="<c:out value="${list.detailSeq }" />">
+									</span> <div class="vr"></div>
 									<span>
 										<c:forEach items="${listCodeType}" var="listCode" varStatus="statusGender">
 											<c:if test="${list.productType eq listCode.codeOrder}">

@@ -40,6 +40,7 @@
 						<div class='listt'>
 						<h6>주문조회</h6>
 							<c:forEach items="${list}" var="list" varStatus="status">
+								<c:if test ="${list.orderDate eq list.orderDate }">
 									<div class='storeorder'>
 									<a href='#'>
 										<div class='storeimg'>
@@ -56,6 +57,8 @@
 										</div>
 										</a>
 									</div>
+									<p>ㅡㅡ</p>
+									</c:if>
 							</c:forEach>
 						</div>
 					</div>
