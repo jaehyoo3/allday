@@ -21,7 +21,6 @@ public class StoreController {
 	
 	/* Admin */
 		@RequestMapping(value = "xdmin/productList")
-		
 		public String ProductList(Model model, @ModelAttribute("vo") StoreVo vo) throws Exception {
 			vo.setParamsPaging(service.selectOneCount(vo));
 			
@@ -31,7 +30,6 @@ public class StoreController {
 		}
 		
 		@RequestMapping(value = "xdmin/productView")
-		
 		public String ProductView(Model model, @ModelAttribute("vo") StoreVo vo) throws Exception {
 			Store item = service.selectOne(vo);
 			model.addAttribute("item", item);

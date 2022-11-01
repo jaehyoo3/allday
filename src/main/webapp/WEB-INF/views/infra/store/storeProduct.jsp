@@ -208,18 +208,19 @@
 				</div>
 				<hr>
 				<c:forEach items="${reviewList}" var="reviewList" varStatus="status">
-					<div class="comment" style="margin: 0">
-						<ul>
-							<li style="width:80%"><c:out value="${reviewList.member_memberSeq }" /></li>
-							<li><c:out value="${reviewList.reviewRegDate }" /></li>
-						</ul>
-						<ul>
-						<li style="width:10%;"><c:out value="${reviewList.score }" /></li>
-							<li style="width:70%;"><c:out value="${reviewList.content }" /></li>
-						</ul>
-					</div>
+					<ul class='review_boder'>
+						<li class='content_warp'>
+							<div class='star_rating'><c:out value="${reviewList.score }" /></div> 
+							<div class='detail_warp'>[옵션] 색상 : Light Green / 사이즈 : Small / 1개</div>
+							<div class='content_detail_warp'><c:out value="${reviewList.content }" /></div>
+							<div class='img_warp'><p><img src="/resources/Images/img/knit.jpg"></p></div>
+						</li>
+						<li class='data_warp'>
+							<div class='idnick_warp'>강(asdasd)</div>
+							<div class='date_warp'>2022-11-01</div>
+						</li>
+					</ul>
 				</c:forEach>
-				<hr>
 				<ul>
 					<div class="starpoint_wrap">
 					  <div class="starpoint_box">
@@ -255,6 +256,10 @@
 			<br>
 			<div id='footer'>
 				<div class='copyright'>© 2022. Bluebee all rights reserved.</div>
+			</div>
+			<div class="modal">
+			    <div class="modalBox">
+			    </div>
 			</div>
 		</form>
 		<!-- jsLink s  -->
@@ -386,7 +391,22 @@
 			  const value = target.value;
 			  
 			  document.getElementById("detailSeq").value = value;
-			}
+		}
+		
+		$(function(){
+//		     이미지 클릭시 해당 이미지 모달
+		    $("p img").click(function(){
+ 		        let img = new Image();
+		        img.src = $(this).attr("src")
+		        $('.modalBox').html(img); 
+		        $(".modal").show();
+		    });
+		// 모달 클릭할때 이미지 닫음
+		    $(".modal").click(function (e) {
+		    $(".modal").toggle();
+		  });
+		});
+
 		</script>
 	</body>
 </html>
