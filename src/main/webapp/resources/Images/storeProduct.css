@@ -322,4 +322,15 @@
 			.starpoint_box .star_radio:nth-of-type(10):checked ~ .starpoint_bg{width:100%;}
 			
 			.blind{position:absolute;clip:rect(0 0 0 0);margin:-1px;width:1px;height: 1px;overflow:hidden;}
-			
+			div#editor {
+		    	padding: 16px 24px;
+		        border: 1px solid #D6D6D6;
+		        border-radius: 4px;
+		        height: 800px;
+		    }
+		     #img-selector {
+        		display: none;
+    		}
+    		    #editor img {
+    			max-width: 100%;
+   			}

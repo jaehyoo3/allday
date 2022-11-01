@@ -221,7 +221,6 @@
 						</li>
 					</ul>
 				</c:forEach>
-				<ul>
 					<div class="starpoint_wrap">
 					  <div class="starpoint_box">
 					    <label for="starpoint_1" class="label_star" title="0.5"><span class="blind">0.5점</span></label>
@@ -247,11 +246,13 @@
 					    <span class="starpoint_bg"></span>
 					  </div>
 					</div>
-				</ul>
+					 <button type="button" id="btn-image">IMG</button>
+					 <input id="img-selector" type="file" accept="image/*"/>
 				<ul>
-					<li style="width:80%;"><textarea name="Content" id="Content" style="width:100%;"></textarea></li>
+				<li style="width:90%;"></li>
 					<li style="width:10%;"><button type="button" id="reviewInst">등록</button></li>
 				</ul> 
+				<div id='editor' contentEditable="true"></div>
 			</div>
 			<br>
 			<div id='footer'>
@@ -270,8 +271,38 @@
 		var form = $("form[name=form]");
 		var seq = $("input:hidden[name=memberSeq]");
 		var pdseq = document.getElementById('productSeq').value;
-		
-			$("#reviewInst").on("click", function(){
+		const editor = document.getElementById('editor');
+	    function setStyle(style) {
+	        document.execCommand(style);
+	        focusEditor();
+	    }
+	    // 버튼 클릭 시 에디터가 포커스를 잃기 때문에 다시 에디터에 포커스를 해줌
+	    function focusEditor() {
+	        editor.focus({preventScroll: true});
+	    }
+	    const btnImage = document.getElementById('btn-image');
+	    const imageSelector = document.getElementById('img-selector');
+
+	    
+	    btnImage.addEventListener('click', function () {
+	        imageSelector.click();
+	    });
+
+	    imageSelector.addEventListener('change', function (e) {
+	        const files = e.target.files;
+	        if (!files) {
+	            insertImageDate(files[0]);
+	        }
+	    });
+	    
+	    function insertImageDate(file) {
+	        const reader = new FileReader();
+	        reader.addEventListener('load', function (e) {
+	            document.execCommand('insertImage', false, `${reader.result}`);
+	        });
+	        reader.readAsDataURL(file);
+	    }
+		$("#reviewInst").on("click", function(){
 	 			$.ajax({
 					async: false 
 					,cache: false
