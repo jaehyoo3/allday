@@ -213,7 +213,7 @@
 							<li style="width:80%"><c:out value="${reviewList.member_memberSeq }" /></li>
 							<li><c:out value="${reviewList.reviewRegDate }" /></li>
 						</ul>
-						<ul>d
+						<ul>
 						<li style="width:10%;"><c:out value="${reviewList.score }" /></li>
 							<li style="width:70%;"><c:out value="${reviewList.content }" /></li>
 						</ul>
