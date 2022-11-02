@@ -221,7 +221,8 @@
 						</li>
 					</ul>
 				</c:forEach>
-					<div class="starpoint_wrap">
+				<ul>
+					<li><div class="starpoint_wrap">
 					  <div class="starpoint_box">
 					    <label for="starpoint_1" class="label_star" title="0.5"><span class="blind">0.5점</span></label>
 					    <label for="starpoint_2" class="label_star" title="1"><span class="blind">1점</span></label>
@@ -246,14 +247,23 @@
 					    <span class="starpoint_bg"></span>
 					  </div>
 					</div>
-					 <button type="button" id="btn-image">IMG</button>
-					 <input id="img-selector" type="file" accept="image/*"/>
-				<ul>
-				<li style="width:90%;"></li>
-					<li style="width:10%;"><button type="button" id="reviewInst">등록</button></li>
-				</ul> 
-				<div id='editor' contentEditable="true"></div>
+					</li>
+				</ul>
+				<div class=iamgeupload-wrap>
+					<ul>
+						<li><ul class="image-preview"></ul></li>
+					</ul>
+				</div>
+				<ul><li><div class="upload"><i class="fa-solid fa-images"></i></div></ul>
+				<ul style="width:100%;">
+				  	<input type="file" class="real-upload" accept="image/*" required multiple>
+				  	
+					<li style="width:90%;"><input type="text" placeholder="내용입력" style="width:100%; height:40px;">
+					<li><button type="button" class='reviewbtn' id="reviewInst">등록</button></li>
+				</ul>
+				
 			</div>
+			
 			<br>
 			<div id='footer'>
 				<div class='copyright'>© 2022. Bluebee all rights reserved.</div>
@@ -263,6 +273,7 @@
 			    </div>
 			</div>
 		</form>
+
 		<!-- jsLink s  -->
 			<%@include file="../../infra/includeV1/jsLink.jsp"%>
 		<!-- jsLink e --> 
@@ -271,37 +282,7 @@
 		var form = $("form[name=form]");
 		var seq = $("input:hidden[name=memberSeq]");
 		var pdseq = document.getElementById('productSeq').value;
-		const editor = document.getElementById('editor');
-	    function setStyle(style) {
-	        document.execCommand(style);
-	        focusEditor();
-	    }
-	    // 버튼 클릭 시 에디터가 포커스를 잃기 때문에 다시 에디터에 포커스를 해줌
-	    function focusEditor() {
-	        editor.focus({preventScroll: true});
-	    }
-	    const btnImage = document.getElementById('btn-image');
-	    const imageSelector = document.getElementById('img-selector');
 
-	    
-	    btnImage.addEventListener('click', function () {
-	        imageSelector.click();
-	    });
-
-	    imageSelector.addEventListener('change', function (e) {
-	        const files = e.target.files;
-	        if (!files) {
-	            insertImageDate(files[0]);
-	        }
-	    });
-	    
-	    function insertImageDate(file) {
-	        const reader = new FileReader();
-	        reader.addEventListener('load', function (e) {
-	            document.execCommand('insertImage', false, `${reader.result}`);
-	        });
-	        reader.readAsDataURL(file);
-	    }
 		$("#reviewInst").on("click", function(){
 	 			$.ajax({
 					async: false 
@@ -437,7 +418,49 @@
 		    $(".modal").toggle();
 		  });
 		});
+			    function createElement(e, file) {
+			      const li = document.createElement('li');
+			      const img = document.createElement('img');
+			      img.setAttribute('src', e.target.result);
+			      img.setAttribute('data-file', file.name);
+			      li.appendChild(img);
 
+			      return li;
+			    }
+
+			    const realUpload = document.querySelector('.real-upload');
+			    const upload = document.querySelector('.upload');
+
+			    upload.addEventListener('click', () => realUpload.click());
+
+			    realUpload.addEventListener('change', getImageFiles);
+
+			    function getImageFiles(e) {
+			      const uploadFiles = [];
+			      const files = e.currentTarget.files;
+			      const imagePreview = document.querySelector('.image-preview');
+			      const docFrag = new DocumentFragment();
+
+			
+			      // 파일 타입 검사
+			      [...files].forEach(file => {
+			        if (!file.type.match("image/.*")) {
+			          alert('이미지 파일만 업로드가 가능합니다.');
+			          return
+			        }
+			
+			        // 파일 갯수 검사
+			        if ([...files].length < 3) {
+			          uploadFiles.push(file);
+			          const reader = new FileReader();
+			          reader.onload = (e) => {
+			            const preview = createElement(e, file);
+			            imagePreview.appendChild(preview);
+			          };
+			          reader.readAsDataURL(file);
+			        }
+			      });
+			    }
 		</script>
 	</body>
 </html>

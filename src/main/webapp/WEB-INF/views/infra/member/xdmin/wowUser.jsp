@@ -135,6 +135,11 @@
 						<button class='minusbtn'><i class="fa-solid fa-user-minus"></i></button>
 					</div>					
 				</p>
+				<button id="btn-image">IMG</button>
+					 <input id="img-selector" type="file" accept="image/*"/>
+				</ul> 
+				<div id='editor' contentEditable="true">dsad</div>
+				</div>
 			</form>
 		<script src="https://kit.fontawesome.com/a1961b2393.js"crossorigin="anonymous"></script>
 		<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
@@ -231,6 +236,37 @@
 		 	 $('.btn-expand-collapse').click(function(e) {
 				$('.navbar-primary').toggleClass('collapsed');
 				});
+		 	 
+			    function setStyle(style) {
+			        document.execCommand(style);
+			        focusEditor();
+			    }
+
+			    function focusEditor() {
+			        editor.focus({preventScroll: true});
+			    }
+			    const btnImage = document.getElementById('btn-image');
+			    const imageSelector = document.getElementById('img-selector');
+
+			    btnImage.addEventListener('click', function () {
+			        imageSelector.click();
+			    });
+
+			    imageSelector.addEventListener('change', function (e) {
+			        const files = e.target.files;
+			        if (!!files) {
+			            insertImageDate(files[0]);
+			        }
+			    });
+			    
+			    function insertImageDate(file) {
+			        const reader = new FileReader();
+			        reader.addEventListener('load', function (e) {
+			            focusEditor();
+			            document.execCommand('insertImage', false, `${reader.result}`);
+			        });
+			        reader.readAsDataURL(file);
+			    }
 
 		</script>
 	</body>

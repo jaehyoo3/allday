@@ -60,6 +60,46 @@ public class XdminCG {
 		this.codeGroupUpdate = codeGroupUpdate;
 	}
 	
+	// API
+	
+	public Object header;
+	public String resultCode;
+	public String resultMsg;
+
+	public Object body;
+	public Object[] items;
+
+	public Object getHeader() {
+		return header;
+	}
+	public void setHeader(Object header) {
+		this.header = header;
+	}
+	public String getResultCode() {
+		return resultCode;
+	}
+	public void setResultCode(String resultCode) {
+		this.resultCode = resultCode;
+	}
+	public String getResultMsg() {
+		return resultMsg;
+	}
+	public void setResultMsg(String resultMsg) {
+		this.resultMsg = resultMsg;
+	}
+	public Object getBody() {
+		return body;
+	}
+	public void setBody(Object body) {
+		this.body = body;
+	}
+	public Object[] getItems() {
+		return items;
+	}
+	public void setItems(Object[] items) {
+		this.items = items;
+	}
+
 	
 
 }
