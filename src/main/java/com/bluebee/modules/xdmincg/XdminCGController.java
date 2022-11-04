@@ -103,11 +103,12 @@ public class XdminCGController {
 			return "redirect:/xdmin/codegroup";
 		}
 		
+
 		@RequestMapping(value = "/test/apitest")
 		public String publicCorona1List(Model model) throws Exception {
 			
-			String apiUrl = "http://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty?sidoName=%EC%9D%B8%EC%B2%9C&pageNo=1&numOfRows=100&returnType=json&serviceKey=8pDUWDvj2GsfKzH%2F9jqv2XoNTtmMGkqHVaB5Lr5WU%2FnEgBgGQuDOhfGslMWSHlENIm%2BBCQFiFbTYNrNArRP5bA%3D%3D&ver=1.0&numOfRows=100&pageNo=1";
-			
+			String apiUrl = "http://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty?sidoName=%EC%9D%B8%EC%B2%9C&pageNo=1&numOfRows=100&returnType=json&serviceKey=8pDUWDvj2GsfKzH%2F9jqv2XoNTtmMGkqHVaB5Lr5WU%2FnEgBgGQuDOhfGslMWSHlENIm%2BBCQFiFbTYNrNArRP5bA%3D%3D&ver=1.0&numOfRows=100&pageNo=1";//
+//			String apiUrl = "http://apis.data.go.kr/1471000/CovidDagnsRgntProdExprtStusService/getCovidDagnsRgntProdExprtStusInq?serviceKey=dNLcjyriV9IBD5djvIMsq16GYwW%2F8N%2FCtnCNvRj66yaLV9jXKhipDNCJFDcDzorgqnVsJsz5gmYoibNbAG0sdw%3D%3D&numOfRows=3&pageNo=1&type=json";
 			URL url = new URL(apiUrl);
 			HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
 			httpURLConnection.setRequestMethod("GET");
@@ -131,38 +132,37 @@ public class XdminCGController {
 
 			System.out.println("stringBuilder.toString(): " + stringBuilder.toString());
 			
-//			json object + array string -> java map
-			
 	        ObjectMapper objectMapper = new ObjectMapper();	        Map<String, Object> map = objectMapper.readValue(stringBuilder.toString(), Map.class);
 	        
+			Map<String, Object> response = new HashMap<String, Object>();
+			response = (Map<String, Object>) map.get("response");
+			
 	        System.out.println("######## Map");
-			for (String key : map.keySet()) {
-				String value = String.valueOf(map.get(key));	// ok
+			for(String key : response.keySet()) {
+				String value = String.valueOf(response.get(key));	// ok
 				System.out.println("[key]:" + key + ", [value]:" + value);
 			}
 			
-
+			Map<String, Object> header = new HashMap<String, Object>();
+			header = (Map<String, Object>) response.get("header");
+			
+			System.out.println("######## Header");
+			for (String key : header.keySet()) {
+				String value = String.valueOf(header.get(key));	// ok
+				System.out.println("[key]:" + key + ", [value]:" + value);
+			}
+			
 			Map<String, Object> body = new HashMap<String, Object>();
-			body = (Map<String, Object>) map.get("body");
-			
-			for (String key : body.keySet()) {
-				String value = String.valueOf(body.get(key));	// ok
-				System.out.println("[key]:" + key + ", [value]:" + value);
-			}
-
+			body = (Map<String, Object>)response.get("body");
 			
 			List<XdminCG> items = new ArrayList<XdminCG>();
-			items = (List<XdminCG>) body.get("items");
-			
-			
-			System.out.println("items.size(): " + items.size());
-			
-//			for(Home item : items) {
-//				System.out.println(item.getMM());
-//			}
+			items = (List<XdminCG>)body.get("items");
 
+			System.out.println("items.size():" + items.size());
+			
+			model.addAllAttributes(header);
 			model.addAllAttributes(body);
 			
-			return "infra/codegroup/xdmin/apitest";
+			return "infra/xdmin/apitest";
 		}
 }
