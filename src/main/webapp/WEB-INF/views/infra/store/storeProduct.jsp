@@ -213,7 +213,7 @@
 							<div class='star_rating'><c:out value="${reviewList.score }" /></div> 
 							<div class='detail_warp'>[옵션] 색상 : Light Green / 사이즈 : Small / 1개</div>
 							<div class='content_detail_warp'><c:out value="${reviewList.content }" /></div>
-							<div class='img_warp'><p><img src="/resources/Images/img/knit.jpg"></p></div>
+							<div class='img_warp'><p><img src="/resources/Images/img/knit.jpg">  <img src="/resources/Images/img/knit.jpg"></p></div>
 						</li>
 						<li class='data_warp'>
 							<div class='idnick_warp'>강(asdasd)</div>

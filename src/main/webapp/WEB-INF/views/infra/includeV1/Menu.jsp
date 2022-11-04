@@ -14,7 +14,7 @@
 					  		</div>
 						</li>
 						<c:choose>
-							<c:when test="${empty sessSeq}">
+							<c:when test="${empty sessName}">
 								<li class='b'><div class="vr"></li>
 								<li class='b'><a href="basket" onClick="location.href='basket'"><i class="fa-solid fa-bag-shopping"></i></a></li>
 								<li class='b'><a href="modify"><i class="fa-solid fa-user"></i></a></li>
@@ -27,7 +27,7 @@
 								<li class='b'><a href="javascript:goForm2(<c:out value="${sessSeq }"/>)"><i class="fa-solid fa-user"></i></a></li>
 								<li class='b'><div class="vr"></li>
 								<li class='b'><a href="#">고객센터</a></li>
-								<li class='b'> "<c:out value="${sessNick}"/>" 님 환영합니다 <a href="#" id='btnLogout'><i class="fa-solid fa-x" style='font-size: 2px; vertical-align: 2px;'></i></a>
+								<li class='b'> "<c:out value="${sessName}"/>"<c:out value="${sessId}"/> 님 환영합니다 <a href="#" id='btnLogout'><i class="fa-solid fa-x" style='font-size: 2px; vertical-align: 2px;'></i></a>
 								</li>
 							</c:otherwise>
 						</c:choose>	

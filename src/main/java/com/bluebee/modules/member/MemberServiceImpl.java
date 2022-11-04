@@ -118,6 +118,18 @@ public class MemberServiceImpl implements MemberService {
 		return dao.basketList(vo);
 	}
 
+	@Override
+	public int kakaoInst(Member dto) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.kakaoInst(dto);
+	}
+
+	@Override
+	public Member snsLoginCheck(Member dto) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.snsLoginCheck(dto);
+	}
+
 
 
 }

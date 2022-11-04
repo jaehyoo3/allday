@@ -14,6 +14,7 @@
 	</head>
 	<body>
 		<form name='form' method="post">
+		<input type="hidden" name="codeSeq">
 			<%@include file="codeVo.jsp"%>	
 			<%@include file="../../../infra/includeV1/xdminSetting.jsp" %>
 			<div class="main-content">

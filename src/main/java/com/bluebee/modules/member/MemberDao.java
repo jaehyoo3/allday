@@ -38,5 +38,6 @@ public class MemberDao {
 	public List<Member> orderList(MemberVo vo){ return sqlSession.selectList(namespace + ".orderList", vo); }
 	public List<Member> basketList(MemberVo vo) { return sqlSession.selectList(namespace+".basketList", vo); }
 	
-
+	public int kakaoInst(Member dto) { return sqlSession.insert(namespace + ".kakaoInst", dto); }
+	public Member snsLoginCheck(Member dto) { return sqlSession.selectOne(namespace + ".snsLoginCheck", dto);}
 }

@@ -17,8 +17,14 @@ public class Member extends Base {
 	private String memberName;
 	private String seq;
 	private Integer price;
+	private String snsId;
 	
-	
+	public String getSnsId() {
+		return snsId;
+	}
+	public void setSnsId(String snsId) {
+		this.snsId = snsId;
+	}
 	public Integer getPrice() {
 		return price;
 	}

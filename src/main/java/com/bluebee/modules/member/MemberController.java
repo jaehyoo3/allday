@@ -166,6 +166,35 @@ public class MemberController {
 	}
 	
 	@ResponseBody
+	@RequestMapping(value = "/member/kakaoLoginProc")
+	public Map<String, Object> kakaoLoginProc(Member dto, HttpSession httpSession) throws Exception {
+	    Map<String, Object> returnMap = new HashMap<String, Object>();
+	    
+		Member kakaoLogin = service.snsLoginCheck(dto);
+		
+		if (kakaoLogin == null) {
+			service.kakaoInst(dto);
+			
+			httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE);
+            session(dto, httpSession); 
+			returnMap.put("rt", "success");
+		} else {
+			httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE);
+			
+			session(kakaoLogin, httpSession);
+			returnMap.put("rt", "success");
+		}
+		return returnMap;
+	}
+
+	 public void session(Member dto, HttpSession httpSession) {
+	     httpSession.setAttribute("sessSeq", dto.getMemberSeq());    
+	     httpSession.setAttribute("sessId", dto.getMemberID());
+	     httpSession.setAttribute("sessName", dto.getMemberName());
+	     httpSession.setAttribute("sessEmail", dto.getMemberEmail());
+	 }
+	
+	@ResponseBody
 	@RequestMapping(value = "member/logoutProc")
 	public Map<String, Object> logoutProc(HttpSession httpSession) throws Exception {
 		Map<String, Object> returnMap = new HashMap<String, Object>();

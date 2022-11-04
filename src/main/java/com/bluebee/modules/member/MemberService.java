@@ -18,4 +18,7 @@ public interface MemberService {
 	public Member selectOneLogin(Member dto) throws Exception;
 	public List<Member> orderList(MemberVo vo) throws Exception;
 	public List<Member> basketList(MemberVo vo) throws Exception;
+	public int kakaoInst(Member dto) throws Exception;
+	public Member snsLoginCheck(Member dto) throws Exception;
 }
+
