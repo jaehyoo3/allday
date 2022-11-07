@@ -233,24 +233,38 @@
 	<!--  상품 구매 S -->
 	<insert id="buyOrder">
 		insert into purChase_Product(
-			price
-			,memberAddr_addrSeq
+			memberAddr_addrSeq
 			,productDetail_detailSeq
 			,payment
 			,orderMemo
 			,orderDate
+			,orderNum
+			,orderTotal
 		) VALUES(
-			#{price}
-			,#{memberAddr_addrSeq}
+			#{memberAddr_addrSeq}
 			,#{productDetail_detailSeq}
 			,#{payment}
 			,#{orderMemo}
 			,now()
+			,#{orderNum}
+			,#{orderTotal}
 		)
 		<selectKey resultType="String" keyProperty="purChase" order="AFTER"> 
 			select last_insert_id()
 		</selectKey>
 	</insert>
+	
+	<insert id="orderDetail">
+		insert into orderDetail(
+			orderId
+		) select
+			#{purChase}
+		from purChase_Product
+		<selectKey resultType="String" keyProperty="orderDetail" order="AFTER"> 
+			select last_insert_id()
+		</selectKey>
+	</insert>
+	
 	
 	<select id="buyOneList" resultMap="resultMapObj">
 		select

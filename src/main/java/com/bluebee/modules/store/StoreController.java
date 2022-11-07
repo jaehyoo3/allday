@@ -189,8 +189,10 @@ public class StoreController {
 		@RequestMapping(value = "storeInst")
 		public String StoreBuyInst(Model model, @ModelAttribute("vo") StoreVo vo, Store dto) throws Exception {
 			service.buyOrder(dto);
+
 			return "infra/store/storeBuysuccess";
 		}
+		
 		@RequestMapping(value = "storeBuySuccess")
 		public String StoreBuySuccess() {
 			return "infra/store/storeBuysuccess";

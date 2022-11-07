@@ -1,5 +1,8 @@
 package com.bluebee.modules.store;
 
+import java.util.Calendar;
+import java.text.DecimalFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -120,7 +123,22 @@ public class StoreServiceImpl implements StoreService {
 	@Override
 	public List<Store> detailImg(StoreVo vo) throws Exception { return dao.detailImg(vo); }
 	@Override
-	public int buyOrder(Store dto) throws Exception { return dao.buyOrder(dto); }
+	public int buyOrder(Store dto) throws Exception {
+		 Calendar cal = Calendar.getInstance();
+		 int year = cal.get(Calendar.YEAR);
+		 String ym = year + new DecimalFormat("00").format(cal.get(Calendar.MONTH) + 1);
+		 String ymd = ym +  new DecimalFormat("00").format(cal.get(Calendar.DATE));
+		 String subNum = "";
+		 
+		 for(int i = 1; i <= 6; i ++) {
+		  subNum += (int)(Math.random() * 10);
+		 }
+		 
+		 String orderId = ymd + "_" + subNum;
+		 dto.setOrderNum(orderId);
+		
+		return dao.buyOrder(dto); 
+		}
 
 	@Override
 	public Store buyOneList(StoreVo vo) throws Exception {
@@ -187,6 +205,12 @@ public class StoreServiceImpl implements StoreService {
 	public List<Store> totalBuy(StoreVo vo) throws Exception {
 		// TODO Auto-generated method stub
 		return dao.totalBuy(vo);
+	}
+
+	@Override
+	public int orderDetail(Store dto) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.orderDetail(dto);
 	}
 	
 	

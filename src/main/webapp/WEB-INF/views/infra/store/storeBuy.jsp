@@ -64,7 +64,7 @@
 							<div class="d-flex">
 								<h4 class='me-auto'>총 주문금액</h4>
 								<h4><c:out value="${vo.productPrice }" /></h4>
-								<input type="hidden" name="price" value="<c:out value="${vo.productPrice}" />">
+								<input type="hidden" name="orderTotal" value="<c:out value="${vo.productPrice}" />">
 							</div>
 						</div>
 					</div>

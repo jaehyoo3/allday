@@ -73,7 +73,16 @@
 				        	</c:forEach>
 					    </select>
 					</c:forEach>
+					<div class="quantity_div">
+							<input type="text" value="1" class="quantity_input">	
+							<button class="quantity_btn plus_btn">+</button>
+							<button class="quantity_btn minus_btn">-</button>
+					</div>
 					<br>
+					<div class="addWrap">
+
+						<button type="button" id="testBtn">dd</button>
+					</div>
 					<input type='hidden' id="detailSeq" name="detailSeq">
 					<div class="row">
 				 		<div class="col">
@@ -94,6 +103,7 @@
 						</div>
 					</div>
 					</div>
+
 				</div>
 			</div>
 			<div id='information'>
@@ -385,6 +395,7 @@
 		       $(".product_color").each( function(index){
 		         var color = $(this).attr('data-color-hex');
 		         $(this).css('background',color);
+		  
 		               
 		       });
 		});
@@ -397,12 +408,30 @@
 		        var chk = $("input[name='color']:checked").val(); // 라디오 버튼 선택 값
 		        $(".size").hide(); // 클릭할 때마다 셀렉트박스 숨기고
 		        $("#"+chk).show(); // 라디오버튼에 선택 된 값 id 만 보이게
+		        
 		    });
 		});
+		
+	    $(document).ready(function(){
+	        $("#testBtn").click(function(){
+	           /*  if($("#addList")[0] != null || $("#addList") != 'undifiend'){
+	                alert("오브젝트 존재.");    
+	            } else{ */
+	                var div = $('<div class="addList">Hello Div</div>');
+	                $(".addWrap").append(div);
+	            
+	        });
+	    });
 		const showValue = (target) => {
 			  const value = target.value;
-			  
+			  var size = target.options[target.selectedIndex].text;
+
+	          var color = $("input[name='color']:checked").data-color-hex;
+	          var div = $('<div class="addList">'+size+' / ' + color + '</div>');
+	          $(".addWrap").append(div);
+	            
 			  document.getElementById("detailSeq").value = value;
+
 		}
 		
 		$(function(){
@@ -461,6 +490,19 @@
 			        }
 			      });
 			    }
+			    
+			    $(".plus_btn").on("click", function(){
+			    	let quantity = $(this).parent("div").find("input").val();
+			    	$(this).parent("div").find("input").val(++quantity);
+			    });
+			    $(".minus_btn").on("click", function(){
+			    	let quantity = $(this).parent("div").find("input").val();
+			    	if(quantity > 1){
+			    		$(this).parent("div").find("input").val(--quantity);		
+			    	}
+			    });
+			    
+
 		</script>
 	</body>
 </html>

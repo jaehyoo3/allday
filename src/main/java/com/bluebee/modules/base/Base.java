@@ -39,7 +39,56 @@ public class Base {
 	private String sizeName;
 	private Integer productType;
 	
+	private String orderNum;
+	private String orderPhone;
+	private String orderTotal;
+	private String orderDetail;
+	private String orderId;
+	private String productNum;
+	private String cartStock;
 	
+	public String getOrderDetail() {
+		return orderDetail;
+	}
+	public void setOrderDetail(String orderDetail) {
+		this.orderDetail = orderDetail;
+	}
+	public String getOrderId() {
+		return orderId;
+	}
+	public void setOrderId(String orderId) {
+		this.orderId = orderId;
+	}
+	public String getProductNum() {
+		return productNum;
+	}
+	public void setProductNum(String productNum) {
+		this.productNum = productNum;
+	}
+	public String getCartStock() {
+		return cartStock;
+	}
+	public void setCartStock(String cartStock) {
+		this.cartStock = cartStock;
+	}
+	public String getOrderPhone() {
+		return orderPhone;
+	}
+	public void setOrderPhone(String orderPhone) {
+		this.orderPhone = orderPhone;
+	}
+	public String getOrderTotal() {
+		return orderTotal;
+	}
+	public void setOrderTotal(String orderTotal) {
+		this.orderTotal = orderTotal;
+	}
+	public String getOrderNum() {
+		return orderNum;
+	}
+	public void setOrderNum(String orderNum) {
+		this.orderNum = orderNum;
+	}
 	/* 장바구니 */
 	private Integer basketNum;
 	private Date orderDate;

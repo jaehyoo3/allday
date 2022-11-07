@@ -343,3 +343,56 @@
 		    	height: 40px;
 		    	border:none;
 		    }
+		    .addWrap {
+		    	width: 100%;
+		    }
+		    .addList {
+		    	padding: 10px;
+		    	margin-bottom: 20px;
+		    	height: 100px;
+		    	background-color: ivory;
+		    }
+		    .addTitle{
+		    	padding: 10px;
+		    	font-size: 12px;
+		    }
+		    .quantity_div{
+				position: relative;
+			    width: 42px;
+			    height: 25px;
+			    text-align: left;
+			    margin: 5px auto;		
+			}
+		    .quantity_input{
+				position: absolute;
+				width: 27px;
+			    height: 23px;
+			    text-align: center;
+			    border: 1px solid #c6c6c6;
+			    border-right: 0px;
+			    line-height: 19px;
+			    font-size: 12px;
+			    color: #4c4848;	
+			    left: 0;
+			}
+			.quantity_btn{
+				position: absolute;
+			    border: 1px solid #aaa;
+			    color: #3a60df;
+			    width: 14px;
+			    height: 13px;
+			    padding: 0px;
+			    background-color: #fff;
+			    font-weight: bold;
+			    font-size: 7px;
+			    line-height: 6px;
+			    vertical-align: middle;	
+			}
+			.plus_btn{
+				top: 0;
+				right: 0
+			}
+			.minus_btn{
+				bottom: 0;
+				right: 0
+			}		
