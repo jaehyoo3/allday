@@ -75,8 +75,9 @@
 					</c:forEach>
 					<br>
 					<div class="addWrap">
+
 					</div>
-					
+	
 					<input type='hidden' id="detailSeq" name="detailSeq">
 					<div class="row">
 				 		<div class="col">
@@ -410,26 +411,49 @@
 	                $(".addWrap").append(div);
 	        });
 	    });
+	    let num = 1; 
 	    
 		const showValue = (target) => {
-			  const value = target.value;
-			  var size = target.options[target.selectedIndex].text;
-			  var color = $('[name="color"]:checked').attr('id');
-			  var price = $('[name="productPrice"]').val();
-/* 			  var sort = parseInt(maxNumber) + i; */
+			const value = target.value;
+			var size = target.options[target.selectedIndex].text;
+			var color = $('[name="color"]:checked').attr('id');
+			var price = $('[name="productPrice"]').val();
 			  
-	          var div = ""; 
-	          	div += '<div class="addList"> <ul><li><div class="addTitle"> ' + color + ' / '+size+' </div></li><li> <i class="fa-regular fa-circle-xmark"></i></li></ul>';
-	          	div += '<hr><ul><li><div class="quantity_div">';
-				div += '<input type="text" value="1" class="quantity_input">';
-				div += '<button class="quantity_btn plus_btn">+</button><button class="quantity_btn minus_btn">-</button>';
-				div += '</div></li><li><div class="addPrice">￦' + price + '</div></li></ul>';
-
-	          $(".addWrap").append(div);
-	            
-			  document.getElementById("detailSeq").value = value;
-
+			var div = ""; 
+			div += '<div class="addList" id="orderNum' + num + '"> <ul><li><div class="addTitle"> ' + color + ' / '+size+' </div></li><li> <a onclick="deleteOrder(' + num + ')"><i class="fa-regular fa-circle-xmark"></i></a></li></ul>';
+			div += '<hr><ul><li>';
+			div += '<div class="quantity_div"><input type="text" class="quantity_input" value="1">';
+			div += '<button type="button" onclick="plus_btnn()" class="quantity_btn plus_btn">+</button><button class="quantity_btn minus_btn">-</button></div></li>';
+			div += '<li><div class="addPrice">￦' + price + '</div></li></ul></div>';
+			$(".addWrap").append(div);
+			
+			num++;
+				
+		document.getElementById("detailSeq").value = value;
 		}
+		
+		function deleteOrder(num) {
+		    document.querySelector("#orderNum" + num).remove()
+		}
+		
+		function plus_btnn() {
+			let quantity = $(this).parent("div").find("input").val();
+			alert(quantity)
+	    	$(this).parent("div").find("input").val(++quantity);
+		}
+
+			$("#plus_bbtn").click(function(){
+		    	alert("dd");
+		    	/* const quantity = $(this).val();
+		    	$(this).parent("div").find("input").val(++quantity); */
+		    });
+
+	    $(".minus_btn").on("click", function(){
+	    	let quantity = $(this).parent("div").find("input").val();
+	    	if(quantity > 1){
+	    		$(this).parent("div").find("input").val(--quantity);		
+	    	}
+	    });
 		
 		$(function(){
 //		     이미지 클릭시 해당 이미지 모달
@@ -487,19 +511,6 @@
 			        }
 			      });
 			    }
-			    
-			    $(".plus_btn").on("click", function(){
-			    	let quantity = $(this).parent("div").find("input").val();
-			    	$(this).parent("div").find("input").val(++quantity);
-			    });
-			    $(".minus_btn").on("click", function(){
-			    	let quantity = $(this).parent("div").find("input").val();
-			    	if(quantity > 1){
-			    		$(this).parent("div").find("input").val(--quantity);		
-			    	}
-			    });
-			    
-
 		</script>
 	</body>
 </html>

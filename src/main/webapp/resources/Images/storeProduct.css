@@ -380,8 +380,8 @@
 			}
 		    .quantity_input{
 				position: absolute;
-				width: 27px;
-			    height: 23px;
+				width: 30px;
+			    height: 25px;
 			    text-align: center;
 			    border: 1px solid #c6c6c6;
 			    border-right: 0px;
@@ -410,4 +410,5 @@
 			.minus_btn{
 				bottom: 0;
 				right: 0
-			}		
+			}	
+			
