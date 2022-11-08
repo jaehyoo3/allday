@@ -55,7 +55,7 @@
 					<p style="font-size:12px; font-weight:bold;">색상 *</p>
 					<c:forEach items="${ColorList}" var="list" varStatus="status">
 						<label for="<c:out value="${list.colorName}" />">
-							<input class="product_color" data-color-hex="<c:out value="${list.colorName}" />" type="radio" value="<c:out value="${list.colorSeq}" />" name="color"/>
+							<input class="product_color" id="<c:out value="${list.colorName}" />" data-color-hex="<c:out value="${list.colorName}" />" type="radio" value="<c:out value="${list.colorSeq}" />" name="color"/>
 						</label>
 					</c:forEach>
 					<br>
@@ -73,16 +73,10 @@
 				        	</c:forEach>
 					    </select>
 					</c:forEach>
-					<div class="quantity_div">
-							<input type="text" value="1" class="quantity_input">	
-							<button class="quantity_btn plus_btn">+</button>
-							<button class="quantity_btn minus_btn">-</button>
-					</div>
 					<br>
 					<div class="addWrap">
-
-						<button type="button" id="testBtn">dd</button>
 					</div>
+					
 					<input type='hidden' id="detailSeq" name="detailSeq">
 					<div class="row">
 				 		<div class="col">
@@ -368,9 +362,6 @@
 			}); 
 		var productBuy = 'storeBuy';
 
-		var form = $("form[name=form]")
-
-		
 		$("#productBuy").on("click", function(){
 			form.attr("action", productBuy).submit();
 		});
@@ -395,8 +386,6 @@
 		       $(".product_color").each( function(index){
 		         var color = $(this).attr('data-color-hex');
 		         $(this).css('background',color);
-		  
-		               
 		       });
 		});
 		
@@ -419,15 +408,23 @@
 	            } else{ */
 	                var div = $('<div class="addList">Hello Div</div>');
 	                $(".addWrap").append(div);
-	            
 	        });
 	    });
+	    
 		const showValue = (target) => {
 			  const value = target.value;
 			  var size = target.options[target.selectedIndex].text;
+			  var color = $('[name="color"]:checked').attr('id');
+			  var price = $('[name="productPrice"]').val();
+/* 			  var sort = parseInt(maxNumber) + i; */
+			  
+	          var div = ""; 
+	          	div += '<div class="addList"> <ul><li><div class="addTitle"> ' + color + ' / '+size+' </div></li><li> <i class="fa-regular fa-circle-xmark"></i></li></ul>';
+	          	div += '<hr><ul><li><div class="quantity_div">';
+				div += '<input type="text" value="1" class="quantity_input">';
+				div += '<button class="quantity_btn plus_btn">+</button><button class="quantity_btn minus_btn">-</button>';
+				div += '</div></li><li><div class="addPrice">￦' + price + '</div></li></ul>';
 
-	          var color = $("input[name='color']:checked").data-color-hex;
-	          var div = $('<div class="addList">'+size+' / ' + color + '</div>');
 	          $(".addWrap").append(div);
 	            
 			  document.getElementById("detailSeq").value = value;

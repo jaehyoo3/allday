@@ -319,7 +319,6 @@
 		    .real-upload {
 		      display: none;
 		    }
-		
 		    .upload {
 		      background-color: antiquewhite;
 		    }
@@ -332,7 +331,7 @@
 		     .iamgeupload-list li {
 				margin:0;
 				padding:0;
-		     }
+		    }
 		    .image-preview img {
 		      height: 50px;
 		    }
@@ -349,12 +348,28 @@
 		    .addList {
 		    	padding: 10px;
 		    	margin-bottom: 20px;
-		    	height: 100px;
-		    	background-color: ivory;
+		    	height: auto;
+		    	background-color: rgba(54,54,54,0.03);
+		    }
+		    .addWrap hr{
+		    	background-color:#000;
+		    	border-top: 1px dashed #bbb;
 		    }
 		    .addTitle{
-		    	padding: 10px;
-		    	font-size: 12px;
+		    	font-size: 14px;
+		    }
+		    .addPrice {
+		    	font-size: 16px;
+		    }
+		    .addList ul{
+		    	display: flex;
+		    	padding: 0;
+		    	justify-content: space-between;
+		    }
+		    .addList li{
+		    	margin:0;
+				padding:0;
+				list-style: none;
 		    }
 		    .quantity_div{
 				position: relative;
