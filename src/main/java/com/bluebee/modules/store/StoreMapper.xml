@@ -289,11 +289,11 @@
 	<insert id="wishinst">
 	insert into wishList(
 		member_memberSeq
-		,product_Seq
+		,productSeq
 		,wishListDelNy
 		) values (
 		#{member_memberSeq}
-		,#{product_Seq}
+		,#{productSeq}
 		,1
 		)
 		<selectKey resultType="String" keyProperty="wishSeq" order="AFTER"> 
@@ -319,13 +319,13 @@
 			and detailSeq = #{detailSeq}
 	</select>
 	 
-	<select id="wishListCount" resultType="Integer">
+	<select id="wishListCount" resultType="int">
 		select
 			COUNT(*)
 		from
 			wishList
 		where 1=1
-			and product_Seq = #{productSeq}
+			and productSeq = #{productSeq}
 	</select>
 	
 	<select id="wishListCheck" resultType="Integer">
@@ -334,7 +334,7 @@
 		from
 			wishList
 		where 1=1
-			and product_Seq = #{product_Seq}
+			and productSeq = #{productSeq}
 			and member_memberSeq = #{member_memberSeq}
 	</select>
 	
@@ -342,13 +342,13 @@
     	delete  from
     		wishList
     	where 1=1
-			and product_Seq = #{product_Seq}
+			and productSeq = #{productSeq}
 			and member_memberSeq = #{member_memberSeq}
     </delete>
     
     <select id="wishList" resultMap="resultMapObj">
     	select
-    		a.product_Seq
+    		a.productSeq
     		,b.productName
     		,b.productPrice
     		,c.uuidName
@@ -358,11 +358,11 @@
     	left join
     		product b
     	on
-    		a.product_Seq = b.productSeq
+    		a.productSeq = b.productSeq
     	left join
     		productUploaded c
     	on
-    		c.pseq = a.product_Seq
+    		c.pseq = a.productSeq
     	where 1=1
     		and member_memberSeq = #{memberSeq}
     </select>

@@ -26,6 +26,7 @@
 			<input type="hidden" id="memberSeq" name="memberSeq" value="<c:out value="${sessSeq}" />">
 			<input type="hidden" name="productSeq" id="productSeq" value="<c:out value="${item.productSeq}"/>">
 			<input type="hidden" name="productName" id="productName" value="<c:out value="${item.productName}"/>">
+			<input type="hidden" name="product_Seq" id="product_Seq" value="<c:out value="${item.productSeq}"/>">
 			<p>Home</p>
 				<div class="productimg">
 					<c:forEach items="${mainImgList}" var="list" varStatus="status">
@@ -86,6 +87,7 @@
 						<div class="col">
 							<button type="button" id="basketBtn" class="btn btn-outline-dark fw-bold col-12" style="height: 50px;">장바구니</button>
 						</div>
+						<input type="text" id="total_cnt" value="${wishListCount}">
 						<div class="col">
 							<c:choose>
 								<c:when test="${wishListCount eq 0}">
@@ -316,14 +318,15 @@
 					,cache: false
 					,type: "post"
 					,url: "/wishProc"
-					,data: {"member_memberSeq" : $("#memberSeq").val(), "product_Seq" : $("#productSeq").val()} 
+					,data: {"member_memberSeq" : $("#memberSeq").val(), "productSeq" : $("#productSeq").val()} 
 					,success: function(response) {
 						if(response.rt == "success") {
 							alert("위시리스트에 등록되었습니다.");
-							$('#wishInst').text("♥ ")
+							$('#wishInst').text("♥ ${wishListCount}")
+							
 						} else if(response.rt == "delete"){
-							alert("위시리스트에 등록되었습니다.");
-							$('#wishInst').text('♡');
+							alert("위시리스트에 해제되었습니다.");
+							$('#wishInst').text('♡ ${wishListCount}');
 						} else{
 							alert("오류");
 						}

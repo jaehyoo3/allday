@@ -12,7 +12,21 @@ public class StoreVo extends BaseVo{
 	private String path;
 	private String uuidName;
 	private String memberSeq;
+	private Integer wishListCount;
+	private String product_Seq;
 	
+	public String getProduct_Seq() {
+		return product_Seq;
+	}
+	public void setProduct_Seq(String product_Seq) {
+		this.product_Seq = product_Seq;
+	}
+	public Integer getWishListCount() {
+		return wishListCount;
+	}
+	public void setWishListCount(Integer wishListCount) {
+		this.wishListCount = wishListCount;
+	}
 	public String getMemberSeq() {
 		return memberSeq;
 	}

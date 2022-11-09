@@ -157,7 +157,7 @@ public class StoreController {
 			List<Store> reviewList = service.reviewList(vo);
 			model.addAttribute("reviewList", reviewList);
 			
-			int wishListCount = service.wishListCount(dto);
+			int wishListCount = service.wishListCount(vo);
 			model.addAttribute("wishListCount", wishListCount);
 			
 			return "infra/store/storeProduct";
@@ -246,6 +246,8 @@ public class StoreController {
 			Map<String, Object> returnMap = new HashMap<String, Object>();
 			
 			int ckBasket = service.basketCheck(dto);
+
+
 			if(ckBasket == 1) {
 				service.basketUpdt(dto);
 				returnMap.put("rt", "fail");
@@ -259,11 +261,10 @@ public class StoreController {
 		
 		@ResponseBody
 		@RequestMapping(value = "/wishProc")
-		public Map<String, Object> wishProc(Store dto, HttpSession httpSession) throws Exception {
+		public Map<String, Object> wishProc(StoreVo vo, Store dto, HttpSession httpSession) throws Exception {
 			Map<String, Object> returnMap = new HashMap<String, Object>();
-			
 			int ckWish = service.wishListCheck(dto);
-			
+	        
 			if(ckWish == 0) {
 				service.wishinst(dto);
 				returnMap.put("rt", "success");
@@ -272,7 +273,6 @@ public class StoreController {
 				returnMap.put("rt", "delete");
 			} else {
 				returnMap.put("rt", "fail");
-				
 			}
 			return returnMap;
 		}

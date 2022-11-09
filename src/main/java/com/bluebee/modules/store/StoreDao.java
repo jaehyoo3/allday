@@ -48,7 +48,7 @@ public class StoreDao {
 	public int buyCheck(Store dto) { return sqlSession.selectOne(namespace+".buyCheck", dto); }
 	public int wishinst(Store dto) { return sqlSession.insert(namespace+".wishinst", dto); }
 	
-	public int wishListCount(Store dto) { return sqlSession.selectOne(namespace+".wishListCount", dto); }
+	public int wishListCount(StoreVo vo) { return sqlSession.selectOne(namespace+".wishListCount", vo); }
 	public int wishListCheck(Store dto) { return sqlSession.selectOne(namespace+".wishListCheck", dto); }
 	public int wishListDele(Store dto) { return sqlSession.delete(namespace+".wishListDele", dto); }
 	
