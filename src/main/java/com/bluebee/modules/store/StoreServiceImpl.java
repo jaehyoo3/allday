@@ -116,7 +116,7 @@ public class StoreServiceImpl implements StoreService {
 				for(MultipartFile multipartFile : dto.getUploadedImage3() ) {
 					if(!multipartFile.isEmpty()) {
 	    		
-	    			String pathModule = this.getClass().getSimpleName().toString().toLowerCase().replace("serviceimpl", "");	
+	    			String pathModule = "comment";
 	    			Integer type = Integer.valueOf(dto.getProduct_Seq());
 	    			UtilUpload.upload(multipartFile, pathModule, dto, type);
 	    			
@@ -125,7 +125,7 @@ public class StoreServiceImpl implements StoreService {
 		    		dto.setIdefaultNy(j == 0 ? 1 : 0);
 		    		dto.setSort(j + 1);
 		    		dto.setPseq(dto.getReViewSeq());
-		    		dto.setArticle(1);
+		    		dto.setArticle(Integer.valueOf(dto.getMember_memberSeq()));
 	
 					dao.insertUploaded(dto);
 					j++;
@@ -139,7 +139,8 @@ public class StoreServiceImpl implements StoreService {
 	  }
 	  
 	  @Override public List<Store> reviewList(StoreVo vo) throws Exception { return dao.reviewList(vo); }
-	 
+	  @Override public List<Store> reviewList3(Store dto) throws Exception { return dao.reviewList3(dto); }
+		  
 
 	@Override
 	public List<Store> productColor(StoreVo vo) throws Exception { return dao.productColor(vo);}

@@ -205,17 +205,8 @@
 			<form id="form">
 			<input type='hidden' name="member_memberSeq" value="<c:out value="${sessSeq}" />">
 			<input type="hidden" name="product_Seq" value="<c:out value="${item.productSeq}"/>">
-			<div id='review'>
+			<div id="review">
 				<h3>구매평 ${fn:length(reviewList)}</h3>
-				<div class="d-flex bd-highlight mb-3">
-					<div class="me-auto p-2 bd-highlight">
-				 		<input type="checkbox" id='photoreview'>
-						<label for='photoreview'>포토리뷰만 보기</label>
-					</div>
-					 <div class="p-2 bd-highlight">
-				 	<button type="btn">구매평 작성</button>
-				 	</div>
-				</div>
 				<hr>
 				<c:forEach items="${reviewList}" var="reviewList" varStatus="status">
 					<ul class='review_boder'>
@@ -223,7 +214,7 @@
 							<div class='star_rating'><c:out value="${reviewList.score }" /></div> 
 							<div class='detail_warp'>[옵션] 색상 : Light Green / 사이즈 : Small / 1개</div>
 							<div class='content_detail_warp'><c:out value="${reviewList.content }" /></div>
-							<div class='img_warp'><p><img src="/resources/Images/img/knit.jpg">  <img src="/resources/Images/img/knit.jpg"></p></div>
+							<div class='img_warp'><p><img src='<c:out value="${reviewList.path}"/><c:out value="${reviewList.uuidName}"/>'></p></div>
 						</li>
 						<li class='data_warp'>
 							<div class='idnick_warp'>강(asdasd)</div>
@@ -270,10 +261,7 @@
 					<li style="width:90%;"><input type="text" name="Content" placeholder="내용입력" style="width:100%; height:40px;">
 					<li><button type="button" class='reviewbtn' id="reviewInst">등록</button></li>
 				</ul>
-				
-				
 			</div>
-			
 			<br>
 			<div id='footer'>
 				<div class='copyright'>© 2022. Bluebee all rights reserved.</div>
@@ -291,8 +279,8 @@
 		<script type="text/javascript">
 		var form = $("form[name=form]");
 		var seq = $("input:hidden[name=memberSeq]");
-		var pdseq = document.getElementById('productSeq').value;
-
+		var pdseq = document.getElementById('product_Seq').value;
+			
 		$("#reviewInst").on("click", function(){
 			var formData = new FormData($("#form")[0]);
 	 			$.ajax({
@@ -305,6 +293,7 @@
 			        ,enctype:'multipart/form-data'
 			        ,type:"POST"					
 			        ,success: function(response) {
+			        	var htmls = "";
 						if(response.rt == "success") {
 						alert("댓글 입력되었습니다.");
 						$("#review").load("productView?&productSeq="+pdseq+" #review>*");
@@ -410,17 +399,7 @@
 		        
 		    });
 		});
-		
-	    $(document).ready(function(){
-	        $("#testBtn").click(function(){
-	           /*  if($("#addList")[0] != null || $("#addList") != 'undifiend'){
-	                alert("오브젝트 존재.");    
-	            } else{ */
-	                var div = $('<div class="addList">Hello Div</div>');
-	                $(".addWrap").append(div);
-	        });
-	    });
-	    let num = 1; 
+		let num = 1; 
 	    
 		const showValue = (target) => {
 			const value = target.value;
@@ -431,9 +410,10 @@
 			var div = ""; 
 			div += '<div class="addList" id="orderNum' + num + '"> <ul><li><div class="addTitle"> ' + color + ' / '+size+' </div></li><li> <a onclick="deleteOrder(' + num + ')"><i class="fa-regular fa-circle-xmark"></i></a></li></ul>';
 			div += '<hr><ul><li>';
-			div += '<div class="quantity_div"><input type="text" class="quantity_input" value="1">';
-			div += '<button type="button" onclick="plus_btnn()" class="quantity_btn plus_btn">+</button><button class="quantity_btn minus_btn">-</button></div></li>';
+			div += '<div class="count-wrap _count"> <button type="button" class="minus">감소</button> <input type="text" class="inp" value="134342"> <button type="button" class="plus">증가</button></div>';
+			div += '</li>';
 			div += '<li><div class="addPrice">￦' + price + '</div></li></ul></div>';
+			
 			$(".addWrap").append(div);
 			
 			num++;
@@ -445,24 +425,45 @@
 		    document.querySelector("#orderNum" + num).remove()
 		}
 		
-		function plus_btnn() {
-			let quantity = $(this).parent("div").find("input").val();
-			alert(quantity)
-	    	$(this).parent("div").find("input").val(++quantity);
+		function fnCalCount(type, ths){
+		    var $input = $(ths).parents("td").find("input[name='pop_out']");
+		    var tCount = Number($input.val());
+		    var tEqCount = Number($(ths).parents("tr").find("td.bseq_ea").html());
+		    
+		    if(type=='p'){
+		        if(tCount < tEqCount) $input.val(Number(tCount)+1);
+		        
+		    }else{
+		        if(tCount >0) $input.val(Number(tCount)-1);    
+		        }
 		}
-
-			$("#plus_bbtn").click(function(){
-		    	alert("dd");
-		    	/* const quantity = $(this).val();
-		    	$(this).parent("div").find("input").val(++quantity); */
-		    });
-
-	    $(".minus_btn").on("click", function(){
-	    	let quantity = $(this).parent("div").find("input").val();
-	    	if(quantity > 1){
-	    		$(this).parent("div").find("input").val(--quantity);		
-	    	}
-	    });
+		$('._count :button').on({
+			'click' : function(e){
+		        e.preventDefault();
+		        var $count = $(this).parent('._count').find('.inp');
+		        var now = parseInt($count.val());
+		        var min = 1;
+		        var max = 999;
+		        var num = now;
+		        if($(this).hasClass('minus')){
+		            var type = 'm';
+		        }else{
+		            var type = 'p';
+		        }
+		        if(type=='m'){
+		            if(now>min){
+		                num = now - 1;
+		            }
+		        }else{
+		            if(now<max){
+		                num = now + 1;
+		            }
+		        }
+		        if(num != now){
+		            $count.val(num);
+		        }
+		    }
+		});
 		
 		$(function(){
 //		     이미지 클릭시 해당 이미지 모달

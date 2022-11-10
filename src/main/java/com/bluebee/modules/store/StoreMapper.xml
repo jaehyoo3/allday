@@ -75,6 +75,20 @@
     	where 1=1
     		and a.product_Seq = #{productSeq}
     </select>
+    
+    <select id="reviewList3" resultMap="resultMapObj">
+    	select
+    		a.product_Seq
+    		,a.Score
+    		,a.content
+    		,a.reviewRegDate
+    		,b.path
+			,b.uuidName
+    	from reView a
+    	left join commentUploaded b on a.reViewSeq = b.pseq
+    	where 1=1
+    		and a.product_Seq = #{product_Seq}
+    </select>
     <!-- 리뷰e -->
     
     <insert id="insert">

@@ -27,8 +27,20 @@ public class UtilUpload {
 			path = Constants.UPLOAD_PATH_PREFIX + "/" + pathModule + "/" + pathDate + "/";
 		}
 		
+		if(className.equals("comment")) {
+			path = Constants.UPLOAD_PATH_PREFIX + "/comment/" + type + "/";
+		} else {
+			path = Constants.UPLOAD_PATH_PREFIX + "/" + pathModule + "/" + pathDate + "/";
+		}
+		
 		if(className.equals("store")) {
 			pathForView = Constants.UPLOAD_PATH_PREFIX_FOR_VIEW + "/product/" + type + "/";
+		} else {
+			pathForView = Constants.UPLOAD_PATH_PREFIX_FOR_VIEW + "/" + pathModule + "/" + pathDate + "/";
+		}
+		
+		if(className.equals("comment")) {
+			pathForView = Constants.UPLOAD_PATH_PREFIX_FOR_VIEW + "/comment/" + type + "/";
 		} else {
 			pathForView = Constants.UPLOAD_PATH_PREFIX_FOR_VIEW + "/" + pathModule + "/" + pathDate + "/";
 		}
@@ -41,7 +53,6 @@ public class UtilUpload {
 		dto.setExt(ext);
 		dto.setSize(multipartFile.getSize());
 	}
-	
 	
 	public static void createPath (String path) {
 		File uploadPath = new File(path);

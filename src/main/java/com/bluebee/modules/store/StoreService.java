@@ -13,6 +13,7 @@ public interface StoreService {
 	public List<Store> sL(StoreVo vo) throws Exception;
 	
 	public List<Store> reviewList(StoreVo vo) throws Exception; 
+	public List<Store> reviewList3(Store dto) throws Exception; 
 	public int reviewInsert(Store dto) throws Exception;
 	 
 	public List<Store> productList(StoreVo vo) throws Exception;
