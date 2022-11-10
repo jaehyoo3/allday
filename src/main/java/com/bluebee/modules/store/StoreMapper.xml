@@ -64,13 +64,16 @@
     </insert>
     <select id="reviewList" resultMap="resultMapObj">
     	select
-    		product_Seq
-    		,Score
-    		,content
-    		,reviewRegDate
-    	from reView
+    		a.product_Seq
+    		,a.Score
+    		,a.content
+    		,a.reviewRegDate
+    		,b.path
+			,b.uuidName
+    	from reView a
+    	left join commentUploaded b on a.reViewSeq = b.pseq
     	where 1=1
-    		and product_Seq = #{productSeq}
+    		and a.product_Seq = #{productSeq}
     </select>
     <!-- 리뷰e -->
     

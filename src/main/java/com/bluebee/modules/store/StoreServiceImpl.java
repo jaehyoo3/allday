@@ -64,7 +64,7 @@ public class StoreServiceImpl implements StoreService {
 					j++;
 	    		}
 			}
-    		j = 0;
+	    	
 	    	for(MultipartFile multipartFile : dto.getUploadedImage2() ) {
 	    		if(!multipartFile.isEmpty()) {
 	    		
@@ -83,7 +83,7 @@ public class StoreServiceImpl implements StoreService {
 					j++;
 	    		}
 			}
-			
+	    				
 	 		return 1;
 	    } catch (Exception e) {
 	        throw new Exception();
@@ -109,7 +109,34 @@ public class StoreServiceImpl implements StoreService {
 
 
 	
-	  @Override public int reviewInsert(Store dto) throws Exception { return dao.reviewInsert(dto); }
+	  @Override public int reviewInsert(Store dto) throws Exception {
+			try {
+				dao.reviewInsert(dto);
+				int j = 0;
+				for(MultipartFile multipartFile : dto.getUploadedImage3() ) {
+					if(!multipartFile.isEmpty()) {
+	    		
+	    			String pathModule = this.getClass().getSimpleName().toString().toLowerCase().replace("serviceimpl", "");	
+	    			Integer type = Integer.valueOf(dto.getProduct_Seq());
+	    			UtilUpload.upload(multipartFile, pathModule, dto, type);
+	    			
+		    		dto.setTableName("commentUploaded");
+		    		dto.setType(1);
+		    		dto.setIdefaultNy(j == 0 ? 1 : 0);
+		    		dto.setSort(j + 1);
+		    		dto.setPseq(dto.getReViewSeq());
+		    		dto.setArticle(1);
+	
+					dao.insertUploaded(dto);
+					j++;
+	    		}
+	    	}
+				
+	 		return 1;
+	    } catch (Exception e) {
+	        throw new Exception();
+	  }
+	  }
 	  
 	  @Override public List<Store> reviewList(StoreVo vo) throws Exception { return dao.reviewList(vo); }
 	 

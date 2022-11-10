@@ -227,15 +227,16 @@ public class StoreController {
 		@RequestMapping(value = "/reviewProc")
 		public Map<String, Object> reviewProc(StoreVo vo,Model model, Store dto, HttpSession httpSession) throws Exception {
 			Map<String, Object> returnMap = new HashMap<String, Object>();
-			int ckOrder = service.buyCheck(dto);
+			System.out.println(dto.getMember_memberSeq());
 			
-			if(ckOrder == 1) {
+			  int ckOrder = service.buyCheck(dto);
+			  
+			  if(ckOrder == 0) {
+				  returnMap.put("rt", "fail");
+			} else {
 				service.reviewInsert(dto);
 				returnMap.put("rt", "success");
-				List<Store> reviewList = service.reviewList(vo);
-				model.addAttribute("reviewList", reviewList);
-			} else {
-				returnMap.put("rt", "fail");
+
 			}			
 			return returnMap;
 		}

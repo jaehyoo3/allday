@@ -15,6 +15,7 @@ public class Base {
 	private long size;
 	private MultipartFile[] uploadedImage;
 	private MultipartFile[] uploadedImage2;
+	private MultipartFile[] uploadedImage3;
 	private Integer idelNy;
 	private String pseq;
 	private String tableName;
@@ -47,6 +48,12 @@ public class Base {
 	private String productNum;
 	private String cartStock;
 	
+	public MultipartFile[] getUploadedImage3() {
+		return uploadedImage3;
+	}
+	public void setUploadedImage3(MultipartFile[] uploadedImage3) {
+		this.uploadedImage3 = uploadedImage3;
+	}
 	public String getOrderDetail() {
 		return orderDetail;
 	}

@@ -200,8 +200,11 @@
 				      <td>상품 수령 후 7일 이내 (단, 제품이 표시광고 내용과 다르거나 불량 등 계약과 다르게 이행된 경우는 제품 수령일로부터 3개월이내나 그 사실을 안 날 또는 알 수 있었던 날부터 30일 이내 교환/반품이 가능)</td>
 				    </tr>
 				</table>
-			
 			</div>
+			</form>
+			<form id="form">
+			<input type='hidden' name="member_memberSeq" value="<c:out value="${sessSeq}" />">
+			<input type="hidden" name="product_Seq" value="<c:out value="${item.productSeq}"/>">
 			<div id='review'>
 				<h3>구매평 ${fn:length(reviewList)}</h3>
 				<div class="d-flex bd-highlight mb-3">
@@ -241,16 +244,16 @@
 					    <label for="starpoint_8" class="label_star" title="4"><span class="blind">4점</span></label>
 					    <label for="starpoint_9" class="label_star" title="4.5"><span class="blind">4.5점</span></label>
 					    <label for="starpoint_10" class="label_star" title="5"><span class="blind">5점</span></label>
-					    <input type="radio" name="starpoint" id="starpoint_1" value="0.5" class="star_radio">
-					    <input type="radio" name="starpoint" id="starpoint_2" value="1.0" class="star_radio">
-					    <input type="radio" name="starpoint" id="starpoint_3" value="1.5" class="star_radio">
-					    <input type="radio" name="starpoint" id="starpoint_4" value="2.0" class="star_radio">
-					    <input type="radio" name="starpoint" id="starpoint_5" value="2.5" class="star_radio">
-					    <input type="radio" name="starpoint" id="starpoint_6" value="3.0" class="star_radio">
-					    <input type="radio" name="starpoint" id="starpoint_7" value="3.5" class="star_radio">
-					    <input type="radio" name="starpoint" id="starpoint_8" value="4.0" class="star_radio">
-					    <input type="radio" name="starpoint" id="starpoint_9" value="4.5" class="star_radio">
-					    <input type="radio" name="starpoint" id="starpoint_10" value="5.0" class="star_radio">
+					    <input type="radio" name="Score" id="starpoint_1" value="0.5" class="star_radio">
+					    <input type="radio" name="Score" id="starpoint_2" value="1.0" class="star_radio">
+					    <input type="radio" name="Score" id="starpoint_3" value="1.5" class="star_radio">
+					    <input type="radio" name="Score" id="starpoint_4" value="2.0" class="star_radio">
+					    <input type="radio" name="Score" id="starpoint_5" value="2.5" class="star_radio">
+					    <input type="radio" name="Score" id="starpoint_6" value="3.0" class="star_radio">
+					    <input type="radio" name="Score" id="starpoint_7" value="3.5" class="star_radio">
+					    <input type="radio" name="Score" id="starpoint_8" value="4.0" class="star_radio">
+					    <input type="radio" name="Score" id="starpoint_9" value="4.5" class="star_radio">
+					    <input type="radio" name="Score" id="starpoint_10" value="5.0" class="star_radio">
 					    <span class="starpoint_bg"></span>
 					  </div>
 					</div>
@@ -263,11 +266,11 @@
 				</div>
 				<ul><li><div class="upload"><i class="fa-solid fa-images"></i></div></ul>
 				<ul style="width:100%;">
-				  	<input type="file" class="real-upload" accept="image/*" required multiple>
-				  	
-					<li style="width:90%;"><input type="text" placeholder="내용입력" style="width:100%; height:40px;">
+				  	<input type="file" name="uploadedImage3" class="real-upload" accept="image/*" required multiple>
+					<li style="width:90%;"><input type="text" name="Content" placeholder="내용입력" style="width:100%; height:40px;">
 					<li><button type="button" class='reviewbtn' id="reviewInst">등록</button></li>
 				</ul>
+				
 				
 			</div>
 			
@@ -291,13 +294,17 @@
 		var pdseq = document.getElementById('productSeq').value;
 
 		$("#reviewInst").on("click", function(){
+			var formData = new FormData($("#form")[0]);
 	 			$.ajax({
 					async: false 
 					,cache: false
-					,type: "post"
 					,url: "/reviewProc"
-					,data: {"member_memberSeq" : $("#memberSeq").val(), "product_Seq" : $("#productSeq").val(), "Score" : $("[name=starpoint]:checked").val(), "Content" : $("#Content").val()} 
-					,success: function(response) {
+			        ,data: formData
+			        ,processData:false
+			        ,contentType:false
+			        ,enctype:'multipart/form-data'
+			        ,type:"POST"					
+			        ,success: function(response) {
 						if(response.rt == "success") {
 						alert("댓글 입력되었습니다.");
 						$("#review").load("productView?&productSeq="+pdseq+" #review>*");
@@ -345,7 +352,6 @@
 					,url: "/basketProc"
 					,data: {"member_memberSeq" : $("#memberSeq").val(), "productDetail_detailSeq" : $("#detailSeq").val(), "basketDelNy" : 0, "basketNum" : bkNum} 
 					,success: function(response) {
-						console.log(response);
 						if(response.rt == "success") {
 							alert("추가완료")
 						} else {
