@@ -154,19 +154,19 @@
 			      <th scope="row">제조사</th>
 			      <td><c:out value="${item.informationCompany}" /></td>
 			    </tr>
-			       <tr>
+			    <tr>
 			      <th scope="row">제조국</th>
 			      <td><c:out value="${item.informationCountry}" /></td>
 			    </tr>
-			        <tr>
+			    <tr>
 			      <th scope="row">취급시 주의사항</th>
 			      <td><c:out value="${item.informationWarning }" /></td>
 			    </tr>
-			        <tr>
+			     <tr>
 			      <th scope="row">품질보증기준</th>
 			      <td><c:out value="${item.informationQuality}" /></td>
 			    </tr>
-			        <tr>
+			     <tr>
 			      <th scope="row">A/S책임자·전화번호</th>
 			      <td><c:out value="${item.informationAS}" /></td>
 			    </tr>
@@ -181,7 +181,6 @@
 				      <th scope="col">반품 / 교환 택배사</th>
 				      <th scope="col" colspan="3" style="width:80%;">로젠택배</th>
 				    </tr>
-
 				    <tr>
 				      <th scope="row">반품 배송비(편도)</th>
 				      <td colspan="3" style="width:80%;">₩10,000</td>
