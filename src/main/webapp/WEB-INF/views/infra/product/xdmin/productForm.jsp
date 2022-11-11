@@ -140,6 +140,8 @@
 					form.attr("action", goUrlUpdt).submit();
 				}
 			});
+
+			
 			
 			$("#btnUelete").on("click", function(){
 				$(".modal-title").text("확 인");

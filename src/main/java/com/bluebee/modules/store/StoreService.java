@@ -34,7 +34,7 @@ public interface StoreService {
 	public int buyCheck(Store dto) throws Exception;
 	public int wishinst(Store dto) throws Exception;
 	
-	public int wishListCount(StoreVo vo) throws Exception;
+	public List<Store> wishListCnt(Store dto) throws Exception;
 	public int wishListCheck(Store dto) throws Exception;
 	public int wishListDele(Store dto) throws Exception;
 	

@@ -336,9 +336,9 @@
 			and detailSeq = #{detailSeq}
 	</select>
 	 
-	<select id="wishListCount" resultType="int">
+<select id="wishListCnt" resultMap="resultMapObj">
 		select
-			COUNT(*)
+			*
 		from
 			wishList
 		where 1=1

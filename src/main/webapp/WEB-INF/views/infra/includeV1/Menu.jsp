@@ -6,13 +6,6 @@
 				<input type="hidden" name="memberSeq" value="<c:out value="${sessSeq }" />">
 				<div class='menu'>
 					<ul class='ul'>
-						<li class='b'>
-							<div class="search-box">
-					    		<button type="button" class="btn-search"><i class="fas fa-search"></i></button>
-					    		<button type="button" id='btnSearch'>ㅇㅇ</button>
-					   			<input type="text" class="input-search"  id="shValue" name="shValue"  placeholder="Search">
-					  		</div>
-						</li>
 						<c:choose>
 							<c:when test="${empty sessName}">
 								<li class='b'><div class="vr"></li>

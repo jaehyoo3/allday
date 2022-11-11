@@ -87,14 +87,13 @@
 						<div class="col">
 							<button type="button" id="basketBtn" class="btn btn-outline-dark fw-bold col-12" style="height: 50px;">장바구니</button>
 						</div>
-						<input type="text" id="total_cnt" value="${wishListCount}">
 						<div class="col">
 							<c:choose>
-								<c:when test="${wishListCount eq 0}">
-									<button type="button" class="btn btn-outline-dark fw-bold col-12" style="height: 50px;" id="wishInst">♡ ${wishListCount}</button>
+								<c:when test="${fn:length(wishListCount) eq 0}">
+									<button type="button" class="btn btn-outline-dark fw-bold col-12" style="height: 50px;" id="wishInst">♡ <div id='cnt'><c:out value="${fn:length(wishListCount)}"/></div></button>
 								</c:when>
 								<c:otherwise>
-									<button type="button" class="btn btn-outline-dark fw-bold col-12" style="height: 50px;" id="wishInst">♥ ${wishListCount}</button>
+									<button type="button" class="btn btn-outline-dark fw-bold col-12" style="height: 50px;" id="wishInst">♥ <div id='cnt'><c:out value="${fn:length(wishListCount)}"/></div></button>
 								</c:otherwise>
 							</c:choose>
 						</div>
@@ -307,30 +306,31 @@
 					}
 				}); 
 			});
-			
 			$("#wishInst").on("click", function(){
 	 			$.ajax({
 					async: false
 					,cache: false
 					,type: "post"
 					,url: "/wishProc"
-					,data: {"member_memberSeq" : $("#memberSeq").val(), "productSeq" : $("#productSeq").val()} 
+					,data: {"member_memberSeq" : $("#memberSeq").val(), "productSeq" : $("#productSeq").val()}
 					,success: function(response) {
-						if(response.rt == "success") {
-							alert("위시리스트에 등록되었습니다.");
-							$('#wishInst').text("♥ ${wishListCount}")
-							
-						} else if(response.rt == "delete"){
-							alert("위시리스트에 해제되었습니다.");
-							$('#wishInst').text('♡ ${wishListCount}');
-						} else{
-							alert("오류");
+							if(response.rt == "success") {
+								alert("위시리스트에 등록되었습니다.");
+								$('#wishInst').text("하트 ")
+								$('#cnt').html(response.WList.length);
+							} else if(response.rt == "delete"){
+								alert("위시리스트에 해제되었습니다.");
+								$('#wishInst').text('♡');
+								$('#cnt').html(response.WList.length);
+							} else{
+								alert("오류");
+							}
 						}
-					}
+					
 					,error : function(jqXHR, textStatus, errorThrown){
 						alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
 					}
-				}); 
+				});
 			});
 			var bkNum = 1;
  			$("#basketBtn").on("click", function(){

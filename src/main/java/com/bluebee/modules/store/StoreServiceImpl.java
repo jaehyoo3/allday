@@ -204,8 +204,8 @@ public class StoreServiceImpl implements StoreService {
 	}
 
 	@Override
-	public int wishListCount(StoreVo vo) throws Exception {
-		return dao.wishListCount(vo);
+	public List<Store> wishListCnt(Store dto) throws Exception {
+		return dao.wishListCnt(dto);
 	}
 
 	@Override
