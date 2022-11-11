@@ -270,18 +270,19 @@ public class StoreController {
 		public Map<String, Object> wishProc(Model model, StoreVo vo, Store dto, HttpSession httpSession) throws Exception {
 			Map<String, Object> returnMap = new HashMap<String, Object>();
 			int ckWish = service.wishListCheck(dto);
-	
+
 			if(ckWish == 0) {
+					service.wishinst(dto);
 					List<Store> WList = service.wishListCnt(dto);
 					model.addAttribute("WList", WList);
-					service.wishinst(dto);
-					returnMap.put("rt", WList);
+					
+					returnMap.put("WList", WList);
 					returnMap.put("rt", "success");
 			} else if(ckWish == 1) {
+					service.wishListDele(dto);
 					List<Store> WList = service.wishListCnt(dto);
 					model.addAttribute("WList", WList);
-					service.wishListDele(dto);
-					returnMap.put("rt", WList);
+					returnMap.put("WList", WList);
 					returnMap.put("rt", "delete");
 			} else {
 				returnMap.put("rt", "fail");

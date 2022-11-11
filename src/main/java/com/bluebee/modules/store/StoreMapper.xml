@@ -307,11 +307,9 @@
 	insert into wishList(
 		member_memberSeq
 		,productSeq
-		,wishListDelNy
 		) values (
 		#{member_memberSeq}
 		,#{productSeq}
-		,1
 		)
 		<selectKey resultType="String" keyProperty="wishSeq" order="AFTER"> 
 			select last_insert_id()
@@ -336,7 +334,7 @@
 			and detailSeq = #{detailSeq}
 	</select>
 	 
-<select id="wishListCnt" resultMap="resultMapObj">
+	<select id="wishListCnt" resultMap="resultMapObj">
 		select
 			*
 		from

@@ -76,9 +76,7 @@
 					</c:forEach>
 					<br>
 					<div class="addWrap">
-
 					</div>
-	
 					<input type='hidden' id="detailSeq" name="detailSeq">
 					<div class="row">
 				 		<div class="col">
@@ -90,16 +88,16 @@
 						<div class="col">
 							<c:choose>
 								<c:when test="${fn:length(wishListCount) eq 0}">
-									<button type="button" class="btn btn-outline-dark fw-bold col-12" style="height: 50px;" id="wishInst">♡ <div id='cnt'><c:out value="${fn:length(wishListCount)}"/></div></button>
+									<button type="button" class="btn btn-outline-dark fw-bold col-12" style="height: 50px;" id="wishInst">♡ <span id='cnt'>${fn:length(wishListCount)}</span></button>
 								</c:when>
 								<c:otherwise>
-									<button type="button" class="btn btn-outline-dark fw-bold col-12" style="height: 50px;" id="wishInst">♥ <div id='cnt'><c:out value="${fn:length(wishListCount)}"/></div></button>
+									<button type="button" class="btn btn-outline-dark fw-bold col-12" style="height: 50px;" id="wishInst">♥ <span id='cnt'>${fn:length(wishListCount)}</span></button>
 								</c:otherwise>
 							</c:choose>
 						</div>
+						
 					</div>
 					</div>
-
 				</div>
 			</div>
 			<div id='information'>
@@ -248,7 +246,7 @@
 					</div>
 					</li>
 				</ul>
-				<div class=iamgeupload-wrap>
+				<div class='iamgeupload-wrap'>
 					<ul>
 						<li><ul class="image-preview"></ul></li>
 					</ul>
@@ -298,13 +296,13 @@
 						} else {
 						alert("구매한 상품만 리뷰 작성이 가능합니다")
 						}
-
 					}
 					,error : function(jqXHR, textStatus, errorThrown){
 						alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
 					}
 				}); 
 			});
+		
 			$("#wishInst").on("click", function(){
 	 			$.ajax({
 					async: false
@@ -315,12 +313,10 @@
 					,success: function(response) {
 							if(response.rt == "success") {
 								alert("위시리스트에 등록되었습니다.");
-								$('#wishInst').text("하트 ")
-								$('#cnt').html(response.WList.length);
+								$('#wishInst').text("♥ " + response.WList.length)
 							} else if(response.rt == "delete"){
 								alert("위시리스트에 해제되었습니다.");
-								$('#wishInst').text('♡');
-								$('#cnt').html(response.WList.length);
+								$('#wishInst').text("♡ " + response.WList.length)
 							} else{
 								alert("오류");
 							}
@@ -331,6 +327,7 @@
 					}
 				});
 			});
+			
 			var bkNum = 1;
  			$("#basketBtn").on("click", function(){
 	 			$.ajax({
@@ -405,64 +402,44 @@
 			var size = target.options[target.selectedIndex].text;
 			var color = $('[name="color"]:checked').attr('id');
 			var price = $('[name="productPrice"]').val();
-			  
+	    	    	
 			var div = ""; 
 			div += '<div class="addList" id="orderNum' + num + '"> <ul><li><div class="addTitle"> ' + color + ' / '+size+' </div></li><li> <a onclick="deleteOrder(' + num + ')"><i class="fa-regular fa-circle-xmark"></i></a></li></ul>';
 			div += '<hr><ul><li>';
-			div += '<div class="count-wrap _count"> <button type="button" class="minus">감소</button> <input type="text" class="inp" value="134342"> <button type="button" class="plus">증가</button></div>';
+			div += '<div class="quantity_div"> <input type="text" value="1" class="quantity_input"> <button class="quantity_btn plus_btn" type="button">+</button><button class="quantity_btn minus_btn" type="button">-</button></div>';
 			div += '</li>';
-			div += '<li><div class="addPrice">￦' + price + '</div></li></ul></div>';
+			div += '<li>￦<div class="addPrice">' + price + '</div></li></ul></div>';
+			div += '<input type="text" id="detailSeq" name="detailSeq">';
 			
 			$(".addWrap").append(div);
 			
 			num++;
-				
-		document.getElementById("detailSeq").value = value;
+			document.getElementById("detailSeq").value = value ;
 		}
 		
 		function deleteOrder(num) {
 		    document.querySelector("#orderNum" + num).remove()
 		}
+		let totalPrice = 0;
 		
-		function fnCalCount(type, ths){
-		    var $input = $(ths).parents("td").find("input[name='pop_out']");
-		    var tCount = Number($input.val());
-		    var tEqCount = Number($(ths).parents("tr").find("td.bseq_ea").html());
-		    
-		    if(type=='p'){
-		        if(tCount < tEqCount) $input.val(Number(tCount)+1);
-		        
-		    }else{
-		        if(tCount >0) $input.val(Number(tCount)-1);    
-		        }
-		}
-		$('._count :button').on({
-			'click' : function(e){
-		        e.preventDefault();
-		        var $count = $(this).parent('._count').find('.inp');
-		        var now = parseInt($count.val());
-		        var min = 1;
-		        var max = 999;
-		        var num = now;
-		        if($(this).hasClass('minus')){
-		            var type = 'm';
-		        }else{
-		            var type = 'p';
-		        }
-		        if(type=='m'){
-		            if(now>min){
-		                num = now - 1;
-		            }
-		        }else{
-		            if(now<max){
-		                num = now + 1;
-		            }
-		        }
-		        if(num != now){
-		            $count.val(num);
-		        }
-		    }
-		});
+		$('.addWrap').on('click', '.plus_btn' ,function() {
+	    	let quantity = $(this).parent("div").find("input").val();
+	    	$(this).parent("div").find("input").val(++quantity);
+/* 	    	let price = $(".addPrice").text();
+	    	let totalPrice = price * quantity;
+	    	$(".totalPrice").text("최종 금액: ￦" + totalPrice); */
+
+	    });
+
+		$('.addWrap').on('click', '.minus_btn' ,function() {
+	    	let quantity = $(this).parent("div").find("input").val();
+	    	if(quantity > 1){
+	    		$(this).parent("div").find("input").val(--quantity);
+/* 		    	let price = $(".addPrice").text();
+		    	let totalPrice = price * quantity;
+		    	$(".totalPrice").text("최종 금액: ￦" + totalPrice); */
+	    	}
+	    });
 		
 		$(function(){
 //		     이미지 클릭시 해당 이미지 모달
@@ -477,15 +454,15 @@
 		    $(".modal").toggle();
 		  });
 		});
-			    function createElement(e, file) {
-			      const li = document.createElement('li');
-			      const img = document.createElement('img');
-			      img.setAttribute('src', e.target.result);
-			      img.setAttribute('data-file', file.name);
-			      li.appendChild(img);
+		    function createElement(e, file) {
+		      const li = document.createElement('li');
+		      const img = document.createElement('img');
+		      img.setAttribute('src', e.target.result);
+		      img.setAttribute('data-file', file.name);
+		      li.appendChild(img);
 
-			      return li;
-			    }
+		      return li;
+		    }
 
 			    const realUpload = document.querySelector('.real-upload');
 			    const upload = document.querySelector('.upload');
