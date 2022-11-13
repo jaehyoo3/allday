@@ -74,7 +74,7 @@ public class StoreController {
 	/*  User  */
 		@RequestMapping(value = "/main")
 		public String StoreMain(@ModelAttribute("vo") StoreVo vo, Model model) throws Exception {
-			List<Store> list = service.selectList(vo);
+			List<Store> list = service.MainproductList(vo);
 			model.addAttribute("list", list);
 			
 			return "infra/store/storeMain";
