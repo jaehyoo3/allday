@@ -26,7 +26,7 @@ public class StoreDao {
 	public int detailinsert(Store dto) { return sqlSession.insert(namespace + ".detailinsert", dto); }	
 	public List<Store> cL(StoreVo vo){ return sqlSession.selectList(namespace + ".cL", vo); }
 	public List<Store> sL(StoreVo vo){ return sqlSession.selectList(namespace + ".sL", vo); }
-
+	public List<Store> MainproductList(StoreVo vo){ return sqlSession.selectList(namespace + ".MainproductList", vo); }
 
 	public List<Store> reviewList(StoreVo vo){ return sqlSession.selectList(namespace + ".reviewList", vo); }
 	public List<Store> reviewList3(Store dto){ return sqlSession.selectList(namespace + ".reviewList3", dto); }
