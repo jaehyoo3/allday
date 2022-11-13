@@ -106,7 +106,12 @@ public class StoreServiceImpl implements StoreService {
 		// TODO Auto-generated method stub
 		return dao.sL(vo);
 	}
-
+	@Override
+	public List<Store> MainproductList(StoreVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.MainproductList(vo);
+	}
+	
 
 	
 	  @Override public int reviewInsert(Store dto) throws Exception {
