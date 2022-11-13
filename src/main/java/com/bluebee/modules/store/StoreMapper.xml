@@ -41,6 +41,25 @@
 		ON
 			a.productSeq = b.pseq
      </select>
+	         <select id="MainproductList" resultMap="resultMapObj">
+    	    	select
+	    		a.productSeq
+	    		,a.productName
+	    		,a.productType
+	    		,a.productPrice
+	    		,a.productNew
+	    		,a.productBest
+	    		,a.productRegDate
+	    		,a.productUpDate
+	    		,b.*
+	    	FROM 
+			product a
+		LEFT JOIN
+			productUploaded b
+		ON
+			a.productSeq = b.pseq
+		ORDER BY RAND()	
+     </select>
     <!-- 리뷰s -->
      <insert id="reviewInsert">
     	insert into reView(
