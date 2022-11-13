@@ -43,18 +43,26 @@
 			} #ad {
 				width: 100%;
 				margin: auto;
+				max-height: 600px;
 			} #content {
 				margin:auto;
 				margin-top: 100px;
 				width: 60%;
+				height: auto;
 			} .left {
 				width: 45%;
 				float:left;
-			} .right {
+			} .left img {
+				height: 700px;
+			} 
+			.right {
 				width: 45%;
 				float:left;
 				margin-left: 10%;
-			} #footer {
+			} .right img{
+				height: 700px;
+			}
+			 #footer {
 				background-color: black;
 				color: white;
 				height: 100px;
@@ -73,7 +81,6 @@
 				font-family: 'ChosunGu';
 				justify-content: center;
 			} .mainproduct {
-				width:100%;
 				display:inline-block;
 			} .mainproduct img {
 				width: 100%;
@@ -222,8 +229,8 @@
 			  transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
 			} .menu a:hover {
 				opacity: 0.5;
-			} .carousel-item img {
-				height: 100%;
-			} .carousel-item {
-				height: 50%; 
+			} .carousel-inner img {
+				max-height: 600px;
+				width: 100%;
+				object-fit: cover;
 			}
