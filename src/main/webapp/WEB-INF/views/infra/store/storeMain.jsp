@@ -7,7 +7,7 @@
 
 <html>
 	<head>
-		<title>BLUEBeEE</title>
+		<title>BLUEBEE</title>
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 		<link href="/resources/Images/mainCss.css" rel="stylesheet" />
 	</head>
@@ -21,13 +21,13 @@
 				<div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
 				  <div class="carousel-inner">
 				    <div class="carousel-item active">
-				      <a href="/productView?&productSeq=167"><img src="/resources/Images/img/bg1.jpg" class="d-block w-100"></a>
+				      <img src="/resources/Images/img/main.jpg" class="d-block">
 				    </div>
 				    <div class="carousel-item">
-				      <a href="/productView?&productSeq=166"><img src="/resources/Images/img/bg2.jpg" class="d-block w-100"></a>
+				 		<img src="/resources/Images/img/main2.jpg" class="d-block">
 				    </div>
 				    <div class="carousel-item">
-				      <a href="/productView?&productSeq=168"><img src="/resources/Images/img/bg3.jpg" class="d-block w-100"></a>
+				      <img src="/resources/Images/img/main3.jpg" class="d-block">
 				    </div>
 				  </div>
 				  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
@@ -47,7 +47,7 @@
 				<hr>
 				<div class='mainproduct'>
 					<img src = '/resources/Images/img/mainimg.jpg'>
-					<span style="font-weight: bold;">Apple T-shirt(IVORY WHITE)</span>
+					<span style="font-weight: bold;">T7 파이핑 트랙 자켓</span>
 					<p style="text-align:right">> Preview</p> 
 					<hr><br>
 					<div class='left'>
@@ -65,27 +65,30 @@
 				</div>
 			</div>
 			<div id='bestcontent'>
+					<input type='hidden' name="productSeq">
 					<div class='bastproduct'>
 						<span style="font-size: 40px; font-weight: bold; color:purple;">BB:RANK</span><br>
-						<p style="font-size: 24px;">이 달의 판매량</p>
+						<p style="font-size: 24px;">BB: 추천 제품</p>
 						<section>
 							<div class="container">
+							<c:forEach items="${list}" var="list" end="4" varStatus="status">
 								<div class="card">
 									<div class="content">
 										<div class="imgBx">
-											<img src="/resources/Images/img/best1.jpg">
+											<img src="<c:out value="${list.path}"/><c:out value="${list.uuidName}"/>"><br>
 										</div>
 										<div class="contentBx">
-											<h3>Logo TEE<br><span>￦59,000</span></h3>
+											<h3><c:out value="${list.productName}"/><br><span>￦<fmt:formatNumber value="${list.productPrice}" pattern="##,###" /></span></h3>
 										</div>
 									</div>
 									<ul class="sci">
 										<li>
-											<a href="#">Buy</a>
+										<a href="javascript:goProduct(<c:out value="${list.productSeq }"/>)">Buy</a>
 										</li>
 									</ul>
 								</div>
-								<div class="card">
+								</c:forEach>
+<!--  								<div class="card">
 									<div class="content">
 										<div class="imgBx">
 											<img src="/resources/Images/img/best2.jpg">
@@ -144,7 +147,7 @@
 											<a href="#">Buy</a>
 										</li>
 									</ul>
-								</div>
+								</div>-->
 							</div>
 						</section>
 					</div>
@@ -160,6 +163,13 @@
 		<script>
 		var form = $("form[name=form]");
 		var seq = $("input:hidden[name=memberSeq]");
+		var goProductView = "/productView";
+		var pseq = $("input:hidden[name=productSeq]");
+		
+			goProduct = function(keyValue) {
+	    		pseq.val(keyValue);
+			form.attr("action", goProductView).submit();
+		}
 		</script>
 	
 	</body>
