@@ -204,7 +204,9 @@
 			<div id="review">
 				<h3>구매평 ${fn:length(reviewList)}</h3>
 				<hr>
+				<div id="comment">
 				<c:forEach items="${reviewList}" var="reviewList" varStatus="status">
+				
 					<ul class='review_boder'>
 						<li class='content_warp'>
 							<div class='star_rating'><c:out value="${reviewList.score }" /></div> 
@@ -218,6 +220,7 @@
 						</li>
 					</ul>
 				</c:forEach>
+				</div>
 				<ul>
 					<li><div class="starpoint_wrap">
 					  <div class="starpoint_box">
@@ -289,10 +292,18 @@
 			        ,enctype:'multipart/form-data'
 			        ,type:"POST"					
 			        ,success: function(response) {
-			        	var htmls = "";
+			        	var comment = "";
 						if(response.rt == "success") {
-						alert("댓글 입력되었습니다.");
-						$("#review").load("productView?&productSeq="+pdseq+" #review>*");
+							for (var i = 0; i < response.rList.length; i++) {
+								comment +='<ul class="review_boder"><li class="content_warp">';
+								comment +='<div class="star_rating">' + response.rList[i].score + '</div>';
+								comment +='<div class="detail_warp">[옵션] 색상 : Light Green / 사이즈 : Small / 1개</div>';
+								comment +='<div class="content_detail_warp"> '+response.rList[i].content+' </div> ';
+								comment +='<div class="img_warp"><p><img src='+response.rList[i].path + response.rList[i].uuidName+'></p></div>';
+								comment +='<li class="data_warp">강(asdasd)</div>';
+								comment +='<div class="date_warp">2022-11-01</div></li></ul>';
+							}
+							$("#comment").html(comment);
 						} else {
 						alert("구매한 상품만 리뷰 작성이 가능합니다")
 						}
