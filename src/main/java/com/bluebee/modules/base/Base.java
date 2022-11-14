@@ -30,13 +30,20 @@ public class Base {
 	private String zipcode;
 	private String addr1;
 	private String addr2;
-	
+	private Integer productPrice;
+		
+	public Integer getProductPrice() {
+		return productPrice;
+	}
+	public void setProductPrice(Integer productPrice) {
+		this.productPrice = productPrice;
+	}
 	/* 상품 */
 	private String detailSeq;
 	private String colorName;
 	private String productSeq;
 	private String productName;
-	private Integer productPrice;
+	private Integer orderPrice;
 	private String sizeName;
 	private Integer productType;
 	
@@ -48,6 +55,12 @@ public class Base {
 	private String productNum;
 	private String cartStock;
 	
+	public Integer getOrderPrice() {
+		return orderPrice;
+	}
+	public void setOrderPrice(Integer orderPrice) {
+		this.orderPrice = orderPrice;
+	}
 	public MultipartFile[] getUploadedImage3() {
 		return uploadedImage3;
 	}
@@ -149,12 +162,7 @@ public class Base {
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}
-	public Integer getProductPrice() {
-		return productPrice;
-	}
-	public void setProductPrice(Integer productPrice) {
-		this.productPrice = productPrice;
-	}
+
 	public String getAddr1() {
 		return addr1;
 	}

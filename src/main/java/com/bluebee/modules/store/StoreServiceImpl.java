@@ -157,6 +157,7 @@ public class StoreServiceImpl implements StoreService {
 	public List<Store> detailImg(StoreVo vo) throws Exception { return dao.detailImg(vo); }
 	@Override
 	public int buyOrder(Store dto) throws Exception {
+		try {
 		 Calendar cal = Calendar.getInstance();
 		 int year = cal.get(Calendar.YEAR);
 		 String ym = year + new DecimalFormat("00").format(cal.get(Calendar.MONTH) + 1);
@@ -169,8 +170,19 @@ public class StoreServiceImpl implements StoreService {
 		 
 		 String orderId = ymd + "_" + subNum;
 		 dto.setOrderNum(orderId);
-		
-		return dao.buyOrder(dto); 
+		 
+
+		String subject = dto.getProductDetail_detailSeq();
+		String[] str = subject.split(",");
+
+		for(int i=0; i<str.length; i++) {
+			dto.setProductDetail_detailSeq(str[i]);
+			dao.buyOrder(dto);
+		}
+		return 1;
+		} catch (Exception e) {
+		    throw new Exception();
+		}
 		}
 
 	@Override

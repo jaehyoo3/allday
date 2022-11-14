@@ -187,8 +187,7 @@
 	<!-- 주문조회 -->
 	<select id="orderList" resultMap="resultMapObj">
 		select
-			a.price
-			,c.colorName
+			c.colorName
 			,d.sizeName
 			,f.productName
 			,g.uuidName
@@ -196,6 +195,8 @@
 			,g.idefaultNy
 			,e.memberSeq
 			,a.orderDate
+			,a.orderNum
+			,a.orderPrice
 		from 
 			purChase_Product a
 		left join
@@ -225,6 +226,8 @@
 		where 
 			1=1
 			and e.memberSeq = #{memberSeq}
+		ORDER BY
+			a.orderNum
 				
 	</select>
 	<!-- 주문조회 e -->
@@ -265,6 +268,7 @@
 	where
 		1=1
 		and a.member_memberSeq = #{memberSeq}
+
 	</select>
 	
 	<!-- 장바구니 e -->
@@ -308,11 +312,15 @@
 		<sql id='basic'>
 		FROM member
 			WHERE 1=1
-			<choose>
-				<when test = "shOption == 1">AND memberName LIKE CONCAT('%',#{shValue},'%')</when>
-				<when test = "shOption == 2">AND memberID LIKE CONCAT('%', #{shValue},'%')</when>
-				<when test = "shOption == 3">AND memberNick LIKE CONCAT('%',#{shValue}, '%')</when>
-			</choose>
+		<if test="shstartDate != null and !shstartDate.equals('') and shendDate != null and !shendDate.equals('')">
+			AND memberRegDate BETWEEN #{shstartDate} AND #{shendDate}
+		</if>
+		<if test="shDelNy != null and !shDelNy.equals('')">AND memberDelNy = #{shDelNy}</if>
+		<choose>
+			<when test="shOption == 1">AND memberName = #{shValue}</when>
+			<when test="shOption == 2">AND memberID LIKE CONCAT('%',#{shValue},'%')</when>
+			<when test="shOption == 3">AND memberNick LIKE CONCAT('%',#{shValue},'%')</when>
+		</choose>
    		</sql>
    		
    		<select id="selectOneId" resultMap="resultMapObj">

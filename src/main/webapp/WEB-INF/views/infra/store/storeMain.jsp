@@ -46,7 +46,7 @@
 				<p style="font-size: 24px;">이 달의 추천 제품</p>
 				<hr>
 				<div class='mainproduct'>
-					<img src = '/resources/Images/img/mainimg.jpg'>
+					<img src = '/resources/Images/img/main-1.jpg'>
 					<span style="font-weight: bold;">T7 파이핑 트랙 자켓</span>
 					<p style="text-align:right">> Preview</p> 
 					<hr><br>
@@ -67,7 +67,7 @@
 			<div id='bestcontent'>
 					<input type='hidden' name="productSeq">
 					<div class='bastproduct'>
-						<span style="font-size: 40px; font-weight: bold; color:purple;">BB:RANK</span><br>
+						<span style="font-size: 40px; font-weight: bold; color:purple;">BB:Choice</span><br>
 						<p style="font-size: 24px;">BB: 추천 제품</p>
 						<section>
 							<div class="container">

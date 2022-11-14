@@ -38,9 +38,11 @@
 						<tr>
 							<td><input type="checkbox"></td>
 							<td>
-								<div class='left'><c:if test="${list.idefaultNy eq 1}">
-											<img src='<c:out value="${list.path}"/><c:out value="${list.uuidName}"/>' style="width:50%;">
-										</c:if></div>
+								<div class='left'>
+									<c:if test="${list.idefaultNy eq 1}">
+										<img src='<c:out value="${list.path}"/><c:out value="${list.uuidName}"/>' style="width:50%;">
+									</c:if>
+								</div>
 								<div class='right'><p><c:out value="${list.productName }" /> | 
 								<c:forEach items="${listCodeType}" var="listCode" varStatus="statusGender">
 									<c:if test="${list.productType eq listCode.codeOrder}">
@@ -90,7 +92,7 @@
 					</table>
 				</div>
 				<div class='buttons'>
-					<button class='btn w-50 text-white fw-bold' style='background-color:rgb(44, 62, 80);'>주문하기</button>
+					<button class='btn w-50 text-white fw-bold' style='background-color:rgb(44, 62, 80);' type="button" onClick="goOrder(<c:out value="${sessSeq}" />)">주문하기</button>
 				</div>
 				</div>
 			<!-- footer s  -->
@@ -100,9 +102,14 @@
 		<!-- jsLink s  -->
 			<%@include file="../../infra/includeV1/jsLink.jsp"%>
 		<!-- jsLink e --> 
-		<script>
-				var form = $("form[name=form]");
+		<script type="text/javascript">
 			var seq = $("input:hidden[name=memberSeq]");
+			var goTotal = "/totalBuy";
+			
+			function goOrder(keyValue) {
+		    	seq.val(keyValue);
+				form.attr("action", goTotal).submit();
+			}
 		</script>
 	</body>
 </html>

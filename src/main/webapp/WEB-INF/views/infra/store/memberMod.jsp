@@ -51,13 +51,13 @@
 										<div class='storeinfor'>
 											<span class='title'><c:out value="${list.productName}" /></span><br>
 											<span class='option'><c:out value="${list.colorName}" /> | <c:out value="${list.sizeName}" /></span><br>
-											<span class='price'>￦<c:out value="${list.price}"/></span>
+											<span class='price'>￦<c:out value="${list.orderPrice}"/></span>
 										</div>
 										<div class='situation'>
+											주문번호: <c:out value="${list.orderNum}"/>
 										</div>
 										</a>
 									</div>
-									<p>ㅡㅡ</p>
 									</c:if>
 							</c:forEach>
 						</div>

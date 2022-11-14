@@ -33,7 +33,7 @@
 								<div class='productt'>
 									<span><c:out value="${vo.productName}" /></span> <div class="vr"></div> <span><c:out value="${vo.productType}" /></span>
 									<p><c:out value="${detail.sizeName}" /> / <c:out value="${detail.colorName}" />
-									<input type="hidden" name="productDetail_detailSeq" value="<c:out value="${vo.detailSeq}" />">
+									<input type="text" name="productDetail_detailSeq" value="<c:out value="${vo.detailSeq}" />">
 									<p>￦<c:out value="${vo.productPrice }" /></p>
 								</div>
 							</div>
@@ -64,7 +64,7 @@
 							<div class="d-flex">
 								<h4 class='me-auto'>총 주문금액</h4>
 								<h4><c:out value="${vo.productPrice }" /></h4>
-								<input type="hidden" name="orderTotal" value="<c:out value="${vo.productPrice}" />">
+								<input type="hidden" name="orderPrice" value="<c:out value="${vo.productPrice}" />">
 							</div>
 						</div>
 					</div>

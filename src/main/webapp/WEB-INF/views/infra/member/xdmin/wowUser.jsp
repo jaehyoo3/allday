@@ -29,16 +29,29 @@
 			<h1><i class="fa-solid fa-user"></i> Member</h1>
 				<div class="serach-box">
 					<p> 
-						<select style="width:30%;"></select>
-						<select style="width:30%;"></select>
-						<select style="width:30%;"></select>
+						<select style="width:30%;" name="shDelNy">
+							<option>삭제여부</option>
+							<option value="" <c:if test="${empty vo.shDelNy}">selected</c:if>>사용여부</option>
+							<option value='0' <c:if test="${vo.shDelNy eq 0}">selected</c:if>>N</option>
+							<option value='1' <c:if test="${vo.shDelNy eq 1}">selected</c:if>>Y</option>
+						</select>
+						<select name="shOption" id="shOption">
+							<option value=""<c:if test="${empty vo.shOption}">selected</c:if>>검색조건</option>
+	                		<option value="1"<c:if test="${vo.shOption eq 1}">selected</c:if>>회원이름</option>
+	                		<option value="2"<c:if test="${vo.shOption eq 2}">selected</c:if>>회원아이디</option>
+	                		<option value="3"<c:if test="${vo.shOption eq 3}">selected</c:if>>회원닉네임</option>
+						</select>
+						<select style="width:30%;">
+							<option>가입일</option>
+						</select>
 					</p>
 					<p>
-						<input type="text" style="width:49.5%;">
-						<input type="text" style="width:49.5%;">
+						<input type="text" style="width:49.5%;"  id="startDate" name="shstartDate" <c:out value="${vo.shstartDate }"/>>
+						
+						<input type="text" style="width:49.5%;" id="endDate" name="shendDate" <c:out value="${vo.shendDate }"/>>
 					</p>
 					<p>
-						<input type="text" style="width:70%;">
+						<input type="text" value="<c:out value="${vo.shValue }"/>" id="shValue" name="shValue" placeholder="검색어를 입력해주세요.">
 						<button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
 						<button><i class="fa-solid fa-rotate-left"></i></button>
 					</p>
@@ -135,16 +148,12 @@
 						<button class='minusbtn'><i class="fa-solid fa-user-minus"></i></button>
 					</div>					
 				</p>
-				<button id="btn-image">IMG</button>
-					 <input id="img-selector" type="file" accept="image/*"/>
-				</ul> 
-				<div id='editor' contentEditable="true">dsad</div>
-				</div>
 			</form>
 		<script src="https://kit.fontawesome.com/a1961b2393.js"crossorigin="anonymous"></script>
 		<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 		<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+		
 		<script type="text/javascript">
 		 var goUrlList = "/xdmin/memberList"; 			/* #-> */
 		 var seq = $("input:text[name=memberSeq]");				/* #-> */
@@ -157,44 +166,42 @@
 			
 		    $(document).ready(function () {
 		            $.datepicker.setDefaults($.datepicker.regional['ko']);
-		            $( "#startDate" ).datepicker({
-		                 changeMonth: true,
-		                 changeYear: true,
-		                 nextText: '다음 달',
-		                 prevText: '이전 달',
-		                 dayNames: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
-		                 dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
-		                 monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-		                 monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-		                 dateFormat: "yy-mm-dd",
+		            $("#startDate").datepicker({
+		                changeMonth: true,
+		                changeYear: true,
+		                nextText: '다음 달',
+		                prevText: '이전 달',
+		                dayNames: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
+		                dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+		                monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+		                monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+		                dateFormat: "yy-mm-dd",
 		                 /* maxDate: 0,                       // 선택할수있는 최소날짜, ( 0 : 오늘 이후 날짜 선택 불가) */
-		                 onClose: function( selectedDate ) {
+		                onClose: function( selectedDate ) {
 		                      //시작일(startDate) datepicker가 닫힐때
 		                      //종료일(endDate)의 선택할수있는 최소 날짜(minDate)를 선택한 시작일로 지정
-		                     $("#endDate").datepicker( "option", "minDate", selectedDate );
-		                 }
-		
+		                    $("#endDate").datepicker( "option", "minDate", selectedDate );
+		                }
 		            });
-		            
-		            $( "#endDate" ).datepicker({
-		                 changeMonth: true,
-		                 changeYear: true,
-		                 nextText: '다음 달',
-		                 prevText: '이전 달',
-		                 dayNames: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
-		                 dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
-		                 monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-		                 monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-		                 dateFormat: "yy-mm-dd",
+		            $("#endDate").datepicker({
+		                changeMonth: true,
+		                changeYear: true,
+		                nextText: '다음 달',
+		                prevText: '이전 달',
+		                dayNames: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
+		                dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+		                monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+		                monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+		                dateFormat: "yy-mm-dd",
 		                 /* maxDate: 0,                       // 선택할수있는 최대날짜, ( 0 : 오늘 이후 날짜 선택 불가) */
-		                 onClose: function( selectedDate ) {
+		                onClose: function( selectedDate ) {
 		                     // 종료일(endDate) datepicker가 닫힐때
 		                     // 시작일(startDate)의 선택할수있는 최대 날짜(maxDate)를 선택한 시작일로 지정
-		                     $("#startDate").datepicker( "option", "maxDate", selectedDate );
-		                 }
-		
+		                    $("#startDate").datepicker( "option", "maxDate", selectedDate );
+		                }
 		            });
-		  		  });    
+		    });
+		        
 			    var goUrlList = "/xdmin/memberList";
 			    var goUrlForm = "/xdmin/memberForm";
 			    var goUrlView = "/xdmin/memberView";
@@ -236,37 +243,6 @@
 		 	 $('.btn-expand-collapse').click(function(e) {
 				$('.navbar-primary').toggleClass('collapsed');
 				});
-		 	 
-			    function setStyle(style) {
-			        document.execCommand(style);
-			        focusEditor();
-			    }
-
-			    function focusEditor() {
-			        editor.focus({preventScroll: true});
-			    }
-			    const btnImage = document.getElementById('btn-image');
-			    const imageSelector = document.getElementById('img-selector');
-
-			    btnImage.addEventListener('click', function () {
-			        imageSelector.click();
-			    });
-
-			    imageSelector.addEventListener('change', function (e) {
-			        const files = e.target.files;
-			        if (!!files) {
-			            insertImageDate(files[0]);
-			        }
-			    });
-			    
-			    function insertImageDate(file) {
-			        const reader = new FileReader();
-			        reader.addEventListener('load', function (e) {
-			            focusEditor();
-			            document.execCommand('insertImage', false, `${reader.result}`);
-			        });
-			        reader.readAsDataURL(file);
-			    }
 
 		</script>
 	</body>

@@ -48,6 +48,7 @@
 									</span>
 									<p><c:out value="${list.colorName }"/> / <c:out value="${list.sizeName }"/>
 									<p>￦<c:out value="${list.productPrice }" /></p>
+									<input type="hidden" name="orderPrice" value="<c:out value="${list.productPrice }" />">
 								</div>
 							</div>
 							</c:forEach>

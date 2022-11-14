@@ -275,7 +275,7 @@
 			,orderMemo
 			,orderDate
 			,orderNum
-			,orderTotal
+			,orderPrice
 		) VALUES(
 			#{memberAddr_addrSeq}
 			,#{productDetail_detailSeq}
@@ -283,7 +283,7 @@
 			,#{orderMemo}
 			,now()
 			,#{orderNum}
-			,#{orderTotal}
+			,#{orderPrice}
 		)
 		<selectKey resultType="String" keyProperty="purChase" order="AFTER"> 
 			select last_insert_id()
