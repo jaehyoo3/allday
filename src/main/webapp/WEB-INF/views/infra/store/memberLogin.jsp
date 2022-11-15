@@ -24,16 +24,10 @@
 				<br>
 				<hr>
 				<br>
-				<input type="text" class="form-control" id="memberID" name='memberID' placeholder="아이디">
-				<input type="password" class="form-control" id="memberPW" name='memberPW' placeholder="비밀번호">
+				<input type="text" class="form-control" id="memberID" name='memberID' placeholder="아이디" value="test">
+				<input type="password" class="form-control" id="memberPW" name='memberPW' placeholder="비밀번호" value="1234">
 				<div class="d-flex mb-1">
 					<div class="p-1">
-						<div class="form-check">
-							<input class="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate">
-							<label class="form-check-label" for="flexCheckIndeterminate">
-								로그인상태유지
-							</label>
-						</div>
 					</div>
 					<div class="p-1 ms-auto"><span><a href="find" >아이디·비밀번호 찾기</a></span></div>
 				</div>
@@ -45,7 +39,10 @@
 				<div class="hr-sect"> 또는 </div>
 				<br>
 				<div class="d-grid gap-2 col-12">
-					<button class="btn text-white fw-bold" type="button" style="background-color:#2DB400;">네이버로 시작하기</button>
+					<div class="btn_login_wrap">
+							<div id="naverIdLogin"></div>
+                    </div>
+					<button class="btn text-white fw-bold" type="button" id='naverBtn' style="background-color:#2DB400;">네이버로 시작하기</button> 
 					<button class="btn text-white fw-bold" type="button" id='kakaoBtn' style="background-color:#FEE500;">카카오로 시작하기</button>
 				</div>
 			</div>
@@ -69,10 +66,10 @@
 			<%@include file="../../infra/includeV1/jsLink.jsp"%>
 		<!-- jsLink e -->
 		<script src="https://developers.kakao.com/sdk/js/kakao.js"></script> 
+		<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
 		<script type="text/javascript">
 		
 		Kakao.init('3d9122ea8fc388f07cd56d7692121430'); 
-    	console.log(Kakao.isInitialized());
  	    	$("#kakaoBtn").on("click", function() {
     	    		Kakao.Auth.login({
     	   		      success: function (response) {
@@ -153,6 +150,53 @@
 			       	loginAjax();
 			     }
 			}
+			   $("#naverBtn").on("click", function() {
+					var naverLogin = new naver.LoginWithNaverId(
+					{
+						clientId: "a_5unCHla0U7hkPNk9gn",
+						callbackUrl: "http://localhost:8080/login",
+						isPopup: true
+					}
+				);
+				
+				naverLogin.init();
+				naverLogin.getLoginStatus(function (status) {
+					
+					if(!status)
+						naverLogin.authorize();
+	                else
+	                    setLoginStatus();  //하늘님 메소드 실행 -> Ajax
+				});
+
+   		function setLoginStatus() {
+			if (naverLogin.user.gender == 'M'){
+				$("input[name=memberGender]").val(1);
+			} else {
+				$("input[name=memberGender]").val(2);
+			} 
+			
+			$.ajax({
+				async: true
+				,cache: false
+				,type:"POST"
+				,url: "/member/naverLoginProc"
+				,data: {"memberName": naverLogin.user.name, "snsId": "네이버로그인", "memberEmail": naverLogin.user.email, "memberGender": $("input[name=memberGender]").val()}
+				,success : function(response) {
+					if (response.rt == "fail") {
+						alert("아이디와 비밀번호를 다시 확인 후 시도해 주세요.");
+						return false;
+					} else {
+						window.location.href = "/main";
+					}
+				},
+				error : function(jqXHR, status, error) {
+					alert("알 수 없는 에러 [ " + error + " ]");
+				}
+			});
+		}
+	   });
+	   
+
 		</script>
 	</body>
 	

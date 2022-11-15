@@ -180,6 +180,8 @@ public class StoreController {
 		}
 		@RequestMapping(value = "totalBuy")
 		public String TotalBuy(Model model, @ModelAttribute("vo") StoreVo vo) throws Exception {
+			Store item = service.buyOneList(vo);
+			model.addAttribute("item", item);
 			
 			List<Store> list = service.totalBuy(vo);
 			model.addAttribute("list", list);

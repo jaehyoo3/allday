@@ -57,52 +57,7 @@
 					</p>
 				</div>
 			<p>
-				<div class='table-box'>
-					<table>
-						<thead>
-							<tr>
-								<th style='width:3%;'><input type='checkbox'></th>
-								<th style='width:5%;'>#</th>
-								<th style='width:5%;'>Seq</th>
-								<th>이름</th>
-								<th>아이디</th>
-								<th>닉네임</th>
-								<th>전화번호</th>
-								<th>생년월일</th>
-								<th>이메일</th>
-								<th>성별</th>
-								<th>등급</th>
-								<th>가입일</th>
-							</tr>
-						</thead>	
-						<tbody>
-							<c:forEach items="${list}" var="list" varStatus="status">
-								<tr onclick="javascript:goForm(<c:out value="${list.memberSeq }"/>)" style="cursor:hand">
-									<td><input type='checkbox'></td>
-									<td><c:out value="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + status.index) }"/></td>
-									<td><c:out value="${list.memberSeq }"/></td>
-									<td><c:out value="${list.memberName }"/></td>
-									<td><c:out value="${list.memberID }"/></td>
-									<td><c:out value="${list.memberNick }"/></td>
-									<td><c:out value="${list.memberMobile }"/></td>
-									<td><c:out value="${list.memberDob }"/></td>
-									<td><c:out value="${list.memberEmail }"/></td>
-									<td>
-										<c:forEach items="${listCodeGender}" var="listGender" varStatus="statusGender">
-											<c:if test="${list.memberGender eq listGender.codeOrder}"><c:out value="${listGender.codeName}"/></c:if>
-										</c:forEach>
-									</td>
-									<td>
-		 								<c:forEach items="${listCodeGrade}" var="list2" varStatus="statusGender">
-											<c:if test="${list.memberGrade eq list2.codeOrder}"><c:out value="${list2.codeName}"/></c:if>
-										</c:forEach>
-									</td>
-									<td><c:out value="${list.memberRegdate }"/></td>
-								</tr>
-							</c:forEach>
-						</tbody>				
-					</table>
-				</div>
+				<div id='lita'></div>
 				<div class='pagination-box'>
 					<span>
 						<span class='pagination1'>Rows per page:</span>

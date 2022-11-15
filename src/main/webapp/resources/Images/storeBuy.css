@@ -43,7 +43,8 @@
 			} #content {
 				width: 100%;
 				background-color: rgba(224, 224, 224, 0.3);
-				height: 1000px;
+				min-height: 1300px;
+				max-height: 3000px;
 			}  #content .buy {
 				width: 60%;
 				margin: auto;

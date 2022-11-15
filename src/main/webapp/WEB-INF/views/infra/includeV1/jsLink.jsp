@@ -26,8 +26,7 @@
 						alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
 					}
 				});
-			});
-			
+			});			
 			var goUrlList = "/search";
 			var goOrderList = "/modify";
 			var goBasketList = "/basket";

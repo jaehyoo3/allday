@@ -22,7 +22,7 @@ public class Base {
 	private Integer article;
 	private String memberSeq;
 	private String memberEmail;
-	private Integer memberMobile;
+	private String memberMobile;
 	private Integer memberPoint;
 	private String addrSeq;
 	private Integer defaultNy;
@@ -271,10 +271,11 @@ public class Base {
 	public void setMemberEmail(String memberEmail) {
 		this.memberEmail = memberEmail;
 	}
-	public Integer getMemberMobile() {
+
+	public String getMemberMobile() {
 		return memberMobile;
 	}
-	public void setMemberMobile(Integer memberMobile) {
+	public void setMemberMobile(String memberMobile) {
 		this.memberMobile = memberMobile;
 	}
 	public Integer getMemberPoint() {

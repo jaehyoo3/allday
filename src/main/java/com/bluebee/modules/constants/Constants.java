@@ -10,6 +10,8 @@ public final class Constants {
 	  public static final String UPLOAD_PATH_PREFIX = "D://factory/ws_sts_4151/allday/src/main/webapp/resources/uploaded"; 
 	  public static final String UPLOAD_PATH_PREFIX_FOR_VIEW = "/resources/uploaded";
 	
+	  public static final String UPLOAD_PATH_PREFIX_WINDOW = "D://factory/ws_sts_4151/allday/src/main/webapp/resources/uploaded"; 
+		public static final String UPLOAD_PATH_PREFIX_LINUX = "/factory/workspace/dolphin/resources/uploaded";
 	public static final String DATETIME_FORMAT_BASIC = "yyyy-MM-dd HH:mm:ss";
 
 }

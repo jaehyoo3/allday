@@ -90,7 +90,7 @@
 						<div class='userr'>
 						<div class="d-flex flex-row mb-1">
 							<div class="form-check me-4">
-							  <input class="form-check-input" type="radio" name="payment" id="flexRadioDefault1" value="1">
+							  <input class="form-check-input" type="radio" name="payment" id="flexRadioDefault1" value="1" checked>
 							  <label class="form-check-label" for="flexRadioDefault1">
 							    신용카드
 							  </label>
@@ -137,8 +137,8 @@
 						</div> -->
 						<h5>배송메모</h5>
 						<select class="form-select mb-1" name="orderMemo">
-						  <option selected>배송 메모를 선택 해주세요</option>
-						  <option value="1">배송 전에 미리 연락 바랍니다.</option>
+						  <option>배송 메모를 선택 해주세요</option>
+						  <option value="1" selected>배송 전에 미리 연락 바랍니다.</option>
 						  <option value="2">부재시 경비실에 맡겨주세요.</option>
 						  <option value="3">부재시 전화나 문자를 남겨주세요.</option>
 						</select>
