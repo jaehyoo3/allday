@@ -21,6 +21,7 @@
 		<!-- navMenu e --> 
 		<input type="hidden" name="productSeq" value="<c:out value="${vo.productSeq}"/>">
 		<input type="hidden" name="memberAddr_addrSeq" value="<c:out value="${item.addrSeq}" />">
+		<input type="hidden" name="productName" value="<c:out value="${vo.productName}"/>">
 			<div id='content'>
 				<div class='buy'>
 					<h3>결제하기</h3>

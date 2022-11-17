@@ -8,13 +8,20 @@ public class StoreVo extends BaseVo{
 	private String productName;
 	private String colorName;
 	private String Size;
-	private Integer productPrice;
+	private Integer orderPrice;
 	private String path;
 	private String uuidName;
 	private String memberSeq;
 	private Integer wishListCount;
 	private String product_Seq;
+	private Integer orderNum;
 	
+	public Integer getOrderNum() {
+		return orderNum;
+	}
+	public void setOrderNum(Integer orderNum) {
+		this.orderNum = orderNum;
+	}
 	public String getProduct_Seq() {
 		return product_Seq;
 	}
@@ -96,12 +103,12 @@ public class StoreVo extends BaseVo{
 		this.colorName = colorName;
 	}
 
-	public Integer getProductPrice() {
-		return productPrice;
+	public Integer getOrderPrice() {
+		return orderPrice;
 	}
 
-	public void setProductPrice(Integer productPrice) {
-		this.productPrice = productPrice;
+	public void setOrderPrice(Integer orderPrice) {
+		this.orderPrice = orderPrice;
 	}
 
 	

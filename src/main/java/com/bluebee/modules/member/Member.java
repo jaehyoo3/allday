@@ -5,9 +5,7 @@ import com.bluebee.modules.base.Base;
 
 
 public class Member extends Base {
-	private String memberID;
 	private String memberPW;
-	private String memberNick;
 	private String memberDob;
 	private Integer memberGender;
 	private Integer memberDelNy;
@@ -75,24 +73,14 @@ public class Member extends Base {
 	public void setMemberName(String memberName) {
 		this.memberName = memberName;
 	}
-	public String getMemberID() {
-		return memberID;
-	}
-	public void setMemberID(String memberID) {
-		this.memberID = memberID;
-	}
+
 	public String getMemberPW() {
 		return memberPW;
 	}
 	public void setMemberPW(String memberPW) {
 		this.memberPW = memberPW;
 	}
-	public String getMemberNick() {
-		return memberNick;
-	}
-	public void setMemberNick(String memberNick) {
-		this.memberNick = memberNick;
-	}
+
 	public String getMemberDob() {
 		return memberDob;
 	}

@@ -82,17 +82,23 @@
 		</selectKey>
     </insert>
     <select id="reviewList" resultMap="resultMapObj">
-    	select
+    select
     		a.product_Seq
     		,a.Score
     		,a.content
     		,a.reviewRegDate
     		,b.path
 			,b.uuidName
+			,c.memberID
+			,c.memberNick
     	from reView a
     	left join commentUploaded b on a.reViewSeq = b.pseq
+    	left join member c on a.member_memberSeq = c.memberSeq
+    	left join memberAddr d on a.member_memberSeq = d.memberSeq
+    	left join purChase_Product e on d.AddrSeq = e.memberAddr_addrSeq
+    	left join v_detailList f on f.detailSeq = e.productDetail_detailSeq 
     	where 1=1
-    		and a.product_Seq = #{productSeq}
+    		and f.product_Seq = #{productSeq}
     </select>
     
     <select id="reviewList3" resultMap="resultMapObj">
@@ -103,10 +109,18 @@
     		,a.reviewRegDate
     		,b.path
 			,b.uuidName
+			,c.memberID
+			,c.memberNick
+			,f.colorName
+			,f.sizeName
     	from reView a
     	left join commentUploaded b on a.reViewSeq = b.pseq
+    	left join member c on a.member_memberSeq = c.memberSeq
+    	left join memberAddr d on a.member_memberSeq = d.memberSeq
+    	left join purChase_Product e on d.AddrSeq = e.memberAddr_addrSeq
+    	left join v_detailList f on f.detailSeq = e.productDetail_detailSeq 
     	where 1=1
-    		and a.product_Seq = #{product_Seq}
+    		and f.product_Seq = #{product_Seq}
     </select>
     <!-- 리뷰e -->
     
@@ -527,6 +541,15 @@
 		where 1=1
 		and b.memberSeq = #{member_memberSeq}
 		and c.product_Seq = #{product_Seq}
+	</select>
+		<select id="reviewCheck" resultType="Integer">
+		select
+			COUNT(*)
+		from
+			reView 
+		where 1=1
+			and member_memberSeq = #{member_memberSeq}
+			and product_Seq = #{product_Seq}
 	</select>
 	
 	<select id="selectOneCount" resultType="Integer">

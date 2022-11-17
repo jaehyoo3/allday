@@ -112,13 +112,13 @@
 					</div>
 				<div class="imagee">
 					<c:forEach items="${detailImgList}" var="list" varStatus="status">
-						<c:if test="${list.article eq 1 and list.sort eq 1}">
+						<c:if test="${list.article eq 1 and list.sort eq 2}">
 							<img src='<c:out value="${list.path}"/><c:out value="${list.uuidName}"/>' style="width:100%;"> 
 						</c:if>
 					</c:forEach>
 					<div id="id_test_div" style="display:none;">
 						<c:forEach items="${detailImgList}" var="list" varStatus="status">
-							<c:if test="${list.article eq 1 and list.sort ne 1}">
+							<c:if test="${list.article eq 1 and list.sort ne 2}">
 								<img src='<c:out value="${list.path}"/><c:out value="${list.uuidName}"/>' style="width:100%;">
 							</c:if>
 						</c:forEach>
@@ -206,55 +206,52 @@
 				<hr>
 				<div id="comment">
 				<c:forEach items="${reviewList}" var="reviewList" varStatus="status">
-				
 					<ul class='review_boder'>
 						<li class='content_warp'>
-							<div class='star_rating'><c:out value="${reviewList.score }" /></div> 
-							<div class='detail_warp'>[옵션] 색상 : Light Green / 사이즈 : Small / 1개</div>
+							<div class='star_rating'>
+							   <c:forEach begin="0" end="4" var="i">
+                      			 <c:choose>
+		                               <c:when test="${reviewList.score gt i }">
+		                                	<i class="fa-solid fa-star" style="color:#ffc107;"></i>
+		                               </c:when>
+		                               <c:otherwise>
+		                                   <i class="fa-regular fa-star"></i>
+		                               </c:otherwise>
+			                         </c:choose>
+			                    </c:forEach>
+							
+							</div> 
+							<div class='detail_warp'>[옵션] 색상 :<c:out value="${reviewList.colorName}" /> / 사이즈: <c:out value="${reviewList.sizeName}" />
+							</div>
 							<div class='content_detail_warp'><c:out value="${reviewList.content }" /></div>
 							<div class='img_warp'><p><img src='<c:out value="${reviewList.path}"/><c:out value="${reviewList.uuidName}"/>'></p></div>
 						</li>
 						<li class='data_warp'>
-							<div class='idnick_warp'>강(asdasd)</div>
-							<div class='date_warp'>2022-11-01</div>
+							<div class='idnick_warp'><c:out value="${reviewList.memberNick }" />(<c:out value="${reviewList.memberID }" />)</div>
+							<div class='date_warp'><c:out value="${reviewList.reviewRegDate }" /></div>
 						</li>
 					</ul>
 				</c:forEach>
 				</div>
-				<ul>
-					<li><div class="starpoint_wrap">
-					  <div class="starpoint_box">
-					    <label for="starpoint_1" class="label_star" title="0.5"><span class="blind">0.5점</span></label>
-					    <label for="starpoint_2" class="label_star" title="1"><span class="blind">1점</span></label>
-					    <label for="starpoint_3" class="label_star" title="1.5"><span class="blind">1.5점</span></label>
-					    <label for="starpoint_4" class="label_star" title="2"><span class="blind">2점</span></label>
-					    <label for="starpoint_5" class="label_star" title="2.5"><span class="blind">2.5점</span></label>
-					    <label for="starpoint_6" class="label_star" title="3"><span class="blind">3점</span></label>
-					    <label for="starpoint_7" class="label_star" title="3.5"><span class="blind">3.5점</span></label>
-					    <label for="starpoint_8" class="label_star" title="4"><span class="blind">4점</span></label>
-					    <label for="starpoint_9" class="label_star" title="4.5"><span class="blind">4.5점</span></label>
-					    <label for="starpoint_10" class="label_star" title="5"><span class="blind">5점</span></label>
-					    <input type="radio" name="Score" id="starpoint_1" value="0.5" class="star_radio">
-					    <input type="radio" name="Score" id="starpoint_2" value="1.0" class="star_radio">
-					    <input type="radio" name="Score" id="starpoint_3" value="1.5" class="star_radio">
-					    <input type="radio" name="Score" id="starpoint_4" value="2.0" class="star_radio">
-					    <input type="radio" name="Score" id="starpoint_5" value="2.5" class="star_radio">
-					    <input type="radio" name="Score" id="starpoint_6" value="3.0" class="star_radio">
-					    <input type="radio" name="Score" id="starpoint_7" value="3.5" class="star_radio">
-					    <input type="radio" name="Score" id="starpoint_8" value="4.0" class="star_radio">
-					    <input type="radio" name="Score" id="starpoint_9" value="4.5" class="star_radio">
-					    <input type="radio" name="Score" id="starpoint_10" value="5.0" class="star_radio">
-					    <span class="starpoint_bg"></span>
-					  </div>
-					</div>
-					</li>
-				</ul>
 				<div class='iamgeupload-wrap'>
 					<ul>
 						<li><ul class="image-preview"></ul></li>
 					</ul>
 				</div>
-				<ul><li><div class="upload"><i class="fa-solid fa-images"></i></div></ul>
+
+				<ul class='reviewMenu'>
+					<li class='reviewMenus'>
+						<div class="rating" style="width: 20rem">
+							<input id="rating-5" type="radio" name="score" value="5"/><label for="rating-5"><i class="fas fa-star"></i></label>
+							<input id="rating-4" type="radio" name="score" value="4"/><label for="rating-4"><i class="fas fa-star"></i></label>
+							<input id="rating-3" type="radio" name="score" value="3"/><label for="rating-3"><i class="fas fa-star"></i></label>
+							<input id="rating-2" type="radio" name="score" value="2"/><label for="rating-2"><i class="fas fa-star"></i></label>
+							<input id="rating-1" type="radio" name="score" value="1"/><label for="rating-1"><i class="fas fa-star"></i></label>
+							
+						</div>
+						<div class="upload"><i class="fa-solid fa-images"></i></div>
+						</li></ul>
+
 				<ul style="width:100%;">
 				  	<input type="file" name="uploadedImage3" class="real-upload" accept="image/*" required multiple>
 					<li style="width:90%;"><input type="text" name="Content" placeholder="내용입력" style="width:100%; height:40px;">
@@ -293,17 +290,32 @@
 			        ,type:"POST"					
 			        ,success: function(response) {
 			        	var comment = "";
+			        	var score = "";
 						if(response.rt == "success") {
-							for (var i = 0; i < response.rList.length; i++) {
+							for (var i=0; i<response.rList.length; i++) {
 								comment +='<ul class="review_boder"><li class="content_warp">';
-								comment +='<div class="star_rating">' + response.rList[i].score + '</div>';
-								comment +='<div class="detail_warp">[옵션] 색상 : Light Green / 사이즈 : Small / 1개</div>';
+								
+								for(var j=1; j<=5; j++) {
+									if(response.rList[i].score >= j) {
+										score += '<i class="fa-solid fa-star" style="color:#ffc107;"></i>';
+									} else if(response.rList[i].score < j) {
+										score += '<i class="fa-regular fa-star"></i>';
+									}
+								}
+								comment +='<div class="star_rating">' + score + '</div>';
+								comment +='<div class="detail_warp">[옵션] 색상 : '+response.rList[i].colorName+' / 사이즈 : '+response.rList[i].sizeName+'</div>';
 								comment +='<div class="content_detail_warp"> '+response.rList[i].content+' </div> ';
-								comment +='<div class="img_warp"><p><img src='+response.rList[i].path + response.rList[i].uuidName+'></p></div>';
-								comment +='<li class="data_warp">강(asdasd)</div>';
-								comment +='<div class="date_warp">2022-11-01</div></li></ul>';
+								if(response.rList[i].path != null) {
+									comment +='<div class="img_warp"><p><img src='+response.rList[i].path + response.rList[i].uuidName+'></p></div>';
+								}
+								comment +='<li class="data_warp">'+response.rList[i].memberNick+'('+response.rList[i].memberID+')</div>';
+								comment +='<div class="date_warp">'+response.rList[i].reviewRegDate +'</div></li></ul>';
+								score = '';
+
 							}
 							$("#comment").html(comment);
+						} else if(response.rt == "existence") {
+							alert("이미 리뷰를 작성했습니다.");
 						} else {
 						alert("구매한 상품만 리뷰 작성이 가능합니다")
 						}

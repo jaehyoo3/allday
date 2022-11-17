@@ -23,12 +23,6 @@
 					<h3>결제하기</h3>
 					<div class='b1'>
 						<h3>결제가 완료 되었습니다.</h3><br>
-						<p><b>상품명:</b></p>
-						<p><b>주문번호:</b> </p>
-						<p><b>고객명:</b> </p>
-						<p><b>배송지:</b> </p>
-						<p><b>전화번호:</b> /p>
-						<p><b>결제금액:</b></p>
 					</div>
 					<div class="d-grid gap-2 col-12">
 				<button class="btn text-white fw-bold" type="button" style="background-color:rgb(44, 62, 80);"onClick="location.href='/main'">홈으로가기</button>

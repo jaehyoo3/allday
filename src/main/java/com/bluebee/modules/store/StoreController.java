@@ -196,7 +196,9 @@ public class StoreController {
 		}
 		
 		@RequestMapping(value = "storeBuySuccess")
-		public String StoreBuySuccess() {
+		public String StoreBuySuccess(Model model, StoreVo vo) throws Exception {
+			List<Store> list = service.orderList(vo);
+			model.addAttribute("list", list);
 			return "infra/store/storeBuysuccess";
 		}
 
@@ -229,13 +231,15 @@ public class StoreController {
 		@RequestMapping(value = "/reviewProc")
 		public Map<String, Object> reviewProc(Model model, Store dto, HttpSession httpSession) throws Exception {
 			Map<String, Object> returnMap = new HashMap<String, Object>();
-			System.out.println(dto.getMember_memberSeq());
 			
 			  int ckOrder = service.buyCheck(dto);
+			  int reviewCk = service.reviewCheck(dto);
 			  
 			  if(ckOrder == 0) {
 				  returnMap.put("rt", "fail");
-			} else {
+			  } else if(reviewCk == 1) {
+				  returnMap.put("rt", "existence");
+			  } else {
 				service.reviewInsert(dto);
 				
 				List<Store> rList = service.reviewList3(dto);

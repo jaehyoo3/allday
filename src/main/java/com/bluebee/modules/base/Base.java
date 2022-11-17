@@ -24,6 +24,7 @@ public class Base {
 	private String memberEmail;
 	private String memberMobile;
 	private Integer memberPoint;
+	private String memberNick;
 	private String addrSeq;
 	private Integer defaultNy;
 	private String  reciver;
@@ -31,7 +32,8 @@ public class Base {
 	private String addr1;
 	private String addr2;
 	private Integer productPrice;
-		
+	private String memberID;
+	
 	public Integer getProductPrice() {
 		return productPrice;
 	}
@@ -39,6 +41,7 @@ public class Base {
 		this.productPrice = productPrice;
 	}
 	/* 상품 */
+	
 	private String detailSeq;
 	private String colorName;
 	private String productSeq;
@@ -55,6 +58,18 @@ public class Base {
 	private String productNum;
 	private String cartStock;
 	
+	public String getMemberID() {
+		return memberID;
+	}
+	public void setMemberID(String memberID) {
+		this.memberID = memberID;
+	}
+	public String getMemberNick() {
+		return memberNick;
+	}
+	public void setMemberNick(String memberNick) {
+		this.memberNick = memberNick;
+	}
 	public Integer getOrderPrice() {
 		return orderPrice;
 	}

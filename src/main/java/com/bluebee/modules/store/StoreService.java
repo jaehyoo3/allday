@@ -14,6 +14,7 @@ public interface StoreService {
 	public List<Store> sL(StoreVo vo) throws Exception;
 	
 	public List<Store> reviewList(StoreVo vo) throws Exception; 
+	public List<Store> orderList(StoreVo vo) throws Exception; 
 	public List<Store> reviewList3(Store dto) throws Exception; 
 	public int reviewInsert(Store dto) throws Exception;
 	 
@@ -31,7 +32,7 @@ public interface StoreService {
 	public int basketCheck(Store dto) throws Exception;
 	public int basketUpdt(Store dto) throws Exception;
 	public int orderDetail(Store dto) throws Exception;
-	
+	public int reviewCheck(Store dto) throws Exception;
 	public int buyCheck(Store dto) throws Exception;
 	public int wishinst(Store dto) throws Exception;
 	

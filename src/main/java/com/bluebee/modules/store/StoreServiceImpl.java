@@ -241,6 +241,12 @@ public class StoreServiceImpl implements StoreService {
 	}
 
 	@Override
+	public int reviewCheck(Store dto) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.reviewCheck(dto);
+	}
+
+	@Override
 	public List<Store> wishList(StoreVo vo) throws Exception {
 		// TODO Auto-generated method stub
 		return dao.wishList(vo);
@@ -256,6 +262,12 @@ public class StoreServiceImpl implements StoreService {
 	public int orderDetail(Store dto) throws Exception {
 		// TODO Auto-generated method stub
 		return dao.orderDetail(dto);
+	}
+
+	@Override
+	public List<Store> orderList(StoreVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.orderList(vo);
 	}
 	
 	
