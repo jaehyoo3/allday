@@ -21,13 +21,13 @@
 				<div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
 				  <div class="carousel-inner">
 				    <div class="carousel-item active">
-				      <img src="/resources/Images/img/main.jpg" class="d-block">
+				      <a href="javascript:goProduct(191)"><img src="/resources/Images/img/main.jpg" class="d-block"></a>
 				    </div>
 				    <div class="carousel-item">
-				 		<img src="/resources/Images/img/main2.jpg" class="d-block">
+				 		<a href="javascript:goProduct(192)"><img src="/resources/Images/img/main2.jpg" class="d-block"></a>
 				    </div>
 				    <div class="carousel-item">
-				      <img src="/resources/Images/img/main3.jpg" class="d-block">
+				      <a href="javascript:goProduct(193)"><img src="/resources/Images/img/main3.jpg" class="d-block"></a>
 				    </div>
 				  </div>
 				  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
@@ -48,18 +48,18 @@
 				<div class='mainproduct'>
 					<img src = '/resources/Images/img/main-1.jpg'>
 					<span style="font-weight: bold;">T7 파이핑 트랙 자켓</span>
-					<p style="text-align:right">> Preview</p> 
+					<p style="text-align:right"><a href="javascript:goProduct(180)">> Preview</a></p> 
 					<hr><br>
 					<div class='left'>
 						<img src='/resources/Images/img/lphoto.jpg'>
-						<span style="font-weight: bold; font-size:18px;"> CALVIN KLEIN JEANS / J217960 YAF</span>
-						<p style="text-align:right">> Preview</p> 
+						<span style="font-weight: bold; font-size:18px;">AIRBORNE LONG (에어본 롱) 여성 긴기장 다운 자켓 (L/Beige)</span>
+						<p style="text-align:right"><a href="javascript:goProduct(194)">> Preview</a></p> 
 						<hr>
 					</div>
 					<div class='right'>
 						<img src='/resources/Images/img/rphoto.jpg'>
-						<span style="font-weight: bold;font-size:18px;">CALVIN KLEIN JEANS / J321612 BEH</span>
-						<p style="text-align:right">> Preview</p> 
+						<span style="font-weight: bold;font-size:18px;">다이아 모노그램 자카드 오버핏 맨투맨 뉴욕양키스</span>
+						<p style="text-align:right"><a href="javascript:goProduct(195)">> Preview</a></p> 
 						<hr>
 					</div>				
 				</div>

@@ -69,6 +69,7 @@
 				height: 40%;
 				margin-right: 20px;
 				margin-bottom: 20px;
+				object-fit: cover;
 			} .products a {
 				text-decoration: none;
 				color: black;

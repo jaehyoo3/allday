@@ -432,7 +432,6 @@
 			div += '<div class="quantity_div"> <input type="text" value="1" class="quantity_input"> <button class="quantity_btn plus_btn" type="button">+</button><button class="quantity_btn minus_btn" type="button">-</button></div>';
 			div += '</li>';
 			div += '<li>￦<div class="addPrice">' + price + '</div></li></ul></div>';
-			div += '<input type="text" id="detailSeq" name="detailSeq">';
 			
 			$(".addWrap").append(div);
 			
