@@ -15,7 +15,14 @@ public class StoreVo extends BaseVo{
 	private Integer wishListCount;
 	private String product_Seq;
 	private Integer orderNum;
+	private Integer productPrice;
 	
+	public Integer getProductPrice() {
+		return productPrice;
+	}
+	public void setProductPrice(Integer productPrice) {
+		this.productPrice = productPrice;
+	}
 	public Integer getOrderNum() {
 		return orderNum;
 	}

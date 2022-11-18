@@ -34,7 +34,7 @@
 								<div class='productt'>
 									<span><c:out value="${vo.productName}" /></span> <div class="vr"></div> <span><c:out value="${vo.productType}" /></span>
 									<p><c:out value="${detail.sizeName}" /> / <c:out value="${detail.colorName}" />
-									<input type="text" name="productDetail_detailSeq" value="<c:out value="${vo.detailSeq}" />">
+									<input type="hidden" name="productDetail_detailSeq" value="<c:out value="${vo.detailSeq}" />">
 									<p>￦<c:out value="${vo.productPrice }" /></p>
 								</div>
 							</div>
