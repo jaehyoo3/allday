@@ -542,7 +542,7 @@
 		and b.memberSeq = #{member_memberSeq}
 		and c.product_Seq = #{product_Seq}
 	</select>
-		<select id="reviewCheck" resultType="Integer">
+	<select id="reviewCheck" resultType="Integer">
 		select
 			COUNT(*)
 		from
