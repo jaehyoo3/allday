@@ -161,6 +161,28 @@
 		<script>
 		var form = $("form[name=form]");
 		var seq = $("input:hidden[name=memberSeq]");
+		var form = $("form[name=formList]");
+
+		kakao = function(){
+			
+			$.ajax({
+				async: true
+				,cach: false
+				,method: "post"  //
+				,url: "/booking/kakaopayReady"
+				,data: {
+						form : $("#formList").serialize()
+						//input hidden 으로 선언한 dto 내용 전부 넘김
+				}
+				,success: function(response){
+					location.href = response.next_redirect_pc_url
+					//카카오에서 제공하는 url로 바로 이동
+				}
+				,error : function(){
+					alert("ajax error..");
+				}
+			});
+		}
 		</script>
 	</body>
 </html>

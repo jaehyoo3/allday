@@ -15,9 +15,14 @@ public class XdminCGDao {
 	@Resource(name = "sqlSession")
 	private SqlSession sqlSession;
 	
+	@Inject
+	@Resource(name = "sqlSessionOracle")
+	private SqlSession sqlSessionOracle;
+	
 	private static String namespace = "com.bluebee.modules.xdmincg.XdminCGMapper";
 
-	public List<XdminCG> selectList(XdminCGVo vo) { return sqlSession.selectList(namespace + ".selectList", vo); }
+	public List<XdminCG> selectList(XdminCGVo vo) { return sqlSessionOracle.selectList(namespace + ".selectList", vo); }
+	
 	public int insert(XdminCG dto) { return sqlSession.insert(namespace+".insert", dto); }
 	public int update(XdminCG dto) { return sqlSession.update(namespace+".update", dto); }
 	public XdminCG selectOne(XdminCGVo vo) { return sqlSession.selectOne(namespace+".selectOne", vo); }

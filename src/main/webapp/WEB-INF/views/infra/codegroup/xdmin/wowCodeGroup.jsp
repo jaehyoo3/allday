@@ -70,14 +70,14 @@
 													<td><input type='checkbox'></td>
 													<td><c:out value="${list.codeGroupSeq }"/></td>
 													<td><c:out value="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + status.index) }"/></td>
-													<td><c:out value="${list.codeGroupOrder }"/></td>
+<%-- 													<td><c:out value="${list.codeGroupOrder }"/></td> --%>
 													<td><c:out value="${list.codeGroupName }"/></td>
-													<td><c:out value="${list.codeGroupNameEng }"/></td>
-													<td><c:out value="${list.codeGroupOrder }"/></td>
+<%-- 													<td><c:out value="${list.codeGroupNameEng }"/></td>
+													<td><c:out value="${list.codeGroupOrder }"/></td> --%>
 													<td><c:out value="${list.codeGroupUseNY }"/></td>
 													<td><c:out value="${list.codeGroupDelNY }"/></td>
-													<td><fmt:formatDate value="${list.codeGroupRegdate }" pattern="yyyy-MM-dd hh:mm:ss"/></td>
-													<td><fmt:formatDate value="${list.codeGroupUpdate }" pattern="yyyy-MM-dd hh:mm:ss"/></td>
+		<%-- 											<td><fmt:formatDate value="${list.codeGroupRegdate }" pattern="yyyy-MM-dd hh:mm:ss"/></td>
+													<td><fmt:formatDate value="${list.codeGroupUpdate }" pattern="yyyy-MM-dd hh:mm:ss"/></td> --%>
 												</tr>
 											</c:forEach>
 									</c:otherwise>

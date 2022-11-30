@@ -8,7 +8,7 @@
 
     <resultMap id="resultMapObj" type="com.bluebee.modules.xdmincg.XdminCG"></resultMap>
     
-    <select id="selectList" resultMap="resultMapObj">
+<!--     <select id="selectList" resultMap="resultMapObj">
     	<include refid="Base.selectListUpper"/>
     	select
     		a.codeGroupSeq
@@ -22,6 +22,11 @@
 			<include refid="basic" />
 			ORDER BY a.codeGroupSeq DESC
 			<include refid='Base.selectListLower'/>
+    </select> -->
+     <select id="selectList" resultMap="resultMapObj">
+    	select
+			*
+		FROM CodeGroup
     </select>
     
     <sql id='basic'>
