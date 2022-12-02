@@ -121,8 +121,6 @@
 			$("#btnList").on("click", function(){
 				form.attr("action", goUrlList).submit();
 			});
-			
-						
 		</script>
 		
   </body>
