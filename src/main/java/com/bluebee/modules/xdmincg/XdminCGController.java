@@ -77,6 +77,7 @@ public class XdminCGController {
 			service.update(dto);
 			vo.setCodeGroupSeq(dto.getCodeGroupSeq());
 			redirectAttributes.addFlashAttribute("vo", vo);
+			
 			return "redirect:/xdmin/codegroupform";
 		}
 		@RequestMapping(value = "codegroupView")
